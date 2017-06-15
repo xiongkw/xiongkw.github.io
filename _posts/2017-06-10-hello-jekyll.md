@@ -1,9 +1,10 @@
 ---
 layout: post
 title: Hello Jekyll
-categories: [其它]
-tags: [其它]
+categories: [jekyll]
+tags: [jekyll]
 ---
 
 
 Hello Jekyll
+

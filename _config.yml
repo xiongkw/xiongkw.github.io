@@ -8,15 +8,13 @@ permalink: /:year/:month/:day/:title/
 # Setup
 title:            Xiongkw's Blog
 tagline:          'Xiongkw''s Blog'
-description:      'This guy is too lazy for leaving nothing!'
+description:      '据说明天有雨'
 url:              http://xiongkw.github.io
 baseurl:          /
 
 author:
   name:           'Xiongkw'
   url:
-
-paginate:         5
 
 # Custom vars
 version:          2.1.0
@@ -26,4 +24,4 @@ github:
 
 # paginate
 gems: [jekyll-paginate]
-paginate: 6
+paginate: 5
