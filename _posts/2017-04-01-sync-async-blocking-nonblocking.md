@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 同步与异步/阻塞与非阻塞
-categories: [编程]
+categories: [编程, 多线程, java]
 tags: [多线程, 并发, IO, java]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Nginx安装指南
-categories: [编程]
+categories: [编程, web, nginx]
 tags: [nginx, web]
 ---
 

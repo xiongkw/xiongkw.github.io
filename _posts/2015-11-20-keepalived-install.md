@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Keepalived安装指南
-categories: [编程]
+categories: [编程, linux]
 tags: [lvs, 负载均衡, keepalived, lvs]
 ---
 

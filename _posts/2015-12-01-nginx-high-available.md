@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 通过keepalived VIP转移实现nginx双机热备的高可用
-categories: [编程]
+categories: [编程, web, nginx, linux]
 tags: [nginx, 高可用, keepalived, vip, lvs]
 ---
 

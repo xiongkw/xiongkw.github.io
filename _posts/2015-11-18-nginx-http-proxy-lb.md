@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Nginx反向代理负载算法
-categories: [编程]
+categories: [编程, web, nginx]
 tags: [nginx, 负载均衡, 反向代理]
 ---
 

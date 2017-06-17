@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Nginx搭建HTTP反向代理
-categories: [编程]
+categories: [编程, web, nginx]
 tags: [http, nginx, 负载均衡, 反向代理]
 ---
 

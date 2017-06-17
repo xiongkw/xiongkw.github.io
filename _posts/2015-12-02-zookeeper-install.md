@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Zookeeper安装指南
-categories: [编程]
+categories: [编程, zookeeper]
 tags: [zookeeper]
 ---
 

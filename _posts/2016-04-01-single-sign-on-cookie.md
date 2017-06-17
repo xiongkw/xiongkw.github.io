@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 基于cookie共享实现单点登录
-categories: [编程]
+categories: [编程, web, http]
 tags: [http, sso, 单点登录, cookie, session]
 ---
 
