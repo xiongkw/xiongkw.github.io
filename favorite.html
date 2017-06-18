@@ -1,0 +1,14 @@
+---
+layout: page
+title: Favorite
+---
+
+{% for category in site.data.favorites %}
+<h2 id="{{ category.name }}-ref">{{ category.name | join: "/" }}</h2>
+<ul>
+    {% for node in category.pages %}
+    <li><a href="{{node.url}}" target="_blank">{{node.title}}</a></li>
+    {% endfor %}
+</ul>
+{% endfor %}
+
