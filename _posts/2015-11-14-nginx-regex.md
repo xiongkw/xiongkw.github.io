@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Nginx location匹配规则
+title: Nginx 配置正则表达式写法
 categories: [编程, web, nginx]
 tags: [nginx, web, regex]
 ---
