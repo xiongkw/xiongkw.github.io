@@ -1,0 +1,203 @@
+- name: 工具
+  pages:
+    - title: Google
+      url: https://www.google.com/
+    - title: Bing
+      url: http://www.cn.bing.com/
+    - title: 百度
+      url: https://www.baidu.com/
+    - title: 风车
+      url: https://fengche.co/
+    - title: 知乎
+      url: https://www.zhihu.com/
+    - title: 有道
+      url: http://dict.youdao.com/
+    - title: 阿里云
+      url: https://www.aliyun.com/
+    - title: 万方数据
+      url: http://www.wanfangdata.com.cn/
+    - title: 维普网
+      url: http://www.cqvip.com/
+    - title: 百度学术
+      url: http://xueshu.baidu.com/
+    - title: 网易看客
+      url: http://news.163.com/special/insight/
+    - title:
+      url:
+
+
+- name: IT
+  pages:
+    - title: GitHub
+      url: https://www.github.com/
+    - title: Apache
+      url: http://apache.org/
+    - title: Spring
+      url: https://spring.io/
+    - title: Stack Overflow
+      url: https://stackoverflow.com/
+    - title: InfoQ
+      url: http://www.infoq.com/cn/
+    - title: W3School
+      url: http://www.w3school.com.cn/
+    - title: 菜鸟教程
+      url: http://www.runoob.com/
+    - title: 开源中国
+      url: http://www.oschina.net/
+    - title: CSDN
+      url: http://www.csdn.net/
+    - title: 牛客网
+      url: https://www.nowcoder.com/
+    - title: Json在线解析
+      url: http://json.cn/
+    - title: GitBook
+      url: https://www.gitbook.com/
+    - title: Dillinger
+      url: http://dillinger.io/
+    - title: Mahua
+      url: http://mahua.jser.me/
+    - title: 算法复杂度速查
+      url: http://www.techug.com/post/bigo-cheatsheet.html
+
+- name: 架构
+  pages:
+    - title: MVC，MVP 和 MVVM 的图示
+      url: http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html
+    - title: 我的架构设计~用层关系图说说mvc,mvvm,soa,ddd
+      url: http://www.cnblogs.com/lori/p/3507359.html
+    - title: web性能测试基本性能指标
+      url: http://blog.csdn.net/qiguiting/article/details/11584397
+
+- name: Blog
+  pages:
+    - title: 阮一峰的网络日志
+      url: http://www.ruanyifeng.com/blog/
+    - title: 廖雪峰的官方网站
+      url: http://www.liaoxuefeng.com/
+    - title: 维扬卧龙的博客
+      url: http://blog.sina.com.cn/yzxyz117
+    - title: 高效MacBook工作环境配置
+      url: http://mp.weixin.qq.com/s?__biz=MjM5NzA1MTcyMA==&mid=402977882&idx=2&sn=112a8fab349254c6af076762e730f750&scene=23&srcid=0223zgOHCBWQEcThTLZiD9bl#rd
+    - title: Java工程师成神之路
+      url: http://mp.weixin.qq.com/s?__biz=MjM5NzA1MTcyMA==&mid=400861341&idx=3&sn=be7603f8ece9a9cb09f12919fb2a6128&scene=23&srcid=12166d9yFteZ6xsQy2WUImea#rd
+    - title: Sublime Text 2 - 性感无比的代码编辑器
+      url: http://www.iplaysoft.com/sublimetext.html
+    - title: 20 个强大的 Sublime Text 插件
+      url: http://www.oschina.net/translate/20-powerful-sublimetext-plugins
+    - title: sublime text 2中Emmet8个常用的技巧
+      url: http://blog.csdn.net/lmmilove/article/details/9181323
+    - title: 中国移动、中国电信和中国联通之间有什么关系
+      url: https://www.zhihu.com/question/19575986
+    - title: 不上班环游世界却月入两万 怎么做到的？
+      url: http://finance.qq.com/a/20160329/010618.htm
+
+- name: 影视娱乐
+  pages:
+    - title: 游民娱乐
+      url: http://www.gamersky.com/wenku/
+    - title: 外媒评史上最佳英/美剧TOP30
+      url: http://www.gamersky.com/wenku/201603/725922.shtml
+    - title: HBO最棒的20部美剧
+      url: http://www.gamersky.com/wenku/201604/743138.shtml
+    - title: IMDB评25年间最好的25部电影
+      url: http://www.gamersky.com/wenku/201604/739951_25.shtml
+    - title: 揭露人性 震撼心灵 豆瓣史上最佳的十部战争电影
+      url: http://www.gamersky.com/wenku/201607/777007_10.shtml
+    - title: 拉上帘 · 那些值得看的经典电影片单……的片单
+      url: http://daily.zhihu.com/story/1064561
+    - title: 拍了20多年的它终于要上映了
+      url: http://c.m.163.com/news/a/BM9UDPMF051790QP.html
+    - title: 这些被奥斯卡错过的电影 每一部都被奉为影史经典
+      url: http://www.gamersky.com/wenku/201605/754424.shtml
+    - title: 看完整个人都笑傻了 十部香港最搞笑的喜剧
+      url: http://www.gamersky.com/wenku/201609/809295.shtml
+    - title: 盘点十部看时脊背发凉、看完细思极恐的高分电影
+      url: https://c.m.163.com/news/a/CCEHEOIB05179MF6.html?spss=newsapp&spsw=1
+    - title: 诺兰和卡梅隆的差距
+      url: https://bbs.hupu.com/10963620-6.html
+    - title: 《月光光心慌慌》中超级变态的杀人狂迈克尔·迈尔斯幽秘的心理
+      url: https://www.douban.com/note/80919887/
+
+- name: 人物传记
+  pages:
+    - title: 图灵:数学有真理也有最高的美
+      url: http://c.m.163.com/news/a/AVS4SUF4000915BF.html
+    - title: 第一个亿万富翁,开挂的人生
+      url: http://c.m.163.com/news/a/BM4F34VB000155PV.html
+
+- name: 历史
+  pages:
+    - title: 三分钟教你看懂十字军东征
+      url: http://www.360doc.com/content/15/1122/18/16534268_515047932.shtml
+    - title: 真实的鲁迅
+      url: http://www.360doc.com/content/12/0228/16/7942270_190319056.shtml
+    - title: 真实的郭沫若
+      url: http://www.360doc.com/content/07/0608/09/24133_545214.shtml
+
+- name: 神话
+  pages:
+    - title: 中国神佛仙排名大全
+      url: http://blog.sina.com.cn/s/blog_63ee395a0101auyd.html
+    - title: 为什么只有许仕林才能救白素贞出塔
+      url: http://www.u148.net/article/132639.html
+
+- name: 科学
+  pages:
+    - title: 沿地球直径打洞跳下去会怎样
+      url: http://c.m.163.com/news/a/BLRERNEE00014TUH.html
+    - title: 人工智能PK人类：不止下棋碾压 猜拳也能秒杀
+      url: http://tech.sina.com.cn/it/2016-03-02/doc-ifxqafha0296177.shtml
+    - title: 脑洞大开：从零维到十维空间如何在纸上用手绘出来
+      url: http://www.sohu.com/a/115750017_117959
+    - title: 史上最全的汽车构造图解
+      url: http://www.sohu.com/a/69413324_377264
+
+- name: 旅游
+  pages:
+    - title: 12306
+      url: http://www.12306.cn/mormhweb/
+    - title: 白云国际机场
+      url: http://www.gbiac.net/194
+    - title: 它是中国人口最小的城市 却美得像个意外
+      url: http://c.m.163.com/news/a/BP28EDLD05248I3F.html
+    - title: 扒一扒广东水质最好的海滩、海岛
+      url: http://mygd.qq.com/t-1245730-1.htm
+    - title: 世界最长的火车之旅：心情不好的话，就去坐一个月火车吧
+      url: http://daily.zhihu.com/story/961930
+    - title: 2014西藏拉萨林芝珠峰大本营攻略
+      url: http://bbs2.mowo.cn/thread-152773-1-1.html
+    - title: 一个在西藏的老拉萨--告诉你们最实用的
+      url: http://www.tuniu.com/trips/10017582
+
+- name: 运行户外
+  pages:
+    - title: 当下最流行的无器械健身套路
+      url: http://c.m.163.com/news/a/BGE84CDN05148P5O.html
+    - title: 健身圈最牛B的5个动作，能完成1个就完爆96%的人
+      url: http://www.sohu.com/a/115069653_482894
+    - title: 给装备党：怎样选择合适的登山鞋
+      url: http://daily.zhihu.com/story/4471425
+
+- name: 美文
+  pages:
+    - title: 假如古人用微信...朋友圈笑死人
+      url: http://c.m.163.com/news/a/BVN5C80N052482T7.html?spss=newsapp&spsw=1
+    - title: 春宵一刻值千金：那些你永远不知道下一句的古诗词
+      url: http://c.m.163.com/news/a/C4B1K1LH0521AG9T.html?spss=newsapp&spsw=1
+
+- name: 创意
+  pages:
+    - title: 10张诡异的图片
+      url: http://www.sohu.com/a/53674396_351255
+
+- name: 饮食
+  pages:
+    - title: 做饭网
+      url: http://www.zuofan.cn/
+    - title: 在中国怎么吃不会死？日本人写了份饮食安全攻略
+      url: http://c.m.163.com/news/a/C4B3T0H50515AG9U.html?spss=newsapp&spsw=1
+
+- name: 教育
+  pages:
+    - title: 中国式思维——三大混蛋逻辑
+      url: http://www.sohu.com/a/116945199_463901
