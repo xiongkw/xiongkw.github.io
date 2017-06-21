@@ -204,7 +204,7 @@ public class AopAspectjTest {
 
 * spring aop不管使用哪种写法，其本质都是生成一个代理对象，在代理方法中加入增强方法
 * spring aop默认使用`jdk代理`(需要定义接口)生成代理对象，如果业务对象没有实现接口，则使用`cglib`生成代理对象
-* 因为代理的特性，使得其无法增强通过this调用的方法和private方法
+* 因为代理的特性，使得其无法增强通过this调用的方法和private方法，参考[Spring load-time-weaver用法]({{ site.url}}/2016/02/10/spring-ltw-useage/)
 
 附：代理的简单原理
 ```java
