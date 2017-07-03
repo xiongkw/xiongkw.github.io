@@ -8,7 +8,7 @@ permalink: /:year/:month/:day/:title/
 # Setup
 title:            Xiongkw's Blog
 tagline:          'Xiongkw''s Blog'
-description:      '据说明天有雨'
+description:      '熊二熊二，一直很二'
 url:              http://xiongkw.github.io
 baseurl:          /
 
