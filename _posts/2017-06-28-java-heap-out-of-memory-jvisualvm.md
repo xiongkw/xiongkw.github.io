@@ -46,7 +46,7 @@ public class HeapOutOfMemory {
 > 可以看到HeapOutOfMemory的实例被ArrayList所引用，这里可以确定ArrayList中的HeapOutOfMemory实例没有被GC收回，因为其被ArrayList引用
 
 *关于排名前二的char[]和String*   
-这哥俩其实是被HeapOutOfMemory实例引用的，见下图
+这哥俩表示很冤屈：“其实我俩是被HeapOutOfMemory引用的，如图”
 
 ![]({{site.url}}/public/images/2017-06-28-java-heap-out-of-memory-jvisualvm-4.png)
 
