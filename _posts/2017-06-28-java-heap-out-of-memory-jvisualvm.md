@@ -1,12 +1,34 @@
 ---
 layout: post
-title: java内存溢出分析之-堆内存溢出
+title: java内存溢出分析之-堆溢出
 categories: [编程, java]
-tags: [java, OutOfMemory, jvisualvm]
+tags: [java, heap, OutOfMemory, jvisualvm]
 ---
 
+JVM堆内存的划分(jdk8)
+```
+年轻代（New）：年轻代用来存放JVM刚分配的Java对象
+    Eden：Eden用来存放JVM刚分配的对象
+    Survivor1：
+    Survivro2：两个Survivor空间一样大，当Eden中的对象经过垃圾回收没有被回收掉时，会在两个Survivor之间来回Copy，当满足某个条件，比如Copy次数，就会被Copy到Tenured。显然，Survivor只是增加了对象在年轻代中的逗留时间，增加了被垃圾回收的可能性。
+年老代（Tenured)：年轻代中经过垃圾回收没有回收掉的对象将被Copy到年老代
+```
 
-先看测试代码
+堆内存中的垃圾回收
+```
+当年轻代内存满时，会引发一次普通GC，该GC仅回收年轻代。需要强调的时，年轻代满是指Eden代满，Survivor满不会引发GC
+当年老代满时会引发Full GC，Full GC将会同时回收年轻代、年老代
+当永久代满时也会引发Full GC，会导致Class、Method元信息的卸载
+```
+
+堆内存大小设置
+```
+-Xms512M //初始值
+-Xmx2014M//最大值
+-Xmn1024M//年轻代
+```
+
+本例通过不断new出强引用的对象让堆内存溢出
 ```java
 public class HeapOutOfMemory {
 
