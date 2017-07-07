@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [java, wait, notify, 多线程]
 ---
 
-> 前台MM那里有很多办公用品，有人喜欢借胶水，而我现在要借剪刀。但MM同一时间只能接待一个码农，所以大家都要抢着锁定MM。   \
+> 前台MM那里有很多办公用品，有人喜欢借胶水，而我现在要借剪刀。但MM同一时间只能接待一个码农，所以大家都要抢着锁定MM。   
 > 不要问我为什么大家都喜欢找MM借东西。
 
 ```java
@@ -40,7 +40,7 @@ public class WaitNotifyDemo {
             //锁定MM，防止被别人打扰
             synchronized (mm){
                 try {
-                    System.out.println("某A借脱水，顺便还和MM聊了一会，让我们其它人等了3秒.");
+                    System.out.println("某A借胶水，顺便还和MM聊了一会，让我们其它人等了3秒.");
                     Thread.sleep(3000);
                     mm.notifyAll();//MM在QQ群里说，要找我的可以过来了
                 } catch (InterruptedException e) {
