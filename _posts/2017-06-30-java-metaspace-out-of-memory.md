@@ -31,7 +31,7 @@ public class MetaspaceOutOfMenory {
 ![]({{site.url}}/public/images/2017-06-30-java-metaspace-out-of-memory-1.png)
 
 通过jvisualvm中两个堆dump的比较，看到新装入的类`MyClass*`
-![]({{site.url}}/public/images/2017-06-28-java-metaspace-out-of-memory-1.png)
+![]({{site.url}}/public/images/2017-06-30-java-metaspace-out-of-memory-2.png)
 
 异常信息
 ```
