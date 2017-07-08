@@ -65,4 +65,4 @@ ipvsadm –help
 4)  mkdir /etc/keepalived
 5)  cp /usr/local/etc/keepalived/keepalived.conf /etc/keepalived
 ```
-> 配置完成后可通过service keepalived [start|stop|restart] 对keepalived程序进行管理。
+> 配置完成后可通过service keepalived (start|stop|restart) 对keepalived程序进行管理。

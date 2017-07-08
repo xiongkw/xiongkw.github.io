@@ -1,12 +1,12 @@
 ---
 layout: post
-title: maven-shade-plugin插件
+title: 使用maven-shade-plugin插件打包你的api依赖
 categories: [编程, java, maven]
 tags: [maven, shade]
 ---
 
 
-> 对于api设计者来说，尽可能减少第三方依赖是一个很重要的原则，因为你不知道使用者的项目会依赖到多少第三方jar包，而各种不同版本的jar及其传递依赖很可能成为j2ee开发的噩梦。   
+> 对于api设计者来说，尽可能减少第三方依赖是一个很重要的原则，因为你不知道项目会依赖到多少第三方jar包，而各种不同版本的jar及其传递依赖很可能成为j2ee开发的噩梦。   
 > 除此以外，一个简洁干净的api(不依赖任何第三方jar包)会让开发人员充满使用的欲望。
 
 > 不可避免的第三方依赖   

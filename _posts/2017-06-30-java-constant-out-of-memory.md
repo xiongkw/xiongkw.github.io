@@ -1,6 +1,6 @@
 ---
 layout: post
-title: java内存溢出分析之-常量泄露
+title: java内存溢出分析之-常量池溢出
 categories: [编程, java]
 tags: [java, OutOfMemory, jvisualvm]
 ---

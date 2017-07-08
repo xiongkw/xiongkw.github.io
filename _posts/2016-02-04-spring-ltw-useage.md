@@ -78,7 +78,7 @@ public class AopAspectjweaverTest {
 
 *注意*
 
-以下写法是不启作用的，原因请参考[Spring load-time-weaver原理]({{ site.url }}/2016/02/10/spring-ltw-source/)
+以下写法是不起作用的，原因请参考[Spring load-time-weaver原理]({{ site.url }}/2016/02/10/spring-ltw-source/)
 ```java
 @ContextConfiguration(locations = { "classpath*:aop-weaver.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)

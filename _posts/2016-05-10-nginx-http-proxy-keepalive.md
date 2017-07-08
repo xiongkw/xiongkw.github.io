@@ -28,7 +28,7 @@ http
 
   location / {
    proxy_pass http://myapp.com;
-   #推荐他用http 1.1
+   #推荐使用http 1.1
    proxy_http_version 1.1;
    #Connection头信息默认为close，这里需要设置为空，表示不发送
    proxy_set_header Connection "";
