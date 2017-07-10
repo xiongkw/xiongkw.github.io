@@ -8,7 +8,8 @@ tags: [java, swap]
 
 不使用临时变量交换两个数的值
 ```java
-	public static void swap(int x, int y) {
+	public static void main(String[] args) {
+	    int x=3,y=4;
         System.out.println(x+","+y);
         x = x ^ y;
         y = x ^ y;
