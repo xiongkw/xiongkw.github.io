@@ -17,11 +17,11 @@ String str = new String("abc");
 /** The value is used for character storage. */
     private final char value[];
 ```
-> String 的内容用一个声明为`final`的`char`数表存放，`final`决定了它的内容不可变
+> String 的内容用一个声明为`final`的`char`数组存放，`final`决定了它的内容不可变
 
 * String常量池
-java中的对象无非是由`基本类型`和`String`组成，可以说java中占用内存最多的对象(`基本类型`不是对象，并且存储在`栈`中)归根结底是String(特殊除外)。   
-那么String的实例能有多少呢？光是26个英文字母的排列组合(26^26)已经是一个天文数字了。为了节省存储空间，需要使用单例模式(一个String实例只存储一份)，这就是`String常量池`。
+java中的对象无非是由`基本类型`和`String`组成，夸张的说java中占用内存最多的对象(`基本类型`不是对象，并且存储在`栈`中)归根结底都是String。   
+那么String的实例能有多少呢？光是26个英文字母的排列组合(26^26)已经是一个天文数字了。为了节省存储空间，jvm对String使用了不严格的单例模式(一个String实例只存储一份)，这就是`String常量池`。
 ```java
 String s1 = "abc";
 String s2 = "abc";
@@ -33,7 +33,7 @@ System.out.println(s1 == s2);//true
 ```java
 String s1 = "abc";
 ```
-> 使用`""`定义的String会被`编译器`认为是`常量`，从而会被放入`String常量池`。注意这个动作发生在`编译期`
+> 使用`""`定义的String会被`编译器`认为是`常量`，从而会被放入`String常量池`，注意这个动作发生在`编译期`
 
 * 运行时对String常量的操作
 ```java
@@ -51,7 +51,7 @@ String str = new String("abc");
 * 一个是`"abc"`，在`编译期`被当作常量，`运行期`存放在`常量池`中
 * 一个是`str`，在`运行期`通过`new`创建，存放在`堆`中
 
-`new String("abc")`发生了什么呢？看源码：
+实际上`new String("abc")`并没有生成新的char[]，看源码：
 ```java
     public String(String original) {
     //这是仅仅是把原String的value(char[])赋值给了this.value，并没有创建新的char
