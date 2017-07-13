@@ -5,7 +5,7 @@ categories: [编程, java, spring]
 tags: [java, spring]
 ---
 
-> spring编码中，我们常常使用`占位符${}`的方式把配置从代码(xml)中抽离到配置文件
+> spring编码中，我们常常使用`override`的方式改写第三方jar包中bean的属性值
 ```xml
 	<context:property-override location="classpath*:conf/dataSource.properties" />
 	
@@ -16,7 +16,7 @@ tags: [java, spring]
     </bean>
 ```
 
-`context`是spring-context中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应handler
+`context`是`spring-context`中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应handler
 ```
 http\://www.springframework.org/schema/context=org.springframework.context.config.ContextNamespaceHandler
 ```
@@ -91,7 +91,7 @@ protected void applyPropertyValue(
 }
 ```
 
-虽然两者没什么可比性(一个是占位、一个是重写)，但他们的功能应用却有重叠，对比一下`placeholder`和`override`的区别
+对比一下`placeholder`和`override`的区别，虽然两者没什么可比性(一个是占位、一个是重写)，但他们的应用却有重叠：
 * `placeholder`是占位，即一个符号，需要用具体的属性值来替换。`override`是重写，只是提供一个在属性文件中必定bean默认属性值的方法。
 * `placeholder`需要用`<property name="username" value="${jdbc.username:root}"/>`定义，而`override`直接给定一个默认值`<property name="username" value="root"/>`
 * `placeholder`可以用于`beanName,class,property,scope,property`等，而`override`只能用于`property`

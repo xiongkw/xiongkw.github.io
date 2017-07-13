@@ -17,7 +17,7 @@ tags: [java, spring]
     </bean>
 ```
 
-`context`是spring-context中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应handler
+`context`是`spring-context`中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应handler
 ```
 http\://www.springframework.org/schema/context=org.springframework.context.config.ContextNamespaceHandler
 ```
@@ -249,7 +249,7 @@ protected String resolvePlaceholder(String placeholder, Properties props, int sy
 ```
 > 注意这里有一个`systemPropertiesMode`，其取值有三个   
 > `SYSTEM_PROPERTIES_MODE_NEVER`，永远不使用系统属性(用`-Dkey=value`指定，同时`searchSystemEnvironment`决定是否使用系统环境变量)   
-> `SYSTEM_PROPERTIES_MODE_FALLBACK`，默认值，使用系统属性作为后备，即属性文件中找不到时才去系统属性中查找   
+> `SYSTEM_PROPERTIES_MODE_FALLBACK`，默认值，使用系统属性作为后备，即优先使用属性文件配置   
 > `SYSTEM_PROPERTIES_MODE_OVERRIDE`，和`FALLBACK`相反，即优先使用系统属性
 
 本文开头在PropertyPlaceholderBeanDefinitionParser.getBeanClass中根据`system-properties-mode`配置的不同返回了不同的`bean class`，我们看另一个实现`PropertySourcesPlaceholderConfigurer`
