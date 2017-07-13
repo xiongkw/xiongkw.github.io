@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring load-time-weaver 用法
-categories: [编程, spring, ltw, java]
+categories: [编程, spring, java]
 tags: [spring, ltw]
 ---
 

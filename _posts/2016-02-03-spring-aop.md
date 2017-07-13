@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring aop的几种写法
-categories: [编程, spring, aop, java]
+categories: [编程, spring, java]
 tags: [spring, aop]
 ---
 

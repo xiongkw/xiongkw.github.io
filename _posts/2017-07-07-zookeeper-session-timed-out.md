@@ -1,7 +1,7 @@
 ---
 layout: post
 title: zookeeper会话超时分析
-categories: [编程, java]
+categories: [编程, java, zookeeper]
 tags: [java, zookeeper, docker]
 ---
 

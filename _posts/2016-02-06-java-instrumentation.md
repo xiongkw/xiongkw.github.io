@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Java Instrumentation
-categories: [编程, spring, ltw, java]
-tags: [spring, ltw]
+categories: [编程, java]
+tags: [ltw]
 ---
 
 > `spring load-time-weaver 用法`一文中在运行测试类时需要加入参数`-javaagent`

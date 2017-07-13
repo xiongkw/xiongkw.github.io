@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java并发中的CountDownLatch
-categories: [编程, java, 并发]
+categories: [编程, java]
 tags: [java, 并发, 多线程]
 ---
 

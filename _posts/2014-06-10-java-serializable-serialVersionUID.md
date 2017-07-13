@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java对象序列化中的serialVersionUID
-categories: [编程, java, 序列化]
+categories: [编程, java]
 tags: [java, 序列化]
 ---
 
