@@ -5,7 +5,7 @@ categories: [编程, java, spring]
 tags: [spring, aware]
 ---
 
-> `spring`中有很多`aware`接口，比如`ApplicationContextAware`，即是能够感知`ApplicationContext`的，何谓能够感知？通俗讲就是能够获取到对`ApplicationContext`的引用。
+> `spring`中有很多`aware`接口，比如`ApplicationContextAware`，即能够感知`ApplicationContext`的，何谓能够感知？通俗讲就是能够获取到对`ApplicationContext`的引用。
 
 一个bean如何完成`感知`呢?
 ```java
