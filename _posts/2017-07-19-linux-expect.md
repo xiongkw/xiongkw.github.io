@@ -85,3 +85,54 @@ rsyslog.sh 192.168.1.100 docker
 * `ssh`是一个交互操作，需要等待回显字符`Authorized`
 * 重启并查看`rsyslog`服务状态
 * 在`crontab`中配置`rsyslog`重启定时器
+
+批量查看定时器配置的例子
+
+```
+#!/bin/bash
+for ip in `awk '{print $0}' hosts.txt`
+do
+echo $ip
+expect sh.exp $ip "tail -3 /etc/crontab"
+done
+```
+
+sh.exp
+```
+#!/bin/expect
+proc fn_expect {password} {
+    expect {
+        "(yes/no)?" {
+              send "yes\n"
+              expect "password:"
+              send "$password\r"
+        }
+        "password:" {
+              send "$password\r"
+        }
+    }
+}
+
+set username "docker"
+set password "docker!123"
+set ip [lindex $argv 0]
+
+set timeout 3
+
+spawn ssh $username@$ip
+fn_expect $password
+expect "Authorized"
+
+send "[lindex $argv 1]\r"
+expect "@"
+expect "@"
+
+#interact
+```
+
+hosts.txt
+```
+192.168.1.101
+192.168.1.102
+192.168.1.103
+```
