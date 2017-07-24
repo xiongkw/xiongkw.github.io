@@ -54,7 +54,6 @@ spawn echo 'File myapp.conf copyed'
 
 spawn ssh docker@$ip
 enterPassword $password
-
 expect "Authorized"
 
 send "sudo mv -f /home/docker/rsyslog.repo /etc/yum.repos.d\r"
@@ -78,7 +77,7 @@ rsyslog.sh 192.168.1.100 docker
 ```
 
 说明：
-* `expect`函数的格式为`proc func1 {param1, param2} {}`
+* `expect`函数的格式为`proc func1 {param1 param2} {}`
 * 更新`rsyslog`yum源，升级`rsyslog`到最新版，并安装`rsyslog-kafka`
 * 由于docker用户没有写/etc/目录的权限，需要先`scp`到用户目录，再`sudo mv`
 * 文件复制完成后`ssh`到目标主机，执行安装和配置操作
@@ -135,4 +134,57 @@ hosts.txt
 192.168.1.101
 192.168.1.102
 192.168.1.103
+```
+
+批量更新配置文件
+```
+#!/bin/bash
+for ip in `awk '{print $0}' hosts.txt`
+do
+echo $ip
+expect scp.exp $ip /etc/crontab
+expect scp.exp $ip /etc/rsyslog.d/myapp.conf
+expect sh.exp $ip "sudo service crond restart"
+expect sh.exp $ip "sudo service rsyslog restart"
+#expect sh.exp $ip "tail -3 /etc/crontab"
+done
+```
+
+scp.exp
+```
+#!/bin/expect
+proc fn_expect {password} {
+    expect {
+        "(yes/no)?" {
+              send "yes\n"
+              expect "password:"
+              send "$password\r"
+        }
+        "password:" {
+              send "$password\r"
+        }
+    }
+}
+
+set username "docker"
+set password "docker!123"
+set ip [lindex $argv 0]
+set path [lindex $argv 1]
+
+
+set timeout 3
+
+spawn scp $path $username@$ip:/home/docker/.mytmp
+fn_expect $password
+
+spawn ssh $username@$ip
+fn_expect $password
+expect "Authorized"
+
+send "cat /home/docker/.mytmp|sudo tee $path\r"
+expect "@"
+send "rm -f /home/docker/.mytmp\r"
+expect "@"
+
+#interact
 ```
