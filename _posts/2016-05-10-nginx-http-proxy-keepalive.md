@@ -12,13 +12,17 @@ tags: [nginx, 负载均衡, 反向代理, keepalive]
 ```nginx
 http
 {
+ #一个长连接上可以服务的请求的最大数，默认100，超出后连接将被关闭
+ keepalive_requests 1000;
+ #keepalive超时时间s
+ keepalive_timeout 60;
  
  upstream myapp.com {
   server 192.168.1.100:8080 weight=100;
   server 192.168.1.101:8080 weight=200;
   
-  #keepalive超时时间s
-  keepalive_timeout 60;
+  #nginx和后端server长连接的最大数，超出后将会关闭最早建立的一个连接
+  keepalive 100;
  }
 
  server
