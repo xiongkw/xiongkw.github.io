@@ -50,3 +50,5 @@ EndOfStreamException: Unable to read additional data from client sessionid 0x0, 
 得出结论：
 * 和zk版本有一定关系，使用配套的版本会更稳定
 * 和网络有关，网络繁忙时两个版本都会出现大量超时
+
+附：某些原因导致zk线程卡死也会引起zk超时，例如频繁的FullGC，这时候就需要检查程序了
