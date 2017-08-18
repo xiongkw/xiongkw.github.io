@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mysql Changed limits: max_open_files: 1024 错误
+title: "Mysql Changed limits: max_open_files: 1024 错误"
 categories: [编程, mysql]
 tags: [mysql]
 ---
