@@ -6,6 +6,7 @@ tags: [mysql]
 ---
 
 > `CentOS 7 Mysql 5.6`，调整参数后重启mysql，日志中出现如下
+
 ```
 [Warning] Buffered warning: Changed limits: max_open_files: 1024 (requested 5010
 [Warning] Buffered warning: Changed limits: max_connections: 214 (requested 1000)
@@ -13,6 +14,7 @@ tags: [mysql]
 ```
 
 看日志是ulimit设置不当，查看limits，发现参数正确
+
 ```
 ulimit -a | grep open
 
@@ -25,6 +27,7 @@ vi /etc/security/limits.conf
 ```
 
 上网搜索，发现还需要修改mysqld.service
+
 ```
 vi /usr/lib/systemd/system/mysqld.service
 

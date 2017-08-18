@@ -6,6 +6,7 @@ tags: [mysql, druid]
 ---
 
 > `Spring+Mybatis+Mysql`，使用druid作为jdbc连接池，在druid监控页面发现连接泄露
+
 ```
 逻辑连接打开次数	35601
 逻辑连接关闭次数	34391
@@ -32,6 +33,7 @@ timeBetweenEvictionRunsMillis=60000
 minEvictableIdleTimeMillis=300000
 
 ```
+
 > `testWhileIdle`,发生在申请连接的时候，如果申请到的连接空闲时间大于`timeBetweenEvictionRunsMillis`，则执行`validationQuery`检测连接是否有效
 
 mysql配置
