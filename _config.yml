@@ -9,8 +9,8 @@ permalink: /:year/:month/:day/:title/
 title:            Xiongkw's Blog
 tagline:          'Xiongkw''s Blog'
 description:      '熊二熊二，一直很二'
-url:              http://xiongkw.github.io
-baseurl:          /
+url:              http://xiongkw.github.io/
+baseurl:          http://xiongkw.github.io/
 
 author:
   name:           'Xiongkw'
