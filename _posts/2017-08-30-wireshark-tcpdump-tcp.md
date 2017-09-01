@@ -6,9 +6,8 @@ tags: [wireshark, tcpdump, tcp]
 ---
 
 > 关于理论知识，这里有一篇牛人的文章 [简析TCP的三次握手与四次挥手](http://www.jellythink.com/archives/705)   
-> 这里通过wireshark分析tcp的三次握手与四次挥手(所谓握手挥手即是报文的发送)
 
-复习一下tcp协议
+本文通过wireshark分析tcp的三次握手与四次挥手(所谓握手挥手即是报文的发送)，首先复习一下tcp协议
 
 ![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-protocol.png)
 
@@ -18,18 +17,17 @@ tags: [wireshark, tcpdump, tcp]
 * `Acknowledgment number` 收到数据段的字节序号+1，返回给发送端，意思是：我已经收到序号x的数据了，你下一次要从x+1序号开始发送
 * `Offset` TCP报文的头信息占用字节数，因为`选项`长度不固定
 * `Flags` 报文标识，占用6位，依次为`URG，ACK，PSH，RST，SYN，FIN`
-    URG：1表示TCP包的紧急指针域有效，用来保证TCP连接不被中断，并且督促中间层设备要尽快处理这些数据；
-    ACK：1表示应答域有效
+```
+    URG：1表示TCP包的紧急指针域有效，用来保证TCP连接不被中断，并且督促中间层设备要尽快处理这些数据；   
+    ACK：1表示应答域有效   
     PSH：表示Push操作。所谓Push操作就是指在数据包到达接收端以后，立即传送给应用程序，而不是在缓冲区中排队；
     RST：表示连接复位请求。用来复位那些产生错误的连接，也被用来拒绝错误和非法的数据包；
     SYN：表示同步序号，用来建立连接。SYN标志位和ACK标志位搭配使用，当连接请求的时候，SYN=1，ACK=0；连接被响应的时候，SYN=1，ACK=1；
     FIN： 表示发送端已经达到数据末尾，也就是说双方的数据传送完成，没有数据可以传送了，发送FIN标志位的TCP数据包后，连接将被断开。
-
+```
 状态转换图
 
-![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-state.png)
-
-
+![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-state.jpg)
 
 环境
 ```
