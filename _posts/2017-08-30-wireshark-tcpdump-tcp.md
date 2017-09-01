@@ -27,7 +27,7 @@ tags: [wireshark, tcpdump, tcp]
 ```
 状态转换图
 
-![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-state.jpg)
+![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-state.png)
 
 环境
 ```
