@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [多线程, 并发, IO, java]
 ---
 
-> 编码中经常碰到同步与异步、阻塞与非阻塞的概念，这两组概念也经常容易混淆。   
+> 编码中经常碰到同步与异步、阻塞与非阻塞的概念，这两组概念通常说的是调用者与被调用者之间的事，大到程序调用操作系统内核，小到两个对象之前的调用      
 > 本文通过代码演示来理清这几个概念
 
 ### 区别
@@ -129,3 +129,9 @@ main(){
     I.eat();
 }
 ```
+
+关于java IO中的几种模式
+* 同步阻塞 [java中的bio socket编程]({{ site.url}}/2015/04/03/java-bio-socket/)
+* 同步非阻塞 [java中的nio socket编程]({{ site.url}}/2015/04/04/java-nio-socket/)
+* IO多路复用 [java中的nio多路复用 socket编程]({{ site.url}}/2015/04/05/java-nio-socket-select/)
+* 异步非阻塞 [java中的aio socket编程]({{ site.url}}/2015/04/06/java-aio-socket/)
