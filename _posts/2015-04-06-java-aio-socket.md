@@ -141,3 +141,9 @@ public static void main(String[] args) throws IOException, InterruptedException 
 ```
 
 > 异步和同步的区别在于消息通知的方式，异步是被通知，表现为回调函数
+
+参考
+* [java中的bio socket编程]({{ site.url}}/2015/04/03/java-bio-socket/)
+* [java中的nio socket编程]({{ site.url}}/2015/04/04/java-nio-socket/)
+* [java中的nio多路复用 socket编程]({{ site.url}}/2015/04/05/java-nio-socket-select/)
+* [netty socket编程]({{ site.url}}/2015/04/10/netty-socket/)

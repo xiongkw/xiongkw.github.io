@@ -18,26 +18,24 @@ public static void main(String[] args) throws IOException {
     ssc.socket().bind(new InetSocketAddress(8081), 1024);
     //在选择器中注册ACCEPT事件
     ssc.register(sel, SelectionKey.OP_ACCEPT);
-    new Thread(() -> {
-        while (true) {
-            try {
-                //调用选择器，选择准备就绪的事件
-                if (sel.select() == 0) {
-                    continue;
-                }
-                Iterator<SelectionKey> iterator = sel.selectedKeys().iterator();
-                while (iterator.hasNext()) {
-                    SelectionKey sk = iterator.next();
-                    iterator.remove();
-                    if (sk.isValid()) {
-                        handle(sel, sk);
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+    while (true) {
+        try {
+            //调用选择器，选择准备就绪的事件
+            if (sel.select() == 0) {
+                continue;
             }
+            Iterator<SelectionKey> iterator = sel.selectedKeys().iterator();
+            while (iterator.hasNext()) {
+                SelectionKey sk = iterator.next();
+                iterator.remove();
+                if (sk.isValid()) {
+                    handle(sel, sk);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }).start();
+    }
 }
 
 protected static void handle(Selector sel, SelectionKey sk) throws IOException {
@@ -135,3 +133,9 @@ public static void main(String[] args) throws IOException {
 
 > IO多路复用技术，是使用一个调用(select)去获取多个IO调用的状态(读，写等)，而这个调用(select)由操作系统支持，常用的linux复用方式有select、poll、epoll   
 > 其原理同[java中的nio socket编程]({{ site.url}}/2015/04/04/java-nio-socket/)，不同的是select的轮询由操作系统完成 
+
+参考
+* [java中的bio socket编程]({{ site.url}}/2015/04/03/java-bio-socket/)
+* [java中的nio socket编程]({{ site.url}}/2015/04/04/java-nio-socket/)
+* [java中的aio socket编程]({{ site.url}}/2015/04/06/java-aio-socket/)
+* [netty socket编程]({{ site.url}}/2015/04/10/netty-socket/)
