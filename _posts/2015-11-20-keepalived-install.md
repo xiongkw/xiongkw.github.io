@@ -2,14 +2,14 @@
 layout: post
 title: Keepalived安装指南
 categories: [编程, linux]
-tags: [lvs, 负载均衡, keepalived, lvs]
+tags: [lvs, 负载均衡, keepalived]
 ---
 
 
-## 1. 系统要求
-lvs (linux内核2.6版本以上已经集成了lvs，不需要再额外安装。)
+#### 1. 系统要求
+lvs (linux内核2.6版本以上已经集成了lvs，不需要再额外安装)
 
-### 2. 安装基础环境
+#### 2. 安装基础环境
 * 安装gcc
 
 ```
@@ -22,7 +22,7 @@ yum install gcc gcc-c++
 yum install gcc make openssl openssl-devel kernel-devel popt-dev
 ```
 
-### 3. 安装ipvsadmin
+#### 3. 安装ipvsadmin
 
 * 检查kernel是否ipvs模块
 
@@ -43,7 +43,7 @@ yum install -y ipvsadm
 ipvsadm –help
 ```
 
-### 4. 安装keepalived
+#### 4. 安装keepalived
 * 下载安装
 
 下载[keepalived-1.2.13](http://www.keepalived.org/software/keepalived-1.2.13.tar.gz)

@@ -2,14 +2,14 @@
 layout: post
 title: Java Instrumentation
 categories: [编程, java]
-tags: [ltw]
+tags: [ltw, instrumentation]
 ---
 
 > `spring load-time-weaver 用法`一文中在运行测试类时需要加入参数`-javaagent`
 
 *Java Instrumentation指的是可以用独立于应用程序之外的代理（agent）程序来监测和协助运行在JVM上的应用程序。这种监测和协助包括但不限于获取JVM运行时状态，替换和修改类定义等。Instrumentation 的最大作用就是类定义的动态改变和操作。*
 
-### 1.javaagent
+#### 1.javaagent
 
 看spring-instrument-x.x.x.jar!\META-INF\MANIFEST.MF源码
 ```yaml
@@ -19,7 +19,7 @@ Agent-Class: org.springframework.instrument.InstrumentationSavingAgent
 > Premain-Class: 指定一个带有`premain`方法的类，jvm在启动main函数`之前`会调用该方法，@since jdk1.5   
 > Agent-Class: 指定一个带有`agentmain`方法的类，用于`Attach API`方式，@since jdk1.6
 
-### 2. agent写法
+#### 2. agent写法
 看spring-instrument-x.x.x.jar!\org\springframework\instrument\InstrumentationSavingAgent.class
 ```java
 public class InstrumentationSavingAgent {
@@ -49,7 +49,7 @@ public class InstrumentationSavingAgent {
 }
 ```
 
-### 3.关于`Attach API`
+#### 3.关于`Attach API`
 * 在jdk1.5时代只能使用`premain`方式，此方式的缺点是必须在启动时加入javaagent参数，并且在main函数启动前就加载代理类
 * `Attach API`提供动态(即程序在运行中)加载代理类的功能
 
@@ -59,7 +59,7 @@ public class InstrumentationSavingAgent {
     vm.loadAgent("spring-instrument.jar");
 ```
 
-### 4.instrumentation
+#### 4.instrumentation
 instrumentation能做什么？看源码
 ```java
 //增加一个ClassFileTransformer

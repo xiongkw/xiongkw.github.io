@@ -2,7 +2,7 @@
 layout: post
 title: Spring property-placeholder源码解读
 categories: [编程, java, spring]
-tags: [java, spring]
+tags: [property, placeholder]
 ---
 
 > spring编码中，我们常常使用`占位符${}`的方式把配置从代码(xml)中抽离到配置文件
@@ -27,17 +27,17 @@ registerBeanDefinitionParser("property-placeholder", new PropertyPlaceholderBean
 ```
 PropertyPlaceholderBeanDefinitionParser.getBeanClass
 ```java
-    // As of Spring 3.1, the default value of system-properties-mode has changed from
-    // 'FALLBACK' to 'ENVIRONMENT'. This latter value indicates that resolution of
-    // placeholders against system properties is a function of the Environment and
-    // its current set of PropertySources
-    if (element.getAttribute(SYSTEM_PROPERTIES_MODE_ATTRIB).equals(SYSTEM_PROPERTIES_MODE_DEFAULT)) {
-        return PropertySourcesPlaceholderConfigurer.class;
-    }
+// As of Spring 3.1, the default value of system-properties-mode has changed from
+// 'FALLBACK' to 'ENVIRONMENT'. This latter value indicates that resolution of
+// placeholders against system properties is a function of the Environment and
+// its current set of PropertySources
+if (element.getAttribute(SYSTEM_PROPERTIES_MODE_ATTRIB).equals(SYSTEM_PROPERTIES_MODE_DEFAULT)) {
+    return PropertySourcesPlaceholderConfigurer.class;
+}
 
-    // the user has explicitly specified a value for system-properties-mode. Revert
-    // to PropertyPlaceholderConfigurer to ensure backward compatibility.
-    return PropertyPlaceholderConfigurer.class;
+// the user has explicitly specified a value for system-properties-mode. Revert
+// to PropertyPlaceholderConfigurer to ensure backward compatibility.
+return PropertyPlaceholderConfigurer.class;
 ```
 这里根据`system-properties-mode`配置的不同返回了不同的`bean class`，在spring3.1之前，默认返回的是`PropertyPlaceholderConfigurer`，下面先看`PropertyPlaceholderConfigurer`
 

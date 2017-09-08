@@ -2,7 +2,7 @@
 layout: post
 title: java内存溢出分析之-常量池溢出
 categories: [编程, java]
-tags: [java, OutOfMemory, jvisualvm]
+tags: [constant, oom, jvisualvm]
 ---
 
 > jdk7开始，常量池从永久代转移到了堆内存中

@@ -1,11 +1,11 @@
 ---
 layout: post
 title: Spring mvc中对controller层做单元测试
-categories: [编程, java]
-tags: [java, spring]
+categories: [编程, java, spring, web]
+tags: [unit-test, spring-mvc]
 ---
 
-> 随着restful Web Service的兴起，对Web Service做单元测试也变得非常必要，Spring从 3.2开始提供了Spring Web测试框架。
+> 随着restful Web Service的兴起，对Web Service做单元测试也变得非常必要，Spring从 3.2开始提供了Spring Web测试框架
 
 加入maven依赖
 ```xml

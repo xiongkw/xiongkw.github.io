@@ -2,7 +2,7 @@
 layout: post
 title: Spring property-override源码解读
 categories: [编程, java, spring]
-tags: [java, spring]
+tags: [property, override]
 ---
 
 > spring编码中，我们常常使用`override`的方式改写第三方jar包中bean的属性值

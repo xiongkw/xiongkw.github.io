@@ -2,10 +2,11 @@
 layout: post
 title: Spring aop的几种写法
 categories: [编程, spring, java]
-tags: [spring, aop]
+tags: [aop]
 ---
+> spring中实现aop是非常简单的
 
-### 1. 普通代理模式
+#### 1. 普通代理模式
 业务类 MyService.java
 ```java
 public class MyService {
@@ -69,7 +70,7 @@ public class AopProxyTest {
 }
 ```
 
-### 2. 自动代理模式
+#### 2. 自动代理模式
 业务类 MyService.java，同上
 
 日志类 MyLogger.java，同上
@@ -110,7 +111,7 @@ public class AopPojoTest {
 }
 ```
 
-### 3. aop:config配置
+#### 3. aop:config配置
 业务类 MyService.java，同上
 
 日志类 AopConfigLogger.java
@@ -154,7 +155,7 @@ public class AopConfigTest {
 }
 ```
 
-### 4. aspectj模式
+#### 4. aspectj模式
 业务类 MyService.java，同上
 
 日志类 AspectjLogger.java

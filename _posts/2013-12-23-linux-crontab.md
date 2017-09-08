@@ -2,7 +2,7 @@
 layout: post
 title: Linux定时任务crontab
 categories: [编程, linux]
-tags: [linux, crontab]
+tags: [crontab]
 ---
 
 > linux中使用crontab实现定时任务

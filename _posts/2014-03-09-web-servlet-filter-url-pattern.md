@@ -2,7 +2,7 @@
 layout: post
 title: web.xml中servlet和filter的url-pattern配置和匹配规则
 categories: [编程, java, web]
-tags: [java, web, servlet, filter, url-pattern]
+tags: [servlet, filter, url-pattern]
 ---
 
 web.xml中`servlet`的`url-pattern`一般有四种写法：

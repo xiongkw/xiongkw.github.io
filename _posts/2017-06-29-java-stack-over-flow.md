@@ -2,7 +2,7 @@
 layout: post
 title: java内存溢出分析之-栈溢出
 categories: [编程, java]
-tags: [java,stack, OutOfMemory, jvisualvm]
+tags: [stack, oom, jvisualvm]
 ---
 
 > stack(jvm栈)，用于存放线程中方法的调用信息，包括局部变量、返回值、方法调用链等

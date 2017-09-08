@@ -1,8 +1,8 @@
 ---
 layout: post
 title: spring-mvc中controller实现自定义参数映射
-categories: [编程, java, spring]
-tags: [spring, json]
+categories: [编程, java, spring, web]
+tags: [spring-mvc, json]
 ---
 
 

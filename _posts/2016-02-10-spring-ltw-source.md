@@ -2,14 +2,14 @@
 layout: post
 title: Spring load-time-weaver 源码分析
 categories: [编程, spring, java]
-tags: [spring, ltw]
+tags: [ltw]
 ---
 
 > spring load-time-weaver 基于[Java Instrumentation]({{ site.url }}/2016/02/06/java-instrumentation/)实现
 
 > 关于`weaver`，中文翻译为`织入`，常见的有编译时织入和类加载时织入，spring-ltw为类加载时织入
 
-### 1. 从spring配置入手
+#### 1. 从spring配置入手
 ```xml
 <!-- 一行配置开启 -->
 <context:load-time-weaver/>
@@ -73,7 +73,7 @@ class LoadTimeWeaverBeanDefinitionParser extends AbstractSingleBeanDefinitionPar
 * DefaultContextLoadTimeWeaver
 * AspectJWeavingEnabler
 
-### 2. DefaultContextLoadTimeWeaver
+#### 2. DefaultContextLoadTimeWeaver
 源码：DefaultContextLoadTimeWeaver.java
 ```java
 	public void setBeanClassLoader(ClassLoader classLoader) {
@@ -161,7 +161,7 @@ public ReflectiveLoadTimeWeaver(ClassLoader classLoader) {
 }
 ```
 
-### 3. AspectJWeavingEnabler
+#### 3. AspectJWeavingEnabler
 AspectJWeavingEnabler.java
 ```java
     //1. 实现了BeanFactoryPostProcessor接口，在bean初始化之前把字节码转换器加到loadTimeWeaver(实际根据LoadTimeWeaver不同可能加到了instrumentation或者ClassLoader)
@@ -194,7 +194,7 @@ public byte[] transform(ClassLoader loader, String className, Class<?> classBein
 }
 ```
 
-### 4. LoadTimeWeaverAwareProcessor和LoadTimeWeaverAware
+#### 4. LoadTimeWeaverAwareProcessor和LoadTimeWeaverAware
 AbstractApplicationContext.java
 ```java
 	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
@@ -226,7 +226,7 @@ AbstractApplicationContext.java
 这里有一个temporary ClassLoader 见beanFactory.setTempClassLoader文档：
 > Specify a temporary ClassLoader to use for type matching purposes. Default is none, simply using the standard bean ClassLoader.
 
-### 5.总结：
+#### 5.总结：
 整个流程串起来就是：
 
 - 通过`<context:load-time-weaver/>`开启load-time-weaver，注册了DefaultContextLoadTimeWeaver和AspectJWeavingEnabler两个bean
@@ -235,7 +235,7 @@ AbstractApplicationContext.java
 - AspectJWeavingEnabler在postProcessBeanFactory中给loadTimeWeaver注入字节码转换器AspectJClassBypassingClassFileTransformer
 - spring容器使用已经增强过的`BeanClassLoader`初始化业务类bean，至此便完成了织入功能
 
-### 6. 附：[Spring load-time-weaver 用法]({{site.url}}/2016/02/04/spring-ltw-useage)中的遗留问题
+#### 6. 附：[Spring load-time-weaver 用法]({{site.url}}/2016/02/04/spring-ltw-useage)中的遗留问题
 在如下的写法中，MyService类是不会被织入的
 ```java
 @ContextConfiguration(locations = { "classpath*:aop-weaver.xml" })

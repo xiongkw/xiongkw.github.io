@@ -2,7 +2,7 @@
 layout: post
 title: "Mysql Changed limits: max_open_files: 1024 错误"
 categories: [编程, mysql]
-tags: [mysql]
+tags: []
 ---
 
 > `CentOS 7 Mysql 5.6`，调整参数后重启mysql，日志中出现如下

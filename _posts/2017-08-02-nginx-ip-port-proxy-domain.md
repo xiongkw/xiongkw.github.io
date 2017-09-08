@@ -1,8 +1,8 @@
 ---
 layout: post
 title: nginx中通过文本过滤和cookie重写实现ip端口到内部域名系统的代理
-categories: [编程, nginx]
-tags: [nginx, cookie, proxy]
+categories: [编程, nginx, web]
+tags: [ip, cookie, proxy]
 ---
 
 > 微服务架构下，采用`lvs+nginx`做负载均衡，对外提供域名访问，子应用通过二级域名划分，同时各子应用之间做了[基于cookie共享实现单点登录]({{ site.url }}/2016/04/01/single-sign-on-cookie/)   

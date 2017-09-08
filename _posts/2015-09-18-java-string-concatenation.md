@@ -2,7 +2,7 @@
 layout: post
 title: String的+和intern
 categories: [编程, java]
-tags: [java, jvm, heap, String]
+tags: [jvm, heap, String]
 ---
 
 > 上一篇解释创建了几个String对象，那String + 又是怎么回事呢?

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 使用maven-shade-plugin插件打包你的api依赖
-categories: [编程, java, maven]
+categories: [编程, java]
 tags: [maven, shade]
 ---
 
@@ -12,14 +12,14 @@ tags: [maven, shade]
 > 不可避免的第三方依赖   
 > java的世界如此繁荣昌盛，正是因为有着如此庞大的第三方api，使得开发人员可以拿来即用，而不用重复的造轮子。此外如何正确的组合使用多种第三方api也是一个考验技术的标准。
 
-### maven-shade-plugin
+#### maven-shade-plugin
 [](http://maven.apache.org/plugins/maven-shade-plugin/)
 
 > This plugin provides the capability to package the artifact in an uber-jar, including its dependencies and to shade - i.e. rename - the packages of some of the dependencies.
 
 mave-shade-plugin关注的是把java项目连同其依赖一起打成一个超级jar包，并且提供掩盖的功能
 
-### 一个例子
+#### 一个例子
 ```xml
 <build>
         <plugins>

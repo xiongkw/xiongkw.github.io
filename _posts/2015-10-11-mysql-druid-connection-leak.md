@@ -2,7 +2,7 @@
 layout: post
 title: Druid+mysql 连接泄露的问题
 categories: [编程, mysql]
-tags: [mysql, druid]
+tags: [druid, leak]
 ---
 
 > `Spring+Mybatis+Mysql`，使用druid作为jdbc连接池，在druid监控页面发现连接泄露

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Nginx default_server的配置
-categories: [编程, web, nginx]
-tags: [nginx, web, server]
+categories: [编程, nginx, web]
+tags: [server]
 ---
 
 > nginx 配置中配置多个server时，访问一个不存在的server_name也会默认匹配到第一个server块

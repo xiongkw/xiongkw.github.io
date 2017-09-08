@@ -2,7 +2,7 @@
 layout: post
 title: java内存溢出分析之-堆溢出
 categories: [编程, java]
-tags: [java, heap, OutOfMemory, jvisualvm]
+tags: [heap, oom, jvisualvm]
 ---
 
 JVM堆内存的划分(jdk8)

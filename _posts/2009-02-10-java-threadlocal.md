@@ -2,7 +2,7 @@
 layout: post
 title: Java多线程中的ThreadLocal
 categories: [编程, java]
-tags: [java, 多线程]
+tags: [并发, 多线程]
 ---
 
 

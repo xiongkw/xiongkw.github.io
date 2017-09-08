@@ -1,8 +1,8 @@
 ---
 layout: post
 title: zookeeper会话超时分析
-categories: [编程, java, zookeeper]
-tags: [java, zookeeper, docker]
+categories: [编程, java]
+tags: [zookeeper, docker]
 ---
 
 > 微服务架构，服务部署在docker容器中，使用zookeeper实现服务注册和自动发现。在服务的rpc调用中经常发现找不到后端服务

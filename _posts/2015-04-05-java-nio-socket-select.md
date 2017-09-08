@@ -2,7 +2,7 @@
 layout: post
 title: java中的nio多路复用 socket编程
 categories: [编程, java]
-tags: [IO, java]
+tags: [nio, select]
 ---
 
 > java nio (jdk1.4 io) 的socket编程

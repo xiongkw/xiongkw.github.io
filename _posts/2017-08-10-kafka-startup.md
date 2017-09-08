@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kafka入门
-categories: [编程, java, kafka]
+categories: [编程, java]
 tags: [kafka]
 ---
 

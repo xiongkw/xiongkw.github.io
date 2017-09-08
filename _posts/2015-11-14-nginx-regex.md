@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Nginx 配置正则表达式写法
-categories: [编程, web, nginx]
-tags: [nginx, web, regex]
+title: nginx 配置正则表达式写法
+categories: [编程, nginx, web]
+tags: [regex]
 ---
 
 nginx 配置中正则表达式的定义，必须以下面四种组合开头：

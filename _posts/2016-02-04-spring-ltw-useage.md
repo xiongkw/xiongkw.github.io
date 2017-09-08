@@ -2,7 +2,7 @@
 layout: post
 title: Spring load-time-weaver 用法
 categories: [编程, spring, java]
-tags: [spring, ltw]
+tags: [aop, ltw]
 ---
 
 > spring load-time-weaver的简单用法

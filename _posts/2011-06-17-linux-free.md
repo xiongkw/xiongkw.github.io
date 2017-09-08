@@ -2,7 +2,7 @@
 layout: post
 title: linux中使用free命令查看内存使用情况
 categories: [编程, linux]
-tags: [linux, free]
+tags: [free]
 ---
 
 > linux中使用free命令查看内存使用情况
@@ -16,9 +16,9 @@ Swap:            0          0          0
 
 ```
 
-> 疑问：系统物理内存8G，free却只剩212M，程序不可能占用7354M这么多内存吧？
+疑问：系统物理内存8G，free却只剩212M，程序不可能占用7354M这么多内存吧？
 
-看下对free命令统计的解释：
+看下free命令的解释：
 * Mem: 实际内存使用情况 total = used + free
 * -/+ buffers/cache: 除去缓冲区和缓存 程序实际使用内存 = used - buffers -cached
 

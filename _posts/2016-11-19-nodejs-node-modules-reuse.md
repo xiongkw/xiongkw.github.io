@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Nodejs开发中node_modules复用技巧
-categories: [编程, nodejs, web]
-tags: [nodejs, web, 前端]
+categories: [编程, web]
+tags: [nodejs, 前端]
 ---
 
 

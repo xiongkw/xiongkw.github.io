@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Nginx location匹配规则
-categories: [编程, web, nginx]
-tags: [nginx, web, location]
+title: nginx location匹配规则
+categories: [编程, nginx, web]
+tags: [location]
 ---
 
 nginx location匹配规则按优先顺序分为以下几种：

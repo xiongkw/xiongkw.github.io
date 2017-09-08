@@ -2,7 +2,7 @@
 layout: post
 title: netty socket编程
 categories: [编程, java, netty]
-tags: [java, netty, IO]
+tags: [netty]
 ---
 
 > 由于java nio api的复杂性，netty对其做了封装，提供简单强大的api

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: linux服务器内核参数调优
-categories: [编程, linux]
-tags: [linux, kernel]
+categories: [编程, linux, web]
+tags: [kernel]
 ---
 
 > 修改/etc/sysctl.conf来调整linux内核参数，以提高web服务器性能

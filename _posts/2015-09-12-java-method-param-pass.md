@@ -2,7 +2,7 @@
 layout: post
 title: 从jvm内存角度看java方法参数的传递
 categories: [编程, java]
-tags: [java,jvm, stack, heap]
+tags: [jvm, stack, heap, 传参]
 ---
 
 > 引用`Jvm规范` Like the Java programming language, the Java Virtual Machine operates on two kinds of types: primitive types and reference types. There are, correspondingly, two kinds of values that can be stored in variables, passed as arguments, returned by methods, and operated upon: primitive values and reference values.   

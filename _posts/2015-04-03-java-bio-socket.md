@@ -2,7 +2,7 @@
 layout: post
 title: java中的bio socket编程
 categories: [编程, java]
-tags: [IO, java]
+tags: [bio]
 ---
 
 > java bio (jdk1.0-1.3 io) 的socket编程

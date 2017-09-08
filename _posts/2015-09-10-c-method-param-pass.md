@@ -2,7 +2,7 @@
 layout: post
 title: C语言传参中的传值和传引用
 categories: [编程, C]
-tags: [C, 参数传递]
+tags: [传参]
 ---
 
 

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Nginx反向代理Cookie支持
-categories: [编程, web, nginx]
-tags: [http, nginx, 负载均衡, 反向代理, cookie, session]
+title: nginx反向代理Cookie支持
+categories: [编程, nginx, web]
+tags: [http, 负载均衡, 反向代理, cookie, session]
 ---
 
 

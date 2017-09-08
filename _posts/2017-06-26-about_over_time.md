@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 谈谈我对加班的看法
-categories: [随笔, 编程]
-tags: [程序员, 人生]
+categories: [随笔]
+tags: [加班]
 ---
 
 前两天在企鹅新闻中看到某25岁IT男因加班导致脑梗，不幸中的万幸，这一次不是猝死。

@@ -2,7 +2,7 @@
 layout: post
 title: linux中使用expect批量安装和配置rsyslog
 categories: [编程, linux]
-tags: [linux, expect, rsyslog]
+tags: [expect, rsyslog]
 ---
 
 > 分布式集群环境下，使用`rsyslog`采集应用日志，需要在每台宿主机上安装和配置`rsyslog`，一共需要维护30多台服务器，于是想到用`expect`批量操作

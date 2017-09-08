@@ -2,7 +2,7 @@
 layout: post
 title: jvm内存划分
 categories: [编程, java]
-tags: [java, jvm, 内存]
+tags: [jvm, 内存]
 ---
 
 > 本文基于jdk8

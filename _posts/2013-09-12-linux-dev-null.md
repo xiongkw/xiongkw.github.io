@@ -2,19 +2,19 @@
 layout: post
 title: linux中的重定向和/dev/null和2>&1
 categories: [编程, linux]
-tags: [linux]
+tags: [重定向]
 ---
 
 > linux中经常碰到的 command >/dev/null 2>&1的用法
 
-### 1. linux中的 /dev/null
+#### 1. linux中的 /dev/null
 > 在类Unix系统中，/dev/null，或称空设备，是一个特殊的设备文件，它丢弃一切写入其中的数据（但报告写入操作成功），读取它则会立即得到一个EOF。
   在程序员行话，尤其是Unix行话中，/dev/null 被称为位桶(bit bucket)或者黑洞(black hole)。空设备通常被用于丢弃不需要的输出流，或作为用于输入流的空文件。这些操作通常由重定向完成。
   
-### 2.关于0、1、2
+#### 2.关于0、1、2
 > 0、1和2分别表示标准输入、标准输出和标准错误信息输出
 
-### 3. linux中的重定向
+#### 3. linux中的重定向
 ```
 >               输出重定向到一个文件或设备 覆盖原来的文件
 >!              输出重定向到一个文件或设备 强制覆盖原来的文件
@@ -22,7 +22,7 @@ tags: [linux]
 <               输入重定向到一个程序 
 ```
 
-### 4. 如何理解 command >/dev/null 2>&1
+#### 4. 如何理解 command >/dev/null 2>&1
 
 > command会产生标准输出和标准错误两个输出，即1和2
 
@@ -31,7 +31,7 @@ tags: [linux]
 
 结合起来即把标准输出重定向到/dev/null，再把标准错误输出重定向到标准输出，即完全抛弃标准输出和标准错误输出
 
-### 5. 关于 command 2>&1 1>/dev/null
+#### 5. 关于 command 2>&1 1>/dev/null
 `2>&1 1>/dev/null`不等于`1>/dev/null 2>&1`
 
 ```

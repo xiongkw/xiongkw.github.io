@@ -9,7 +9,7 @@ tags: [wireshark, tcpdump, tcp]
 
 本文通过wireshark分析tcp的三次握手与四次挥手(所谓握手挥手即是报文的发送)，首先复习一下tcp协议
 
-##### TCP协议
+#### 1.TCP协议
 ![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-protocol.png)
 
 * `Source Port` 2字节16位 TCP连接是双向的，如果我要连接s，那我必须先准备一个端口给你连接 
@@ -27,13 +27,13 @@ tags: [wireshark, tcpdump, tcp]
     FIN： 表示发送端已经达到数据末尾，也就是说双方的数据传送完成，没有数据可以传送了，发送FIN标志位的TCP数据包后，连接将被断开。
 ```
 
-##### TCP状态转换
+#### 2.TCP状态转换
 状态转换图
 
 ![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-state.png)
 
 
-##### 使用tcpdump抓包
+#### 3.使用tcpdump抓包
 环境
 ```
 服务端: 192.168.1.100:8011 以下简称 s
@@ -45,11 +45,11 @@ tags: [wireshark, tcpdump, tcp]
 tcpdump -i eth0 host 192.168.1.100 and port 8011 -w test.cap
 ```
 
-##### 使用wireshark分析
+#### 4.使用wireshark分析
 
 ![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-wireshark.png)
 
-##### 三次握手
+#### 5.三次握手
 握手一
 ```
 Transmission Control Protocol, Src Port: 45982, Dst Port: 8011, Seq: 0, Len: 0
@@ -130,7 +130,7 @@ Transmission Control Protocol, Src Port: 45982, Dst Port: 8011, Seq: 1, Ack: 1, 
 > `socket c` 进入 `ESTABLISHED`状态
 > `socket s` 收到这段报文后进入 `ESTABLISHED`状态
 
-##### 四次挥手
+#### 6.四次挥手
 挥手一
 ```
 Transmission Control Protocol, Src Port: 45982, Dst Port: 8011, Seq: 115, Ack: 918, Len: 0
@@ -204,7 +204,7 @@ Transmission Control Protocol, Src Port: 45982, Dst Port: 8011, Seq: 116, Ack: 9
 > `c` 回复`ACK` 确认报文，`s`收到这个`ACK`后就直接`CLOSE`了   
 > `c`继续等待`2MSL`后被`CLOSE`
 
-##### 几个问题
+#### 7.几个问题
 
 * `wireshark`中`HTTP`请求和响应后都有一段`TCP`的`ACK`报文，原因在于TCP对于每个数据报文都会返回一个确认报文，而`HTTP`的响应显然也是一个`TCP`数据报文
 * 挥手二和挥手三经常会合并到同一个报文，原因是被动关闭方数据也已经发送完毕了，既然可以一次发送为何还要分两次？

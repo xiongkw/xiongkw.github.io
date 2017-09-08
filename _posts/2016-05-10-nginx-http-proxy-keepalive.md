@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Nginx反向代理keepalive配置
-categories: [编程, web, nginx]
-tags: [nginx, 负载均衡, 反向代理, keepalive]
+title: nginx反向代理keepalive配置
+categories: [编程, nginx, web]
+tags: [负载均衡, 反向代理, keepalive, http]
 ---
 
 

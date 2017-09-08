@@ -2,7 +2,7 @@
 layout: post
 title: 创建了几个String对象
 categories: [编程, java]
-tags: [java, jvm, heap, String]
+tags: [jvm, heap, String]
 ---
 
 > 一个经典的java面试题

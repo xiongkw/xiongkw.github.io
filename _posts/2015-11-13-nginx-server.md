@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Nginx server匹配规则
-categories: [编程, web, nginx]
-tags: [nginx, web, server]
+title: nginx server匹配规则
+categories: [编程, nginx, web]
+tags: []
 ---
 
 nginx server匹配规则按优先顺序分为以下几种：

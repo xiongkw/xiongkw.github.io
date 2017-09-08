@@ -2,7 +2,7 @@
 layout: post
 title: Java中Object的wait和notify
 categories: [编程, java]
-tags: [java, wait, notify, 多线程]
+tags: [wait, notify, 多线程]
 ---
 
 > 前台MM那里有很多办公用品，有人喜欢借胶水，而我现在要借剪刀。但MM同一时间只能接待一个码农，所以大家都要抢着锁定MM。   

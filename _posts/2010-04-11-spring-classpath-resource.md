@@ -2,7 +2,7 @@
 layout: post
 title: spring中classpath资源的加载和通配
 categories: [编程, java, spring]
-tags: [java, spring, classpath, resource]
+tags: [classpath, resource]
 ---
 
 > Spring资源使用`AntPathMatcher`作为匹配器

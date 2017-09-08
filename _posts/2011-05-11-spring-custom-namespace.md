@@ -2,19 +2,19 @@
 layout: post
 title: spring自定义命名空间
 categories: [编程, java, spring]
-tags: [java, spring, namespace]
+tags: [namespace]
 ---
 
-spring xml配置中通常为了简化配置或者实现增强功能，会引入自定义命名空间，如下以DataSource为例
+> spring xml配置中通常为了简化配置或者实现增强功能，会引入自定义命名空间，如下以DataSource为例
 
-### 1. spring xml中配置dataSource
+#### 1. spring xml中配置dataSource
 目的，使用如下配置定义一个DataSource
 ```xml
 <ds:ds id="myDataSource" name="myName" />
 ```
 
-### 2. xsd定义
-ds.xsd
+#### 2. xsd定义
+* 编写ds.xsd
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns="http://www.my.com/schema/my"
@@ -37,7 +37,7 @@ ds.xsd
 
 </xsd:schema>
 ```
-spring xml中引入命名空间
+* spring xml中引入命名空间
 ```xml
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -48,7 +48,7 @@ spring xml中引入命名空间
      
 </beans>
 ```
-### 3. spring schemas和handlers定义
+#### 3. spring schemas和handlers定义
 META-INFO/spring.schemas
 ```properties
 http\://www.ds.com/schema/ds.xsd=com/my/ds/config/ds.xsd
@@ -58,7 +58,7 @@ META-INFO/spring.handlers
 http\://www.ds.com/schema/ds=com.my.ds.config.DataSourceNamespaceHandler
 ```
 
-### 4. NamespaceHandler
+#### 4. NamespaceHandler
 ```java
 public class DataSourceNamespaceHandler extends NamespaceHandlerSupport {
 
@@ -70,7 +70,7 @@ public class DataSourceNamespaceHandler extends NamespaceHandlerSupport {
 }
 ```
 
-### 5. BeanDefinitionParser
+#### 5. BeanDefinitionParser
 BeanDefinitionParser
 ```java
 public class DatasourceBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {

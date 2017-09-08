@@ -2,7 +2,7 @@
 layout: post
 title: java中的nio socket编程
 categories: [编程, java]
-tags: [IO, java]
+tags: [nio]
 ---
 
 > java nio (jdk1.4 io) 的socket编程

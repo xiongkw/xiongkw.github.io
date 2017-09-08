@@ -2,7 +2,7 @@
 layout: post
 title: Java中gzip压缩和解压中文文本
 categories: [编程, java]
-tags: [java, gzip]
+tags: [gzip]
 ---
 
 > java中用gzip压缩和解压文本，支持UTF-8编码

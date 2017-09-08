@@ -2,9 +2,10 @@
 layout: post
 title: Java交换两个数的值
 categories: [编程, java]
-tags: [java, swap]
+tags: [swap]
 ---
 
+> 很常见的面试笔试题：写一个方法交换两个int参数的值，其实是一个陷阱。因为java中基本类型传参是传值拷贝，方法内部对形参的交换并不会影响实参
 
 不使用临时变量交换两个数的值
 ```java

@@ -2,7 +2,7 @@
 layout: post
 title: java内存溢出分析之-元空间溢出
 categories: [编程, java]
-tags: [java, metaspace, OutOfMemory, jvisualvm]
+tags: [metaspace, oom, jvisualvm]
 ---
 
 > Metaspace(元空间)，是jdk8的概念，用于存放类的元信息，jdk7之前是属于Perm gen(永久区)
