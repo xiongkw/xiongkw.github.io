@@ -1,7 +1,7 @@
 ---
 layout: post
 title: jmeter压力测试中use_keepalive的坑
-categories: [编程, java, web, 压力测试]
+categories: [编程, web, 压力测试]
 tags: [jmeter, keepalive]
 ---
 

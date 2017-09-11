@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ab压力测试中碰到的问题和解决方法
-categories: [编程, java, 压力测试]
+categories: [编程, 压力测试]
 tags: [ab]
 ---
 
