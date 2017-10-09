@@ -83,7 +83,7 @@ zookeeper.connection.timeout.ms=6000
 nohup kafka-server-start.sh ../config/server.properties &
  
 # 创建topic
-kafka-topics.sh --create --topic test --partitions 3 --replication-refactor 2 --zookeeper 192.168.1.120:2181
+kafka-topics.sh --create --topic test --partitions 3 --replication-factor 2 --zookeeper 192.168.1.120:2181
 
 # 查看topic list
 kafka-topics.sh --list --zookeeper 192.168.1.120:2181
@@ -95,7 +95,7 @@ kafka-topics.sh --describe --topic test --zookeeper 192.168.1.120:2181
 kafka-topics.sh --delete --topic test --zookeeper 192.168.1.120:2181
 
 # 生产消息，ctrl+c结束
-kafka-console-producer.sh --topic test --broker-list 1192.168.1.100:9092
+kafka-console-producer.sh --topic test --broker-list 192.168.1.100:9092
 
 # 消费消息
 kafka-console-consumer.sh --topic test --bootstrap-server 192.168.1.100:9092 --from-beginning
