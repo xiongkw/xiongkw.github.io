@@ -153,4 +153,4 @@ eureka.decoderName=JacksonJson
 
 * 1.客户端发现服务的时间延迟比较长，原因是Eureka客户端从服务端读取服务实例的时间间隔默认为30s，可通过修改参数`client.refresh.interval`控制
 * 2.服务断线后，Eureka服务端却还长时间存在，原因是Eureka客户端心跳的时间间隔默认30s，服务端认为其超时的时间为90s，同时服务端清除断线客户端的频率默认为60s。可通过修改参数`eviction-interval-timer-in-ms`调整清除超时客户端的频率，修改参数`eureka.instance.leaseExpirationDurationInSeconds`调整服务失效时间，修改参数`eureka.instance.leaseRenewalIntervalInSeconds`调整客户端发送心跳的频率
-* 3.客户端120s后才能感知服务的断线，原因是客户端对服务实例的缓存时间为30s，加上2中90s，一共120s
+* 3.客户端120s后才能感知服务的断线，原因是客户端对服务实例的缓存时间为30s，加上2中90s和60s，最多可达180s
