@@ -11,7 +11,7 @@ tags: [eureka]
 
 > Eureka不提供服务端安装文件，这里使用spring boot方式搭建一个Eureka服务端
 
-##### 1. 加入spring-boot工程pom依赖：
+##### 1.1 加入spring-boot工程pom依赖：
 ```xml
 <dependency>
     <groupId>org.springframework.cloud</groupId>
@@ -19,7 +19,7 @@ tags: [eureka]
 </dependency>
 ```
 
-##### 2. 编写spring-boot启动类：
+##### 1.2 编写spring-boot启动类：
 ```java
 @SpringBootApplication
 @EnableEurekaServer
@@ -30,7 +30,7 @@ public class EurekaServerApplication {
 }
 ```
 
-##### 3. 属性配置：
+##### 1.3 属性配置：
 ```yaml
 server:
   port: 8761
