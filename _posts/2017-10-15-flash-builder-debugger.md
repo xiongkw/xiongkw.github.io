@@ -49,4 +49,4 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Macromedia\FlashPlayer\SafeVersions
 
 卸载后终于成功安装，`Flash builder`调试也成功运行
 
-> 比较坑的flash，反复折腾了大半天
+> 坑爹的`debugger`，反复折腾了大半天
