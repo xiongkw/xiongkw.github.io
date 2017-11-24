@@ -16,8 +16,8 @@ Real Time Media Flow Protocol,Adobe公司开发的一套新的通信协议,可�
 
 > 可以理解为`MQ`中的发布和订阅，由于发布和订阅只能是单向的，所以建立一个p2p的读写连接需要同时建立发布和订阅两个流
 
-#### 3. MonoServer和Cumulus
-Cumulus是一个开源的RTMFP服务器,
+#### 3. MonoServer和Cumulus和Cirrus
+adobe官方提供的rtmfp服务器为Cirrus，不过这个需要注册，Cumulus是一个开源rtmfp服务器，而MonoServer是其衍生版，本文使用MonaServer
 
 > CumulusServer is a complete open source and cross-platform RTMFP server extensible by way of scripting. CumulusServer has been developed under GPL license in keeping in mind the 4 following notions: speed, light weight, cross-platform and scalable.
 
@@ -189,7 +189,11 @@ Cumulus是一个开源的RTMFP服务器,
 ```
 
 #### 5. 运行
+启动MonaServer, 在FlashBuilder中运行
 
-##### 5.1 启动MonaServer
+省略...
 
-##### 5.2 在FlashBuilder中运行
+#### 参考文档
+[Cirrus](https://labs.adobe.com/technologies/cirrus/)
+[ActionScript参考手册](https://help.adobe.com/zh_CN/FlashPlatform/reference/actionscript/3/index.html)
+[MonaServer](http://www.monaserver.ovh/index.html)
