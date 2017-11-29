@@ -194,6 +194,6 @@ tags: [rtmfp, p2p, MonoServer]
 省略...
 
 #### 参考文档
-[Cirrus](https://labs.adobe.com/technologies/cirrus/)
-[ActionScript参考手册](https://help.adobe.com/zh_CN/FlashPlatform/reference/actionscript/3/index.html)
-[MonaServer](http://www.monaserver.ovh/index.html)
+* [Cirrus](https://labs.adobe.com/technologies/cirrus/)
+* [ActionScript参考手册](https://help.adobe.com/zh_CN/FlashPlatform/reference/actionscript/3/index.html)
+* [MonaServer](http://www.monaserver.ovh/index.html)
