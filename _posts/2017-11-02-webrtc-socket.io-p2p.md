@@ -16,13 +16,11 @@ tags: [webrtc, p2p]
 
 重要术语：
 
-* `signaling` 翻译为`信令`,两个peer要建立p2p连接就需要交换一些信息，比如双方的ip端口、带宽、解码器等。所以需要提供一个信令服务器，用于交换双方信息。 
+* `signaling` 翻译为`信令`,信令服务器，用于交换peer双方信息，两个peer要建立p2p连接就需要交换一些信息，比如双方的ip端口、带宽、解码器等 
 
-* `ICE`: `(Interactive Connectivity Establishment)`, A framework to allow your web browser to connect with peers. There are many reasons why a straight up connection from Peer A to Peer B simply won’t work. It needs to bypass firewalls that would prevent opening connections, give you a unique address if like most situations your device doesn’t have a public IP address, and relay data through a server if your router doesn’t allow you to directly connect with peers. ICE uses some of the following techniques described below to achieve this:
-* `STUN` `(Session Traversal Utilities for NAT)`, A protocol to discover your public address and determine any restrictions in your router that would prevent a direct connection with a peer. The client will send a request to a STUN server on the Internet who will reply with the client’s public address and whether or not the client is accessible behind the router’s NAT.
-* `TURN` `(Traversal Using Relays around NAT)`, TURN is meant to bypass the Symmetric NAT restriction by opening a connection with a TURN server and relaying all information through that server. You would create a connection with a TURN server and tell all peers to send packets to the server which will then be forwarded to you. This obviously comes with some overhead so it is only used if there are no other alternatives.
-* `SDP` `Session Description Protocol`, A standard for describing the multimedia content of the connection such as resolution, formats, codecs, encryption, etc. so that both peers can understand each other once the data is transferring. This is, in essence, the metadata describing the content and not the media content itself. 
-* `NAT`: `Network Address Translation`, Used to give your device a public IP address. A router will have a public IP address and every device connected to the router will have a private IP address. Requests will be translated from the device’s private IP to the router’s public IP with a unique port. That way you don’t need a unique public IP for each device but can still be discovered on the Internet.
+* `STUN` `(Session Traversal Utilities for NAT)`, `STUN`服务器用于获取peer外网地址
+* `TURN` `(Traversal Using Relays around NAT)`, `TURN`服务器用于在p2p连接失败时传输数据
+* `ICE`: `(Interactive Connectivity Establishment)`,`ICE`服务器作用是综合利用各种协议，在复杂的网络环境中选择最优算法。首先尝试建立p2p连接，失败则使用`TURN`转发 
 
 > 参见[Introduction to WebRTC protocols](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols)
 
