@@ -95,3 +95,6 @@ public class WebSocketClient {
     }
 }
 ```
+
+#### 参考文档
+[https://docs.spring.io/spring/docs/4.3.12.RELEASE/spring-framework-reference/htmlsingle/#websocket](https://docs.spring.io/spring/docs/4.3.12.RELEASE/spring-framework-reference/htmlsingle/#websocket)
