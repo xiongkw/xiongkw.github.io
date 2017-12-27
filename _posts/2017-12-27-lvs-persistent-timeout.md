@@ -36,6 +36,7 @@ tcp        0      0 10.142.90.22:22178      10.142.90.245:8806      ESTABLISHED
 ```
 
 - 查看MASTER上ipvs持久连接情况
+
 ```
 ipvsadm -lnc
 
@@ -46,11 +47,13 @@ TCP 00:43  NONE        10.142.90.22:0     10.142.90.245:8806 10.142.90.61:8806
 ```
 
 - 关闭MASTER keepalived进程使主备切换
+
 ```
 service keepalived stop
 ```
 
 - 操作mysql客户端，发现有一次断线重连
+
 ```
 mysql> show databases;
 ERROR 2013 (HY000): Lost connection to MySQL server during query
@@ -62,17 +65,20 @@ Current database: *** NONE ***
 ```
 
 - 查看61网络连接
+
 ```
 tcp6       0      0 10.142.90.245:8806      10.142.90.22:22178      ESTABLISHED
 tcp6       0      0 10.142.90.245:8806      10.142.90.22:24781      ESTABLISHED
 ```
 
 - 查看客户机TCP
+
 ```
 tcp        0      0 10.142.90.22:24781      10.142.90.245:8806      ESTABLISHED
 ```
 
 - 查看现MASTER上ipvs持久连接
+
 ```
 ipvsadm -lnc
 
@@ -99,6 +105,7 @@ LVS持久连接类型：
 ##### 2.3 关于持久时间的测试
 
 设置持久时间，重新测试
+
 ```
 ipvsadm --set 120 60 300
 
@@ -111,9 +118,11 @@ ipvsadm -E -t 10.142.90.245:8806 -p 60
 在持久连接失效后再次访问mysql客户端，并分别在lvs主机和rs主机上抓包
 
 ##### 3.1 在lvs主机抓包
+
 ```
 tcpdump host 10.142.90.245 -w a.cap
 ```
+
 ![]({{site.url}}/public/images/2017-12-27-lvs-persistent-timeout-1.png)
 
 > 通过mac地址可看到lvs主机收到第一个包后，响应了一个`RST`包，表示旧的连接已经失效了，需要建立新的连接。
@@ -121,9 +130,11 @@ tcpdump host 10.142.90.245 -w a.cap
 > 这里有一些`TCP Out-Of-Order` `TCP Dup ACK` `TCP Retransmission`的错误，仔细比较发现其`src mac`和`dst mac`是不同的，原因是`DR`模式修改了包中的`mac`地址，也就是说两个`重复的`包中有一个其实是发往`rs`的，只不过这里被`WireShark`认为是`重复的`了
 
 ##### 3.2 在real server主机抓包
+
 ```
 tcpdump host 10.142.90.245 -w b.cap
 ```
+
 ![]({{site.url}}/public/images/2017-12-27-lvs-persistent-timeout-2.png)
 
 > 通过与lvs主机tcp dump比较，可以看到lvs主机上第一个包并没有转发到rs主机
@@ -136,6 +147,7 @@ lvs持久连接失效后，lvs收到旧的连接发送TCP包后，会响应一�
 > 查找lvs文档，没有发现什么参数能够设置让lvs主动通知rs去关闭失效的持久连接。理论上，如果持久连接失效后，lvs通知rs关闭连接也会存在问题，因为此时client虽然没有发送数据，但有可能正在接收数据。
 
 修改rs主机`net.ipv4.tcp_keepalive_time`，让连接尽快回收
+
 ```
 net.ipv4.tcp_keepalive_time=120 
 ```
