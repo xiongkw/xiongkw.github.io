@@ -2,7 +2,7 @@
 layout: post
 title: lvs持久连接的问题
 categories: [编程, linux]
-tags: [lvs, keepalived]
+tags: [lvs, keepalived, tcp]
 ---
 
 #### 1. 现象
