@@ -11,7 +11,7 @@ tags: [lvs, keepalived, tcp]
 
 #### 2. 测试
 
-##### 2.1 测试环境
+测试环境
 ```
 keepalived
   MASTER: 21
@@ -64,7 +64,7 @@ Connection id:    14370
 Current database: *** NONE ***
 ```
 
-- 查看61网络连接
+- 查看RS TCP
 
 ```
 tcp6       0      0 10.142.90.245:8806      10.142.90.22:22178      ESTABLISHED
@@ -153,8 +153,11 @@ net.ipv4.tcp_keepalive_time=120
 ```
 
 > `tcp_keepalive_time` // 距离上次传送数据多少时间未收到判断为开始检测
+
 > `tcp_keepalive_intvl` // 检测开始每多少时间发送心跳包
+
 > `tcp_keepalive_probes` // 发送几次心跳包对方未响应则close连接
+
 > TCP连接最大超时时间为`tcp_keepalive_time+tcp+keepalive_intvl*tcp_keepalive_probes`
 
 #### 5. 参考资料
