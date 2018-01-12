@@ -199,6 +199,17 @@ public class HelloController{
 }
 ```
 
+疑问：`@FeignClient`会生成一个`IRemoteHelloService`实现`bean`，而`Hystrix`实现又是一个`IRemoteHelloService`实现，为什么`HelloController`中`@Autowired`不会报错？
+
+查看`@FeignClient`源码，发现有一个`primary`属性：
+```java
+	/**
+	 * Whether to mark the feign proxy as a primary bean. Defaults to true.
+	 */
+	boolean primary() default true;
+```
+
+
 #### 4. 参考文档
 [Spring Cloud](http://cloud.spring.io/spring-cloud-static/Edgware.RELEASE/single/spring-cloud.html)
 [OpenFeign](https://github.com/OpenFeign/feign)
