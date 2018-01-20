@@ -31,26 +31,26 @@ public class MyLogger implements MethodBeforeAdvice {
 
 aop-proxy.xml
 ```xml
-    <bean id="service" class="com.my.spring.aop.MyService"></bean>
+<bean id="service" class="com.my.spring.aop.MyService"></bean>
 
-	<bean id="myLogger" class="com.my.spring.aop.MyLogger"></bean>
+<bean id="myLogger" class="com.my.spring.aop.MyLogger"></bean>
 
-	<!-- 定义切点 匹配*sleep方法 -->
-	<bean id="logPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
-		<property name="pattern" value=".*Service"></property>
-	</bean>
+<!-- 定义切点 匹配*sleep方法 -->
+<bean id="logPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+    <property name="pattern" value=".*Service"></property>
+</bean>
 
-	<!-- 切面 增强+切点结合 -->
-	<bean id="logAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
-		<property name="advice" ref="myLogger" />
-		<property name="pointcut" ref="logPointcut" />
-	</bean>
+<!-- 切面 增强+切点结合 -->
+<bean id="logAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+    <property name="advice" ref="myLogger" />
+    <property name="pointcut" ref="logPointcut" />
+</bean>
 
-	<!-- 定义代理对象 -->
-	<bean id="serviceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
-		<property name="target" ref="service" />
-		<property name="interceptorNames" value="logAdvisor" />
-	</bean>
+<!-- 定义代理对象 -->
+<bean id="serviceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="target" ref="service" />
+    <property name="interceptorNames" value="logAdvisor" />
+</bean>
 ```
 > 普通代理模式的缺点：需要为每个业务bean都配置一个代理bean
 
@@ -77,20 +77,19 @@ public class AopProxyTest {
 
 aop-autoProxy.xml
 ```xml
-    <bean id="service" class="com.my.spring.aop.MyService"></bean>
+<bean id="service" class="com.my.spring.aop.MyService"></bean>
 
-	<bean id="myLogger" class="com.my.spring.aop.MyLogger"></bean>
+<bean id="myLogger" class="com.my.spring.aop.MyLogger"></bean>
 
-	<!-- 配置切点和通知 -->
-	<bean id="sleepAdvisor"
-		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
-		<property name="advice" ref="myLogger"></property>
-		<property name="pattern" value=".*Service" />
-	</bean>
+<!-- 配置切点和通知 -->
+<bean id="sleepAdvisor"
+    class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+    <property name="advice" ref="myLogger"></property>
+    <property name="pattern" value=".*Service" />
+</bean>
 
-	<!-- 自动代理配置 -->
-	<bean
-		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+<!-- 自动代理配置 -->
+<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
 ```
 
 > 自动代理模式相比普通代理模式的优点是不需要为每个业务bean都配置一个代理bean
@@ -128,15 +127,15 @@ public class AopConfigLogger {
 
 aop-config.xml
 ```xml
-	<bean id="service" class="com.my.spring.aop.MyService"></bean>
+<bean id="service" class="com.my.spring.aop.MyService"></bean>
 
-	<bean id="aopConfigLogger" class="com.my.spring.aop.AopConfigLogger"></bean>
+<bean id="aopConfigLogger" class="com.my.spring.aop.AopConfigLogger"></bean>
 
-	<aop:config proxy-target-class="true">
-		<aop:aspect ref="aopConfigLogger">
-			<aop:before method="before" pointcut="execution(* *.doService(..))" />
-		</aop:aspect>
-	</aop:config>
+<aop:config proxy-target-class="true">
+    <aop:aspect ref="aopConfigLogger">
+        <aop:before method="before" pointcut="execution(* *.doService(..))" />
+    </aop:aspect>
+</aop:config>
 ```
 
 UnitTest
@@ -178,11 +177,11 @@ public class AspectjLogger {
 
 aop-aspectj.xml
 ```xml
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
-	
-	<bean id="myService" class="com.my.spring.aop.MyService"></bean>
+<aop:aspectj-autoproxy proxy-target-class="true"/>
 
-	<bean id="aspectjLogger" class="com.my.spring.aop.AspectjLogger"></bean>
+<bean id="myService" class="com.my.spring.aop.MyService"/>
+
+<bean id="aspectjLogger" class="com.my.spring.aop.AspectjLogger"/>
 ```
 
 UnitTest

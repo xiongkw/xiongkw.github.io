@@ -8,13 +8,13 @@ tags: [property, placeholder]
 > spring编码中，我们常常使用`占位符${}`的方式把配置从代码(xml)中抽离到配置文件
 
 ```xml
-	<context:property-placeholder location="classpath*:conf/jdbc.properties" />
-	
-	<bean class="com.xx.DataSource">
-    		<property name="url" value="${jdbc.url}" />
-    		<property name="username" value="${jdbc.username}" />
-    		<property name="password" value="${jdbc.password}" />
-    </bean>
+<context:property-placeholder location="classpath*:conf/jdbc.properties" />
+
+<bean class="com.xx.DataSource">
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+</bean>
 ```
 
 `context`是`spring-context`中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应handler

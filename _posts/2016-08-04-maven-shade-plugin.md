@@ -22,45 +22,45 @@ mave-shade-plugin关注的是把java项目连同其依赖一起打成一个超�
 #### 一个例子
 ```xml
 <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <minimizeJar>true</minimizeJar>
-                            <relocations>
-                                <!-- 把com.goole.gson包名转换为com.my.gson，即实现了第三方jar包的隐藏 -->
-                                <relocation>
-                                    <pattern>com.google.gson</pattern>
-                                    <shadedPattern>com.my.gson</shadedPattern>
-                                </relocation>
-                            </relocations>
-                            <artifactSet>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <minimizeJar>true</minimizeJar>
+                        <relocations>
+                            <!-- 把com.goole.gson包名转换为com.my.gson，即实现了第三方jar包的隐藏 -->
+                            <relocation>
+                                <pattern>com.google.gson</pattern>
+                                <shadedPattern>com.my.gson</shadedPattern>
+                            </relocation>
+                        </relocations>
+                        <artifactSet>
+                            <excludes>
+                                <!-- 排除不需要的依赖 -->
+                                <exclude>org.slf4j:slf4j-api</exclude>
+                            </excludes>
+                        </artifactSet>
+                        <filters>
+                            <!-- 过滤不需要的资源文件 -->
+                            <filter>
+                                <artifact>com.google.code.gson:gson</artifact>
                                 <excludes>
-                                    <!-- 排除不需要的依赖 -->
-                                    <exclude>org.slf4j:slf4j-api</exclude>
+                                    <exclude>META-INF/**/*</exclude>
                                 </excludes>
-                            </artifactSet>
-                            <filters>
-                                <!-- 过滤不需要的资源文件 -->
-                                <filter>
-                                    <artifact>com.google.code.gson:gson</artifact>
-                                    <excludes>
-                                        <exclude>META-INF/**/*</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+                            </filter>
+                        </filters>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 ```

@@ -38,6 +38,7 @@ public class JstackDemo {
 #### 2. 获取线程dump
 
 1. 使用jps命令查找进程id
+
 ```
 jps
 
@@ -45,6 +46,7 @@ jps
 ```
 
 2. 使用jstack命令获取线程dump
+
 ```
 jstack 39260
 
@@ -68,6 +70,7 @@ jstack 39260
 * `Thread 2`在等待锁，所以其状态为`BLOCKED`
 
 #### 3. Thread Dump说明
+
 ```
 "Thread 2" #12 prio=5 os_prio=0 tid=0x14e4d800 nid=0xb378 waiting for monitor entry [0x15c0f000]
    java.lang.Thread.State: BLOCKED (on object monitor)
@@ -93,6 +96,7 @@ jstack 39260
 #### 4. 死锁的例子
 
 ##### 4.1 代码
+
 ```java
 public class DeadLock {
     public static void main(String[] args) {
@@ -134,6 +138,7 @@ public class DeadLock {
 ```
 
 ##### 4.2 Thread Dump
+
 ```
 Full thread dump Java HotSpot(TM) Client VM (25.51-b03 mixed mode):
 

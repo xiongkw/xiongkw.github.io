@@ -53,6 +53,7 @@ sqlmap：
 ...
 </if>
 ```
+
 参数：
 ```java
 String status = "r";
@@ -62,73 +63,75 @@ String status = "r";
 
 跟踪if判断到SqlNode.evaluateBoolean
 ```java
-    public boolean apply(DynamicContext context) {
-        if (evaluator.evaluateBoolean(test, context.getBindings())) {
-          contents.apply(context);
-          return true;
-        }
-        return false;
-      }
+public boolean apply(DynamicContext context) {
+    if (evaluator.evaluateBoolean(test, context.getBindings())) {
+      contents.apply(context);
+      return true;
+    }
+    return false;
+}
 ```
 
 接着到ASTEq.getValueBody
 ```java
-    protected Object getValueBody(OgnlContext context, Object source) throws OgnlException {
-        // v1="r" v1.getClass()为String
-        Object v1 = this._children[0].getValue(context, source);
-        // v2='p' v2.getClass为Character
-        Object v2 = this._children[1].getValue(context, source);
-        // 所以v1和v2是不相同的
-        return OgnlOps.equal(v1, v2)?Boolean.TRUE:Boolean.FALSE;
-    }
+protected Object getValueBody(OgnlContext context, Object source) throws OgnlException {
+    // v1="r" v1.getClass()为String
+    Object v1 = this._children[0].getValue(context, source);
+    // v2='p' v2.getClass为Character
+    Object v2 = this._children[1].getValue(context, source);
+    // 所以v1和v2是不相同的
+    return OgnlOps.equal(v1, v2)?Boolean.TRUE:Boolean.FALSE;
+}
 ```
 > 这里发现ognl把`<if test="status == 'p'">`中的`'p'`解析成了Character
 
 进一步跟踪到OgnlOps.compareWithConversion
 ```java
-    public static int compareWithConversion(Object v1, Object v2) {
-        int result;
-        if(v1 == v2) {
-            result = 0;
-        } else {
-            int t1 = getNumericType(v1);
-            int t2 = getNumericType(v2);
-            int type = getNumericType(t1, t2, true);
-            switch(type) {
-            case 6:
-                result = bigIntValue(v1).compareTo(bigIntValue(v2));
-                break;
-            case 9:
-                result = bigDecValue(v1).compareTo(bigDecValue(v2));
-                break;
-            case 10:
-                if(t1 == 10 && t2 == 10) {
-                    if(v1 instanceof Comparable && v1.getClass().isAssignableFrom(v2.getClass())) {
-                        result = ((Comparable)v1).compareTo(v2);
-                        break;
-                    }
-
-                    throw new IllegalArgumentException("invalid comparison: " + v1.getClass().getName() + " and " + v2.getClass().getName());
+public static int compareWithConversion(Object v1, Object v2) {
+    int result;
+    if(v1 == v2) {
+        result = 0;
+    } else {
+        int t1 = getNumericType(v1);
+        int t2 = getNumericType(v2);
+        int type = getNumericType(t1, t2, true);
+        switch(type) {
+        case 6:
+            result = bigIntValue(v1).compareTo(bigIntValue(v2));
+            break;
+        case 9:
+            result = bigDecValue(v1).compareTo(bigDecValue(v2));
+            break;
+        case 10:
+            if(t1 == 10 && t2 == 10) {
+                if(v1 instanceof Comparable && v1.getClass().isAssignableFrom(v2.getClass())) {
+                    result = ((Comparable)v1).compareTo(v2);
+                    break;
                 }
-            case 7:
-            case 8:
-                double dv1 = doubleValue(v1);
-                double dv2 = doubleValue(v2);
-                return dv1 == dv2?0:(dv1 < dv2?-1:1);
-            default:
-                long lv1 = longValue(v1);
-                long lv2 = longValue(v2);
-                return lv1 == lv2?0:(lv1 < lv2?-1:1);
-            }
-        }
 
-        return result;
+                throw new IllegalArgumentException("invalid comparison: " + v1.getClass().getName() + " and " + v2.getClass().getName());
+            }
+        case 7:
+        case 8:
+            double dv1 = doubleValue(v1);
+            double dv2 = doubleValue(v2);
+            return dv1 == dv2?0:(dv1 < dv2?-1:1);
+        default:
+            long lv1 = longValue(v1);
+            long lv2 = longValue(v2);
+            return lv1 == lv2?0:(lv1 < lv2?-1:1);
+        }
     }
+
+    return result;
+}
 ```
+
 > case 10 7 8：异常发生在doubleValue(v1)
 
 #### 4. 改正
 
 异常的原因是ognl把`<if test="status == 'p'">`中的`'p'`解析成了`Character`，改正方法：
+
 * `<if test="status == 'p'">`改为`<if test='status == "p"'>`，这样`"p"`会解析为`String`
 * 单个字符解析为`Character`，猜想字符串会解析正常，于是改为`<if test="status == 'pp'">`，调试发现解析为了`String`

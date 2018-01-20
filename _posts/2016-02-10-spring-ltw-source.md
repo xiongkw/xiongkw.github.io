@@ -255,8 +255,8 @@ public class AopAspectjweaverTest {
 
 1.使用接口声明注入
 ```java
-	@Autowired
-	private IService service;
+@Autowired
+private IService service;
 
 ```
 
