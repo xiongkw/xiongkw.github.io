@@ -36,25 +36,25 @@ public static void main(String[] args) {
 
 QuorumPeerMain.initializeAndRun()
 ```java
-    QuorumPeerConfig config = new QuorumPeerConfig();
-    if (args.length == 1) {
-        config.parse(args[0]);
-    }
+QuorumPeerConfig config = new QuorumPeerConfig();
+if (args.length == 1) {
+    config.parse(args[0]);
+}
 
-    // Start and schedule the the purge task
-    DatadirCleanupManager purgeMgr = new DatadirCleanupManager(config
-            .getDataDir(), config.getDataLogDir(), config
-            .getSnapRetainCount(), config.getPurgeInterval());
-    purgeMgr.start();
+// Start and schedule the the purge task
+DatadirCleanupManager purgeMgr = new DatadirCleanupManager(config
+        .getDataDir(), config.getDataLogDir(), config
+        .getSnapRetainCount(), config.getPurgeInterval());
+purgeMgr.start();
 
-    if (args.length == 1 && config.servers.size() > 0) {
-        runFromConfig(config);
-    } else {
-        LOG.warn("Either no config or no quorum defined in config, running "
-                + " in standalone mode");
-        // there is only server in the quorum -- run as standalone
-        ZooKeeperServerMain.main(args);
-    }
+if (args.length == 1 && config.servers.size() > 0) {
+    runFromConfig(config);
+} else {
+    LOG.warn("Either no config or no quorum defined in config, running "
+            + " in standalone mode");
+    // there is only server in the quorum -- run as standalone
+    ZooKeeperServerMain.main(args);
+}
 ```
 
 > server配置时以集群模式运行，否则以单机模式运行，这里忽略单机模式
@@ -837,6 +837,7 @@ while (true) {
   tickSkip = !tickSkip;
 }
 ```
+
 > `LEADING`状态节点启动监听服务，接收`Learner`的连接请求，并发送心跳
 
 #### 4. 参考文档
