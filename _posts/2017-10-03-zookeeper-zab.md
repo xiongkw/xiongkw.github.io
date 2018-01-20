@@ -582,7 +582,7 @@ public boolean containsQuorum(HashSet<Long> set){
     return (set.size() > half);
 }
 ```
-> `Leader`的判定规则为其选票大于参选人数的一半，如果n为奇数，则`(int)n/2==(int)(n-1)/2`，`zookeeper`集群节点数推荐为奇数的原因就在这里
+> `Leader`的判定规则为其选票大于参选人数的一半   
 > `QuorumVerifier`的另一个实现为`QuorumHierarchical`可以根据分组和权限实现更为复杂的判定规则
 
 ###### 3.4.2 OBSERVING状态的投票者
