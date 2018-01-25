@@ -6,6 +6,7 @@ tags: [property, override]
 ---
 
 > spring编码中，我们常常使用`override`的方式改写第三方jar包中bean的属性值
+
 ```xml
 	<context:property-override location="classpath*:conf/dataSource.properties" />
 	
@@ -17,15 +18,19 @@ tags: [property, override]
 ```
 
 `context`是`spring-context`中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应handler
+
 ```
 http\://www.springframework.org/schema/context=org.springframework.context.config.ContextNamespaceHandler
 ```
+
 ContextNamespaceHandler:
+
 ```java
 registerBeanDefinitionParser("property-override", new PropertyOverrideBeanDefinitionParser());
 ```
 
 PropertyOverrideBeanDefinitionParser.getBeanClass
+
 ```java
 protected Class<?> getBeanClass(Element element) {
     return PropertyOverrideConfigurer.class;
@@ -33,6 +38,7 @@ protected Class<?> getBeanClass(Element element) {
 ```
 
 PropertyOverrideConfigurer继承自`PropertyResourceConfigurer`，并重写了`processProperties`方法
+
 ```java
 protected void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props)
 			throws BeansException {
@@ -56,6 +62,7 @@ protected void processProperties(ConfigurableListableBeanFactory beanFactory, Pr
 ```
 
 PropertyOverrideConfigurer.processKey
+
 ```java
 protected void processKey(ConfigurableListableBeanFactory factory, String key, String value)
         throws BeansException {
@@ -74,9 +81,11 @@ protected void processKey(ConfigurableListableBeanFactory factory, String key, S
     }
 }
 ```
+
 > 这里可以看出属性文件的key必须是`beanName.property`，并且不支持多级
 
 bean属性替换的逻辑在`PropertyOverrideConfigurer.applyPropertyValue`
+
 ```java
 protected void applyPropertyValue(
         ConfigurableListableBeanFactory factory, String beanName, String property, String value) {
@@ -92,6 +101,7 @@ protected void applyPropertyValue(
 ```
 
 对比一下`placeholder`和`override`的区别，虽然两者没什么可比性(一个是占位、一个是重写)，但他们的应用却有重叠：
+
 * `placeholder`是占位，即一个符号，需要用具体的属性值来替换。`override`是重写，只是提供一个在属性文件中必定bean默认属性值的方法。
 * `placeholder`需要用`<property name="username" value="${jdbc.username:root}"/>`定义，而`override`直接给定一个默认值`<property name="username" value="root"/>`
 * `placeholder`可以用于`beanName,class,property,scope,property`等，而`override`只能用于`property`

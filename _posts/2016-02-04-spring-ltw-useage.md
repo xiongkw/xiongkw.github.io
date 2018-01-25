@@ -50,9 +50,9 @@ META-INF/aop.xml
 
 aop-weaver.xml
 ```xml
-    <context:load-time-weaver/>
-		
-	<bean id="myService" class="com.my.spring.aop.MyService"></bean>
+<context:load-time-weaver/>
+
+<bean id="myService" class="com.my.spring.aop.MyService"></bean>
 ```
 
 UnitTest

@@ -19,12 +19,12 @@ yum install gcc gcc-c++
 * 安装基础依赖包
 
 ```
-yum install gcc make openssl openssl-devel kernel-devel popt-dev
+yum install make openssl openssl-devel kernel-devel popt-dev
 ```
 
 #### 3. 安装ipvsadmin
 
-* 检查kernel是否ipvs模块
+* 检查kernel是否有ipvs模块
 
 运行命令，检查是否有输出
 ```
@@ -65,4 +65,5 @@ ipvsadm –help
 4)  mkdir /etc/keepalived
 5)  cp /usr/local/etc/keepalived/keepalived.conf /etc/keepalived
 ```
-> 配置完成后可通过service keepalived (start|stop|restart) 对keepalived程序进行管理。
+
+> 配置完成后可通过`service keepalived (start|stop|restart)` 对keepalived程序进行管理。

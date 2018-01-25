@@ -35,7 +35,7 @@ net.ipv4.ip_local_port_range = 10000 65000
 net.ipv4.tcp_fin_timeout = 30
 #TCP发送keepalive探测消息的间隔时间（秒），用于确认TCP连接是否有效，默认7200s
 net.ipv4.tcp_keepalive_time = 1200
-#TCP发送keepalive探测消息的间隔时间（秒），用于确认TCP连接是否有效，默认9
+#在tcp_keepalive_time之后,没有接收到对方确认,继续发送保活探测包次数,默认值为9(次)
 net.ipv4.tcp_keepalive_probes = 3 
 #探测消息未获得响应时，重发该消息的间隔时间（秒）。默认值为75秒
 net.ipv4.tcp_keepalive_intvl = 30 
