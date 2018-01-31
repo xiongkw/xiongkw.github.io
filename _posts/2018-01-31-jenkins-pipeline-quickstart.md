@@ -121,3 +121,4 @@ pipeline {
 [Jenkins官方文档](https://www.w3cschool.cn/jenkins/)
 [Apache Groovy](http://groovy-lang.org/documentation.html)
 [Blue Ocean](https://jenkins.io/doc/book/blueocean/)
+[Declarative Pipeline for Maven Projects](https://jenkins.io/blog/2017/02/07/declarative-maven-project/)
