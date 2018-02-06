@@ -46,8 +46,8 @@ Email Address []:xx@xx.com
 - -nodes: 忽略私钥密码
 - -days 999: 证书有效期999天
 - -newkey rsa:2048: 生成加密强度为RSA 2048的私钥
-- -keyout:生成私钥文件名
-- -out:生成证书文件名
+- -keyout: 生成私钥文件名
+- -out: 生成证书文件名
 
 #### 3. nginx配置
 ```
