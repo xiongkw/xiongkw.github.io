@@ -28,7 +28,7 @@ tags: [heap, oom, jvisualvm]
 -Xmn1024M//年轻代
 ```
 
-本例通过不断new出强引用的对象让堆内存溢出
+本例通过不断`new`出强引用的对象让堆内存溢出
 ```java
 public class HeapOutOfMemory {
 
@@ -121,4 +121,4 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 
 Process finished with exit code 1
 ```
-> 发生了6次普通`GC`和n次`Full GC`
+> 发生了`6`次普通`GC`和n次`Full GC`

@@ -78,7 +78,7 @@ public void     start() throws Exception {
  }
 ```
 
-> 队列的创建实际是创建了一个zk节点
+> 队列的创建实际是创建了一个`zk`节点
 
 写入队列
 ```java
@@ -98,7 +98,7 @@ void internalCreateNode(String path, byte[] bytes, BackgroundCallback callback) 
 }
 ```
 
-> 写入队列实际是在zk创建了一个有序持久节点，其data为序列化后的字节
+> 写入队列实际是在`zk`创建了一个有序持久节点，其`data`为序列化后的字节
 
 队列的消费
 ```java
@@ -186,7 +186,7 @@ private ProcessMessageBytesCode processMessageBytes(String itemNode, byte[] byte
 }
 ```
 
-> 消费item
+> 消费`item`
 
 #### 3. 其它队列
 
@@ -196,6 +196,5 @@ private ProcessMessageBytesCode processMessageBytes(String itemNode, byte[] byte
 
 #### 4. 参考文档
 
-[ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
-
-[Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)
+* [ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
+* [Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)

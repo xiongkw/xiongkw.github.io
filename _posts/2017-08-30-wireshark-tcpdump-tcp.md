@@ -12,12 +12,12 @@ tags: [wireshark, tcpdump, tcp]
 #### 1.TCP协议
 ![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-protocol.png)
 
-* `Source Port` 2字节16位 TCP连接是双向的，如果我要连接s，那我必须先准备一个端口给你连接 
-* `Destination Port` 2字节16位 目标的端口(TCP层只有端口, 因为ip在IP层)
-* `Sequence number` 4字节 每个TCP报文都有一个序列号，表示数据段第一个字节的序号
-* `Acknowledgment number` 收到数据段的字节序号+1，返回给发送端，意思是：我已经收到序号x的数据了，你下一次要从x+1序号开始发送
-* `Offset` TCP报文的头信息占用字节数，因为`选项`长度不固定
-* `Flags` 报文标识，占用6位，依次为`URG，ACK，PSH，RST，SYN，FIN`
+* `Source Port` `2字节16位` `TCP`连接是双向的，如果我要连接s，那我必须先准备一个端口给你连接 
+* `Destination Port` `2字节16位` 目标的端口(`TCP`层只有端口, 因为`ip`在`IP`层)
+* `Sequence number` `4字节` 每个`TCP`报文都有一个序列号，表示数据段第一个字节的序号
+* `Acknowledgment number` 收到数据段的字节序号`+1`，返回给发送端，意思是：我已经收到序号`x`的数据了，你下一次要从`x+1`序号开始发送
+* `Offset` `TCP`报文的头信息占用字节数，因为`选项`长度不固定
+* `Flags` 报文标识，占用`6位`，依次为`URG，ACK，PSH，RST，SYN，FIN`
 ```
     URG：1表示TCP包的紧急指针域有效，用来保证TCP连接不被中断，并且督促中间层设备要尽快处理这些数据；   
     ACK：1表示应答域有效   
@@ -206,7 +206,7 @@ Transmission Control Protocol, Src Port: 45982, Dst Port: 8011, Seq: 116, Ack: 9
 
 #### 7.几个问题
 
-* `wireshark`中`HTTP`请求和响应后都有一段`TCP`的`ACK`报文，原因在于TCP对于每个数据报文都会返回一个确认报文，而`HTTP`的响应显然也是一个`TCP`数据报文
+* `wireshark`中`HTTP`请求和响应后都有一段`TCP`的`ACK`报文，原因在于`TCP`对于每个数据报文都会返回一个确认报文，而`HTTP`的响应显然也是一个`TCP`数据报文
 * 挥手二和挥手三经常会合并到同一个报文，原因是被动关闭方数据也已经发送完毕了，既然可以一次发送为何还要分两次？
 * 大量的`CLOSE_WAIT`是由于被动关闭引起，原因在于收到了`FIN`报文却不回复`FIN`报文，一定是程序引起的
 * 大量的`TIME_WAIT`是由于主动关闭引起，可以通过服务器参数优化解决

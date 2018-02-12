@@ -52,7 +52,7 @@ public void start() throws Exception{
 }
 ```
 
-> 创建计数器实际是在zk指定路径创建一个节点，并写入初始计数值
+> 创建计数器实际是在`zk`指定路径创建一个节点，并写入初始计数值
 
 `setCount`
 ```java
@@ -111,6 +111,5 @@ public boolean trySetValue(VersionedValue<byte[]> previous, byte[] newValue) thr
 
 #### 4. 参考文档
 
-[ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
-
-[Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)
+* [ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
+* [Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)

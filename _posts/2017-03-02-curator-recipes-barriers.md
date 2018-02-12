@@ -84,7 +84,7 @@ public synchronized void setBarrier() throws Exception {
 }
 ```
 
-> 设置栅栏实际是在zk中创建了指定路径的节点
+> 设置栅栏实际是在`zk`中创建了指定路径的节点
 
 等待
 ```java
@@ -128,7 +128,7 @@ public synchronized void removeBarrier() throws Exception {
 }
 ```
 
-> 移除栅栏实际是删除zk节点
+> 移除栅栏实际是删除`zk`节点
 
 #### 3. 双栅栏
 * `DistributedDoubleBarrier` 双栅栏不仅提供了同步启动，也提供了同步结束屏障的功能。
@@ -137,6 +137,5 @@ public synchronized void removeBarrier() throws Exception {
 
 #### 4. 参考文档
 
-[ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
-
-[Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)
+* [ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
+* [Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)

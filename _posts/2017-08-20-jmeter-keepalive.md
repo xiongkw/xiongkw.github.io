@@ -40,7 +40,7 @@ ESTABLISHED 1766
 > `tcp`不断重连，说明`keepalive`没起作用
 
 
-同样用`ab`压2000并发
+同样用`ab`压`2000`并发
 
 ```
 ab -n 10000 -c 2000 -p input -T "application/json" -k -r http://192.168.1.100:8777/services/test

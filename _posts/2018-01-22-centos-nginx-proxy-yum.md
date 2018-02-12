@@ -25,7 +25,7 @@ tags: [centos, yum]
      }
 ```
 
-> 监听8000端口，这里代理到`mirrors.aliyun.com`
+> 监听`8000`端口，这里代理到`mirrors.aliyun.com`
 
 #### 配置yum源
 

@@ -16,11 +16,11 @@ tags: [webrtc, p2p]
 
 重要术语：
 
-* `signaling` 翻译为`信令`,信令服务器，用于交换`peer`双方信息，两个`peer`要建立`p2p`连接就需要交换一些信息，比如双方的ip端口、带宽、解码器等 
+* `signaling` 翻译为`信令`,信令服务器，用于交换`peer`双方信息，两个`peer`要建立`p2p`连接就需要交换一些信息，比如双方的`ip`端口、带宽、解码器等 
 
 * `STUN` `(Session Traversal Utilities for NAT)`, `STUN`服务器用于获取`peer`外网地址
-* `TURN` `(Traversal Using Relays around NAT)`, `TURN`服务器用于在p2p连接失败时传输数据
-* `ICE`: `(Interactive Connectivity Establishment)`,`ICE`服务器作用是综合利用各种协议，在复杂的网络环境中选择最优算法。首先尝试建立p2p连接，失败则使用`TURN`转发 
+* `TURN` `(Traversal Using Relays around NAT)`, `TURN`服务器用于在`p2p`连接失败时传输数据
+* `ICE`: `(Interactive Connectivity Establishment)`,`ICE`服务器作用是综合利用各种协议，在复杂的网络环境中选择最优算法。首先尝试建立`p2p`连接，失败则使用`TURN`转发 
 
 > 参见[Introduction to WebRTC protocols](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols)
 

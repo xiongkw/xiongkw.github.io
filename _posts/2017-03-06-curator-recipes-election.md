@@ -102,7 +102,7 @@ void reset() throws Exception {
 }
 ```
 
-> 选举开始时，每个客户端都会在zk指定路径创建一个有序临时节点
+> 选举开始时，每个客户端都会在`zk`指定路径创建一个有序临时节点
 
 `getChildren`
 ```java
@@ -195,6 +195,5 @@ void doWork() throws Exception {
 
 #### 4. 参考文档
 
-[ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
-
-[Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)
+* [ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
+* [Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)

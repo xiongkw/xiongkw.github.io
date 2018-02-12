@@ -22,7 +22,7 @@ tags: [docker]
 
 #### 1. 安装
 
-> 这里使用yum安装
+> 这里使用`yum`安装
 
 ##### 1.1 添加docker yum源
 ```
@@ -84,7 +84,7 @@ FROM centos
 CMD ["tail", "-f", "/dev/null"]
 ```
 
-> `Docker`容器仅在它的1号进程（`PID`为1）运行时，会保持运行。如果1号进程退出了，`Docker`容器也就退出了。为了使容器保持运行状态，这里使用`tail -f /dev/null`命令启动1号进程并保持运行状态
+> `Docker`容器仅在它的1号进程（`PID`为`1`）运行时，会保持运行。如果`1号`进程退出了，`Docker`容器也就退出了。为了使容器保持运行状态，这里使用`tail -f /dev/null`命令启动`1号`进程并保持运行状态
 
 ##### 3.2 构建
 ```
@@ -127,7 +127,7 @@ docker stop ${CONTAINER ID}
 docker kill ${CONTAINER ID}
 ```
 
-> 发送SIGKILL信号，应用程序直接退出
+> 发送`SIGKILL`信号，应用程序直接退出
 
 #### 5. Dockerfile
 一个例子

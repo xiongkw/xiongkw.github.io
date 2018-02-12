@@ -92,7 +92,7 @@ vi hudson.model.UpdateCenter.xml
 </sites>
 ```
 
-> https改为http
+> `https`改为`http`
 
 删除配置文件后重启，为了能够重新进入初始化页面，这里需要 删除几个配置文件
 

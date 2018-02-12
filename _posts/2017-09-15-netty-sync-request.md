@@ -55,7 +55,7 @@ class RequestHandler extends ChannelHandlerAdapter {
 }
 ```
 
-> netty客户端实现非常简单，收到netty服务端请求后执行并返回结果
+> `netty`客户端实现非常简单，收到`netty`服务端请求后执行并返回结果
 
 #### 2. netty服务端
 ```java

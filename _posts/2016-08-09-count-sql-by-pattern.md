@@ -56,7 +56,7 @@ from t_user t,
 where t.id = r.user_id
 ```
 
-贪婪模式下，`[\\S\\s]*`会匹配到第二个from之前，所以这里要改为非贪婪模式
+贪婪模式下，`[\\S\\s]*`会匹配到第二个`from`之前，所以这里要改为非贪婪模式
 ```java
 (select\\s+[\\S\\s]*?\\s+from)
 ```

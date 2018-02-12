@@ -18,7 +18,7 @@ tags: [http, sso, cookie, session]
 * `domain`: 所属域，相同域和其子域下可以共享，例如`abc.com、a.abc.com`和`b.abc.com`都可以访问`abc.com`下的`cookie`
 * `path`: 所属路径，路径匹配的url可以共享，例如`/myapp/xx、/myapp/bb/a.html`和`/myapp/`都可以访问路径为`/myapp/`的`cookie`
 * `secure`:当设置为`true`时，表示创建的 `Cookie` 会被以安全的形式向服务器传输，也就是只能在 `HTTPS` 连接中被浏览器传递到服务器端进行会话验证，如果是 `HTTP` 连接则不会传递该信息，所以不会被窃取到`Cookie` 的具体内容
-* `HttpOnly`:如果在`Cookie`中设置了`"HttpOnly"`属性，那么通过程序(`JS`脚本、`Applet`等)将无法读取到`Cookie`信息，这样能有效的防止XSS攻击
+* `HttpOnly`:如果在`Cookie`中设置了`"HttpOnly"`属性，那么通过程序(`JS`脚本、`Applet`等)将无法读取到`Cookie`信息，这样能有效的防止`XSS`攻击
 
 #### 实例
 通过设置两个应用`cookie`的`domain`为相同的顶级域名实现`cookie`共享

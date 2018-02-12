@@ -99,13 +99,13 @@ vrrp_instance V1{
 
 在异常演练环境配置和网络等都正常的情况下，做一个猜测：
 
-原`BACKUP`没有收到`ADVERTISEMENT`而经过`Master_Down_Interval`后抢占成为`MASTER`，这时再插上网线，原`MASTER`仍然会发出`ADVERTISEMENT`，刚好原`MASTER`的ip大，所以原`MASTER`又抢占成功了。
+原`BACKUP`没有收到`ADVERTISEMENT`而经过`Master_Down_Interval`后抢占成为`MASTER`，这时再插上网线，原`MASTER`仍然会发出`ADVERTISEMENT`，刚好原`MASTER`的`ip`大，所以原`MASTER`又抢占成功了。
 
 这里的重点是网线拔掉再插上后，原`MASTER`是否还会发出`ADVERTISEMENT`，而可以确定的是模拟测试`ifconfig down up`后原`MASTER`不会再发出`ADVERTISEMENT`
 
 ##### 4.5 验证
 
-> 因为懒得找机器安装linux系统和搭建`MASTER BACKUP`环境做真实的 `网线插拔` 异常演练，这里仅根据以上现象和参考资料做一个大胆的猜测，日后如有机会再做验证
+> 因为懒得找机器安装`linux`系统和搭建`MASTER BACKUP`环境做真实的 `网线插拔` 异常演练，这里仅根据以上现象和参考资料做一个大胆的猜测，日后如有机会再做验证
 
 ```java
 // TODO

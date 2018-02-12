@@ -14,7 +14,7 @@ tags: [rtmfp, p2p, MonoServer]
 * `publish` 发布一个指定名称的流
 * `play` 播放一个指定名称的流
 
-> 可以理解为`MQ`中的发布和订阅，由于发布和订阅只能是单向的，所以建立一个p2p的读写连接需要同时建立发布和订阅两个流
+> 可以理解为`MQ`中的发布和订阅，由于发布和订阅只能是单向的，所以建立一个`p2p`的读写连接需要同时建立发布和订阅两个流
 
 #### 3. MonoServer和Cumulus和Cirrus
 `adobe`官方提供的`rtmfp`服务器为`Cirrus`，不过这个需要注册，`Cumulus`是一个开源`rtmfp`服务器，现在已经停止开发了，而`MonoServer`是其衍生版，本文使用`MonaServer`

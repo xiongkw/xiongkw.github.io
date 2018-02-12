@@ -212,7 +212,7 @@ synchronized(this) {
         }
        // ...
 ```
-> 前一个序号节点释放后会通知其去获取锁，这样的好处是每个竞争失败的client只会监听其前一个序号节点，也就是说，当前锁节点释放以后，只会通知到其后序节点的client，而不会通知所有client
+> 前一个序号节点释放后会通知其去获取锁，这样的好处是每个竞争失败的`client`只会监听其前一个序号节点，也就是说，当前锁节点释放以后，只会通知到其后序节点的`client`，而不会通知所有`client`
 
 
 锁释放
@@ -243,7 +243,7 @@ public void release() throws Exception {
     }
 }
 ```
-> 当`newLockCount = 0`时才会释放zk节点，`newLockCount > 0`直接返回(重入锁) 
+> 当`newLockCount = 0`时才会释放`zk`节点，`newLockCount > 0`直接返回(重入锁) 
 
 ```java
 final void releaseLock(String lockPath) throws Exception {
@@ -253,7 +253,7 @@ final void releaseLock(String lockPath) throws Exception {
 }
 ```
 
-> `releaseLock`删除了zk节点
+> `releaseLock`删除了`zk`节点
 
 #### 3. 其它锁
 
@@ -264,6 +264,5 @@ final void releaseLock(String lockPath) throws Exception {
 
 #### 4. 参考文档
 
-[ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
-
-[Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)
+* [ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
+* [Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)

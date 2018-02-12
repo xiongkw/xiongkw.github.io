@@ -20,7 +20,7 @@ tags: [pipeline, CI, CD, groovy]
 参考[Jenkins安装]({{ site.url}}/2018/01/29/jenkins-install/)
 
 #### 2. hello pipeline
-在jenkins管理页面新建一个`pipeline`任务，进入任务配置页面
+在`jenkins`管理页面新建一个`pipeline`任务，进入任务配置页面
 
 在流水线脚本中输入
 
@@ -117,12 +117,8 @@ pipeline {
 更多语法请参考[Pipeline Syntax](https://jenkins.io/doc/book/pipeline/syntax/)
 
 #### 4. 参考文档
-[Installing Jenkins](https://jenkins.io/doc/book/installing/)
-
-[Jenkins官方文档](https://www.w3cschool.cn/jenkins/)
-
-[Apache Groovy](http://groovy-lang.org/documentation.html)
-
-[Blue Ocean](https://jenkins.io/doc/book/blueocean/)
-
-[Declarative Pipeline for Maven Projects](https://jenkins.io/blog/2017/02/07/declarative-maven-project/)
+* [Installing Jenkins](https://jenkins.io/doc/book/installing/)
+* [Jenkins官方文档](https://www.w3cschool.cn/jenkins/)
+* [Apache Groovy](http://groovy-lang.org/documentation.html)
+* [Blue Ocean](https://jenkins.io/doc/book/blueocean/)
+* [Declarative Pipeline for Maven Projects](https://jenkins.io/blog/2017/02/07/declarative-maven-project/)

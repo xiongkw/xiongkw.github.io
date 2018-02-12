@@ -57,7 +57,7 @@ if (args.length == 1 && config.servers.size() > 0) {
 }
 ```
 
-> server配置时以集群模式运行，否则以单机模式运行，这里忽略单机模式
+> `server`配置时以集群模式运行，否则以单机模式运行，这里忽略单机模式
 
 
 ##### 3.2 配置解析
@@ -98,8 +98,8 @@ if (args.length == 1 && config.servers.size() > 0) {
     ...
 ```
 
-> server配置项key的格式为`server.id`，其中`id`必须为`long`类型
-> server值的格式为`host:port[[:port]:type]`，第一个port用于事务分发，第二个port用于选举，type可以指定为`observer`或`participant`
+> `server`配置项`key`的格式为`server.id`，其中`id`必须为`long`类型   
+> `server`值的格式为`host:port[[:port]:type]`，第一个`port`用于事务分发，第二个`port`用于选举，`type`可以指定为`observer`或`participant`
 
 ##### 3.3 QuorumPeer线程
 
@@ -170,8 +170,8 @@ try {
 }
 ```
 
-> `zxid`:`zookeeper`事务id，用64位数字表示，其中高32位为`Leader`的`epoch`，低32位为递增序号
-> `epoch`:时期，纪元，用`zxid`的前32位表示，随着`Leader`的更换，`epoch`也会递增
+> `zxid`:`zookeeper`事务`id`，用`64`位数字表示，其中高`32`位为`Leader`的`epoch`，低`32`位为递增序号
+> `epoch`:时期，纪元，用`zxid`的前`32`位表示，随着`Leader`的更换，`epoch`也会递增
 
 `QuorumPeer.startLeaderElection()`
 ```java
@@ -591,7 +591,7 @@ case OBSERVING:
 LOG.debug("Notification from observer: " + n.sid);
 break;
 ```
-> 直接忽略，OBSERVER节点无选举权
+> 直接忽略，`OBSERVER`节点无选举权
 
 ###### 3.4.3 FOLLOWING和LEADING状态的投票者
 
@@ -712,7 +712,7 @@ leader.lead();
 setLeader(null);
 ```
 
-Leader.lead()
+`Leader.lead()`
 ```java
 self.tick = 0;
 zk.loadData();

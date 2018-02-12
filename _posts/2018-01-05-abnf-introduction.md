@@ -6,9 +6,9 @@ tags: [ABNF]
 ---
 
 #### 1. 简介
-> `BNF`: Backus-Naur Form(巴科斯范式), 是由 `John Backus` 和 `Peter Naur` 首先引入的用来描述计算机语言语法的符号集
+> `BNF`: `Backus-Naur Form`(巴科斯范式), 是由 `John Backus` 和 `Peter Naur` 首先引入的用来描述计算机语言语法的符号集
  
-> `ABNF`: Augmented BNF, 扩展的巴科斯范式
+> `ABNF`: `Augmented BNF`, 扩展的巴科斯范式
 
 通俗讲，`ABNF`就是一种语法规范，类似正则表达式，用于定义某种具体的规则，例如描述一个至少6位长的密码
 
@@ -38,7 +38,7 @@ mypassword = PASSWORD
 
 `ABNF`中字符有两种定义方式
 
-* ASCII
+* `ASCII`
 
 ```
 0x65

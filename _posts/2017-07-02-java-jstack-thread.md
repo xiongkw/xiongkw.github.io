@@ -37,7 +37,7 @@ public class JstackDemo {
 
 #### 2. 获取线程dump
 
-1. 使用`jps`命令查找进程id
+1. 使用`jps`命令查找进程`id`
 
 ```
 jps
@@ -91,7 +91,7 @@ jstack 39260
 * `TIMED_WAITING`:线程调用了`wait(long)`或者`join(long)`或`sleep(long)`的情况下
 * `WAITING`:等待中，线程获得一个对象锁后，在该对象上等待其他线程来`notify()`
 * `BLOCKED`:被阻塞，线程在等待临界资源被释放，比如等待另外一个线程释放临界资源
-* `RUNNABLE`:可运行状态，当获得CPU的使用权时就可运行的线程
+* `RUNNABLE`:可运行状态，当获得`CPU`的使用权时就可运行的线程
 
 #### 4. 死锁的例子
 

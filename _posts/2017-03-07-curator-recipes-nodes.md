@@ -59,7 +59,9 @@ public PersistentNode(CuratorFramework givenClient, final CreateMode mode, boole
 }
 ```
 
-> `useProtection`说的是在某些极端的情况下，例如创建一个有序节点时，因为节点名称在zk服务端生成，所以客户端需要收到zk服务端的响应才知道节点的名称，而极端原因导致客户端没有收到，这样客户端便无法知道自己创建节点的名称。
+> `useProtection`说的是在某些极端的情况下，例如创建一个有序节点时，因为节点名称在`zk`服务端生成，所以客户端需要收到`zk`服务端的响应才知道节点的名称，而极端原因导致客户端没有收到，这样客户端便无法知道自己创建节点的名称。
+
+看看官方的解释：
 
 > It turns out there is an edge case that exists when creating sequential-ephemeral nodes. The creation can succeed on the server, but the server can crash before the created node name is returned to the client. However, the ZK session is still valid so the ephemeral node is not deleted. Thus, there is no way for the client to determine what node was created for them.   
 > Even without sequential-ephemeral, however, the create can succeed on the sever but the client (for various reasons) will not know it.   
@@ -233,6 +235,5 @@ public Map<String, byte[]> getCurrentMembers() {
 
 #### 4. 参考文档
 
-[ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
-
-[Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)
+* [ZooKeeper Recipes and Solutions](http://zookeeper.apache.org/doc/r3.4.8/recipes.html)
+* [Curator-recipes Barrier](http://curator.apache.org/curator-recipes/barrier.html)

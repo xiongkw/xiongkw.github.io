@@ -23,7 +23,7 @@ tags: [spring-cloud, Feign, Hystrix]
 500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。
 ```
 
-通常情况下非`2xx`的响应会被直接屏蔽，但是一些特殊的提示我们也希望能够响应给用户，例如用444来定义用户名格式错误的异常
+通常情况下非`2xx`的响应会被直接屏蔽，但是一些特殊的提示我们也希望能够响应给用户，例如用`444`来定义用户名格式错误的异常
 
 ```java
 // 如果传入的name格式错误，则响应444
@@ -74,7 +74,7 @@ public interface IUserService {
 
 > `client`范围的`ErrorDecoder`只对指定`client`有效
 
-FeignConfiguration.java
+`FeignConfiguration.java`
 ```java
 public class FeignConfiguration {
 
