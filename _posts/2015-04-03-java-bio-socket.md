@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [bio]
 ---
 
-> java bio (jdk1.0-1.3 io) 的socket编程
+> `java bio (jdk1.0-1.3 io)` 的`socket`编程
 
 server
 ```java

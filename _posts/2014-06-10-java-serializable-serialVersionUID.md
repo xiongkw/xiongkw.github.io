@@ -12,11 +12,11 @@ local class incompatible: stream classdesc serialVersionUID = 403140313795503673
 
 ```
 
-原因：由于反序列化时class的serialVersionUID和序列化时不一致导致
+原因：由于反序列化时class的`serialVersionUID`和序列化时不一致导致
 
-查看源码，发现类里没有定义serialVersionUID
+查看源码，发现类里没有定义`serialVersionUID`
 
-查看java.io.Serializable文档
+查看`java.io.Serializable`文档
 
 >  If a serializable class does not explicitly declare a serialVersionUID, then the serialization runtime will calculate a default serialVersionUID value for that class based on various aspects of the class, as described in the Java(TM) Object Serialization Specification. However, it is strongly recommended that all serializable classes explicitly declare serialVersionUID values, since the default serialVersionUID computation is highly sensitive to class details that may vary depending on compiler implementations, and can thus result in unexpected InvalidClassExceptions during deserialization. Therefore, to guarantee a consistent serialVersionUID value across different java compiler implementations, a serializable class must declare an explicit serialVersionUID value. It is also strongly advised that explicit serialVersionUID declarations use the private modifier where possible, since such declarations apply only to the immediately declaring class--serialVersionUID fields are not useful as inherited members. Array classes cannot declare an explicit serialVersionUID, so they always have the default computed value, but the requirement for matching serialVersionUID values is waived for array classes.
 
@@ -24,4 +24,4 @@ local class incompatible: stream classdesc serialVersionUID = 403140313795503673
 
 解决方法：在Serializable实现类中定义一个确定的serialVersionUID值
 
-这就是忽略IDE警告的后果，良好的编码习惯必须像强迫症一样追求完美
+> 这就是忽略IDE警告的后果，良好的编码习惯必须像强迫症一样追求完美

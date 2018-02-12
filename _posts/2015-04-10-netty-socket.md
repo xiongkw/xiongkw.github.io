@@ -5,7 +5,7 @@ categories: [编程, java, netty]
 tags: [netty]
 ---
 
-> 由于java nio api的复杂性，netty对其做了封装，提供简单强大的api
+> 由于`java nio api`的复杂性，`netty`对其做了封装，提供简单强大的api
 
 server
 ```java

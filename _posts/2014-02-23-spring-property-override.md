@@ -8,13 +8,13 @@ tags: [property, override]
 > spring编码中，我们常常使用`override`的方式改写第三方jar包中bean的属性值
 
 ```xml
-	<context:property-override location="classpath*:conf/dataSource.properties" />
-	
-	<bean id="dataSource" class="com.xx.DataSource">
-    		<property name="url" value="url" />
-    		<property name="username" value="xxx" />
-    		<property name="password" value="123" />
-    </bean>
+<context:property-override location="classpath*:conf/dataSource.properties" />
+
+<bean id="dataSource" class="com.xx.DataSource">
+        <property name="url" value="url" />
+        <property name="username" value="xxx" />
+        <property name="password" value="123" />
+</bean>
 ```
 
 `context`是`spring-context`中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应handler

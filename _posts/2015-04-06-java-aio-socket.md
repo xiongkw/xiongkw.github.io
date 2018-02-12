@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [aio]
 ---
 
-> java aio (jdk1.7 io) 的socket编程
+> `java aio (jdk1.7 io)` 的`socket`编程
 
 server
 ```java

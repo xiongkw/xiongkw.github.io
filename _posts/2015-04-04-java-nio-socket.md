@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [nio]
 ---
 
-> java nio (jdk1.4 io) 的socket编程
+> `java nio (jdk1.4 io)` 的`socket`编程
 
 server
 ```java

@@ -22,4 +22,4 @@ Swap:            0          0          0
 * Mem: 实际内存使用情况 total = used + free
 * -/+ buffers/cache: 除去缓冲区和缓存 程序实际使用内存 = used - buffers -cached
 
-总结：linux和windows对于内存使用的理念不同，linux认为资源就是用来使用的，不用白不用
+> linux和windows对于内存使用的理念不同，linux认为资源就是用来使用的，不用白不用
