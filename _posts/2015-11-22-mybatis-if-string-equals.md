@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [mybatis, ognl]
 ---
 
-> Mybatis动态sql中判断string相等，却报`NumberFormatException`异常
+> `Mybatis`动态`sql`中判断`string`相等，却报`NumberFormatException`异常
 
 #### 1. 异常信息
 ```
@@ -61,7 +61,7 @@ String status = "r";
 
 #### 3. 调试跟踪
 
-跟踪if判断到SqlNode.evaluateBoolean
+跟踪if判断到`SqlNode.evaluateBoolean`
 ```java
 public boolean apply(DynamicContext context) {
     if (evaluator.evaluateBoolean(test, context.getBindings())) {
@@ -72,7 +72,7 @@ public boolean apply(DynamicContext context) {
 }
 ```
 
-接着到ASTEq.getValueBody
+接着到`ASTEq.getValueBody`
 ```java
 protected Object getValueBody(OgnlContext context, Object source) throws OgnlException {
     // v1="r" v1.getClass()为String
@@ -83,9 +83,9 @@ protected Object getValueBody(OgnlContext context, Object source) throws OgnlExc
     return OgnlOps.equal(v1, v2)?Boolean.TRUE:Boolean.FALSE;
 }
 ```
-> 这里发现ognl把`<if test="status == 'p'">`中的`'p'`解析成了Character
+> 这里发现`ognl`把`<if test="status == 'p'">`中的`'p'`解析成了`Character`
 
-进一步跟踪到OgnlOps.compareWithConversion
+进一步跟踪到`OgnlOps.compareWithConversion`
 ```java
 public static int compareWithConversion(Object v1, Object v2) {
     int result;
@@ -127,7 +127,7 @@ public static int compareWithConversion(Object v1, Object v2) {
 }
 ```
 
-> case 10 7 8：异常发生在doubleValue(v1)
+> `case 10 7 8`：异常发生在`doubleValue(v1)`
 
 #### 4. 改正
 

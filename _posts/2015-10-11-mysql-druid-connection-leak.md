@@ -5,7 +5,7 @@ categories: [编程, mysql]
 tags: [druid, leak]
 ---
 
-> `Spring+Mybatis+Mysql`，使用druid作为jdbc连接池，在druid监控页面发现连接泄露
+> `Spring+Mybatis+Mysql`，使用`druid`作为`jdbc`连接池，在`druid`监控页面发现连接泄露
 
 ```
 逻辑连接打开次数	35601
@@ -15,9 +15,9 @@ tags: [druid, leak]
 物理关闭数量	    394
 ```
 
-所有sql操作都是由mybatis mapper完成，没有直接操作Connection的代码，所以代码问题不太可能
+所有`sql`操作都是由`mybatis mapper`完成，没有直接操作`Connection`的代码，所以代码问题不太可能
 
-检查druid配置
+检查`druid`配置
 
 ```properties
 #初始连接数
@@ -42,4 +42,4 @@ mysql配置
 wait_timeout=300
 ```
 
-原因是mysql服务端主动关闭了连接，去掉wait_timeout参数(默认8h)，重启mysql和应用，连接关闭数正常了
+原因是`mysql`服务端主动关闭了连接，去掉`wait_timeout`参数(默认8h)，重启`mysql`和应用，连接关闭数正常了

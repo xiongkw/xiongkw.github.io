@@ -7,10 +7,10 @@ tags: [lvs, 负载均衡, keepalived]
 
 
 #### 1. 系统要求
-lvs (linux内核2.6版本以上已经集成了lvs，不需要再额外安装)
+`lvs` (linux内核2.6版本以上已经集成了`lvs`，不需要再额外安装)
 
 #### 2. 安装基础环境
-* 安装gcc
+* 安装`gcc`
 
 ```
 yum install gcc gcc-c++
@@ -24,14 +24,14 @@ yum install make openssl openssl-devel kernel-devel popt-dev
 
 #### 3. 安装ipvsadmin
 
-* 检查kernel是否有ipvs模块
+* 检查`kernel`是否有`ipvs`模块
 
 运行命令，检查是否有输出
 ```
 modprobe -c |grep ip_vs
 ```
 
-* 安装ipvsadmin
+* 安装`ipvsadmin`
 
 ```
 yum install -y ipvsadm
@@ -66,4 +66,4 @@ ipvsadm –help
 5)  cp /usr/local/etc/keepalived/keepalived.conf /etc/keepalived
 ```
 
-> 配置完成后可通过`service keepalived (start|stop|restart)` 对keepalived程序进行管理。
+> 配置完成后可通过`service keepalived (start|stop|restart)` 对`keepalived`程序进行管理

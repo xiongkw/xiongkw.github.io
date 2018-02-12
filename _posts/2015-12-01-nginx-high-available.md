@@ -6,7 +6,7 @@ tags: [keepalived, vip, lvs]
 ---
 
 #### 1. 概述
-> 通过keepalived VIP转移，实现nginx双机热备的高可用。
+> 通过`keepalived VIP`转移，实现`nginx`双机热备的高可用
 
 #### 2. 环境准备
 
@@ -21,12 +21,12 @@ VIP: 10.142.90.191
 > 注意：该环境作为示例用，具体以实际环境为准
 
 #### 3. 安装keepalived和nginx
-分别在21和23服务器上安装keepalived和nginx，省略
+分别在21和23服务器上安装`keepalived`和`nginx`，省略
 
 #### 4. 验证nginx安装
 ##### 4.1 配置nginx
 
-在两个nginx实例中分别新建$NGINX_HOME/html/test.html
+在两个`nginx`实例中分别新建`$NGINX_HOME/html/test.html`
 
 21:
 ```html
@@ -58,12 +58,12 @@ VIP: 10.142.90.191
 
 分别访问:
 
-http://10.142.90.21/test.html
+`http://10.142.90.21/test.html`
 ```
 host: 10.142.90.21
 ```
 
-http://10.142.90.23/test.html
+`http://10.142.90.23/test.html`
 ```
 host: 10.142.90.23
 ```
@@ -72,7 +72,7 @@ host: 10.142.90.23
 
 #### 5. 配置keepalived
 ##### 5.1 配置keepalived.conf
-分别配置两台服务器/etc/keepalived/keepalived.conf
+分别配置两台服务器`/etc/keepalived/keepalived.conf`
 
 21:
 ```
@@ -144,11 +144,12 @@ vrrp_instance VI_1 {
 }
 ```
 
-> 配置vrrp_script定时监控nginx进程
+> 配置`vrrp_script`定时监控`nginx`进程
 
 
 ##### 5.2 配置nginx健康检查脚本
-/opt/chk_nginx.sh
+
+`/opt/chk_nginx.sh`
 
 ```shell
 #!/bin/sh
@@ -192,7 +193,7 @@ ip addr |grep bond0
 
 ##### 5.4 验证VIP高可用
 
-停止主机23上keepalived服务
+停止主机23上`keepalived`服务
 ```
 service keepalived stop
 ```
@@ -206,54 +207,54 @@ ip addr |grep bond0
 
 #### 6. 验证nginx高可用
 ##### 6.1 服务器层(比如服务器或者keepalived挂了)
-访问：http://10.142.90.191/test.html
+访问：`http://10.142.90.191/test.html`
 
 ```
 host: 10.142.90.21
 ```
-说明当前nginx实例在主机21上
+说明当前`nginx`实例在主机21上
 
-停止主机21上的keepalived服务
+停止主机21上的`keepalived`服务
 ```
 service keepalived stop
 ```
-再次访问：http://10.142.90.191/test.html
+再次访问：`http://10.142.90.191/test.html`
 ```
 host: 10.142.90.23
 ```
 
-说明nginx服务已经从主机21切换到了主机23
+说明`nginx`服务已经从主机21切换到了主机23
 
 ##### 6.2 应用层(比如nginx挂了)
-访问：http://10.142.90.191/test.html
+访问：`http://10.142.90.191/test.html`
 ```
 host: 10.142.90.23
 ```
-说明当前nginx实例在主机23上
+说明当前`nginx`实例在主机23上
 
-停止主机23上的nginx进程
+停止主机23上的`nginx`进程
 ```
 nginx -s stop
 ```
 
-间隔2s再次查看nginx进程
+间隔2s再次查看`nginx`进程
 ```
 ps -ef|grep nginx
 ```
-发现ngnx进程重新启动了
+发现`nginx`进程重新启动了
 
-访问：http://10.142.90.191/test.html
+访问：`http://10.142.90.191/test.html`
 ```
 host: 10.142.90.23
 ```
 
-说明nginx进程已经被keepalived重新启动了
+说明`nginx`进程已经被`keepalived`重新启动了
 
 #### 7.附 使用rsync同步nginx配置文件
-使用rsync同步两台主机上的nginx配置文件，如下以主机21为服务端，23为客户端，通过rsync配置，使主机23自动同步主机21上的nginx配置
+使用`rsync`同步两台主机上的`nginx`配置文件，如下以主机21为服务端，23为客户端，通过`rsync`配置，使主机23自动同步主机21上的`nginx`配置
 
 ##### 7.1 环境安装
-* 两台主机分别安装rsync
+* 两台主机分别安装`rsync`
 
 ```
 yum install rsync
@@ -265,7 +266,7 @@ yum install rsync
 
 ##### 7.2 架设rsync服务端
 
-编辑/etc/rsyncd.conf
+编辑`/etc/rsyncd.conf`
 ```properties
 uid = nobody
 gid = nobody
@@ -284,7 +285,7 @@ host_allow=10.142.90.23
        comment = nginx-ha
 ```
 
-启动rsyncd服务：
+启动`rsyncd`服务：
 ```
 rsync --daemon
 ```
@@ -297,7 +298,7 @@ rsync -avzP root@10.142.90.21::nginx /usr/local/nginx-ha/conf
 ##### 7.4 配置自动同步
 
 ###### 7.4.1 同步脚本编写
-编写同步脚本/opt/rsync-nginx.sh
+编写同步脚本`/opt/rsync-nginx.sh`
 ```
 #!/bin/sh
 
@@ -305,13 +306,13 @@ rsync -avzP root@10.142.90.21::nginx /usr/local/nginx-ha/conf
 ```
 
 ###### 7.4.2 定时器配置
-编辑/etc/crontab，增加如下一行
+编辑`/etc/crontab`，增加如下一行
 ```
 *  *  *  *  *  root  sh /opt/rsync-nginx.sh
 ```
 > 表示每分钟同步一次
 
-重启crond服务
+重启`crond`服务
 ```
 service crond restart
 ```

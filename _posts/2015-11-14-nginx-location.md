@@ -5,7 +5,7 @@ categories: [编程, nginx, web]
 tags: [location]
 ---
 
-nginx location匹配规则按优先顺序分为以下几种：
+`nginx location`匹配规则按优先顺序分为以下几种：
 
 * `=` 精确字符串匹配
 * `^~` 最优普通字符串匹配

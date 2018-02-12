@@ -13,7 +13,7 @@ tags: []
 [Warning] Buffered warning: Changed limits: table_open_cache: 400 (requested 2000)
 ```
 
-看日志是ulimit设置不当，查看limits，发现参数正确
+看日志是`ulimit`设置不当，查看`limits`，发现参数正确
 
 ```
 ulimit -a | grep open
@@ -26,7 +26,7 @@ vi /etc/security/limits.conf
 * soft nofile 65535 
 ```
 
-上网搜索，发现还需要修改mysqld.service
+上网搜索，发现还需要修改`mysqld.service`
 
 ```
 vi /usr/lib/systemd/system/mysqld.service
@@ -34,4 +34,4 @@ vi /usr/lib/systemd/system/mysqld.service
 LimitNOFILE=65535  
 ```
 
-重启mysql，问题解决
+重启`mysql`，问题解决

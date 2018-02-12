@@ -5,6 +5,7 @@ categories: [编程, nginx, web]
 tags: [http, 负载均衡, 反向代理]
 ---
 
+> 使用`nginx`搭建`HTTP`反向代理
 
 ```nginx
 worker_processes 8;
