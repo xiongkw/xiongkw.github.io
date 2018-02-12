@@ -57,7 +57,7 @@ ipvsadm –help
 
 * 配置
 
-配置keepalived为系统服务：
+配置`keepalived`为系统服务：
 ```
 1)  cp /usr/local/sbin/keepalived /usr/bin/
 2)  cp /usr/local/etc/sysconfig/keepalived /etc/sysconfig/

@@ -5,17 +5,17 @@ categories: [编程, docker]
 tags: [tomcat]
 ---
 
-> 本文演示如何制作一个tomcat基础镜像并用其部署war应用
+> 本文演示如何制作一个`tomcat`基础镜像并用其部署`war`应用
 
 #### 1. 制作tomcat基础镜像
 
-拉取centos基础镜像到本地：
+拉取`centos`基础镜像到本地：
 ```
 docker pull 192.168.1.100:8080/public/centos:7
 
 ```
 
-编写dockerfile,`vi Dockerfile`
+编写`dockerfile`,`vi Dockerfile`
 ```
 # 基础镜像
 FROM 192.168.1.100:8080/public/centos:7
@@ -37,14 +37,14 @@ docker build -t tomcat-centos:8.0.46 .
 
 #### 2. 使用该镜像发布war包
 
-编写Dockerfile,`vi Dockerfile`
+编写`Dockerfile`,`vi Dockerfile`
 ```
 FROM tomcat-centos:8.0.46
 ADD myapp.war /usr/local/apache-tomcat-8.0.46/webapps
 
 CMD ["/usr/local/apache-tomcat-8.0.46/bin/catalina.sh", "run"]
 ```
-创建docker镜像：
+创建`docker`镜像：
 ```
 docker build -t myapp.war:1.0.0 .
 ```

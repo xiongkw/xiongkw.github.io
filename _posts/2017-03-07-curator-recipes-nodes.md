@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [curator, zookeeper, node, group]
 ---
 
-> 在分布式系统中，我们通常使用临时节点来代表某个客户端的在线离线状态，使用zk原生api则要编码实现断线后重新注册，而`Curator`已经实现了类似的功能`PersistentNode`
+> 在分布式系统中，我们通常使用临时节点来代表某个客户端的在线离线状态，使用`zk`原生`api`则要编码实现断线后重新注册，而`Curator`已经实现了类似的功能`PersistentNode`
 
 #### 1. 一个例子
 
@@ -65,7 +65,7 @@ public PersistentNode(CuratorFramework givenClient, final CreateMode mode, boole
 > Even without sequential-ephemeral, however, the create can succeed on the sever but the client (for various reasons) will not know it.   
 > Putting the create builder into protection mode works around this. The name of the node that is created is prefixed with a GUID. If node creation fails the normal retry mechanism will occur. On the retry, the parent path is first searched for a node that has the GUID in it. If that node is found, it is assumed to be the lost node that was successfully created on the first try and is returned to the caller.
 
-PersistentNode.start
+`PersistentNode.start`
 ```java
 public void start() {
     Preconditions.checkState(state.compareAndSet(State.LATENT, State.STARTED), "Already started");
@@ -86,7 +86,7 @@ private final ConnectionStateListener connectionStateListener = new ConnectionSt
 
 > 使用`ConnectionStateListener`监听重连事件，并重新创建节点
 
-PersistentNode.createNode
+`PersistentNode.createNode`
 ```java
 private void createNode() {
     if ( !isActive() ) {
@@ -122,7 +122,7 @@ private void createNode() {
 
 ```
 
-PersistentNode.getCreateMode
+`PersistentNode.getCreateMode`
 ```java
 private CreateMode getCreateMode(boolean pathIsSet) {
     if ( pathIsSet ) {
@@ -153,7 +153,7 @@ private CreateMode getCreateMode(boolean pathIsSet) {
 ```
 > 如果节点曾经创建成功过，则这里会把相应`SEQUENTIAL`去掉，保证重新创建的节点名不会变化，这里是针对有序节点，因为无序节点的名称是固定的
 
-PsersistentNode.watchNode
+`PsersistentNode.watchNode`
 ```java
 private void watchNode() throws Exception {
     if ( !isActive() ) {
@@ -229,7 +229,7 @@ public Map<String, byte[]> getCurrentMembers() {
     return builder.build();
 }
 ```
-> 返回的是组员ID->data的Map，组员总是包括自己
+> 返回的是组员`ID->data`的`Map`，组员总是包括自己
 
 #### 4. 参考文档
 

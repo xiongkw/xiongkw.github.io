@@ -8,34 +8,37 @@ tags: [lvs, keepalived, vip, vrrp]
 > 通过代理程序监听`Real Server`启停状态并刷新`Keepalived`配置，在`Keepalived restart`时，可能会引起主备切换
 
 #### 1. 正常的主备模式
-MASTER
+`MASTER`
 ```
 vrrp_instance V1{
     state MASTER
     priority 101
 }
 ```
-BACKUP
+
+`BACKUP`
 ```
 vrrp_instance V1{
     state BACKUP
     priority 101
 }
 ```
-*注意: `MASTER`和`BACKUP`的区分由`priority`决定，与state的定义无关*
+*注意: `MASTER`和`BACKUP`的区分由`priority`决定，与`state`的定义无关*
 
 > 主备模式下，只要主健康，便会抢占`vip`
 
 #### 2. 双备模式
 避免了因主宕机恢复引起的频繁`vip`抢占
-MASTER
+
+`MASTER`
 ```
 vrrp_instance V1{
     state BACKUP
     priority 100
 }
 ```
-BACKUP
+
+`BACKUP`
 ```
 vrrp_instance V1{
     state BACKUP
@@ -50,9 +53,9 @@ vrrp_instance V1{
 通过`restart keepalived`模拟，偶尔会发生`vip`漂移现象
 
 ##### 3.2 Master_Down_Interval
-* Advertisement_Interval: Time interval between ADVERTISEMENTS(seconds). Default is 1 second.
+* `Advertisement_Interval`: Time interval between ADVERTISEMENTS(seconds). Default is 1 second.
 
-* Master_Down_Interval: Time interval for Backup to declare Master down (seconds). Calculated as:
+* `Master_Down_Interval`: Time interval for Backup to declare Master down (seconds). Calculated as:
 ```
  (3 * Advertisement_Interval) + ( (256 - Priority) / 256 )
 ```

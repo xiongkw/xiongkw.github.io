@@ -5,9 +5,9 @@ categories: [编程, spring, java]
 tags: [ltw]
 ---
 
-> spring load-time-weaver 基于[Java Instrumentation]({{ site.url }}/2016/02/06/java-instrumentation/)实现
+> `spring load-time-weaver` 基于[Java Instrumentation]({{ site.url }}/2016/02/06/java-instrumentation/)实现
 
-> 关于`weaver`，中文翻译为`织入`，常见的有编译时织入和类加载时织入，spring-ltw为类加载时织入
+> 关于`weaver`，中文翻译为`织入`，常见的有编译时织入和类加载时织入，`spring-ltw`为类加载时织入
 
 #### 1. 从spring配置入手
 ```xml
@@ -16,7 +16,7 @@ tags: [ltw]
 ```
 > `context`是spring-context中定义的一个标签，参考[spring自定义命名空间]({{site.url}}/2011/05/11/spring-custom-namespace/)
 
-根据spring命名空间规范，找到`LoadTimeWeaverBeanDefinitionParser.java`
+根据`spring`命名空间规范，找到`LoadTimeWeaverBeanDefinitionParser.java`
 ```java
 class LoadTimeWeaverBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
@@ -70,11 +70,11 @@ class LoadTimeWeaverBeanDefinitionParser extends AbstractSingleBeanDefinitionPar
 ```
 
 从上面代码看出: `<context:load-time-weaver/>`会定义两个bean(条件充分的情况下)
-* DefaultContextLoadTimeWeaver
-* AspectJWeavingEnabler
+* `DefaultContextLoadTimeWeaver`
+* `AspectJWeavingEnabler`
 
 #### 2. DefaultContextLoadTimeWeaver
-源码：DefaultContextLoadTimeWeaver.java
+源码：`DefaultContextLoadTimeWeaver.java`
 ```java
 	public void setBeanClassLoader(ClassLoader classLoader) {
         //1. 根据运行环境获取 LoadTimeWeaver
@@ -136,7 +136,7 @@ class LoadTimeWeaverBeanDefinitionParser extends AbstractSingleBeanDefinitionPar
         this.loadTimeWeaver.addTransformer(transformer);
     }
 ```
-LoadTimeWeaver反射实现，通过反射获取ClassLoader的addTransformer方法
+`LoadTimeWeaver`反射实现，通过反射获取`ClassLoader`的`addTransformer`方法
 ```java
 public ReflectiveLoadTimeWeaver(ClassLoader classLoader) {
     Assert.notNull(classLoader, "ClassLoader must not be null");
@@ -162,7 +162,7 @@ public ReflectiveLoadTimeWeaver(ClassLoader classLoader) {
 ```
 
 #### 3. AspectJWeavingEnabler
-AspectJWeavingEnabler.java
+`AspectJWeavingEnabler.java`
 ```java
     //1. 实现了BeanFactoryPostProcessor接口，在bean初始化之前把字节码转换器加到loadTimeWeaver(实际根据LoadTimeWeaver不同可能加到了instrumentation或者ClassLoader)
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
@@ -182,7 +182,7 @@ AspectJWeavingEnabler.java
 					new ClassPreProcessorAgentAdapter()));
 	}
 ```
-AspectJClassBypassingClassFileTransformer.java
+`AspectJClassBypassingClassFileTransformer.java`
 ```java
 public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
         ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
@@ -195,7 +195,7 @@ public byte[] transform(ClassLoader loader, String className, Class<?> classBein
 ```
 
 #### 4. LoadTimeWeaverAwareProcessor和LoadTimeWeaverAware
-AbstractApplicationContext.java
+`AbstractApplicationContext.java`
 ```java
 	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
         ...
@@ -223,20 +223,20 @@ AbstractApplicationContext.java
         ...
     }
 ```
-这里有一个temporary ClassLoader 见beanFactory.setTempClassLoader文档：
+这里有一个`temporary ClassLoader` 见`beanFactory.setTempClassLoader`文档：
 > Specify a temporary ClassLoader to use for type matching purposes. Default is none, simply using the standard bean ClassLoader.
 
 #### 5.总结：
 整个流程串起来就是：
 
-- 通过`<context:load-time-weaver/>`开启load-time-weaver，注册了DefaultContextLoadTimeWeaver和AspectJWeavingEnabler两个bean
-- prepareBeanFactory中通过LoadTimeWeaverAwareProcessor给AspectJWeavingEnabler注入loadTimeWeaver，loadTimeWeaver也是在此过程中初始化
-- DefaultContextLoadTimeWeaver的setBeanClassLoader中注入spring 的 `BeanClassLoader`，织入功能最终便是通过这个ClassLoader实现
-- AspectJWeavingEnabler在postProcessBeanFactory中给loadTimeWeaver注入字节码转换器AspectJClassBypassingClassFileTransformer
-- spring容器使用已经增强过的`BeanClassLoader`初始化业务类bean，至此便完成了织入功能
+- 通过`<context:load-time-weaver/>`开启`load-time-weaver`，注册了`DefaultContextLoadTimeWeaver`和`AspectJWeavingEnabler`两个`bean`
+- `prepareBeanFactory`中通过`LoadTimeWeaverAwareProcessor`给`AspectJWeavingEnabler`注入`loadTimeWeaver`，`loadTimeWeaver`也是在此过程中初始化
+- `DefaultContextLoadTimeWeaver`的`setBeanClassLoader`中注入`spring `的 `BeanClassLoader`，织入功能最终便是通过这个`ClassLoader`实现
+- `AspectJWeavingEnabler`在`postProcessBeanFactory`中给`loadTimeWeaver`注入字节码转换器`AspectJClassBypassingClassFileTransformer`
+- `spring`容器使用已经增强过的`BeanClassLoader`初始化业务类`bean`，至此便完成了织入功能
 
 #### 6. 附：[Spring load-time-weaver 用法]({{site.url}}/2016/02/04/spring-ltw-useage)中的遗留问题
-在如下的写法中，MyService类是不会被织入的
+在如下的写法中，`MyService`类是不会被织入的
 ```java
 @ContextConfiguration(locations = { "classpath*:aop-weaver.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -251,7 +251,7 @@ public class AopAspectjweaverTest {
 
 }
 ```
-原因：MyService class的加载发生在spring load-time-weaver初始化之前，改进方法
+原因：`MyService class`的加载发生在`spring load-time-weaver`初始化之前，改进方法
 
 1.使用接口声明注入
 ```java
@@ -260,7 +260,7 @@ private IService service;
 
 ```
 
-2.在spring context初始化完成后再声明
+2.在`spring context`初始化完成后再声明
 ```java
 MyService service = context.getBean(MyService.class);
 ```

@@ -5,15 +5,15 @@ categories: [编程, java]
 tags: [zookeeper, docker]
 ---
 
-> 微服务架构，服务部署在docker容器中，使用zookeeper实现服务注册和自动发现。在服务的rpc调用中经常发现找不到后端服务
+> 微服务架构，服务部署在`docker`容器中，使用`zookeeper`实现服务注册和自动发现。在服务的`rpc`调用中经常发现找不到后端服务
 
-zookeeper版本：
+`zookeeper`版本：
 ```
 客户端: 3.4.6
 服务端: 3.4.8
 ```
 
-打开客户端 zookeeper INFO日志后，发现大量客户端超时现象
+打开客户端 `zookeeper` INFO日志后，发现大量客户端超时现象
 ```
 [0704110251.234] INFO  org.apache.zookeeper.ClientCnxn -Client session timed out, have not heard from server in 2667ms for sessionid 0x35cf3282d980141, closing socket
 connection and attempting reconnect
@@ -31,7 +31,9 @@ java.net.ConnectException: Connection refused
         at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:361)
         at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1081)
 ```
-zookeeper服务端日志
+
+`zookeeper`服务端日志
+
 ```
 2017-07-04 11:02:59,645 [myid:1] - WARN  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:8131:NIOServerCnxn@357] - caught end of stream exception
 EndOfStreamException: Unable to read additional data from client sessionid 0x0, likely client has closed socket
@@ -40,7 +42,7 @@ EndOfStreamException: Unable to read additional data from client sessionid 0x0, 
         at java.lang.Thread.run(Thread.java:745)
 ```
 
-首先怀疑和zookeeper版本有关，于是搭建一个3.4.6的zk服务端，做一个比对测试
+首先怀疑和`zookeeper`版本有关，于是搭建一个`3.4.6`的`zk`服务端，做一个比对测试
 
 |zk版本   |   不做rpc调用24小时  |  小报文(1k)50并发间隔1s 12小时 | 大报文(1M)20并发间隔1s 1分钟 |
 | ------- | -------------------- | ------------------------------ | ------------------------ |
@@ -48,7 +50,7 @@ EndOfStreamException: Unable to read additional data from client sessionid 0x0, 
 |3.4.6    |           0          |                 0              |          大量           |
 
 得出结论：
-* 和zk版本有一定关系，使用配套的版本会更稳定
+* 和`zk`版本有一定关系，使用配套的版本会更稳定
 * 和网络有关，网络繁忙时两个版本都会出现大量超时
 
-附：某些原因导致zk线程卡死也会引起zk超时，例如频繁的FullGC，这时候就需要检查程序了
+附：某些原因导致`zk`线程卡死也会引起`zk`超时，例如频繁的`FullGC`，这时候就需要检查程序了

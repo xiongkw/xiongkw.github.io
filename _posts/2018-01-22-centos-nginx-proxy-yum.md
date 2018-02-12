@@ -9,9 +9,9 @@ tags: [centos, yum]
 
 #### 通过nginx代理
 
-在能访问公网的主机上安装nginx
+在能访问公网的主机上安装`nginx`
 
-nginx.conf
+`nginx.conf`
 ```
     server {
         listen       8000;

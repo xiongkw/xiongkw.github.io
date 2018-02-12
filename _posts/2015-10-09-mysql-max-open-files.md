@@ -5,7 +5,7 @@ categories: [编程, mysql]
 tags: []
 ---
 
-> `CentOS 7 Mysql 5.6`，调整参数后重启mysql，日志中出现如下
+> `CentOS 7 Mysql 5.6`，调整参数后重启`mysql`，日志中出现如下
 
 ```
 [Warning] Buffered warning: Changed limits: max_open_files: 1024 (requested 5010

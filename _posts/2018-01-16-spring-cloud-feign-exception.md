@@ -6,7 +6,7 @@ tags: [spring-cloud, Feign, Hystrix]
 ---
 
 #### 1. 问题
-`spring-cloud`微服务中，接口一般设计成`restful`风格，其响应状态码也遵循http标准，例如
+`spring-cloud`微服务中，接口一般设计成`restful`风格，其响应状态码也遵循`http`标准，例如
 
 ```
 200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。
@@ -23,7 +23,7 @@ tags: [spring-cloud, Feign, Hystrix]
 500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。
 ```
 
-通常情况下非2xx的响应会被直接屏蔽，但是一些特殊的提示我们也希望能够响应给用户，例如用444来定义用户名格式错误的异常
+通常情况下非`2xx`的响应会被直接屏蔽，但是一些特殊的提示我们也希望能够响应给用户，例如用444来定义用户名格式错误的异常
 
 ```java
 // 如果传入的name格式错误，则响应444

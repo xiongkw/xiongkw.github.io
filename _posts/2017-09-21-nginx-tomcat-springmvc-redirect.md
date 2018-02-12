@@ -5,7 +5,7 @@ categories: [编程, nginx, spring]
 tags: [spring-mvc, redirect]
 ---
 
-> spring-mvc中退出登录后要重定向到用户访问的初始请求页面
+> `spring-mvc`中退出登录后要重定向到用户访问的初始请求页面
 
 #### 1. 实现原理
 
@@ -33,7 +33,7 @@ public String logout(HttpSession session) {
 
 #### 2. 异常现象
 
-在本地`Tomcat`调试能正常重定向，但在`nginx`反向代理后无法重定向，查看url地址发现缺少端口号
+在本地`Tomcat`调试能正常重定向，但在`nginx`反向代理后无法重定向，查看`url`地址发现缺少端口号
 
 #### 3. 解决方法
 

@@ -12,7 +12,7 @@ docker info
 ```
 
 #### docker ps
-查看docker容器进程
+查看`docker`容器进程
 ```
 docker ps |grep app
 
@@ -20,7 +20,7 @@ kubectl get pod|grep app
 ```
 
 #### docker exec
-进入docker容器bash命令行
+进入`docker`容器`bash`命令行
 ```
 docker exec -it ${containerid} bash
 
@@ -36,7 +36,7 @@ docker kill ${containerid}
 ```
 
 #### docker cp
-在宿主机和docker容器之间copy文件
+在宿主机和`docker`容器之间`copy`文件
 ```
 docker cp xx ${containerid}:/root/
 

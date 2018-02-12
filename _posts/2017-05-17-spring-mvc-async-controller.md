@@ -8,7 +8,7 @@ tags: [spring-mvc, async]
 > `servlet 3.0`加入了异步支持
 
 #### 1. 同步servlet
-即普通servlet
+即普通`servlet`
 ```java
 @WebServlet(urlPatterns = "/sync")
 public class SyncServlet extends HttpServlet {
@@ -76,6 +76,6 @@ public class AsyncController {
 #### 4. 关于异步servlet
 
 * 分别访问同步和异步`servlet`，发现二者响应时间都在5s-6s，说明`异步`并不是作用在`http`请求上
-* `web容器`一般分为`accept线程`和`handler线程`(java nio)，大量的耗时请求会耗尽`handler线程`，从而阻塞后续请求
+* `web容器`一般分为`accept线程`和`handler线程`(`java nio`)，大量的耗时请求会耗尽`handler线程`，从而阻塞后续请求
 * `异步`其实是作用于`handler线程`上，使得一个处理线程可以立刻返回并接着处理下一个请求，等到耗时的请求操作完成以后，再通知处理线程响应结果
 * `异步servlet`适用于有`高延迟处理`的情况，可以提高服务器的并发处理能力，但并不能提高吞吐量

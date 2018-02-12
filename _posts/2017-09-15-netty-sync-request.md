@@ -5,9 +5,9 @@ categories: [编程, java, netty]
 tags: [netty]
 ---
 
-> netty使用异步的编码风格，即使用回调函数，但实际上，我们往往更习惯用同步(请求-响应)的方式来编写rpc.本文演示如何使用netty实现同步的rpc
+> `netty`使用异步的编码风格，即使用回调函数，但实际上，我们往往更习惯用同步(请求-响应)的方式来编写`rpc`.本文演示如何使用`netty`实现同步的`rpc`
 
-如下是一个服务端rpc调用客户端的例子，注意以本文说的服务端和客户端是从netty角度，如果从rpc的角度看二者是颠倒的
+如下是一个服务端`rpc`调用客户端的例子，注意以本文说的服务端和客户端是从`netty`角度，如果从`rpc`的角度看二者是颠倒的
 
 #### 1. 客户端代码
 ```java
@@ -117,11 +117,11 @@ public class ResponseHandler extends ChannelHandlerAdapter implements IRequestEx
 }
 ```
 
-> 异步的请求方式一般需要传入一个`Callback`，等收到响应后再调用`Callback`内的业务逻辑，这在servlet编码中会非常复杂
+> 异步的请求方式一般需要传入一个`Callback`，等收到响应后再调用`Callback`内的业务逻辑，这在`servlet`编码中会非常复杂
 
 #### 4. netty服务端同步请求的实现
 
-server ResponseHandler
+`server ResponseHandler`
 ```java
 public class ResponseHandler extends ChannelHandlerAdapter implements IRequestExecutor {
 
@@ -172,6 +172,6 @@ public class ResponseHandler extends ChannelHandlerAdapter implements IRequestEx
 }
 ```
 
-> 同步请求基于sessionId和线程同步实现   
-> sessionId: 会话ID，用于跟踪请求和响应   
-> synchronized: 线程同步，这里使用sessionId作为线程同步锁
+> 同步请求基于`sessionId`和线程同步实现   
+> `sessionId`: 会话`ID`，用于跟踪请求和响应   
+> `synchronized`: 线程同步，这里使用`sessionId`作为线程同步锁

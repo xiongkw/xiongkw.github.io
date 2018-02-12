@@ -130,8 +130,8 @@ main(){
 }
 ```
 
-关于java IO中的几种模式
-* 同步阻塞 [java中的bio socket编程]({{ site.url}}/2015/04/03/java-bio-socket/)
-* 同步非阻塞 [java中的nio socket编程]({{ site.url}}/2015/04/04/java-nio-socket/)
-* IO多路复用 [java中的nio多路复用 socket编程]({{ site.url}}/2015/04/05/java-nio-socket-select/)
-* 异步非阻塞 [java中的aio socket编程]({{ site.url}}/2015/04/06/java-aio-socket/)
+关于`java IO`中的几种模式
+* `同步阻塞` [java中的bio socket编程]({{ site.url}}/2015/04/03/java-bio-socket/)
+* `同步非阻塞` [java中的nio socket编程]({{ site.url}}/2015/04/04/java-nio-socket/)
+* `IO多路复用` [java中的nio多路复用 socket编程]({{ site.url}}/2015/04/05/java-nio-socket-select/)
+* `异步非阻塞` [java中的aio socket编程]({{ site.url}}/2015/04/06/java-aio-socket/)

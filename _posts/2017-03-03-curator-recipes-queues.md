@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [curator, zookeeper, queue]
 ---
 
-> 队列是一种数据结构,它有两个基本操作：在队列尾部加入一个元素，和从队列头部移除一个元素，队列以一种先进先出的方式管理数据
+> `Queue`是一种数据结构,它有两个基本操作：在队列尾部加入一个元素，和从队列头部移除一个元素，队列以一种先进先出的方式管理数据
 
 #### 1. 一个例子
 
@@ -90,7 +90,7 @@ public boolean     put(T item, int maxWait, TimeUnit unit) throws Exception {
 }
 ```
 
-internalCreateNode方法
+`internalCreateNode()`方法
 ```java
 void internalCreateNode(String path, byte[] bytes, BackgroundCallback callback) throws Exception
 {
@@ -115,7 +115,7 @@ public void     start() throws Exception {
  }
 ```
 
-runLoop()
+`runLoop()`
 ```java
 while ( state.get() == State.STARTED  ){
     //...
@@ -124,7 +124,7 @@ while ( state.get() == State.STARTED  ){
 }
 ```
 
-processNormally
+`processNormally()`
 ```java
 private boolean processNormally(String itemNode, ProcessType type) throws Exception {
     try {
@@ -148,9 +148,9 @@ private boolean processNormally(String itemNode, ProcessType type) throws Except
 }
 ```
 
-> 消费一个item时会删除对应节点
+> 消费一个`item`时会删除对应节点
 
-processMessageBytes
+`processMessageBytes`
 ```java
 private ProcessMessageBytesCode processMessageBytes(String itemNode, byte[] bytes) throws Exception {
     ProcessMessageBytesCode     resultCode = ProcessMessageBytesCode.NORMAL;
@@ -190,9 +190,9 @@ private ProcessMessageBytesCode processMessageBytes(String itemNode, byte[] byte
 
 #### 3. 其它队列
 
-* `DistributedIdQueue`，带有id的队列(类似map)，其put方法`put(T item, String itemId)`，同时也提供了remove方法`remove(String id)`，即可在消费之前从队列中删除(后悔药)
-* `DistributedPriorityQueue`，队列中的元素按照优先级进行排序, Priority小的会优先被消费
-* `DistributedDelayQueue`，在指定delay时间过后，才可能被消费
+* `DistributedIdQueue`，带有id的队列(类似`map`)，其`put`方法`put(T item, String itemId)`，同时也提供了`remove`方法`remove(String id)`，即可在消费之前从队列中删除(后悔药)
+* `DistributedPriorityQueue`，队列中的元素按照优先级进行排序, `Priority`小的会优先被消费
+* `DistributedDelayQueue`，在指定`delay`时间过后，才可能被消费
 
 #### 4. 参考文档
 

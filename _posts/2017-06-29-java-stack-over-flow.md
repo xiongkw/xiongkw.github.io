@@ -5,12 +5,12 @@ categories: [编程, java]
 tags: [stack, oom, jvisualvm]
 ---
 
-> stack(jvm栈)，用于存放线程中方法的调用信息，包括局部变量、返回值、方法调用链等
+> `stack`(`jvm`栈)，用于存放线程中方法的调用信息，包括局部变量、返回值、方法调用链等
 
-除了是java编码中令人讨厌的异常之一，`Stack Overflow` 还是大名鼎鼎的IT技术网站
+除了是`java`编码中令人讨厌的异常之一，`Stack Overflow` 还是大名鼎鼎的`IT`技术网站
 > Stack Overflow is the largest online community for programmers to learn, share their knowledge, and advance their careers
 
-stack内存设置
+`stack`内存设置
 ```
 -Xss128k //默认1M
 ```

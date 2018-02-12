@@ -5,9 +5,9 @@ categories: [编程, web, 压力测试]
 tags: [jmeter, keepalive]
 ---
 
-> 使用jmeter use_keepalive 2000线程压测jetty，查看网络连接状况，发现网络连接不断重连
+> 使用`jmeter use_keepalive 2000`线程压测`jetty`，查看网络连接状况，发现网络连接不断重连
 
-test.jmx
+`test.jmx`
 ```xml
 <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
   <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -21,7 +21,7 @@ test.jmx
 
 ```
 
-运行jmeter
+运行`jmeter`
 ```
 jmeter.sh -n -t test.jmx
 ```
@@ -37,10 +37,10 @@ CLOSE_WAIT 19
 ESTABLISHED 1766
 ```
 
-> tcp不断重连，说明keepalive没起作用
+> `tcp`不断重连，说明`keepalive`没起作用
 
 
-同样用ab压2000并发
+同样用`ab`压2000并发
 
 ```
 ab -n 10000 -c 2000 -p input -T "application/json" -k -r http://192.168.1.100:8777/services/test
@@ -51,9 +51,9 @@ netstat -an| grep 8777|awk '/^tcp/ {state[$6]++} END {for(key in state) print ke
 ESTABLISHED 2000
 ```
 
-> tcp连接保持稳定
+> `tcp`连接保持稳定
 
-说明问题在jmeter，于是查看jmeter.properties
+说明问题在`jmeter`，于是查看`jmeter.properties`
 
 ```properties
 # Idle connection timeout (Milliseconds) to apply if the server does not send
@@ -67,4 +67,4 @@ httpclient4.idletimeout=60000
 httpclient4.time_to_live=60000
 ```
 
-修改`httpclient4.time_to_live=60000`后，keepalive正常
+修改`httpclient4.time_to_live=60000`后，`keepalive`正常

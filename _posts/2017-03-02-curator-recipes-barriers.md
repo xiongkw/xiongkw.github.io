@@ -133,7 +133,7 @@ public synchronized void removeBarrier() throws Exception {
 #### 3. 双栅栏
 * `DistributedDoubleBarrier` 双栅栏不仅提供了同步启动，也提供了同步结束屏障的功能。
 
-> 在java多线程中我们常常使用`CountDownLatch`来等待多个线程执行完成
+> 在`java`多线程中我们常常使用`CountDownLatch`来等待多个线程执行完成
 
 #### 4. 参考文档
 

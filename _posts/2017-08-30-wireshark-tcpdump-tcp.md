@@ -7,7 +7,7 @@ tags: [wireshark, tcpdump, tcp]
 
 > 关于理论知识，这里有一篇牛人的文章 [简析TCP的三次握手与四次挥手](http://www.jellythink.com/archives/705)   
 
-本文通过wireshark分析tcp的三次握手与四次挥手(所谓握手挥手即是报文的发送)，首先复习一下tcp协议
+本文通过`wireshark`分析`tcp`的三次握手与四次挥手(所谓握手挥手即是报文的发送)，首先复习一下`tcp`协议
 
 #### 1.TCP协议
 ![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-protocol.png)
@@ -40,7 +40,7 @@ tags: [wireshark, tcpdump, tcp]
 客户端: 192.168.1.101      以下简称 c
 ```
 
-使用tcpdump在客户端抓包(服务端也可)
+使用`tcpdump`在客户端抓包(服务端也可)
 ```
 tcpdump -i eth0 host 192.168.1.100 and port 8011 -w test.cap
 ```
@@ -69,7 +69,7 @@ Transmission Control Protocol, Src Port: 45982, Dst Port: 8011, Seq: 0, Len: 0
     Options: (20 bytes), Maximum segment size, SACK permitted, Timestamps, No-Operation (NOP), Window scale
 
 ```
-> c: hi s, 我要连接你(当然s事先已经公布了自己的地址ip+port).   
+> c: hi s, 我要连接你(当然s事先已经公布了自己的地址`ip+port`).   
 > 准备我的 `Source Port: 45982`，其实是创建了一个`socket`   
 > 准备`Sequence number: 0` ，这里是一个相对数值   
 > `Flags: 0x002 (SYN)`，表示这是一个请求建立连接的报文   

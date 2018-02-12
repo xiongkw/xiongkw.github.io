@@ -8,7 +8,7 @@ tags: []
 #### 1. 安装包下载
 
 
-jenkins提供linux、windows等多种安装包，这里选择[war包下载](https://jenkins.io/download/)
+`jenkins`提供`linux、windows`等多种安装包，这里选择[war包下载](https://jenkins.io/download/)
 
 ## 2. 部署war包
 
@@ -20,7 +20,7 @@ mv jenkins.war jenkins
 tar zxvf jdk-8u60-linux-x64.tar.gz -C jenkins-2.89.3
 ```
 
-> jenkins-2.89.3要求1.8jdk，为不影响系统已有jdk，这里直接解压到jenkins安装目录
+> `jenkins-2.89.3`要求`1.8jdk`，为不影响系统已有`jdk`，这里直接解压到`jenkins`安装目录
 
 ## 3. 编写启动脚本
 
@@ -78,7 +78,7 @@ cat secrets/initialAdminPassword
 
 ![]({{site.url}}/public/images/2018-01-29-jenkins-install-03.png)
 
-设置代理后发现依然提示Offline，网上找到解决方法：
+设置代理后发现依然提示`Offline`，网上找到解决方法：
 
 ```
 vi hudson.model.UpdateCenter.xml

@@ -4,10 +4,10 @@ title: Spring aop的几种写法
 categories: [编程, spring, java]
 tags: [aop]
 ---
-> spring中实现aop是非常简单的
+> `spring`中实现`aop`是非常简单的
 
 #### 1. 普通代理模式
-业务类 MyService.java
+业务类 `MyService.java`
 ```java
 public class MyService {
 
@@ -18,7 +18,7 @@ public class MyService {
 }
 ```
 
-日志类 MyLogger.java
+日志类 `MyLogger.java`
 ```java
 public class MyLogger implements MethodBeforeAdvice {
 
@@ -29,7 +29,7 @@ public class MyLogger implements MethodBeforeAdvice {
 }
 ```
 
-aop-proxy.xml
+`aop-proxy.xml`
 ```xml
 <bean id="service" class="com.my.spring.aop.MyService"></bean>
 
@@ -54,7 +54,7 @@ aop-proxy.xml
 ```
 > 普通代理模式的缺点：需要为每个业务bean都配置一个代理bean
 
-UnitTest
+`UnitTest`
 ```java
 @ContextConfiguration(locations = { "classpath*:aop-proxy.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -71,11 +71,11 @@ public class AopProxyTest {
 ```
 
 #### 2. 自动代理模式
-业务类 MyService.java，同上
+业务类 `MyService.java`，同上
 
-日志类 MyLogger.java，同上
+日志类 `MyLogger.java`，同上
 
-aop-autoProxy.xml
+`aop-autoProxy.xml`
 ```xml
 <bean id="service" class="com.my.spring.aop.MyService"></bean>
 
@@ -92,9 +92,9 @@ aop-autoProxy.xml
 <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
 ```
 
-> 自动代理模式相比普通代理模式的优点是不需要为每个业务bean都配置一个代理bean
+> 自动代理模式相比普通代理模式的优点是不需要为每个业务`bean`都配置一个代理`bean`
 
-UnitTest
+`UnitTest`
 ```java
 @ContextConfiguration(locations = { "classpath*:aop-autoProxy.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -111,9 +111,9 @@ public class AopPojoTest {
 ```
 
 #### 3. aop:config配置
-业务类 MyService.java，同上
+业务类 `MyService.java`，同上
 
-日志类 AopConfigLogger.java
+日志类 `AopConfigLogger.java`
 ```java
 @Aspect
 public class AopConfigLogger {
@@ -125,7 +125,7 @@ public class AopConfigLogger {
 }
 ```
 
-aop-config.xml
+`aop-config.xml`
 ```xml
 <bean id="service" class="com.my.spring.aop.MyService"></bean>
 
@@ -138,7 +138,7 @@ aop-config.xml
 </aop:config>
 ```
 
-UnitTest
+`UnitTest`
 ```java
 @ContextConfiguration(locations = { "classpath*:aop-config.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -155,9 +155,9 @@ public class AopConfigTest {
 ```
 
 #### 4. aspectj模式
-业务类 MyService.java，同上
+业务类 `MyService.java`，同上
 
-日志类 AspectjLogger.java
+日志类 `AspectjLogger.java`
 ```java
 @Aspect
 public class AspectjLogger {
@@ -175,7 +175,7 @@ public class AspectjLogger {
 }
 ```
 
-aop-aspectj.xml
+`aop-aspectj.xml`
 ```xml
 <aop:aspectj-autoproxy proxy-target-class="true"/>
 
@@ -184,7 +184,7 @@ aop-aspectj.xml
 <bean id="aspectjLogger" class="com.my.spring.aop.AspectjLogger"/>
 ```
 
-UnitTest
+`UnitTest`
 ```java
 @ContextConfiguration(locations = { "classpath*:aop-aspectj.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -202,9 +202,9 @@ public class AopAspectjTest {
 
 *总结*
 
-* spring aop不管使用哪种写法，其本质都是生成一个代理对象，在代理方法中加入增强方法
-* spring aop默认使用`jdk代理`(需要定义接口)生成代理对象，如果业务对象没有实现接口，则使用`cglib`生成代理对象
-* 因为代理的特性，使得其无法增强通过this调用的方法和private方法，参考[Spring load-time-weaver用法]({{ site.url}}/2016/02/10/spring-ltw-useage/)
+* `spring aop`不管使用哪种写法，其本质都是生成一个代理对象，在代理方法中加入增强方法
+* `spring aop`默认使用`jdk代理`(需要定义接口)生成代理对象，如果业务对象没有实现接口，则使用`cglib`生成代理对象
+* 因为代理的特性，使得其无法增强通过`this`调用的方法和`private`方法，参考[Spring load-time-weaver用法]({{ site.url}}/2016/02/10/spring-ltw-useage/)
 
 附：代理的简单原理
 ```java

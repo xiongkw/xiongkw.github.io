@@ -5,14 +5,14 @@ categories: [编程, java]
 tags: [zookeeper]
 ---
 
-> 微服务架构下用zookeeper作为服务注册中心，在服务启动后向zookeeper注册服务ip和端口信息，发现服务重启时偶尔注册失败
+> 微服务架构下用`zookeeper`作为服务注册中心，在服务启动后向`zookeeper`注册服务`ip`和端口信息，发现服务重启时偶尔注册失败
 
 #### 1. 异常现象
 日志提示注册成功，也没有异常。经过多次重启发现：
-* 重启的时间控制在session timeout之内才会出现
+* 重启的时间控制在`session timeout`之内才会出现
 * 满足第一个条件的情况下，每隔一次才出现
 
-于是怀疑和session timeout 有关，进一步查看节点session
+于是怀疑和`session timeout` 有关，进一步查看节点`session`
 
 #### 2. 异常跟踪
 
@@ -49,7 +49,7 @@ ephemeralOwner = 0x15f8f0496020037
 2017-11-08 15:54:10,002 [myid:] - INFO  [SessionTracker:ZooKeeperServer@347] - Expiring session 0x15f8f0496020037, timeout of 4000ms exceeded
 2017-11-08 15:54:10,002 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed session termination for sessionid: 0x15f8f0496020037
 ```
-发现session 0x15f8f0496020037 过期之前，0x15f8f0496020038已经建立了
+发现`session 0x15f8f0496020037` 过期之前，`0x15f8f0496020038`已经建立了
 
 根据`2.2`和`2.3`得出结论：
 * `session 037`过期之前，`session 038`建立连接，并修改了节点数据，此时`session 038`是正常注册到zk的

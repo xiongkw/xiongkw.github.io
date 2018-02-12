@@ -23,7 +23,7 @@ yum install pcre-devel zlib-devel openssl-devel
 #### 3 安装nginx
 
 ##### 3.1 下载nginx安装包
-> 在nginx官网下载最新版源码安装包
+> 在`nginx`官网下载最新版源码安装包
 
 ##### 3.2 解压安装
 ```shell

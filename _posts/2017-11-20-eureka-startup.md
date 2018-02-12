@@ -5,11 +5,11 @@ categories: [编程, java]
 tags: [eureka]
 ---
 
-> 本文演示如何部署Eureka服务端，并使用spring-cloud注册和发现服务实例
+> 本文演示如何部署`Eureka`服务端，并使用`spring-cloud`注册和发现服务实例
 
 #### 1. Eureka服务端
 
-> Eureka不提供服务端安装文件，这里使用spring boot方式搭建一个Eureka服务端
+> `Eureka`不提供服务端安装文件，这里使用`spring boot`方式搭建一个`Eureka`服务端
 
 ##### 1.1 加入spring-boot工程pom依赖：
 ```xml
@@ -82,10 +82,10 @@ public String serviceUrl() {
 
 ```
 
-> Eureka中服务名总是转换为大写
+> `Eureka`中服务名总是转换为大写
 
 #### 3. 从Eureka中读取服务实例
-> 非spring系统使用原生Eureka api读取服务实例
+> 非`spring`系统使用原生`Eureka api`读取服务实例
 
 ##### 3.1 pom依赖
 pom.xml
@@ -103,7 +103,6 @@ pom.xml
 ```
 
 ##### 3.2 java代码
-java
 ```java
 @PostConstruct
 public void init(){
@@ -134,7 +133,7 @@ public void onEvent(EurekaEvent event) {
 ```
 
 ##### 3.3 属性配置
-eureka-client.properties
+`eureka-client.properties`
 ```properties
 eureka.registration.enabled=false
 
@@ -151,6 +150,6 @@ eureka.decoderName=JacksonJson
 
 #### 4. 几个问题
 
-* 1.客户端发现服务的时间延迟比较长，原因是Eureka客户端从服务端读取服务实例的时间间隔默认为30s，可通过修改参数`client.refresh.interval`控制
-* 2.服务断线后，Eureka服务端却还长时间存在，原因是Eureka客户端心跳的时间间隔默认30s，服务端认为其超时的时间为90s，同时服务端清除断线客户端的频率默认为60s。可通过修改参数`eviction-interval-timer-in-ms`调整清除超时客户端的频率，修改参数`eureka.instance.leaseExpirationDurationInSeconds`调整服务失效时间，修改参数`eureka.instance.leaseRenewalIntervalInSeconds`调整客户端发送心跳的频率
+* 1.客户端发现服务的时间延迟比较长，原因是`Eureka`客户端从服务端读取服务实例的时间间隔默认为30s，可通过修改参数`client.refresh.interval`控制
+* 2.服务断线后，`Eureka`服务端却还长时间存在，原因是`Eureka`客户端心跳的时间间隔默认30s，服务端认为其超时的时间为90s，同时服务端清除断线客户端的频率默认为60s。可通过修改参数`eviction-interval-timer-in-ms`调整清除超时客户端的频率，修改参数`eureka.instance.leaseExpirationDurationInSeconds`调整服务失效时间，修改参数`eureka.instance.leaseRenewalIntervalInSeconds`调整客户端发送心跳的频率
 * 3.客户端120s后才能感知服务的断线，原因是客户端对服务实例的缓存时间为30s，加上2中90s和60s，最多可达180s

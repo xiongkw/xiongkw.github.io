@@ -166,7 +166,7 @@ if [ $? -ne 0 ];then
     [ $? -ne 0 ] && service keepalived stop
 fi
 ```
-> 如果nginx进程挂了，则重新启动nginx
+> 如果`nginx`进程挂了，则重新启动`nginx`
 
 ##### 5.3 查看VIP绑定结果
 

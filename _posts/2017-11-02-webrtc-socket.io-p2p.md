@@ -10,15 +10,15 @@ tags: [webrtc, p2p]
 #### 1. WebRTC
 关于`WebRTC`：
 
-* `Web Real-Time Communication` 网页实时通信，是一个支持网页浏览器进行实时语音对话或视频对话的技术。Google 2010年收购`Global IP Solutions`公司而获得的一项技术。
-* 正在被W3C标准化，即将成为下一代视频通信标准
+* `Web Real-Time Communication` 网页实时通信，是一个支持网页浏览器进行实时语音对话或视频对话的技术。`Google` 2010年收购`Global IP Solutions`公司而获得的一项技术。
+* 正在被`W3C`标准化，即将成为下一代视频通信标准
 * 正在蚕食`flash`，`adobe`宣布2020年停止`flash`开发多半是因为它
 
 重要术语：
 
-* `signaling` 翻译为`信令`,信令服务器，用于交换peer双方信息，两个peer要建立p2p连接就需要交换一些信息，比如双方的ip端口、带宽、解码器等 
+* `signaling` 翻译为`信令`,信令服务器，用于交换`peer`双方信息，两个`peer`要建立`p2p`连接就需要交换一些信息，比如双方的ip端口、带宽、解码器等 
 
-* `STUN` `(Session Traversal Utilities for NAT)`, `STUN`服务器用于获取peer外网地址
+* `STUN` `(Session Traversal Utilities for NAT)`, `STUN`服务器用于获取`peer`外网地址
 * `TURN` `(Traversal Using Relays around NAT)`, `TURN`服务器用于在p2p连接失败时传输数据
 * `ICE`: `(Interactive Connectivity Establishment)`,`ICE`服务器作用是综合利用各种协议，在复杂的网络环境中选择最优算法。首先尝试建立p2p连接，失败则使用`TURN`转发 
 
@@ -35,7 +35,7 @@ tags: [webrtc, p2p]
 #### 4. 代码
 
 二话不多说，上代码：
-server.js
+`server.js`
 ```javascript
 var ecstatic = require('ecstatic')
 var server = require('http').createServer(
@@ -58,7 +58,8 @@ io.on('connection', function(socket){
   
 });
 ```
-client.js
+
+`client.js`
 ```javascript
 var P2P = require('socket.io-p2p');
 var io = require('socket.io-client');
@@ -107,7 +108,8 @@ document.getElementById("btn_send").addEventListener('click', function(){
 });
 
 ```
-index.html
+
+`index.html`
 ```html
 <!doctype html>
 <html lang="en">
@@ -138,7 +140,7 @@ index.html
 browserify client.js -o bundle.js
 ```
 
-启动server
+启动`server`
 ```
 node server.js
 ```

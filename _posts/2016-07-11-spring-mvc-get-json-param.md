@@ -6,12 +6,12 @@ tags: [spring-mvc, json]
 ---
 
 
-> spring-mvc中Get方法的参数可直接映射到dto，Post方法中也可通过jackson把json参数映射到dto，但是Get方法中却不支持json参数的映射
+> `spring-mvc`中`Get`方法的参数可直接映射到`dto`，`Post`方法中也可通过`jackson`把`json`参数映射到`dto`，但是`Get`方法中却不支持`json`参数的映射
 
-需求：形如/getJson?dto={"name":"Tom","age":20}的HTTP请求，要求映射到Get方法的DTO参数中
+需求：形如`/getJson?dto={"name":"Tom","age":20}`的`HTTP`请求，要求映射到`Get`方法的`DTO`参数中
 > 需求比较奇葩，这里只作演示
 
-rest controller
+`rest controller`
 ```java
 @RequestMapping(value = "jsonparam", method = RequestMethod.GET)
 public UserDTO jsonParam(@JSONParam UserDTO dto){
@@ -19,7 +19,7 @@ public UserDTO jsonParam(@JSONParam UserDTO dto){
 }
 ```
 
-注解:JSONParam.java
+注解:`JSONParam.java`
 ```java
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
@@ -29,7 +29,7 @@ public @interface JSONParam {
 }
 ```
 
-GetParamArgumentResolver.java
+`GetParamArgumentResolver.java`
 ```java
 public class GetParamArgumentResolver implements HandlerMethodArgumentResolver {
 
@@ -50,7 +50,7 @@ public class GetParamArgumentResolver implements HandlerMethodArgumentResolver {
 }
 ```
 
-spring-mvc.xml
+`spring-mvc.xml`
 ```xml
 <mvc:annotation-driven>
     <mvc:message-converters>

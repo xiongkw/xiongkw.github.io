@@ -119,5 +119,5 @@ server {
     }
 ```
 
-> 安装nginx时需要指定sub_filter模块`--with-http_sub_module`   
-> nginx-1.9.4以前的版本不支持多个`sub_filter`指令
+> 安装`nginx`时需要指定`sub_filter`模块`--with-http_sub_module`   
+> `nginx-1.9.4`以前的版本不支持多个`sub_filter`指令

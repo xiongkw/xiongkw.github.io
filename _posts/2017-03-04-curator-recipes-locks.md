@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [curator, zookeeper, lock]
 ---
 
-> jdk的锁作用于同一jvm进程内的不同线程，而这里的`Curator Lock`说的是多个客户端(不同jvm进程)之间的锁
+> `jdk`的锁作用于同一`jvm`进程内的不同线程，而这里的`Curator Lock`说的是多个客户端(不同`jvm`进程)之间的锁
 
 #### 1. 一个例子
 
@@ -45,7 +45,7 @@ public boolean acquire(long time, TimeUnit unit) throws Exception{
 }
 ```
 
-internalLock
+`internalLock`
 ```java
 private boolean internalLock(long time, TimeUnit unit) throws Exception {
     /*
@@ -75,7 +75,7 @@ private boolean internalLock(long time, TimeUnit unit) throws Exception {
 
 > 使用线程`threadData(ConcurrentHashMap)`保存当前线程锁状态实现锁的可重入，这里是否可以用`ThreadLocal`?
 
-LockInternals.attemptLock
+`LockInternals.attemptLock`
 ```java
 String attemptLock(long time, TimeUnit unit, byte[] lockNodeBytes) throws Exception {
     final long      startMillis = System.currentTimeMillis();
@@ -111,7 +111,7 @@ String attemptLock(long time, TimeUnit unit, byte[] lockNodeBytes) throws Except
 }
 ```
 
-StandardLockInternalsDriver.createsTheLock
+`StandardLockInternalsDriver.createsTheLock`
 ```java
 public String createsTheLock(CuratorFramework client, String path, byte[] lockNodeBytes) throws Exception {
     String ourPath;
@@ -125,7 +125,7 @@ public String createsTheLock(CuratorFramework client, String path, byte[] lockNo
 }
 ```
 
-> 创建锁实际上是在zk指定path创建了一个有序临时节点
+> 创建锁实际上是在`zk`指定`path`创建了一个有序临时节点
 
 ```java
 private boolean internalLockLoop(long startMillis, Long millisToWait, String ourPath) throws Exception {
@@ -186,7 +186,7 @@ private boolean internalLockLoop(long startMillis, Long millisToWait, String our
 }
 ```
 
-StandardLockInternalsDriver.getsTheLock
+`StandardLockInternalsDriver.getsTheLock`
 ```java
 public PredicateResults getsTheLock(CuratorFramework client, List<String> children, String sequenceNodeName, int maxLeases) throws Exception {
     int             ourIndex = children.indexOf(sequenceNodeName);
@@ -199,9 +199,9 @@ public PredicateResults getsTheLock(CuratorFramework client, List<String> childr
 }
 ```
 
-> 序号最小的(最先创建有序临时节点)的client将获得锁
+> 序号最小的(最先创建有序临时节点)的`client`将获得锁
 
-竞争失败的client会监听前一个序号节点
+竞争失败的`client`会监听前一个序号节点
 ```java
 String  previousSequencePath = basePath + "/" + predicateResults.getPathToWatch();
 

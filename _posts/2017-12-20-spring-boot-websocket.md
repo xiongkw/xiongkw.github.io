@@ -11,7 +11,7 @@ tags: [spring-boot, websocket]
 `WebSocket`: `WebSocket`是HTML5规范制定的一个新的协议，该协议允许浏览器与web服务器建立`TCP`连接，从而实现服务端与客户端的双向实时通信。
 
 #### 2.服务端
-pom.xml
+`pom.xml`
 ```xml
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -24,7 +24,7 @@ pom.xml
         </dependency>
 ```
 
-WebSocketConfig.java
+`WebSocketConfig.java`
 ```java
 @Configuration
 @EnableWebSocket
@@ -49,7 +49,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 ```
 
 #### 3.客户端
-pom.xml
+`pom.xml`
 ```xml
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,7 +68,7 @@ pom.xml
 ```
 > `spring-websocket`提供了`WebSocketClient`接口，其实现有多种，这里使用`jetty`的`websocket client`实现
 
-WebSocketClient.java
+`WebSocketClient.java`
 ```java
 @Component
 public class WebSocketClient {

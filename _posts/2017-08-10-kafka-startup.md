@@ -9,24 +9,24 @@ tags: [kafka]
 
 #### 1. Kafka介绍
 ##### 1.1 角色介绍
-* Broker：Kafka集群包含一个或多个服务实例，每个服务实例就是一个broker
-* Topic：消息主题
-* Partition：分区，每个Topic包含一个或多个Partition.
-* Producer：消息生产者
-* Consumer：消息消费者
-* Consumer Group：消费者分组，每个Consumer属于一个特定的Consumer Group
+* `Broker`：`Kafka`集群包含一个或多个服务实例，每个服务实例就是一个`broker`
+* `Topic`：消息主题
+* `Partition`：分区，每个`Topic`包含一个或多个`Partition.`
+* `Producer`：消息生产者
+* `Consumer`：消息消费者
+* `Consumer Group`：消费者分组，每个`Consumer`属于一个特定的`Consumer Group`
 
 #### 2. 安装
 
 ##### 2.1 环境依赖
-* jdk 最低1.7u51，推荐1.8以上
-* zookeeper 
+* `jdk` 最低`1.7u51`，推荐`1.8`以上
+* `zookeeper`
 
 ##### 2.2 安装包获取
 在[Kafka官网](http://kafka.apache.org/)下载，解压即可
 
 ##### 2.3 配置
-config/server.properties
+`config/server.properties`
 ```properties
 # The id of the broker. This must be set to a unique integer for each broker.
 broker.id=1

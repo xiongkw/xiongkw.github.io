@@ -5,15 +5,15 @@ categories: [编程, java]
 tags: [security, policy, doPrivileged]
 ---
 
-> 在 Java 中将执行程序分成本地和远程两种，本地代码默认视为可信任的，而远程代码则被看作是不受信的。对于授信的本地代码，可以访问一切本地资源。而对于非授信的远程代码，则无权访问本地资源
+> 在 `Java` 中将执行程序分成本地和远程两种，本地代码默认视为可信任的，而远程代码则被看作是不受信的。对于授信的本地代码，可以访问一切本地资源。而对于非授信的远程代码，则无权访问本地资源
 
 #### 1. Java的安全模型
 
-> 虚拟机会把所有代码加载到不同的系统域和应用域，系统域部分专门负责与关键资源进行交互，而各个应用域部分则通过系统域的部分代理来对各种需要的资源进行访问。虚拟机中不同的受保护域 (Protected Domain)，对应不一样的权限 (Permission)。存在于不同域中的类文件就具有了当前域的全部权限
+> 虚拟机会把所有代码加载到不同的系统域和应用域，系统域部分专门负责与关键资源进行交互，而各个应用域部分则通过系统域的部分代理来对各种需要的资源进行访问。虚拟机中不同的受保护域 (`Protected Domain`)，对应不一样的权限 (`Permission`)。存在于不同域中的类文件就具有了当前域的全部权限
 
 参考[Java 安全模型介绍](https://www.ibm.com/developerworks/cn/java/j-lo-javasecurity/)
 
-`ProtectionDomain`：当类装载器将类型装入Java虚拟机时，它们将为每个类型指派一个保护域。保护域定义了授予一段特定代码的所有权限。（一个保护域对应策略文件中的一个或多个Grant子句。）装载入Java虚拟机的每一个类型都属于一个且仅属于一个保护域。
+`ProtectionDomain`：当类装载器将类型装入`Java`虚拟机时，它们将为每个类型指派一个保护域。保护域定义了授予一段特定代码的所有权限。（一个保护域对应策略文件中的一个或多个`Grant`子句。）装载入`Java`虚拟机的每一个类型都属于一个且仅属于一个保护域。
 
 #### 2. 例子
 
@@ -23,7 +23,7 @@ tags: [security, policy, doPrivileged]
 Main -> FileReader
 ```
 
-FileReader.java
+`FileReader.java`
 ```java
 public class FileReader {
     public static void read(String file) throws Exception {
@@ -48,7 +48,7 @@ public class FileReader {
 }
 ```
 
-Main.java
+`Main.java`
 ```java
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -72,7 +72,7 @@ D:/test
         |-main/Main.class
 ```
 
-安全策略my.policy，授权`FileReader`读权限，而`Main`则无权限
+安全策略`my.policy`，授权`FileReader`读权限，而`Main`则无权限
 
 ```
 grant codeBase "file:/D:/test/lib/*" {
@@ -157,7 +157,7 @@ public void checkPermission(Permission perm) {
 }
 ```
 
-AccessController.checkPermission
+`AccessController.checkPermission`
 ```java
 public static void checkPermission(Permission perm) throws AccessControlException{
     if (perm == null) {
@@ -193,12 +193,12 @@ public static void checkPermission(Permission perm) throws AccessControlExceptio
 }
 ```
 
-`getStackAccessControlContext`是一个native方法，看注释返回的是方法调用栈的`ProtectionDomain`
+`getStackAccessControlContext`是一个`native`方法，看注释返回的是方法调用栈的`ProtectionDomain`
 
 > Returns the AccessControl context. i.e., it gets the protection domains of all the callers on the stack, starting at the first class with a non-null ProtectionDomain.   
 > the access control context based on the current stack or null if there was only privileged system code.
 
-AccessControlContext.checkPermission
+`AccessControlContext.checkPermission`
 ```java
 public void checkPermission(Permission perm)
     throws AccessControlException
@@ -296,7 +296,7 @@ public void checkPermission(Permission perm)
 
 > 按顺序检查`AccessControlContext`中的每一个`ProtectionDomain`
 
-ProtectionDomain.implies
+`ProtectionDomain.implies`
 ```java
 public boolean implies(Permission permission) {
 
@@ -318,7 +318,7 @@ public boolean implies(Permission permission) {
 
 那为什么`AccessController.doPrivileged`能绕过安全检查呢？
 
-`AccessController.doPrivileged`是一个native方法：
+`AccessController.doPrivileged`是一个`native`方法：
 ```java
 public static native <T> T doPrivileged(PrivilegedAction<T> action);
 ```

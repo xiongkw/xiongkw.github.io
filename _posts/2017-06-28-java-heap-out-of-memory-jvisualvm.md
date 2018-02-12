@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [heap, oom, jvisualvm]
 ---
 
-JVM堆内存的划分(jdk8)
+`JVM`堆内存的划分(`jdk8`)
 ```
 年轻代（New）：年轻代用来存放JVM刚分配的Java对象
     Eden：Eden用来存放JVM刚分配的对象
@@ -52,27 +52,27 @@ public class HeapOutOfMemory {
 
 }
 ```
-> 启动vm参数 -verbose:gc -Xms50M -Xmx50M -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=d:\dump\heapoutofmemory.hprof
+> 启动vm参数 `-verbose:gc -Xms50M -Xmx50M -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=d:\dump\heapoutofmemory.hprof`
 
-*使用jvisualvm dump两次，注意间隔3s以上*
+*使用`jvisualvm dump`两次，注意间隔3s以上*
 
 ![]({{site.url}}/public/images/2017-06-28-java-heap-out-of-memory-jvisualvm-1.png)
-> 可以看到HeapOutOfMemory的实例数占到32%
+> 可以看到`HeapOutOfMemory`的实例数占到`32%`
 
 ![]({{site.url}}/public/images/2017-06-28-java-heap-out-of-memory-jvisualvm-2.png)
-> 通过两次dump比较看到HeapOutOfMemory实例数增长最多
+> 通过两次`dump`比较看到`HeapOutOfMemory`实例数增长最多
 
-*查看HeapOutOfMemory的实例视图*
+*查看`HeapOutOfMemory`的实例视图*
 
 ![]({{site.url}}/public/images/2017-06-28-java-heap-out-of-memory-jvisualvm-3.png)
-> 可以看到HeapOutOfMemory的实例被ArrayList所引用，这里可以确定ArrayList中的HeapOutOfMemory实例没有被GC收回，因为其被ArrayList引用
+> 可以看到`HeapOutOfMemory`的实例被`ArrayList`所引用，这里可以确定`ArrayList`中的`HeapOutOfMemory`实例没有被GC收回，因为其被`ArrayList`引用
 
-*关于排名前二的char[]和String*   
-这哥俩表示很冤屈：“其实我俩是被HeapOutOfMemory引用的，如图”
+*关于排名前二的`char[]`和`String`*   
+这哥俩表示很冤屈：“其实我俩是被`HeapOutOfMemory`引用的，如图”
 
 ![]({{site.url}}/public/images/2017-06-28-java-heap-out-of-memory-jvisualvm-4.png)
 
-*回头看看console里打印了什么*
+*回头看看`console`里打印了什么*
 ```
 [GC (Allocation Failure) [DefNew: 13696K->1664K(15360K), 0.0154519 secs] 13696K->5867K(49536K), 0.0154999 secs] [Times: user=0.00 sys=0.02, real=0.01 secs] 
 [GC (Allocation Failure) [DefNew: 15360K->1664K(15360K), 0.0218158 secs] 19563K->12207K(49536K), 0.0218433 secs] [Times: user=0.03 sys=0.00, real=0.02 secs] 
@@ -121,4 +121,4 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 
 Process finished with exit code 1
 ```
-> 发生了6次普通GC和n次Full GC
+> 发生了6次普通`GC`和n次`Full GC`

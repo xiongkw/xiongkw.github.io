@@ -5,7 +5,7 @@ categories: [编程, linux, web]
 tags: [kernel]
 ---
 
-> 修改/etc/sysctl.conf来调整linux内核参数，以提高web服务器性能
+> 修改`/etc/sysctl.conf`来调整`linux`内核参数，以提高`web`服务器性能
 
 ```
 vi /etc/sysctl.conf

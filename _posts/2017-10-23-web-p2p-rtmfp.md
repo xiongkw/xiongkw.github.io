@@ -8,11 +8,11 @@ tags: [rtmfp, p2p, MonoServer]
 > 本文演示如何使用`ActionScript`编写基于`flash`的`p2p`聊天程序
 
 #### 1. RTMFP
-`Real Time Media Flow Protocol`,`Adobe`公司开发的一套新的通信协议,可以让Adobe Flash Player的客户端进行p2p通信。
+`Real Time Media Flow Protocol`,`Adobe`公司开发的一套新的通信协议,可以让`Adobe Flash Player`的客户端进行`p2p`通信。
 
 #### 2. NetStream的publish和play
-* publish 发布一个指定名称的流
-* play 播放一个指定名称的流
+* `publish` 发布一个指定名称的流
+* `play` 播放一个指定名称的流
 
 > 可以理解为`MQ`中的发布和订阅，由于发布和订阅只能是单向的，所以建立一个p2p的读写连接需要同时建立发布和订阅两个流
 

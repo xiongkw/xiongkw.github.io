@@ -5,7 +5,7 @@ categories: [编程, nginx, web]
 tags: [server]
 ---
 
-> nginx 配置中配置多个server时，访问一个不存在的server_name也会默认匹配到第一个server块
+> `nginx` 配置中配置多个`server`时，访问一个不存在的`server_name`也会默认匹配到第一个`server`块
 
 ```nginx
 server{
@@ -15,7 +15,7 @@ server{
 
 ```
 
-解决办法：定义一个默认的server块
+解决办法：定义一个默认的`server`块
 ```nginx
 server{
 	listen      80 default_server;
@@ -24,5 +24,5 @@ server{
 }
 ```
 
-> Nginx官方解释：   
+> `Nginx`官方解释：   
 > Here, the server name is set to an empty string that will match requests without the “Host” header field, and a special nginx’s non-standard code 444 is returned that closes the connection.

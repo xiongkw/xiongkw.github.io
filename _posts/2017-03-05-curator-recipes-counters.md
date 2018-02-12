@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [curator, zookeeper, counter]
 ---
 
-> 在同jvm进程内的多线程环境，我们通常使用`AtomicInteger`来实现计数器
+> 在同`jvm`进程内的多线程环境，我们通常使用`AtomicInteger`来实现计数器
 
 #### 1. 一个例子
 
@@ -54,14 +54,14 @@ public void start() throws Exception{
 
 > 创建计数器实际是在zk指定路径创建一个节点，并写入初始计数值
 
-setCount
+`setCount`
 ```java
 public void     setCount(int newCount) throws Exception{
     sharedValue.setValue(toBytes(newCount));
 }
 ```
 
-SharedValue.setValue
+`SharedValue.setValue`
 ```java
 public void setValue(byte[] newValue) throws Exception{
     Preconditions.checkState(state.get() == State.STARTED, "not started");
@@ -73,14 +73,14 @@ public void setValue(byte[] newValue) throws Exception{
 
 > 直接写入新的数值到节点
 
-trySetCount
+`trySetCount`
 ```java
 public boolean  trySetCount(VersionedValue<Integer> previous, int newCount) throws Exception{
     VersionedValue<byte[]> previousCopy = new VersionedValue<byte[]>(previous.getVersion(), toBytes(previous.getValue()));
     return sharedValue.trySetValue(previousCopy, toBytes(newCount));
 }
 ```
-SharedValue.trySetValue
+`SharedValue.trySetValue`
 ```java
 public boolean trySetValue(VersionedValue<byte[]> previous, byte[] newValue) throws Exception {
     Preconditions.checkState(state.get() == State.STARTED, "not started");
@@ -107,7 +107,7 @@ public boolean trySetValue(VersionedValue<byte[]> previous, byte[] newValue) thr
 
 #### 3. 其它计数器
 
-* `DistributedAtomicLong` Long类型的计数器，使用了分布式锁`InterProcessMutex`来保证操作的原子性
+* `DistributedAtomicLong` `Long`类型的计数器，使用了分布式锁`InterProcessMutex`来保证操作的原子性
 
 #### 4. 参考文档
 

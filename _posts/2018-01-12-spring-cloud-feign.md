@@ -162,7 +162,7 @@ feign:
 
 ##### 3.4 Feign服务
 
-IRemoteHelloService.java
+`IRemoteHelloService.java`
 ```java
 @FeignClient(value = "hello-service", fallback = RemoteHelloServiceHystrixImpl.class)
 public interface IRemoteHelloService {
@@ -173,7 +173,7 @@ public interface IRemoteHelloService {
 }
 ```
 
-RemoteHelloServiceHystrixImpl.java
+`RemoteHelloServiceHystrixImpl.java`
 ```java
 @Component
 public class RemoteHelloServiceHystrixImpl implements IRemoteHelloService{

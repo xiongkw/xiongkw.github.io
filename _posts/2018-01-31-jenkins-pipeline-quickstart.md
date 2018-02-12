@@ -5,7 +5,7 @@ categories: [编程, jenkins]
 tags: [pipeline, CI, CD, groovy]
 ---
 
-> `Jenkins Pipeline`, 流水线，是一套jenkins插件，用于提供持续交付(CD)的能力
+> `Jenkins Pipeline`, 流水线，是一套`jenkins`插件，用于提供持续交付(`CD`)的能力
 
 #### 1. 简介
 
@@ -14,13 +14,13 @@ tags: [pipeline, CI, CD, groovy]
 
 `CI`和`CD`的区别：持续集成解决的是软件集成的问题，其包含代码提交到编译-测试-集成，其产出是代码。持续交付则包含从代码提交到集成-测试-生产这一系列过程，其产出是软件。可见`CD`了涵盖了`CI`的范围。
 
-`Jenkins Pipeline`则是用于提供持续交付能力的一套插件，发布于jenkins 2.0版本，jenkins早期版本提供的是持续集成的能力。
+`Jenkins Pipeline`则是用于提供持续交付能力的一套插件，发布于`jenkins 2.0`版本，`jenkins`早期版本提供的是持续集成的能力。
 
 #### 1. Jenkins安装
 参考[Jenkins安装]({{ site.url}}/2018/01/29/jenkins-install/)
 
 #### 2. hello pipeline
-在jenkins管理页面新建一个pipeline任务，进入任务配置页面
+在jenkins管理页面新建一个`pipeline`任务，进入任务配置页面
 
 在流水线脚本中输入
 
@@ -48,7 +48,7 @@ Finished: SUCCESS
 
 #### 3. pipeline语法
 
-以下是一段pipeline：
+以下是一段`pipeline`：
 
 ```groovy
 pipeline {

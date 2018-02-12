@@ -7,14 +7,14 @@ tags: [zab, zookeeper]
 
 #### 1. 简介
 
-`Zookeeper`:ZooKeeper是一个分布式协调服务，可实现配置管理、命名服务、分布式锁、选举等服务
+`Zookeeper`:`ZooKeeper`是一个分布式协调服务，可实现配置管理、命名服务、分布式锁、选举等服务
 
-`zab`:ZooKeeper Atomic Broadcast, 原子广播协议(也有算法一说)，用于保障数据一的致性
+`zab`:`ZooKeeper Atomic Broadcast`, 原子广播协议(也有算法一说)，用于保障数据一的致性
 
 #### 2. 启动类
-在zookeeper启动脚本中找到启动类：
+在`zookeeper`启动脚本中找到启动类：
 
-bin/zkServer.sh
+`bin/zkServer.sh`
 ```
 ZOOMAIN="org.apache.zookeeper.server.quorum.QuorumPeerMain"
 ```
@@ -23,7 +23,7 @@ ZOOMAIN="org.apache.zookeeper.server.quorum.QuorumPeerMain"
 
 ##### 3.1 main函数
 
-QuorumPeerMain.main()
+`QuorumPeerMain.main()`
 ```java
 public static void main(String[] args) {
     QuorumPeerMain main = new QuorumPeerMain();
@@ -34,7 +34,7 @@ public static void main(String[] args) {
 }
 ```
 
-QuorumPeerMain.initializeAndRun()
+`QuorumPeerMain.initializeAndRun()`
 ```java
 QuorumPeerConfig config = new QuorumPeerConfig();
 if (args.length == 1) {
@@ -62,7 +62,7 @@ if (args.length == 1 && config.servers.size() > 0) {
 
 ##### 3.2 配置解析
 
-QuorumPeerConfig.parse()
+`QuorumPeerConfig.parse()`
 ```java
 } else if (key.startsWith("server.")) {
     int dot = key.indexOf('.');
@@ -103,7 +103,7 @@ QuorumPeerConfig.parse()
 
 ##### 3.3 QuorumPeer线程
 
-QuorumPeer.start()
+`QuorumPeer.start()`
 ```java
 public synchronized void start() {
     loadDataBase();
@@ -113,7 +113,7 @@ public synchronized void start() {
 }
 ```
 
-QuorumPeer.loadDataBase()
+`QuorumPeer.loadDataBase()`
 ```java
 File updating = new File(getTxnFactory().getSnapDir(),
                                  UPDATING_EPOCH_FILENAME);
@@ -170,10 +170,10 @@ try {
 }
 ```
 
-> `zxid`:zookeeper事务id，用64位数字表示，其中高32位为`Leader`的`epoch`，低32位为递增序号
+> `zxid`:`zookeeper`事务id，用64位数字表示，其中高32位为`Leader`的`epoch`，低32位为递增序号
 > `epoch`:时期，纪元，用`zxid`的前32位表示，随着`Leader`的更换，`epoch`也会递增
 
-QuorumPeer.startLeaderElection()
+`QuorumPeer.startLeaderElection()`
 ```java
 try {
     currentVote = new Vote(myid, getLastLoggedZxid(), getCurrentEpoch());
@@ -204,7 +204,7 @@ this.electionAlg = createElectionAlgorithm(electionType);
 ```
 > 用自己的`zxid`和`epoch`发起投票，选自己
 
-QuorumPeer.createElectionAlgorithm
+`QuorumPeer.createElectionAlgorithm`
 ```java
 Election le=null;
 
@@ -233,7 +233,7 @@ case 3:
 
 > `electionType`默认是`3`，所以默认选举策略为`FastLeaderElection`
 
-QuorumPeer.run()
+`QuorumPeer.run()`
 ```java
 while (running) {
     switch (getPeerState()) {
@@ -349,7 +349,7 @@ setCurrentVote(makeLEStrategy().lookForLeader());
 
 > 节点启动时的初始状态
 
-FastLeaderElection.lookForLeader()
+`FastLeaderElection.lookForLeader()`
 ```java
 HashMap<Long, Vote> recvset = new HashMap<Long, Vote>();
 
@@ -542,7 +542,7 @@ return null;
 
 ###### 3.4.1 LOOKEING状态的投票者
 
-比较自己和他人的投票 FastLeaderElection.totalOrderPredicate()
+比较自己和他人的投票 `FastLeaderElection.totalOrderPredicate()`
 ```java
 /*
  * We return true if one of the following three cases hold:
@@ -559,7 +559,7 @@ return ((newEpoch > curEpoch) ||
 
 > 选票比较规则`epoch->zxid->sid`，如果比较胜出则忽略，否则改投对方投票
 
-判断是否可以结束选举 FastLeaderElection.termPredicate()
+判断是否可以结束选举 `FastLeaderElection.termPredicate()`
 ```java
 HashSet<Long> set = new HashSet<Long>();
 
@@ -631,7 +631,7 @@ setObserver(makeObserver(logFactory));
 observer.observeLeader();
 ```
 
-Observer.observeLeader()
+`Observer.observeLeader()`
 ```java
 QuorumServer leaderServer = findLeader();
 LOG.info("Observing " + leaderServer.addr);
@@ -650,7 +650,7 @@ try {
 
 > 连接到`Leader`并接收命令，命令类型如下
 
-Observer.processPacket()
+`Observer.processPacket()`
 ```java
 case Leader.PING:
     ping(qp);
@@ -679,7 +679,7 @@ setFollower(makeFollower(logFactory));
 follower.followLeader();
 ```
 
-Follower.followLeader()
+`Follower.followLeader()`
 ```java
 QuorumServer leaderServer = findLeader();
 try {

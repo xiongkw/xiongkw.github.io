@@ -5,14 +5,14 @@ categories: [编程, nginx, web]
 tags: []
 ---
 
-> nginx反向代理,在返回大报文时出现丢包现象,小报文则不会
+> `nginx`反向代理,在返回大报文时出现丢包现象,小报文则不会
 
-查看nginx error日志
+查看`nginx error`日志
 ```
 open() "/app/nginx/proxy_temp/3/91/0000042913" failed (13: Permission denied) while reading upstream
 ```
 
-查看proxy_temp目录
+查看`proxy_temp`目录
 ```
 drwx------ 102 nobody nobody 4096 Aug 21 15:06 0
 drwx------ 102 nobody nobody 4096 Aug 21 15:07 1
@@ -28,5 +28,5 @@ or
 chown -R nobody:nobody 3
 ```
 
-关于nginx proxy_temp
+关于`nginx proxy_temp`
 > When buffering is enabled, nginx receives a response from the proxied server as soon as possible, saving it into the buffers set by the proxy_buffer_size and proxy_buffers directives. If the whole response does not fit into memory, a part of it can be saved to a temporary file on the disk. Writing to temporary files is controlled by the proxy_max_temp_file_size and proxy_temp_file_write_size directives.

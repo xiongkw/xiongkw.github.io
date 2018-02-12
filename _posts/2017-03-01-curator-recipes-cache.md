@@ -8,7 +8,7 @@ tags: [curator, zookeeper, cache]
 > `Curator Cache`会把指定zk路径下的所有子节点及其数据缓存到本地，这样一来，应用程序只需要读取本地缓存，而不需要每次都实时从zk服务端读取
 
 #### 1. PathChildrenCache
-`PathChildrenCache`用于缓存和监听指定路径下所有子节点(只包括子辈，不包括孙辈)的创建、删除和更新(add、del、set)事件
+`PathChildrenCache`用于缓存和监听指定路径下所有子节点(只包括子辈，不包括孙辈)的创建、删除和更新(`add、del、set`)事件
 
 ```java
 public static void main(String[] args) throws Exception {

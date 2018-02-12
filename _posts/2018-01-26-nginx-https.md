@@ -42,12 +42,12 @@ Organizational Unit Name (eg, section) []:XXX
 Common Name (eg, your name or your server's hostname) []:www.myapp.com
 Email Address []:xx@xx.com
 ```
-- req -x509: 生成自签名证书
-- -nodes: 忽略私钥密码
-- -days 999: 证书有效期999天
-- -newkey rsa:2048: 生成加密强度为RSA 2048的私钥
-- -keyout: 生成私钥文件名
-- -out: 生成证书文件名
+- `req -x509`: 生成自签名证书
+- `-nodes`: 忽略私钥密码
+- `-days 999`: 证书有效期999天
+- `-newkey rsa:2048`: 生成加密强度为`RSA 2048`的私钥
+- `-keyout`: 生成私钥文件名
+- `-out`: 生成证书文件名
 
 #### 3. nginx配置
 ```

@@ -9,7 +9,7 @@ tags: [atomic, 多线程]
 > 我们常常使用`AtomicInteger`实现计数器
   
 #### 1. CAS
-`CAS`: Compare And Swap,即比较交换,我们常用的乐观锁就是这个原理
+`CAS`: `Compare And Swap`,即比较交换,我们常用的乐观锁就是这个原理
 
 ```
 V表示要更新的变量
@@ -22,7 +22,7 @@ N表示新值
 
 #### 2. Unsafe
 
-`Unsafe`: 存在于sun.misc包中，其内部方法操作可以像C的指针一样直接操作内存，不建议直接使用
+`Unsafe`: 存在于`sun.misc`包中，其内部方法操作可以像C的指针一样直接操作内存，不建议直接使用
 
 #### 3. 一个例子
 ```java
@@ -54,20 +54,20 @@ public class AtomicIntegerTest {
 10000
 ```
 
-AtomicInteger的incrementAndGet方法是线程安全的
+`AtomicInteger`的`incrementAndGet`方法是线程安全的
 
 > 关于`volatile`，参考参考[java中的volatile]({{ site.url}}/2016/03/10/java-volatile/)
 
 #### 4. 源码分析
 
-AtomicInteger.getAndIncrement
+`AtomicInteger.getAndIncrement`
 ```java
 public final int getAndIncrement() {
     return unsafe.getAndAddInt(this, valueOffset, 1);
 }
 ```
 
-UnSafe.getAndAddInt
+`UnSafe.getAndAddInt`
 ```java
 public final int getAndAddInt(Object var1, long var2, int var4) {
     int var5;
@@ -79,7 +79,7 @@ public final int getAndAddInt(Object var1, long var2, int var4) {
 }
 ```
 
-Unsafe.compareAndSwapInt
+`Unsafe.compareAndSwapInt`
 ```java
 public final native boolean compareAndSwapInt(Object var1, long var2, int var4, int var5);
 ```
@@ -88,4 +88,4 @@ public final native boolean compareAndSwapInt(Object var1, long var2, int var4, 
 
 #### 5. 总结
 
-`AtomicXX`使用`Unsafe`类直接操作堆内存，通过轻量级比较交换算法(CAS)实现了无锁的线程安全，其并发性能优于同步锁
+`AtomicXX`使用`Unsafe`类直接操作堆内存，通过轻量级比较交换算法(`CAS`)实现了无锁的线程安全，其并发性能优于同步锁

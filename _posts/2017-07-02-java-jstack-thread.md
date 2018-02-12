@@ -37,7 +37,7 @@ public class JstackDemo {
 
 #### 2. 获取线程dump
 
-1. 使用jps命令查找进程id
+1. 使用`jps`命令查找进程id
 
 ```
 jps
@@ -45,7 +45,7 @@ jps
 39360 JstackDemo
 ```
 
-2. 使用jstack命令获取线程dump
+2. 使用`jstack`命令获取线程`dump`
 
 ```
 jstack 39260
@@ -82,14 +82,14 @@ jstack 39260
 
 * `Thread 2`: 线程名称
 * `prio=5`: 优先级
-* `tid=0x14e4d800`: 线程id(jvm)
-* `nid=0xb378`: 本地线程id
+* `tid=0x14e4d800`: 线程`id(jvm)`
+* `nid=0xb378`: 本地线程`id`
 * `java.lang.Thread.State`: 线程状态
 
 线程状态：
 
-* `TIMED_WAITING`:线程调用了wait(long)或者join(long)或sleep(long)的情况下
-* `WAITING`:等待中，线程获得一个对象锁后，在该对象上等待其他线程来notify()
+* `TIMED_WAITING`:线程调用了`wait(long)`或者`join(long)`或`sleep(long)`的情况下
+* `WAITING`:等待中，线程获得一个对象锁后，在该对象上等待其他线程来`notify()`
 * `BLOCKED`:被阻塞，线程在等待临界资源被释放，比如等待另外一个线程释放临界资源
 * `RUNNABLE`:可运行状态，当获得CPU的使用权时就可运行的线程
 

@@ -5,7 +5,7 @@ categories: [编程, java, spring]
 tags: [spring-boot, https]
 ---
 
-> 使用spring-boot开发的web项目，直接使用内嵌的tomcat运行
+> 使用`spring-boot`开发的`web`项目，直接使用内嵌的`tomcat`运行
 
 #### 1. keystore生成
 ```

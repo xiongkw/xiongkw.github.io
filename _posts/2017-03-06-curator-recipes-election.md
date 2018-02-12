@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [curator, zookeeper, election]
 ---
 
-> 这里的选举指的是客户端的选举，而zab协议中的选举说是的zk服务端实例的选举
+> 这里的选举指的是客户端的选举，而`zab`协议中的选举说是的`zk`服务端实例的选举
 
 #### 1. 一个例子
 
@@ -45,7 +45,7 @@ public static void main(String[] args) throws InterruptedException, IOException 
 ```
 
 #### 2. 源码分析
-LeaderLatch#start
+`LeaderLatch#start`
 ```java
 public void start() throws Exception {
     Preconditions.checkState(state.compareAndSet(State.LATENT, State.STARTED), "Cannot be started more than once");
@@ -104,7 +104,7 @@ void reset() throws Exception {
 
 > 选举开始时，每个客户端都会在zk指定路径创建一个有序临时节点
 
-getChildren
+`getChildren`
 ```java
 private void getChildren() throws Exception
 {
@@ -123,7 +123,7 @@ private void getChildren() throws Exception
 }
 ```
 
-checkLeadership
+`checkLeadership`
 ```java
 private void checkLeadership(List<String> children) throws Exception {
     final String localOurPath = ourPath.get();
@@ -169,7 +169,7 @@ private void checkLeadership(List<String> children) throws Exception {
 
 #### 3. LeaderSelector
 
-LeaderSelector.doWork
+`LeaderSelector.doWork`
 ```java
 void doWork() throws Exception {
     hasLeadership = false;

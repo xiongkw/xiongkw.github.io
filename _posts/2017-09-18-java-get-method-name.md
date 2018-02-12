@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: []
 ---
 
-> Dao中通过xml配置sql，在调用的时候需要传入sqlId，怎样才能省略sqlId参数，而约定使用方法名作为sqlId呢？
+> `Dao`中通过`xml`配置`sql`，在调用的时候需要传入`sqlId`，怎样才能省略`sqlId`参数，而约定使用方法名作为`sqlId`呢？
 
 #### 1.原版写法
 
@@ -26,7 +26,7 @@ public User selectUserByUserName(String username){
 ```
 
 #### 2.改良版
-约定使用dao的方法名作为sqlId，如何在BaseDao.getBySqlId中获取UserDao的方法名？
+约定使用`dao`的方法名作为`sqlId`，如何在`BaseDao.getBySqlId`中获取`UserDao`的方法名？
 
 ##### BaseDao
 ```java

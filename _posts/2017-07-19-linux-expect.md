@@ -7,15 +7,15 @@ tags: [expect, rsyslog]
 
 > 分布式集群环境下，使用`rsyslog`采集应用日志，需要在每台宿主机上安装和配置`rsyslog`，一共需要维护30多台服务器，于是想到用`expect`批量操作
 
-expect简介
+#### 1. expect简介
 > `Expect`是一个用来处理交互的命令。借助`Expect`，我们可以将交互过程写在一个脚本上，自动完成`ssh, telnet, ftp`等交互操作
 
-expect安装
+#### 2. expect安装
 ```
 yum install expect -y
 ```
 
-expect用法
+#### 3. expect用法
 ```
 send：发送字符串，用于发送命令
 expect：期望字符串，用于等待交互命令的回显
@@ -23,7 +23,7 @@ spawn：在expect中执行shell命令
 interact：允许用户交互
 ```
 
-安装rsyslog的例子
+#### 4. 安装rsyslog的例子
 ```
 #!/bin/expect
 
@@ -79,7 +79,7 @@ rsyslog.sh 192.168.1.100 docker
 说明：
 * `expect`函数的格式为`proc func1 {param1 param2} {}`
 * 更新`rsyslog`yum源，升级`rsyslog`到最新版，并安装`rsyslog-kafka`
-* 由于docker用户没有写/etc/目录的权限，需要先`scp`到用户目录，再`sudo mv`
+* 由于`docker`用户没有写`/etc/`目录的权限，需要先`scp`到用户目录，再`sudo mv`
 * 文件复制完成后`ssh`到目标主机，执行安装和配置操作
 * `ssh`是一个交互操作，需要等待回显字符`Authorized`
 * 重启并查看`rsyslog`服务状态
@@ -96,7 +96,7 @@ expect sh.exp $ip "tail -3 /etc/crontab"
 done
 ```
 
-sh.exp
+`sh.exp`
 ```
 #!/bin/expect
 proc fn_expect {password} {
@@ -129,7 +129,7 @@ expect "@"
 #interact
 ```
 
-hosts.txt
+`hosts.txt`
 ```
 192.168.1.101
 192.168.1.102
@@ -150,7 +150,7 @@ expect sh.exp $ip "sudo service rsyslog restart"
 done
 ```
 
-scp.exp
+`scp.exp`
 ```
 #!/bin/expect
 proc fn_expect {password} {

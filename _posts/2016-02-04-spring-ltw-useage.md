@@ -5,9 +5,9 @@ categories: [编程, spring, java]
 tags: [aop, ltw]
 ---
 
-> spring load-time-weaver的简单用法
+> `spring load-time-weaver`的简单用法
 
-业务类 MyService.java
+业务类 `MyService.java`
 ```java
 public class MyService {
 
@@ -18,7 +18,7 @@ public class MyService {
 }
 ```
 
-日志类 MyLogger.java
+日志类 `MyLogger.java`
 ```java
 @Aspect
 public class LoggerAspect {
@@ -30,7 +30,7 @@ public class LoggerAspect {
 }
 ```
 
-META-INF/aop.xml
+`META-INF/aop.xml`
 ```xml
 <aspectj>
 
@@ -48,14 +48,14 @@ META-INF/aop.xml
 </aspectj>
 ```
 
-aop-weaver.xml
+`aop-weaver.xml`
 ```xml
 <context:load-time-weaver/>
 
 <bean id="myService" class="com.my.spring.aop.MyService"></bean>
 ```
 
-UnitTest
+`UnitTest`
 ```java
 /**
 * 运行时需加入javaagent参数
