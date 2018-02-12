@@ -200,7 +200,7 @@ private final boolean parkAndCheckInterrupt() {
 }
 ```
 
-`LockSupport.park`的解释:
+`LockSupport.park`调用了`UNSAFE.park`，其解释:
 > Disables the current thread for thread scheduling purposes unless the permit is available.   
 > If the permit is available then it is consumed and the call returns immediately; otherwise the current thread becomes disabled for thread scheduling purposes and lies dormant until one of three things happens:   
 > Some other thread invokes unpark with the current thread as the target; or   
