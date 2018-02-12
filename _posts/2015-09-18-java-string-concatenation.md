@@ -86,3 +86,14 @@ WARN: 下面代码比较多，可能会看的人头晕
 ```
 
 > When the intern method is invoked, if the pool already contains a string equal to this String object as determined by the equals(Object) method, then the string from the pool is returned. Otherwise, this String object is added to the pool and a reference to this String object is returned.
+
+解释一下:
+```java
+    // 根据附1. 变量加常量是非常量表态式，所以"34"不会放到常量池
+    String s3 = new String("3") + "4";
+    // 根据附2. 不在常量池中的string，调用intern方法会把值放入常量池，并返回该对象的引用
+    String i3 = s3.intern();
+    // 所以s3.intern()返回的引用就是s3
+    System.out.println(s3 == i3);//true
+```
+
