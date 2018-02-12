@@ -14,7 +14,9 @@ tags: [namespace]
 ```
 
 #### 2. xsd定义
+
 * 编写ds.xsd
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns="http://www.my.com/schema/my"
@@ -38,6 +40,7 @@ tags: [namespace]
 </xsd:schema>
 ```
 * spring xml中引入命名空间
+
 ```xml
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -49,10 +52,12 @@ tags: [namespace]
 </beans>
 ```
 #### 3. spring schemas和handlers定义
+
 META-INFO/spring.schemas
 ```properties
 http\://www.ds.com/schema/ds.xsd=com/my/ds/config/ds.xsd
 ```
+
 META-INFO/spring.handlers
 ```properties
 http\://www.ds.com/schema/ds=com.my.ds.config.DataSourceNamespaceHandler
