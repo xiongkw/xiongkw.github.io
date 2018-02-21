@@ -5,13 +5,9 @@ layout: default
 # 简历
 <hr>
 
-**姓名：熊魁伟**   
-**男 已婚 32岁**   
-**工作年限：10年**   
-**学历：大学本科**   
-
-**电话：`17788709053`**   
-**E-mail：<xiong.kw@163.com>**
+**姓名：熊魁伟**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**工作年限：10年**  
+**男&nbsp;已婚&nbsp;32岁**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**学历：大学本科**   
+**电话：`17788709053`**&nbsp;&nbsp;**E-mail：<xiong.kw@163.com>**
 
 <div style="position: relative">
 <img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 20px;top: -150px;"/>
@@ -21,7 +17,7 @@ layout: default
 
 #### 自我评价
 
-> 偏内向的性格，喜欢安静处事。追求完美的态度，力求做到更好。喜欢`偷懒`，寻找捷径追求效率。工作认真负责，热爱学习和钻研，对技术有浓厚的兴趣。
+> 偏内向的性格，喜欢安静处事。追求完美的态度，力求做到更好。喜欢"偷懒"，寻找捷径追求效率。工作认真负责，热爱学习和钻研，对技术有浓厚的兴趣。
 
 ### 工作经历
 
