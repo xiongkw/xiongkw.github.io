@@ -2,9 +2,9 @@
 layout: default
 ---
 
-<script type="text/javascript" src="{{ site.url }}public/js/jquery-3.3.1.min.js"/>
-<script type="text/javascript" src="{{ site.url }}public/js/jquery.print.min.js"/>
-<script type="text/javascript" src="{{ site.url }}public/js/jspdf.min.js"/>
+<script type="text/javascript" src="{{ site.url }}public/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="{{ site.url }}public/js/jquery.print.min.js"></script>
+<script type="text/javascript" src="{{ site.url }}public/js/jspdf.min.js"></script>
 <script type="text/javascript">
     $(function(){
         $('#btn-print').click(function(){
