@@ -10,7 +10,7 @@ layout: default
 **电话：`17788709053`**&nbsp;&nbsp;**E-mail：<xiong.kw@163.com>**
 
 <div style="position: relative">
-<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 20px;top: -150px;"/>
+<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 1em;top: -1em;"/>
 </div>
 
 **技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)**
