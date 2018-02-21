@@ -21,7 +21,7 @@ layout: default
     color: #333;
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 2px;
     cursor: pointer;
     padding: 4px;
 }
