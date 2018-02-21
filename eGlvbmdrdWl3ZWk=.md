@@ -5,7 +5,7 @@ layout: default
 <script type="text/javascript" src="{{ site.url }}public/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="{{ site.url }}public/js/jquery.print.min.js"></script>
 <script type="text/javascript">
-$(function(){$('#btn-print').click(function(){$('body div.content').print();});$('#btn-download').click(function(){window.open('{{ site.url }}public/简历-熊魁伟.pdf','_blank');});});
+$(function(){$('#btn-print').click(function(){$('body div.content').print();});$('#btn-download').click(function(){window.open('{{ site.url }}private/简历-熊魁伟.pdf','_blank');});});
 </script>
 
 <style>
