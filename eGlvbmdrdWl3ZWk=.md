@@ -5,19 +5,21 @@ layout: default
 # 简历
 <hr>
 姓名：熊魁伟   
+男 已婚 32岁   
+
 工作年限：10年   
 学历：大学本科   
-男 已婚 32岁    
 
 电话：`17788709053`   
 E-mail：<xiong.kw@163.com>
 
 <div style="position: relative">
-<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png"/>
+<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 3px;top: -200px;"/>
 </div>
-*技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)*
 
-### 自我评价
+**技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)**
+
+#### 自我评价
 
 > 偏内向的性格，喜欢安静处事。追求完美的态度，力求做到更好。喜欢`偷懒`，寻找捷径追求效率。工作认真负责，热爱学习和钻研，对技术有浓厚的兴趣。
 
@@ -47,6 +49,7 @@ E-mail：<xiong.kw@163.com>
 * 前端(`html/css/javascript/nodejs`) 良好
 
 ### 项目经验
+<hr>
 
 ##### 2015-11 – 至今：中国电信云平台项目
 
