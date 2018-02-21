@@ -23,6 +23,7 @@ layout: default
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
+    padding: 4px;
 }
 
 .btn:hover{
@@ -34,8 +35,8 @@ layout: default
 
 # 简历
 <div style="position: relative" class="no-print">
-<button id="btn-download" style="position: absolute;right: 4rem;top: -1rem;" class="btn">查看PDF&下载</button>
-<button id="btn-print" style="position: absolute;right: 1rem;top: -1rem;" class="btn">打印</button>
+<button id="btn-download" style="position: absolute;right: 4rem;top: -1rem;" class="btn">PDF&下载</button>
+<button id="btn-print" style="position: absolute;right: 1rem;top: -1rem;" class="btn">打  印</button>
 </div>
 <hr>
 
