@@ -4,17 +4,17 @@ layout: default
 
 # 简历
 <hr>
-姓名：熊魁伟   
-男 已婚 32岁   
+**姓名：熊魁伟**   
+**男 已婚 32岁**   
 
-工作年限：10年   
-学历：大学本科   
+**工作年限：10年**   
+**学历：大学本科**   
 
-电话：`17788709053`   
-E-mail：<xiong.kw@163.com>
+**电话：`17788709053`**   
+**E-mail：<xiong.kw@163.com>**
 
 <div style="position: relative">
-<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 3px;top: -200px;"/>
+<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 3px;top: -215px;"/>
 </div>
 
 **技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)**
