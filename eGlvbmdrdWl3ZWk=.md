@@ -3,6 +3,15 @@ layout: default
 ---
 
 # 简历
+<div style="position: relative">
+    <button onclick="">下载</button>
+    <button onclick="print()">打印</button>
+    <script type="text/javascript">
+        function print(){
+            window.print();
+        }
+    </script>
+</div>
 <hr>
 **姓名：熊魁伟**   
 **男 已婚 32岁**   
