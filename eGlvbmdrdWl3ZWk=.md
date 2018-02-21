@@ -2,18 +2,14 @@
 layout: default
 ---
 
-[TOC]
-
 简历
 =================
 
-姓名：熊魁伟 工作年限：10年 学历：大学本科 男 | 已婚 | 32岁 户口：广东广州
+姓名：熊魁伟 | 工作年限：10年 学历：大学本科 | 男 已婚 32岁 | 户口：广东广州
 
-电话:17788709053 E-mail: xiong.kw@163.com
+电话:17788709053 | E-mail: xiong.kw@163.com | ![]({{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png)
 
-![]({{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png)
-
-技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)
+*技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)*
 
 自我评价
 ----------------
