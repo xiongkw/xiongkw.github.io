@@ -20,7 +20,7 @@ $(function(){$('#btn-print').click(function(){$('body div.content').print();});$
 }
 </style>
 
-# 简历
+# 个人简历
 <div class="relative no-print">
 <button id="btn-download" style="right: 4rem;top: -1rem;" class="absolute btn">PDF&下载</button>
 <button id="btn-print" style="right: 1rem;top: -1rem;" class="absolute btn">打  印</button>
