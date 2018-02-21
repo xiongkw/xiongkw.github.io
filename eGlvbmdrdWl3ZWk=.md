@@ -5,38 +5,25 @@ layout: default
 <script type="text/javascript" src="{{ site.url }}public/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="{{ site.url }}public/js/jquery.print.min.js"></script>
 <script type="text/javascript">
-    $(function(){
-        $('#btn-print').click(function(){
-            $('body div.content').print();
-        });
-        
-        $('#btn-download').click(function(){
-           window.open('{{ site.url }}public/简历-熊魁伟.pdf','_blank'); 
-        });
-    });
+$(function(){$('#btn-print').click(function(){$('body div.content').print();});$('#btn-download').click(function(){window.open('{{ site.url }}public/简历-熊魁伟.pdf','_blank');});});
 </script>
 
 <style>
-.btn{
-    color: #333;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    cursor: pointer;
-    padding: 4px;
-}
-
-.btn:hover{
-    color: #333;
-    background-color: #d4d4d4;
-    border-color: #8c8c8c;
+.relative{position: relative}
+.absolute{position: absolute}
+.btn{color: #333;background-color: #fff;border: 1px solid #ccc;border-radius: 2px;cursor: pointer;padding: 4px;}
+.btn:hover{color: #333;background-color: #d4d4d4;border-color: #8c8c8c;}
+.headimage{right: 1rem;top: -8rem;}
+@media (max-width:58em) {
+  .headimage {width: 100px;}
+  .btn {padding: 2px;}
 }
 </style>
 
 # 简历
-<div style="position: relative" class="no-print">
-<button id="btn-download" style="position: absolute;right: 4rem;top: -1rem;" class="btn">PDF&下载</button>
-<button id="btn-print" style="position: absolute;right: 1rem;top: -1rem;" class="btn">打  印</button>
+<div class="relative no-print">
+<button id="btn-download" style="right: 4rem;top: -1rem;" class="absolute btn">PDF&下载</button>
+<button id="btn-print" style="right: 1rem;top: -1rem;" class="absolute btn">打  印</button>
 </div>
 <hr>
 
@@ -45,15 +32,15 @@ layout: default
 
 **电话：`17788709053`**&nbsp;&nbsp;**E-mail：<xiong.kw@163.com>**
 
-<div style="position: relative">
-<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 1rem;top: -8rem;"/>
+<div class="relative">
+<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" class="absolute headimage"/>
 </div>
 
 **技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)**
 
 #### 自我评价
 
-> 偏内向的性格，喜欢安静处事。追求完美的态度，力求做到更好。喜欢"偷懒"，寻找捷径追求效率。工作认真负责，热爱学习和钻研，对技术有浓厚的兴趣。
+> 偏内向的性格，喜欢安静处事。追求完美的态度，力求做到更好。喜欢“偷懒”，寻找捷径追求效率。工作认真负责，热爱学习和钻研，对技术有浓厚的兴趣。
 
 ### 工作经历
 
