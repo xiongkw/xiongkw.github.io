@@ -4,25 +4,14 @@ layout: default
 
 <script type="text/javascript" src="{{ site.url }}public/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="{{ site.url }}public/js/jquery.print.min.js"></script>
-<script type="text/javascript" src="{{ site.url }}public/js/jspdf.min.js"></script>
 <script type="text/javascript">
     $(function(){
         $('#btn-print').click(function(){
             $('body div.content').print();
         });
         
-        var doc = new jsPDF();
-        var specialElementHandlers = {
-            '.no-print': function(element, renderer){
-                return true;
-            },
-        };
-        doc.fromHTML($('body div.content').get(0), 15, 15, {
-            'width': 170, 
-            'elementHandlers': specialElementHandlers
-        });
         $('#btn-download').click(function(){
-           doc.save('简历-熊魁伟.pdf'); 
+           window.open('{{ site.url }}public/简历-熊魁伟.pdf','_blank'); 
         });
     });
 </script>
