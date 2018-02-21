@@ -10,13 +10,27 @@ layout: default
         $('#btn-print').click(function(){
             $('body div.content').print();
         });
+        
+        var doc = new jsPDF();
+        var specialElementHandlers = {
+            '.no-print': function(element, renderer){
+                return true;
+            },
+        };
+        doc.fromHTML($('body div.content').get(0), 15, 15, {
+            'width': 170, 
+            'elementHandlers': specialElementHandlers
+        });
+        $('#btn-download').click(function(){
+           doc.save('简历-熊魁伟.pdf'); 
+        });
     });
 </script>
 
 # 简历
 <div style="position: relative" class="no-print">
-<button id="btn-download">下载</button>
-<button id="btn-print">打印</button>
+<button id="btn-download" style="position: absolute;right: 4rem;top: -1rem;cursor: pointer;">下载</button>
+<button id="btn-print" style="position: absolute;right: 1rem;top: -1rem;cursor: pointer;">打印</button>
 </div>
 <hr>
 
