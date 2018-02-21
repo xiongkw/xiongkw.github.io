@@ -3,19 +3,10 @@ layout: default
 ---
 
 # 简历
-<div style="position: relative">
-    <button onclick="">下载</button>
-    <button onclick="printMe()">打印</button>
-    <script type="text/javascript">
-        function printMe(){
-            window.print();
-        }
-    </script>
-</div>
 <hr>
+
 **姓名：熊魁伟**   
 **男 已婚 32岁**   
-
 **工作年限：10年**   
 **学历：大学本科**   
 
@@ -33,34 +24,30 @@ layout: default
 > 偏内向的性格，喜欢安静处事。追求完美的态度，力求做到更好。喜欢`偷懒`，寻找捷径追求效率。工作认真负责，热爱学习和钻研，对技术有浓厚的兴趣。
 
 ### 工作经历
-<hr>
 
 ##### 2015-11 -- 至今：中国电信股份有限公司广州信息化研发中心   
-职位：`java`后端开发工程师 模块负责人，负责云平台项目具体模块的设计和开发以及模块开发管理
+职位：`java后端开发工程师` 模块负责人，负责云平台项目具体模块的设计和开发以及模块开发管理
 
 ##### 2012-08 -- 2015-10：中国民航信息网络股份有限公司广州分公司   
-职位：高级`java`工程师 项目架构师，负责项目架构设计以及核心开发工作
+职位：`高级java工程师` 项目架构师，负责项目架构设计以及核心开发工作
 
 ##### 2011-03 -- 2012-07：广州中软信息技术有限公司   
-职位：高级`java`软件工程师 模块负责人，负责模块的设计开发以及团队管理
+职位：`高级java软件工程师` 模块负责人，负责模块的设计开发以及团队管理
 
 ##### 2008-06 -- 2011-03：广州南天电脑系统有限公司   
-职位：`java`开发工程师 负责具体模块的详细设计和开发
+职位：`java开发工程师` 负责具体模块的详细设计和开发
 
 ### 教育经历
-<hr>
 
 ##### 2004-09 -- 2008-06：湖北大学 计算机科学与技术 本科
 
 ### 专业技能
-<hr>
 
-* `java(spring/mybatis/netty/zookeeper/mysql)` 熟练
-* 后端(`lvs/keepalived/nginx/apache/tcp/ip`) 熟练
-* 前端(`html/css/javascript/nodejs`) 良好
+* java(`spring/mybatis/netty/zookeeper/mysql`) 熟练
+* linux(`lvs/keepalived/nginx/tcp/ip`) 熟练
+* web(`http/html/css/javascript/nodejs`) 良好
 
 ### 项目经验
-<hr>
 
 ##### 2015-11 – 至今：中国电信云平台项目
 
