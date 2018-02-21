@@ -4,7 +4,7 @@ layout: default
 
 # 简历
 <hr>
-
+<div style="position: relative">
 姓名：熊魁伟   
 工作年限：10年   
 学历：大学本科   
@@ -12,8 +12,9 @@ layout: default
 
 电话：`17788709053`   
 E-mail：<xiong.kw@163.com>
-![]({{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png)
 
+![]({{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png)
+</div>
 *技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)*
 
 ### 自我评价
@@ -30,7 +31,7 @@ E-mail：<xiong.kw@163.com>
 职位：高级`java`工程师 项目架构师，负责项目架构设计以及核心开发工作
 
 ##### 2011-03 -- 2012-07：广州中软信息技术有限公司   
-职位:高级`java`软件工程师 模块负责人，负责模块的设计开发以及团队管理
+职位：高级`java`软件工程师 模块负责人，负责模块的设计开发以及团队管理
 
 ##### 2008-06 -- 2011-03：广州南天电脑系统有限公司   
 职位：`java`开发工程师 负责具体模块的详细设计和开发
