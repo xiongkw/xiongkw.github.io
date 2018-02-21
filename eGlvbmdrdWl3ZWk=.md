@@ -5,9 +5,9 @@ layout: default
 # 简历
 <div style="position: relative">
     <button onclick="">下载</button>
-    <button onclick="print()">打印</button>
+    <button onclick="printMe()">打印</button>
     <script type="text/javascript">
-        function print(){
+        function printMe(){
             window.print();
         }
     </script>
