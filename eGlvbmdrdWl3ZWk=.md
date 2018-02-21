@@ -39,10 +39,12 @@ E-mail：<xiong.kw@163.com>
 职位：`java`开发工程师 负责具体模块的详细设计和开发
 
 ### 教育经历
+<hr>
 
 ##### 2004-09 -- 2008-06：湖北大学 计算机科学与技术 本科
 
 ### 专业技能
+<hr>
 
 * `java(spring/mybatis/netty/zookeeper/mysql)` 熟练
 * 后端(`lvs/keepalived/nginx/apache/tcp/ip`) 熟练
