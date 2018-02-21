@@ -14,7 +14,7 @@ layout: default
 **E-mail：<xiong.kw@163.com>**
 
 <div style="position: relative">
-<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 3px;top: -215px;"/>
+<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 20px;top: -150px;"/>
 </div>
 
 **技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)**
