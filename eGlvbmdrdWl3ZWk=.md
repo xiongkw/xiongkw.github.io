@@ -4,7 +4,6 @@ layout: default
 
 # 简历
 <hr>
-<div style="position: relative">
 姓名：熊魁伟   
 工作年限：10年   
 学历：大学本科   
@@ -13,7 +12,8 @@ layout: default
 电话：`17788709053`   
 E-mail：<xiong.kw@163.com>
 
-![]({{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png)
+<div style="position: relative">
+<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png"/>
 </div>
 *技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)*
 
