@@ -16,10 +16,26 @@ layout: default
     });
 </script>
 
+<style>
+.btn{
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    color: #333;
+    background-color: #d4d4d4;
+    border-color: #8c8c8c;
+}
+</style>
+
 # 简历
 <div style="position: relative" class="no-print">
-<button id="btn-download" style="position: absolute;right: 4rem;top: -1rem;cursor: pointer;">下载</button>
-<button id="btn-print" style="position: absolute;right: 1rem;top: -1rem;cursor: pointer;">打印</button>
+<button id="btn-download" style="position: absolute;right: 4rem;top: -1rem;" class="btn">查看PDF&下载</button>
+<button id="btn-print" style="position: absolute;right: 1rem;top: -1rem;" class="btn">打印</button>
 </div>
 <hr>
 
