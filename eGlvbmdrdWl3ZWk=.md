@@ -2,15 +2,31 @@
 layout: default
 ---
 
+<script type="text/javascript" src="{{ site.url }}public/js/jquery-3.3.1.min.js"/>
+<script type="text/javascript" src="{{ site.url }}public/js/jquery.print.min.js"/>
+<script type="text/javascript" src="{{ site.url }}public/js/jspdf.min.js"/>
+<script type="text/javascript">
+    $(function(){
+        $('#btn-print').click(()->{
+            $('body div.content').print();
+        });
+    });
+</script>
+
 # 简历
+<div style="position: relative" class="no-print">
+<button id="btn-download">下载</button>
+<button id="btn-print">打印</button>
+</div>
 <hr>
 
 **姓名：熊魁伟**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**工作年限：10年**  
 **男&nbsp;已婚&nbsp;32岁**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**学历：大学本科**   
+
 **电话：`17788709053`**&nbsp;&nbsp;**E-mail：<xiong.kw@163.com>**
 
 <div style="position: relative">
-<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 1em;top: -1em;"/>
+<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 1rem;top: -7rem;"/>
 </div>
 
 **技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)**
