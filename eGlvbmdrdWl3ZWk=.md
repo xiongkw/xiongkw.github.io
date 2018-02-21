@@ -7,7 +7,7 @@ layout: default
 <script type="text/javascript" src="{{ site.url }}public/js/jspdf.min.js"/>
 <script type="text/javascript">
     $(function(){
-        $('#btn-print').click(()->{
+        $('#btn-print').click(function(){
             $('body div.content').print();
         });
     });
@@ -26,7 +26,7 @@ layout: default
 **电话：`17788709053`**&nbsp;&nbsp;**E-mail：<xiong.kw@163.com>**
 
 <div style="position: relative">
-<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 1rem;top: -7rem;"/>
+<img src="{{site.url}}/public/images/eGlvbmdrdWl3ZWk=.png" style="position: absolute;right: 1rem;top: -8rem;"/>
 </div>
 
 **技术博客：[https://xiongkw.github.io/](https://xiongkw.github.io/)**
