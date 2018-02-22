@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Centos中使用nginx代理yum镜像
+title: centos中使用nginx代理yum镜像
 categories: [编程, linux, nginx]
 tags: [centos, yum]
 ---

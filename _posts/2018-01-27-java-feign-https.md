@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Java访问https
+title: java中通过Feign访问https
 categories: [编程, java, spring]
 tags: [feign, https]
 ---
 
-> 使用自签名证书搭建`https`服务，通过浏览器访问时，浏览器会提示证书不可信任，但是仍可`继续浏览此网站(不推荐)`
+> 使用自签名证书搭建`https`服务，通过浏览器访问时，浏览器会提示证书不可信任，但是仍可选择`继续浏览此网站(不推荐)`
 
 #### 1. https服务
 
@@ -56,3 +56,7 @@ keytool -importcert -file myapp.cer -keystore $JAVA_HOME\jre\lib\security\cacert
 ```
 
 再次运行正常了
+
+#### 5. 附
+
+> 如果网站使用的证书是权威机构颁发的，则不需要手动导入证书到`jdk`的，原因在于自签名证书无法通过`jdk`固化的证书链检查

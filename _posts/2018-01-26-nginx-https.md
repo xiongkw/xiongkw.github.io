@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Nginx配置https服务
+title: 在nginx中配置https服务
 categories: [编程, nginx]
 tags: [https]
 ---
