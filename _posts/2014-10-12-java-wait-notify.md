@@ -60,6 +60,8 @@ public class WaitNotifyDemo {
                 }
             }
         });
+        
+        executorService.shutdown();
     }
 
 }
