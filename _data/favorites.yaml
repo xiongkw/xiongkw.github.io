@@ -14,6 +14,10 @@
       url: http://www.12306.cn/mormhweb/
     - title: 白云国际机场
       url: http://www.gbiac.net/194
+    - title: 广州市公安局
+      url: http://www.gzjd.gov.cn/
+    - title: 广州市网上办事大厅
+      url: http://wsbs.gz.gov.cn/gz/
     - title: 有道
       url: http://dict.youdao.com/
     - title: 阿里云
@@ -32,6 +36,12 @@
       url: https://tool.lu/favicon/
     - title: TinyPNG
       url: https://tinypng.com/
+    - title: base64在线解码编码
+      url: http://base64.xpcha.com/
+    - title: Lantern
+      url: https://github.com/getlantern
+    - title: SwitchHosts
+      url: https://oldj.github.io/SwitchHosts/
 
 - name: IT
   pages:
@@ -65,9 +75,10 @@
       url: http://mahua.jser.me/
     - title: 算法复杂度速查
       url: http://www.techug.com/post/bigo-cheatsheet.html
-
-- name: 架构
-  pages:
+    - title: nginx documentation
+      url: http://nginx.org/en/docs/
+    - title: Lua
+      url: http://www.lua.org/
     - title: MVC，MVP 和 MVVM 的图示
       url: http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html
     - title: 我的架构设计~用层关系图说说mvc,mvvm,soa,ddd
@@ -105,6 +116,8 @@
       url: http://finance.qq.com/a/20160329/010618.htm
     - title: 黑客讲故事：攻下隔壁女生路由器后，我都做了些什么
       url: http://daily.zhihu.com/story/3603866
+    - title: 读懂Netflix：从崛起走向辉煌之后进入了何种困局？ | 雷锋网
+      url: https://www.leiphone.com/news/201608/hTA7i5CXc3lihX8N.html
 
 - name: 影视娱乐
   pages:
@@ -124,6 +137,8 @@
       url: http://c.m.163.com/news/a/BM9UDPMF051790QP.html
     - title: 这些被奥斯卡错过的电影 每一部都被奉为影史经典
       url: http://www.gamersky.com/wenku/201605/754424.shtml
+    - title: 人生必须看的10部电影，你看了几部
+      url: https://c.m.163.com/news/a/D27R6VL30517P29B.html?spss=newsapp&spsw=1
     - title: 看完整个人都笑傻了 十部香港最搞笑的喜剧
       url: http://www.gamersky.com/wenku/201609/809295.shtml
     - title: 盘点十部看时脊背发凉、看完细思极恐的高分电影
@@ -136,6 +151,16 @@
       url: https://bbs.hupu.com/10963620-6.html
     - title: 《月光光心慌慌》中超级变态的杀人狂迈克尔·迈尔斯幽秘的心理
       url: https://www.douban.com/note/80919887/
+    - title: 这十部剧你要都能看懂，证明你IQ超过常人
+      url: https://c.m.163.com/news/a/CVNV7IR30517A1F7.html?spss=newsapp&spsw=1
+    - title: 因为杉本彩，《花与蛇》堪称日本近二十年来最伟大的禁片
+      url: https://c.m.163.com/news/a/D26P07L60528JVNF.html?spss=newsapp&spsw=1
+    - title: 豆瓣9.9分，这部纪录片每一帧都美得不可方物
+      url: https://c.m.163.com/news/a/D268ADS805179LTD.html?spss=newsapp&spsw=1
+    - title: 三部超好看的西班牙高分悬疑电影，看完后冷汗淋漓
+      url: https://c.m.163.com/news/a/D28TTTH20521BJTN.html?spss=newsapp&spsw=1
+    - title: 推荐20部值得一看的日本电影，豆瓣评分都在8分以上
+      url: https://c.m.163.com/news/a/D28PT73A0517BOFC.html?spss=newsapp&spsw=1
 
 - name: 人物传记
   pages:
@@ -178,6 +203,8 @@
       url: http://www.sohu.com/a/115750017_117959
     - title: 史上最全的汽车构造图解
       url: http://www.sohu.com/a/69413324_377264
+    - title: 绝对吓人长见识的有趣冷知识，看完不后悔
+      url: https://c.m.163.com/news/a/D27S66VF0514HILV.html?spss=newsapp&spsw=1
 
 - name: 旅游
   pages:
@@ -189,20 +216,24 @@
       url: http://daily.zhihu.com/story/961930
     - title: 2014西藏拉萨林芝珠峰大本营攻略
       url: http://bbs2.mowo.cn/thread-152773-1-1.html
-    - title: 一个在西藏的老拉萨--告诉你们最实用的
-      url: http://www.tuniu.com/trips/10017582
+    - title: 惊艳！2018清远7个绝美日出地，随手一拍都是大片！—行游天下—企鹅最生活
+      url: https://gz.qqzsh.com/t-2126428-1.htm
     - title: 如入仙境之骑行广东最美省道S244
       url: http://bbs.tianya.cn/post-926-12721-1.shtml
     - title: 从化骑行好去处，骑友沿途照片带你看看流溪河绿道有多美
       url: http://www.sohu.com/a/117304873_480108
     - title: 踏青好处之广东9大经典徒步线路
       url: http://www.sohu.com/a/65468625_383566
+    - title: 一个在西藏的老拉萨--告诉你们最实用的
+      url: http://www.tuniu.com/trips/10017582
     - title: 川藏线徒步攻略
       url: http://www.meizang.net/thread-13048-1-1.html
     - title: 川藏南线（G318）徒步攻略
       url: http://jingyan.baidu.com/article/20b68a886e9513796cec6289.html
     - title: 西藏令人神往的十大边陲小镇
       url: https://c.m.163.com/news/a/CMP4LVUM0524A219.html?spss=newsapp&spsw=1
+    - title: 西藏有这样一个地方：一半草原一半海
+      url: https://c.m.163.com/news/a/D1CVAHTK0524O4TS.html?spss=newsapp&spsw=1
 
 - name: 运行户外
   pages:
@@ -212,8 +243,16 @@
       url: http://www.sohu.com/a/115069653_482894
     - title: 给装备党：怎样选择合适的登山鞋
       url: http://daily.zhihu.com/story/4471425
+    - title: 经验 | 教你揭穿美津浓（Mizuno）跑鞋迷阵（2017版） - 爱燃烧
+      url: http://iranshao.com/articles/3975-mizuno-running-shoes-family
+    - title: [教程]你的终极万米跑训练计划
+      url: https://www.douban.com/group/topic/6011734/
+    - title: 12分钟跑步配速测试，来看你是什么耐力水平？
+      url: https://www.baidu.com/home/news/data/newspage?nid=3664790068604273619&n_type=0&p_from=1&dtype=-1
+    - title: 颈背部、四肢不舒服咋办？先看看1500+美国家庭医生推崇的家庭诊疗手册
+      url: http://www.wen31.com/minfo/7869.html?refer=u2v
 
-- name: 美文
+- name: 诗词美文
   pages:
     - title: 假如古人用微信...朋友圈笑死人
       url: http://c.m.163.com/news/a/BVN5C80N052482T7.html?spss=newsapp&spsw=1
@@ -225,24 +264,26 @@
       url: https://sanwen8.cn/p/189buOr.html
     - title: 《西游记》背后不为人知的秘密 西天取经路上其实只有一个妖怪
       url: https://www.jiankang.com/detail/184243.shtml
+    - title: 《神雕侠侣》中的杨过是怎么死的，杀了他和小龙女的究竟是何人
+      url: https://c.m.163.com/news/a/D7SREHGP0523JFSQ.html?spss=newsapp&fromhistory=1
     - title: 25张直指人心的图片，你被第几张戳中了
       url: http://www.sohu.com/a/136599054_349227
     - title: 纳兰性德最美的14首词，百看不厌
       url: https://c.m.163.com/news/a/CMOCH5JA0521E1EJ.html?spss=newsapp&spsw=1
+    - title: 神女赋
+      url: http://so.gushiwen.org/view_47876.aspx
+    - title: 洛神赋
+      url: http://so.gushiwen.org/view_47894.aspx
 
-- name: 创意
+- name: 其它
   pages:
     - title: 10张诡异的图片
       url: http://www.sohu.com/a/53674396_351255
-
-- name: 饮食
-  pages:
     - title: 做饭网
       url: http://www.zuofan.cn/
     - title: 在中国怎么吃不会死？日本人写了份饮食安全攻略
       url: http://c.m.163.com/news/a/C4B3T0H50515AG9U.html?spss=newsapp&spsw=1
-
-- name: 教育
-  pages:
+    - title: 大龄程序员：从朝九晚五到996，倒不如去SOHO来的自由自在
+      url: https://c.m.163.com/news/a/D46IBG320511GDRJ.html?spss=newsapp&spsw=1
     - title: 中国式思维——三大混蛋逻辑
       url: http://www.sohu.com/a/116945199_463901
