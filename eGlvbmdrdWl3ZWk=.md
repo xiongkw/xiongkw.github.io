@@ -1,5 +1,6 @@
 ---
 layout: default
+title: 个人简历
 ---
 
 <script type="text/javascript" src="{{ site.url }}public/js/jquery-3.3.1.min.js"></script>
