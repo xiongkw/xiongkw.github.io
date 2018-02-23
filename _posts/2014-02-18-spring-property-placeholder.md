@@ -5,7 +5,7 @@ categories: [编程, java, spring]
 tags: [property, placeholder]
 ---
 
-> spring编码中，我们常常使用`占位符${}`的方式把配置从代码(xml)中抽离到配置文件
+> `spring`编码中，我们常常使用`占位符${}`的方式把配置从代码(`xml`)中抽离到配置文件
 
 ```xml
 <context:property-placeholder location="classpath*:conf/jdbc.properties" />
@@ -21,11 +21,13 @@ tags: [property, placeholder]
 ```
 http\://www.springframework.org/schema/context=org.springframework.context.config.ContextNamespaceHandler
 ```
-ContextNamespaceHandler:
+
+`ContextNamespaceHandler:`
 ```java
 registerBeanDefinitionParser("property-placeholder", new PropertyPlaceholderBeanDefinitionParser());
 ```
-PropertyPlaceholderBeanDefinitionParser.getBeanClass
+
+`PropertyPlaceholderBeanDefinitionParser.getBeanClass`
 ```java
 // As of Spring 3.1, the default value of system-properties-mode has changed from
 // 'FALLBACK' to 'ENVIRONMENT'. This latter value indicates that resolution of
@@ -41,12 +43,13 @@ return PropertyPlaceholderConfigurer.class;
 ```
 这里根据`system-properties-mode`配置的不同返回了不同的`bean class`，在spring3.1之前，默认返回的是`PropertyPlaceholderConfigurer`，下面先看`PropertyPlaceholderConfigurer`
 
-PropertyPlaceholderConfigurer继承自PlaceholderConfigurerSupport，这里先看PlaceholderConfigurerSupport   
-PlaceholderConfigurerSupport继承了PropertyResourceConfigurer，而PropertyResourceConfigurer实现了`BeanFactoryPostProcessor, PriorityOrdered`两个接口   
-> BeanFactoryPostProcessor是BeanFactory后处理器，其处理器的调用发生在BeanFactory初始化完成之后，bean实例化之前.   
-> spring中`*Processor`和`Ordered`总是成对出现，因为`Processor`可以定义多个，而谁先process谁后process就需要使用`order`来指明了.
+`PropertyPlaceholderConfigurer`继承自`PlaceholderConfigurerSupport`，这里先看`PlaceholderConfigurerSupport`
+`PlaceholderConfigurerSupport`继承了`PropertyResourceConfigurer`，而`PropertyResourceConfigurer`实现了`BeanFactoryPostProcessor, PriorityOrdered`两个接口
 
-PropertyResourceConfigurer.postProcessBeanFactory
+> `BeanFactoryPostProcessor`是`BeanFactory`后处理器，其处理器的调用发生在`BeanFactory`初始化完成之后，`bean`实例化之前.
+> `spring`中`*Processor`和`Ordered`总是成对出现，因为`Processor`可以定义多个，而谁先`process`谁后`process`就需要使用`order`来指明了.
+
+`PropertyResourceConfigurer.postProcessBeanFactory`
 ```java
     Properties mergedProps = mergeProperties();
 
@@ -57,7 +60,7 @@ PropertyResourceConfigurer.postProcessBeanFactory
     processProperties(beanFactory, mergedProps);
 ```
 
-PropertiesLoaderSupport.mergeProperties
+`PropertiesLoaderSupport.mergeProperties`
 ```java
 protected Properties mergeProperties() throws IOException {
     Properties result = new Properties();
@@ -81,11 +84,12 @@ protected Properties mergeProperties() throws IOException {
     return result;
 }
 ```
-两个属性：
-* localProperties: 本地属性变量，可以在xml中配置为placeholder的属性
-* localOverride: 本地属性是否可以被覆盖，Properties中后加载的属性可以覆盖已经存在的属性，这里实际就是一个谁先加载的问题
 
-这里的PropertiesLoaderSupport.loadProperties也有一个先后顺序
+两个属性：
+* `localProperties`: 本地属性变量，可以在`xml`中配置为`placeholder`的属性
+* `localOverride`: 本地属性是否可以被覆盖，`Properties`中后加载的属性可以覆盖已经存在的属性，这里实际就是一个谁先加载的问题
+
+这里的`PropertiesLoaderSupport.loadProperties`也有一个先后顺序
 ```java
 if (this.locations != null) {
     for (Resource location : this.locations) {
@@ -109,10 +113,11 @@ if (this.locations != null) {
     }
 }
 ```
-> 如果两个属性文件中存在相同的key，则在locations中后定义的会覆盖先定义的   
+
+> 如果两个属性文件中存在相同的key，则在`locations`中后定义的会覆盖先定义的
 > `ignoreResourceNotFound`的作用：是否忽略属性文件加载异常，通常我们不会忽略，因为属性文件加载异常表示程序的设计可能出了问题。
 
-PropertiesLoaderSupport.convertProperties
+`PropertiesLoaderSupport.convertProperties`
 ```java
 /**
  * Convert the given property value from the properties source to the value
@@ -132,11 +137,11 @@ protected String convertPropertyValue(String originalValue) {
     return originalValue;
 }
 ```
-> convertProperties的作用是提供一个转换功能，例如为了安全考虑，我们在属性文件中定义的password可能是密文，而这里则可以通过方法重载实现解密。
+> `convertProperties`的作用是提供一个转换功能，例如为了安全考虑，我们在属性文件中定义的`password`可能是密文，而这里则可以通过方法重载实现解密。
 
-PropertiesLoaderSupport.processProperties最终调用了PlaceholderConfigurerSupport.doProcessProperties
+`PropertiesLoaderSupport.processProperties`最终调用了`PlaceholderConfigurerSupport.doProcessProperties`
 
-PlaceholderConfigurerSupport实现了两个接口`BeanNameAware, BeanFactoryAware`
+`PlaceholderConfigurerSupport`实现了两个接口`BeanNameAware, BeanFactoryAware`
 ```java
     // Check that we're not parsing our own bean definition,
     // to avoid failing on unresolvable placeholders in properties file locations.
@@ -147,11 +152,12 @@ PlaceholderConfigurerSupport实现了两个接口`BeanNameAware, BeanFactoryAwar
         }
     }
 ```
+
 > 实现这两个接口的目的：   
 > 1. 不对自已处理   
-> 2. 只对定义自己的beanFactory处理，即`placeholder`的作用范围是其所在的beanFactory
+> 2. 只对定义自己的`beanFactory`处理，即`placeholder`的作用范围是其所在的`beanFactory`
 
-BeanDefinitionVisitor.visitBeanDefinition
+`BeanDefinitionVisitor.visitBeanDefinition`
 ```java
 public void visitBeanDefinition(BeanDefinition beanDefinition) {
     visitParentName(beanDefinition);
@@ -165,9 +171,10 @@ public void visitBeanDefinition(BeanDefinition beanDefinition) {
     visitGenericArgumentValues(cas.getGenericArgumentValues());
 }
 ```
+
 > 可以看到，这里对除了`property'之外的``parent,class,scope`...都可以处理，原来我们用到的只是冰山一角
 
-占位符处理逻辑在PropertyPlaceholderHelper.parseStringValue
+占位符处理逻辑在`PropertyPlaceholderHelper.parseStringValue`
 ```java
 protected String parseStringValue(
 			String strVal, PlaceholderResolver placeholderResolver, Set<String> visitedPlaceholders) {
@@ -227,11 +234,12 @@ protected String parseStringValue(
     return result.toString();
 }
 ```
+
 * 从`while (startIndex != -1)`看，一个属性是可以同时有多个占位符的，如`${name}${value}`
 * 从`placeholder = parseStringValue`的递归看，占位符是支持嵌套的，如`${name${value}}`
 * `if (propVal == null && this.valueSeparator != null)`是对默认值的处理
 
-`resolvePlaceholder`发生在PropertyPlaceholderConfigurer.resolvePlaceholder
+`resolvePlaceholder`发生在`PropertyPlaceholderConfigurer.resolvePlaceholder`
 ```java
 protected String resolvePlaceholder(String placeholder, Properties props, int systemPropertiesMode) {
     String propVal = null;
@@ -247,14 +255,15 @@ protected String resolvePlaceholder(String placeholder, Properties props, int sy
     return propVal;
 }
 ```
+
 > 注意这里有一个`systemPropertiesMode`，其取值有三个   
 > `SYSTEM_PROPERTIES_MODE_NEVER`，永远不使用系统属性(用`-Dkey=value`指定，同时`searchSystemEnvironment`决定是否使用系统环境变量)   
 > `SYSTEM_PROPERTIES_MODE_FALLBACK`，默认值，使用系统属性作为后备，即优先使用属性文件配置   
 > `SYSTEM_PROPERTIES_MODE_OVERRIDE`，和`FALLBACK`相反，即优先使用系统属性
 
-本文开头在PropertyPlaceholderBeanDefinitionParser.getBeanClass中根据`system-properties-mode`配置的不同返回了不同的`bean class`，我们看另一个实现`PropertySourcesPlaceholderConfigurer`
+本文开头在`PropertyPlaceholderBeanDefinitionParser.getBeanClass`中根据`system-properties-mode`配置的不同返回了不同的`bean class`，我们看另一个实现`PropertySourcesPlaceholderConfigurer`
 
-和`PropertyPlaceholderConfigurer`相同PropertySourcesPlaceholderConfigurer也继承自`PlaceholderConfigurerSupport`，并且重写了`postProcessBeanFactory`方法
+和`PropertyPlaceholderConfigurer`相同`PropertySourcesPlaceholderConfigurer`也继承自`PlaceholderConfigurerSupport`，并且重写了`postProcessBeanFactory`方法
 ```java
 public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
     if (this.propertySources == null) {
@@ -288,11 +297,13 @@ public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) 
     this.appliedPropertySources = this.propertySources;
 }
 ```
-* 这里用`Environment`替换了`PropertyPlaceholderConfigurer`中的`systemProperties`和`searchSystemEnvironment`，所以可以支持`Profile`
-* 使用PropertySources替换了`PropertyPlaceholderConfigurer`中的`java.util.Properties`
 
-这里的占位符处理逻辑在`PropertySourcesPropertyResolver`，和`PropertyPlaceholderConfigurer`不同    
-PropertySourcesPropertyResolver.processProperties
+* 这里用`Environment`替换了`PropertyPlaceholderConfigurer`中的`systemProperties`和`searchSystemEnvironment`，所以可以支持`Profile`
+* 使用`PropertySources`替换了`PropertyPlaceholderConfigurer`中的`java.util.Properties`
+
+这里的占位符处理逻辑在`PropertySourcesPropertyResolver`，和`PropertyPlaceholderConfigurer`不同
+
+`PropertySourcesPropertyResolver.processProperties`
 ```java
 protected void processProperties(ConfigurableListableBeanFactory beanFactoryToProcess,
 			final ConfigurablePropertyResolver propertyResolver) throws BeansException {
@@ -314,9 +325,10 @@ protected void processProperties(ConfigurableListableBeanFactory beanFactoryToPr
     doProcessProperties(beanFactoryToProcess, valueResolver);
 }
 ```
+
 > 占位符解析逻辑同`PropertyPlaceholderConfigurer`，都是在`PropertyPlaceholderHelper.parseStringValue`
 
-占位符替换发生在PropertySourcesPropertyResolver.getProperty
+占位符替换发生在`PropertySourcesPropertyResolver.getProperty`
 ```java
 protected <T> T getProperty(String key, Class<T> targetValueType, boolean resolveNestedPlaceholders) {
     boolean debugEnabled = logger.isDebugEnabled();

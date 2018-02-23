@@ -6,19 +6,19 @@ tags: [jekyll, github]
 ---
 
 
-> 作为一个码农，总是不喜欢各种博客平台的约束，总是希望把一切都控制在自己手中
+> 作为一个码农，总是不喜欢各种博客平台的约束，总是希望把一切(`code`)都掌握在自己手中，而`Github`为我们提供了`免费的午餐`
 
 #### 1. 在github上创建博客仓库
 ![]({{ site.url}}/public/images/2017-06-10-hello-jekyll-1.png)
 
-> 注意这里的`xx`一定要和用户名相同，最终生成的网站地址才是`https://xx.github.io`
+> 注意这里的`xx`一定要和用户名相同，最终生成的网站地址才是`https://xx.github.io`，有自己的域名则可随意
 
 #### 2. 修改仓库Settings
 
 找到`GitHub Pages`设置：
 ![]({{ site.url}}/public/images/2017-06-10-hello-jekyll-2.png)
 
-选择源码分支和`theme`
+选择`源码分支`和`theme`
 ![]({{ site.url}}/public/images/2017-06-10-hello-jekyll-3.png)
 
 #### 3. 拉取仓库到本地
@@ -30,9 +30,10 @@ git clone https://github.com/xx/xx.github.io.git
 #### 4. 搭建jekyll环境
 
 ##### 4.1 安装ruby
-> 下载并安装ruby
+> 下载并安装`ruby`
 
 ##### 4.2 安装jekyll
+通过`gem`安装`jekyll`
 ```
 gem install jekyll
 ```
@@ -49,7 +50,7 @@ jekyll serve
 ```
 
 ##### 4.5 目录结构
-常见`jeklly`的目录结构
+`jeklly`的目录结构一般如下：
 ```
     |-_data // 存放数据文件
             |-favorites.yaml // 比如这里存放的是yaml格式的favorites数据
@@ -70,8 +71,10 @@ jekyll serve
     |-index.html // index
 ```
 
+> 不同的`theme`目录结构也不同
+
 #### 5. 写博客
-在`_post`目录中新建`md`文件，例如`2017-06-10-hello-jeklly.md`，然后按照`md`语法写就可以了：
+在`_post`目录中新建`markdown`文件，例如`2017-06-10-hello-jeklly.md`，然后按照`markdown`语法写就可以了：
 
 ```
 ---
@@ -82,13 +85,13 @@ tags: [jekyll, github]
 ---
 
 
-> 作为一个码农，总是不喜欢各种博客平台的约束，总是希望把一切都控制在自己手中
+> 作为一个码农，总是不喜欢各种博客平台的约束，总是希望把一切(`code`)都掌握在自己手中，而`Github`为我们提供了`免费的午餐`
 
 ...
 
 ```
 
-> 注意：`md`文件头部使用`---`定义了一些元数据
+> 注意：`markdown`文件头部使用一组`---`定义了一些元数据
 
 * layout: 使用的布局
 * title: 标题

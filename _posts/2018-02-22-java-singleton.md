@@ -91,7 +91,7 @@ ctorInstance(memory);  //2：初始化对象
 instance = memory;     //3：设置instance指向刚分配的内存地址
 ```
 
-> 由于编译器和`cpu`的`重排序`机制，无法保证`2`一定发生在`3`之前，所以有可能在线程`A`以`132`顺序运行到`3`时，线程`B`已经通过`if(instance != null)`获取了`instance`，而此时`2`尚未执行
+> 由于`编译器`和`cpu`的`重排序`机制，无法保证`2`一定发生在`3`之前，所以有可能在线程`A`以`132`顺序运行到`3`时，线程`B`已经通过`if(instance != null)`获取了`instance`，而此时`2`尚未执行
 
 #### 6. volatile的singleton
 ```java
@@ -131,9 +131,11 @@ public class StaticSingleton {
 }
 ```
 
-> `static`类型的属性会在类加载时初始化，因为在同一个`ClassLoader`中一个类只会加载(`ClassLoader#loadClass()`是线程安全的)一次，这样便可保证`singleton`，缺点是不可`延迟加载`
+> `static`类型的属性会在初次访问其静态变量时初始化，因为在同一个`ClassLoader`中一个类只会加载(`ClassLoader#loadClass()`是线程安全的)一次，这样便可保证`singleton`，缺点是不可`延迟加载`
 
-#### 9. 内部类的singleton
+**注意：**`static`变量初始化发生在第一次访问类的某个静态属性变量时，参考[java中static变量和代码块的初始化]({{ site.url}}/2014/01/06/java-static/)
+
+#### 8. 内部类的singleton
 ```java
 public class InnerClassSingleton {
     private static class Holder{
@@ -149,24 +151,9 @@ public class InnerClassSingleton {
 
 ```
 
-> 延迟加载的`StaticSingleton`在内部类中通过`static`属性变量持有一个`singleton`，由于`static`属性在类装载时才初始化，这样就实现了`延迟加载`
+> 延迟加载的`StaticSingleton`在内部类中通过`static`属性变量持有一个`singleton`，由于`java`中类本身就是延迟加载(在访问时才会装载)，这样就实现了`延迟加载`
 
-#### 8. final的singleton
-```java
-public class FinalSingleton {
-    private static final FinalSingleton instance = new FinalSingleton();
-
-    private FinalSingleton() {
-    }
-
-    public static FinalSingleton getInstance() {
-        return instance;
-    }
-}
-
-```
-
-#### 10. 枚举的singleton
+#### 9. 枚举的singleton
 ```java
 public enum  EnumSingleton {
     INSTANCE;
@@ -176,6 +163,16 @@ public enum  EnumSingleton {
 }
 
 ```
+
+> 由于`enum`的特性，只有在访问`EnumSingleton.INSTANCE`时才会初始化，而访问枚举的其它方法时不会引起`INSTANCE`初始化，所以也实现了`延迟加载`
+
+#### 10. 总结
+
+* 在不需要`延迟加载`时，可直接使用`static`方式
+* 需要`延迟加载`时，使用`内部类`或者`enum`相比`synchronized`和`volatile`方式更轻量
+* `enum`方式比`内部类`更简洁
+
+> 对于单例模式，推荐使用`enum`方式
 
 #### 附：spring中singleton的实现
 
