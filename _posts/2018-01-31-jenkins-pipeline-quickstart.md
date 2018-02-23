@@ -5,6 +5,7 @@ categories: [编程, jenkins]
 tags: [pipeline, CI, CD, groovy]
 ---
 
+
 > `Jenkins Pipeline`, 流水线，是一套`jenkins`插件，用于提供持续交付(`CD`)的能力
 
 #### 1. 简介
