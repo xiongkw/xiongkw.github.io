@@ -57,7 +57,7 @@ public class ThreadSafeSingleton {
 }
 ```
 
-> 使用`synchronized`关键字同步`if`块，这样就能保证每次只有一个线程进入`if`块，但每次调用`getInstance`时的锁请求都会引起线程上下文切换，对系统资源消耗比较大
+> 使用`synchronized`关键字同步`if`块，这样就能保证每次只有一个线程进入`if`块，但每次调用`getInstance`时的锁请求都会引起`线程上下文`切换，对系统资源消耗比较大
 
 #### 5. 双检查的线程安全singleton
 ```java
@@ -90,7 +90,7 @@ ctorInstance(memory);  //2：初始化对象
 instance = memory;     //3：设置instance指向刚分配的内存地址
 ```
 
-> 由于编译器和`cpu`的重排序机制，无法保证`2`一定发生在`3`之前，所以有可能在线程`A`以`132`顺序运行到`3`时，线程`B`已经通过`if(instance != null)`获取了`instance`，而此时`2`尚未执行
+> 由于编译器和`cpu`的`重排序`机制，无法保证`2`一定发生在`3`之前，所以有可能在线程`A`以`132`顺序运行到`3`时，线程`B`已经通过`if(instance != null)`获取了`instance`，而此时`2`尚未执行
 
 #### 6. volatile的singleton
 ```java
@@ -114,7 +114,7 @@ public class VolatileThreadSafeSingleton {
 }
 ```
 
-> `volatile`能够的作用是保障`可见性`和`有序性`，即使得`4. 双检查`中的三个操作按顺序执行
+> `volatile`能够的作用是保障`可见性`和`有序性`，即使得`5. 双检查`中的三个操作按顺序执行
 
 #### 7. static的singleton
 ```java

@@ -5,4 +5,6 @@ categories: [编程, java]
 tags: [synchronized, volatile, memory barrier]
 ---
 
+#### 概念
 
+#### volatile
