@@ -8,8 +8,8 @@ tags: [atomic, 多线程]
 
 > 我们常常使用`AtomicInteger`实现计数器
   
-#### 1. CAS
-`CAS`: `Compare And Swap`,即比较交换,我们常用的乐观锁就是这个原理
+#### 1. 关于CAS
+`CAS`: `Compare And Swap`,即比较交换，`sql`编程中我们常用的`乐观锁`就是这个原理
 
 ```
 V表示要更新的变量

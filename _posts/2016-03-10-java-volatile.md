@@ -40,7 +40,7 @@ public class VolatileTest {
 改进的代码
 ```java
 public class VolatileTest {
-    // 这里使用`volatile`关键字后，程序能正常退出了
+    // 这里使用volatile关键字后，程序能正常退出了
     private volatile boolean b = false;
 
     // ...        
