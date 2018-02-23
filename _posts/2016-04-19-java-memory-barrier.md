@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [synchronized, volatile, memory barrier]
 ---
 
-#### 概念
+#### 1. 概念
 
 `Memory Barrier`: 内存屏障由底层`cpu`指令实现，其作用是把一段指令序列隔离起来，使其之外(之前或之后)的指令无法穿越到其中
 
@@ -17,14 +17,14 @@ tags: [synchronized, volatile, memory barrier]
 
 但是，屏障内部的指令序列和其之前之后的指令序列仍然可能被重排序
 
-#### 内存屏障与可见性
+#### 2. 内存屏障与可见性
 
 既然内存屏障可以隔离一段指令序列，那其必然有两个严格的界限，内存屏障通过`refresh`和`flush` `cpu`缓存来实现
 
 * `refresh`是一个读操作，会把内存中的数据读到`cpu`缓存
 * `flush`是一个写操作，会把`cpu`缓存中的数据写到内存
 
-#### 锁与volatile
+#### 3. 锁与volatile
 
 * 锁：`jvm`会在`MonitorEnter`和`MonitorExit`对应的`cpu`指令中插入内存屏障，从而保证`临界区`代码的`可见性`和`有序性`
 
@@ -34,6 +34,6 @@ tags: [synchronized, volatile, memory barrier]
 
 **注意：** 这里的`有序性`是相对而言，即屏障内部的代码相对屏障之前和之后的代码是有序的，但不保证屏障内部的代码之间或者屏障外部的代码之间是有序的
 
-#### 关于可见性与有序性
+#### 4. 关于可见性与有序性
 
 > 参考[java中的可见性、有序性和原子性]({{ site.url}}/2016/06/28/java-visibility-ordering-atomic/)
