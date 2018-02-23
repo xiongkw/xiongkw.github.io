@@ -43,7 +43,7 @@ store(i);
 
 `CAS`, `Compare And Swap`，无锁交换算法的基础就是可见性
 
-> 关于内存屏障，参考[java多线程中的内存屏障]({{ site.url}}/2016/04/19java-memory-barrier/)
+> 关于内存屏障，参考[java多线程中的内存屏障]({{ site.url}}/2016/04/19/java-memory-barrier/)
 
 > 类似的，数据库的隔离级别便是控制事务对共享数据的可见性
 
@@ -63,4 +63,4 @@ j=0;
 i=0;
 ```
 
-> 可通过`synchronized(lock)`或`volatile`保证有序性，参考[java多线程中的内存屏障]({{ site.url}}/2016/04/19java-memory-barrier/)
+> 可通过`synchronized(lock)`或`volatile`保证有序性，参考[java多线程中的内存屏障]({{ site.url}}/2016/04/19/java-memory-barrier/)
