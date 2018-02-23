@@ -30,4 +30,10 @@ tags: [synchronized, volatile, memory barrier]
 
 > `jvm`会在锁(`synchronized`或者`Lock`)获取的地方插入一条`MonitorEnter`指令，而在锁释放的地方插入一条`MonitorExit`指令
 
-* 对于`volatile`：`jvm`会在`volatile`写操作前后插入一组内存屏障，以保证`volatile`变量的可见性
+* 对于`volatile`：`jvm`会在`volatile`写操作前后插入一组内存屏障，保证`volatile`变量的写操作相对其之前和之后的代码是有序的，同时也保证了`volatile`变量的可见性
+
+**注意：** 这里的`有序性`是相对而言，即屏障内部的代码相对屏障之前和之后的代码是有序的，但不保证屏障内部的代码之间或者屏障外部的代码之间是有序的
+
+#### 关于可见性与有序性
+
+> 参考[java中的可见性、有序性和原子性]({{ site.url}}/2016/06/28/java-visibility-ordering-atomic/)
