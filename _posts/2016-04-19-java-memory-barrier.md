@@ -24,13 +24,15 @@ tags: [synchronized, volatile, memory barrier]
 * `refresh`是一个读操作，会把内存中的数据读到`cpu`缓存
 * `flush`是一个写操作，会把`cpu`缓存中的数据写到内存
 
-#### 3. 锁与volatile
+#### 3. synchronized、lock与volatile
 
-* 锁：`jvm`会在`MonitorEnter`和`MonitorExit`对应的`cpu`指令中插入内存屏障，从而保证`临界区`代码的`可见性`和`有序性`
+* `synchronized`：`jvm`会在`MonitorEnter`和`MonitorExit`对应的`cpu`指令中插入内存屏障，从而保证`临界区`代码的`可见性`和`有序性`
 
-> `jvm`会在锁(`synchronized`或者`Lock`)获取的地方插入一条`MonitorEnter`指令，而在锁释放的地方插入一条`MonitorExit`指令
+> `jvm`会在锁(`synchronized`)获取的地方插入一条`MonitorEnter`指令，而在锁释放的地方插入一条`MonitorExit`指令
 
-* 对于`volatile`：`jvm`会在`volatile`写操作前后插入一组内存屏障，保证`volatile`变量的写操作相对其之前和之后的代码是有序的，同时也保证了`volatile`变量的可见性
+* `lock`：`jdk 5`中`lock`的实现是基于`CAS`无锁交换算法的`AQS`(抽象队列同步器)，`CAS`同样也使用内存屏障来保证其可见性
+
+* `volatile`：`jvm`会在`volatile`写操作前后插入一组内存屏障，保证`volatile`变量的写操作相对其之前和之后的代码是有序的，同时也保证了`volatile`变量的可见性
 
 **注意：** 这里的`有序性`是相对而言，即屏障内部的代码相对屏障之前和之后的代码是有序的，但不保证屏障内部的代码之间或者屏障外部的代码之间是有序的
 
