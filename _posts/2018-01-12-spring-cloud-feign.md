@@ -211,8 +211,6 @@ public class HelloController{
 
 
 #### 4. 参考文档
-[Spring Cloud](http://cloud.spring.io/spring-cloud-static/Edgware.RELEASE/single/spring-cloud.html)
-
-[OpenFeign](https://github.com/OpenFeign/feign)
-
-[Hystrix](https://github.com/Netflix/hystrix)
+* [Spring Cloud](http://cloud.spring.io/spring-cloud-static/Edgware.RELEASE/single/spring-cloud.html)
+* [OpenFeign](https://github.com/OpenFeign/feign)
+* [Hystrix](https://github.com/Netflix/hystrix)

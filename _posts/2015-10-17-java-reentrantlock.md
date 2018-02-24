@@ -8,7 +8,7 @@ tags: [lock, reentrant, 多线程]
 > `jdk5`中增加了`Lock`的概念，线程同步又多了一种新的写法
 
 #### 1. 概念
-* `CAS`: `Compare And Swap`,即比较交换,我们常用的乐观锁就是这个原理
+* `CAS`: `Compare And Swap`,即比较交换,我们常用的`乐观锁`就是这个原理
 * `UnSafe`: 提供直接操作堆内存的方法，是`CAS`算法的一种实现
 * `AQS`: `AbstractQueuedSynchronizer`，是`java.util.concurrent`的核心，`CountDownLatch、FutureTask、Semaphore、ReentrantLock`等都有一个内部类是这个抽象类的子类，`AQS`便是基于`CAS`和`UnSafe`实现
 
@@ -78,7 +78,7 @@ public ReentrantLock(boolean fair) {
 }
 ```
 
-> `ReentrantLock`默认使用非公平锁
+> `ReentrantLock`默认使用`非公平锁`
 
 ##### 3.2 加锁
 

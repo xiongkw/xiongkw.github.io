@@ -5,7 +5,7 @@ categories: [编程, linux]
 tags: [crontab]
 ---
 
-> linux中使用crontab实现定时任务
+> `linux`中使用`crontab`实现定时任务
 
 编辑 `vi /etc/crontab`
 ```
@@ -27,7 +27,7 @@ tags: [crontab]
 
 ```
 
-重启crontab服务
+重启`crontab`服务
 ```
 service crond restart
 ```

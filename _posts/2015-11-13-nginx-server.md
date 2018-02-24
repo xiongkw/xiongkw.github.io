@@ -5,7 +5,10 @@ categories: [编程, nginx, web]
 tags: []
 ---
 
-`nginx server`匹配规则按优先顺序分为以下几种：
+
+#### 1. 匹配规则
+
+`nginx server`匹配规则按优先顺序分为以下几种
 
 * 准确的`server_name`
 * `*`开头的
@@ -13,7 +16,7 @@ tags: []
 * 正则表达式
 * `server_name`匹配不到的默认使用第一个`server`块
 
-来个例子
+#### 2. 一个例子
 
 ```nginx
 server{

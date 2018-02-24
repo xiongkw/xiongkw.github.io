@@ -6,8 +6,9 @@ tags: [负载均衡, 反向代理, keepalive, http]
 ---
 
 
-> 问题描述：使用`nginx`反向代理`HTTP`，在性能测试中发现`tps`还不及单个后端服务   
-> 检查发现`keepalive`没有配置
+> 使用`nginx`反向代理`HTTP`，在性能测试中发现`tps`还不及单个后端服务   
+
+#### 配置 keepalive
 
 ```nginx
 http

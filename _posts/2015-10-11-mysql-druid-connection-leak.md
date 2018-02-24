@@ -7,6 +7,8 @@ tags: [druid, leak]
 
 > `Spring+Mybatis+Mysql`，使用`druid`作为`jdbc`连接池，在`druid`监控页面发现连接泄露
 
+#### 1. 问题
+
 ```
 逻辑连接打开次数	35601
 逻辑连接关闭次数	34391
@@ -17,7 +19,7 @@ tags: [druid, leak]
 
 所有`sql`操作都是由`mybatis mapper`完成，没有直接操作`Connection`的代码，所以代码问题不太可能
 
-检查`druid`配置
+#### 2. `druid`配置
 
 ```properties
 #初始连接数
@@ -36,10 +38,13 @@ minEvictableIdleTimeMillis=300000
 
 > `testWhileIdle`,发生在申请连接的时候，如果申请到的连接空闲时间大于`timeBetweenEvictionRunsMillis`，则执行`validationQuery`检测连接是否有效
 
-mysql配置
+#### 3. mysql配置
+
 ```properties
 #连接空闲的最大时间(s)，超出后，mysql服务端会关闭连接
 wait_timeout=300
 ```
+
+#### 4. 原因
 
 原因是`mysql`服务端主动关闭了连接，去掉`wait_timeout`参数(默认8h)，重启`mysql`和应用，连接关闭数正常了

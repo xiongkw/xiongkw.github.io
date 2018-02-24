@@ -5,8 +5,10 @@ categories: [编程, java, spring]
 tags: [property, placeholder]
 ---
 
+
 > `spring`编码中，我们常常使用`占位符${}`的方式把配置从代码(`xml`)中抽离到配置文件
 
+一个例子：
 ```xml
 <context:property-placeholder location="classpath*:conf/jdbc.properties" />
 
@@ -17,7 +19,7 @@ tags: [property, placeholder]
 </bean>
 ```
 
-`context`是`spring-context`中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应handler
+`context`是`spring-context`中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应`handler`
 ```
 http\://www.springframework.org/schema/context=org.springframework.context.config.ContextNamespaceHandler
 ```

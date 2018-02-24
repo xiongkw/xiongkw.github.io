@@ -5,7 +5,8 @@ categories: [编程, java]
 tags: [gzip]
 ---
 
-> java中用gzip压缩和解压文本，支持UTF-8编码
+
+> `java`中用`gzip`压缩和解压文本，支持`UTF-8`编码
 
 ```java
 public class GzipUtils {

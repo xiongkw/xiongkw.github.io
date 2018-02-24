@@ -5,6 +5,7 @@ categories: [编程, nginx, web]
 tags: []
 ---
 
+
 #### 1.环境检查
 安装`gcc`以及`gcc++`
 
@@ -72,4 +73,4 @@ root      6686  2785  0 15:47 pts/0    00:00:00 grep nginx
 nginx -s reload
 ```
 > 该命令会用新配置重新生成`worker`进程，然后等待旧的`worker`进程处理完之前的请求后，关闭旧的`worker`进程   
-> 所以可以实现服务无中断重启。
+> 所以可以实现服务无中断重启

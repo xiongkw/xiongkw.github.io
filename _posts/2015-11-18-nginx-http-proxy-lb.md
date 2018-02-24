@@ -26,7 +26,7 @@ tags: [http, 负载均衡, 反向代理]
 ```
 
 #### 3.ip_hash
-相同的client端分配到相同的后端服务，通常用于实现会话粘贴
+相同的`client`端分配到相同的后端服务，通常用于实现`会话粘贴`
 ```nginx
  upstream myapp.com {
   ip_hash;
@@ -46,7 +46,7 @@ tags: [http, 负载均衡, 反向代理]
 
 ```
 #### 5.url_hash
-相同的url分配到相同的后端服务，后端服务为缓存时比较有效
+相同的`url`分配到相同的后端服务，后端服务为缓存时比较有效
 ```nginx
  upstream myapp.com {
   server 192.168.1.100:8080;

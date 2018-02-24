@@ -7,6 +7,8 @@ tags: [http, 负载均衡, 反向代理]
 
 > 使用`nginx`搭建`HTTP`反向代理
 
+#### 示例
+
 ```nginx
 worker_processes 8;
 worker_rlimit_nofile 65535;
@@ -41,3 +43,6 @@ http
 }
 
 ```
+
+* `upstream`: 代理服务器
+* `proxy_pass`: 反向代理

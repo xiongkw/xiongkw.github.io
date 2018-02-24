@@ -47,7 +47,7 @@ java.lang.NumberFormatException: For input string: "r"
 ```
 
 #### 2. 代码
-sqlmap：
+`sqlmap`
 ```xml
 <if test="status == 'p'">
 ...
@@ -61,7 +61,7 @@ String status = "r";
 
 #### 3. 调试跟踪
 
-跟踪if判断到`SqlNode.evaluateBoolean`
+跟踪`if`到`SqlNode.evaluateBoolean`
 ```java
 public boolean apply(DynamicContext context) {
     if (evaluator.evaluateBoolean(test, context.getBindings())) {
@@ -131,7 +131,7 @@ public static int compareWithConversion(Object v1, Object v2) {
 
 #### 4. 改正
 
-异常的原因是ognl把`<if test="status == 'p'">`中的`'p'`解析成了`Character`，改正方法：
+异常的原因是`ognl`把`<if test="status == 'p'">`中的`'p'`解析成了`Character`，改正方法：
 
 * `<if test="status == 'p'">`改为`<if test='status == "p"'>`，这样`"p"`会解析为`String`
 * 单个字符解析为`Character`，猜想字符串会解析正常，于是改为`<if test="status == 'pp'">`，调试发现解析为了`String`

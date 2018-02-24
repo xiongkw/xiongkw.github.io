@@ -5,9 +5,9 @@ categories: [编程, java, netty]
 tags: [netty]
 ---
 
-> 由于`java nio api`的复杂性，`netty`对其做了封装，提供简单强大的api
+> 由于`java nio api`的复杂性，`netty`对其做了封装，提供简单强大的`api`
 
-server
+####  1. server
 ```java
 public static void main(String[] args) {
     NioEventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -50,7 +50,7 @@ public static void main(String[] args) {
 }
 ```
 
-client
+####  2. client
 ```java
 public static void main(String[] args) throws Exception {
     NioEventLoopGroup group = new NioEventLoopGroup();

@@ -5,9 +5,11 @@ categories: [编程, java, spring]
 tags: [aware]
 ---
 
+
 > `spring`中有很多`aware`接口，比如`ApplicationContextAware`，即能够感知`ApplicationContext`的，何谓能够感知？通俗讲就是能够获取到对`ApplicationContext`的引用。
 
-一个bean如何完成`感知`呢?
+#### 1. 一个例子
+一个`bean`如何完成`感知`呢?
 ```java
 public class AppContext implements ApplicationContextAware {
 	private ApplicationContext applicationContext;
@@ -18,9 +20,12 @@ public class AppContext implements ApplicationContextAware {
 	}
 }
 ```
+
 > `ApplicationContextAware`有一个接口方法`setApplicationContext`，这里便可以获取到`ApplicationContext`的引用了
 
-`感知`在何时发生？这里截取了ApplicationContextAwareProcessor的两段代码
+#### 2. 源码查看
+
+`感知`在何时发生？这里截取了`ApplicationContextAwareProcessor`的两段代码
 ```java
 class ApplicationContextAwareProcessor implements BeanPostProcessor{
     
@@ -42,15 +47,17 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor{
     }
 }
 ```
-> ApplicationContextAwareProcessor的一个`BeanPostProcessor`，感知的动作在`postProcessBeforeInitialization`，即bean初始化(比如InitializingBean)之前完成
 
-spring中常用的Aware接口：
-* ApplicationContextAware 上下文感知的
-* ApplicationEventPublisherAware 事件发布器感知
-* BeanClassLoaderAware 类加载器感知
-* BeanFactoryAware  bean factory感知
-* BeanNameAware bean id感知
-* EnvironmentAware 环境感知
-* ResourceLoaderAware 资源加载器感知
-* ServletConfigAware servlet config
-* ServletContextAware servlet context
+> `ApplicationContextAwareProcessor`的一个`BeanPostProcessor`，感知的动作在`postProcessBeforeInitialization`，即`bean`初始化(比如`InitializingBean`)之前完成
+
+#### 3. 常见Aware接口
+
+* `ApplicationContextAware`: 上下文感知的
+* `ApplicationEventPublisherAware`: 事件发布器感知
+* `BeanClassLoaderAware`: 类加载器感知
+* `BeanFactoryAware`:  `bean factory`感知
+* `BeanNameAware`: `bean id`感知
+* `EnvironmentAware`: 环境感知
+* `ResourceLoaderAware`: 资源加载器感知
+* `ServletConfigAware`: `servlet config`感知
+* `ServletContextAware`: `servlet context`感知

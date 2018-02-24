@@ -8,9 +8,13 @@ tags: [spring-mvc, json]
 
 > `spring-mvc`中`Get`方法的参数可直接映射到`dto`，`Post`方法中也可通过`jackson`把`json`参数映射到`dto`，但是`Get`方法中却不支持`json`参数的映射
 
-需求：形如`/getJson?dto={"name":"Tom","age":20}`的`HTTP`请求，要求映射到`Get`方法的`DTO`参数中
+#### 1. 需求
+
+形如`/getJson?dto={"name":"Tom","age":20}`的`HTTP`请求，要求映射到`Get`方法的`DTO`参数中
+
 > 需求比较奇葩，这里只作演示
 
+#### 2. 实现
 `rest controller`
 ```java
 @RequestMapping(value = "jsonparam", method = RequestMethod.GET)

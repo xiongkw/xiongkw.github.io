@@ -7,7 +7,7 @@ tags: [centos, yum]
 
 > 内网主机`Centos`需要安装软件，但无法访问公网，由于其依赖项太多，也不太可能每个都下载了再安装，好在个别主机可以访问外网，考虑架设一个代理服务器
 
-#### 通过nginx代理
+#### 1. 通过nginx代理
 
 在能访问公网的主机上安装`nginx`
 
@@ -27,7 +27,7 @@ tags: [centos, yum]
 
 > 监听`8000`端口，这里代理到`mirrors.aliyun.com`
 
-#### 配置yum源
+#### 2. 配置yum源
 
 ```
 vi /etc/yum.repo.d/local.repo

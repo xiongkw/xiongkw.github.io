@@ -5,6 +5,8 @@ categories: [编程, java]
 tags: [heap, oom, jvisualvm]
 ---
 
+#### 1. 堆内存划分
+
 `JVM`堆内存的划分(`jdk8`)
 ```
 年轻代（New）：年轻代用来存放JVM刚分配的Java对象
@@ -14,19 +16,21 @@ tags: [heap, oom, jvisualvm]
 年老代（Tenured)：年轻代中经过垃圾回收没有回收掉的对象将被Copy到年老代
 ```
 
-堆内存中的垃圾回收
+#### 2. 堆内存中的垃圾回收
 ```
 当年轻代内存满时，会引发一次普通GC，该GC仅回收年轻代。需要强调的时，年轻代满是指Eden代满，Survivor满不会引发GC
 当年老代满时会引发Full GC，Full GC将会同时回收年轻代、年老代
 当永久代满时也会引发Full GC，会导致Class、Method元信息的卸载
 ```
 
-堆内存大小设置
+#### 3. 堆内存大小设置
 ```
 -Xms512M //初始值
 -Xmx2014M//最大值
 -Xmn1024M//年轻代
 ```
+
+#### 4. 一个例子
 
 本例通过不断`new`出强引用的对象让堆内存溢出
 ```java
@@ -52,6 +56,7 @@ public class HeapOutOfMemory {
 
 }
 ```
+
 > 启动vm参数 `-verbose:gc -Xms50M -Xmx50M -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=d:\dump\heapoutofmemory.hprof`
 
 *使用`jvisualvm dump`两次，注意间隔3s以上*
@@ -121,4 +126,5 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 
 Process finished with exit code 1
 ```
+
 > 发生了`6`次普通`GC`和n次`Full GC`

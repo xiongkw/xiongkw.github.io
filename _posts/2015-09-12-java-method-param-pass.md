@@ -8,10 +8,12 @@ tags: [jvm, stack, heap, 传参]
 > 引用`Jvm规范` Like the Java programming language, the Java Virtual Machine operates on two kinds of types: primitive types and reference types. There are, correspondingly, two kinds of values that can be stored in variables, passed as arguments, returned by methods, and operated upon: primitive values and reference values.   
 > The Java Virtual Machine contains explicit support for objects. An object is either a dynamically allocated class instance or an array. A reference to an object is considered to have Java Virtual Machine type reference. Values of type reference can be thought of as pointers to objects. More than one reference to an object may exist. Objects are always operated on, passed, and tested via values of type reference.
 
+#### 1. 概念
+
 * `jvm` 操作的对象有两种：基本类型和引用类型，其值分别对应基本类型值`(boolean, byte, char, short, int, float, long, double)`和引用类型值(对象在堆中的地址，就像`C语言`中的`指针`)   
 * 对象的操作、传递和检查都是通过其引用(`reference`)的值来进行，这里已经确定对象的传参方式是传值，即传其引用的值。
 
-以下通过内存分配来分析
+#### 2. 通过内存分配来分析
 
 声明一个基本类型变量和一个对象变量时的内存分配:
 ```java
@@ -34,12 +36,13 @@ public void test(){
 }
         
 ```
-> 关于赋值操作`=`   
-> 1. 基本类型赋值是值拷贝   
-> 2. 对象赋值是引用值的拷贝   
-> 3. 既然是拷贝，则不会影响到原值或者引用值
 
-基本类型参数
+关于赋值操作`=`   
+* 基本类型赋值是值拷贝   
+* 对象赋值是引用值的拷贝   
+* 既然是拷贝，则不会影响到原值或者引用值
+
+#### 3. 基本类型参数
 ```java
 public static void test1(int i){
     System.out.println(i);
@@ -55,7 +58,7 @@ public static void main(String[] args){
 }
 ```
 
-对象参数
+#### 4. 对象参数
 ```java
 public static void test(StringBuilder sb){
     System.out.println(sb);//abc
@@ -73,7 +76,7 @@ public static void main(String[] args){
 }
 ```
 
-> 总结：`java`中的一切参数传递都是值传递，所不同的是`基本类型`是传基本类型值，`对象`是传引用的值，不论是传值或是传引用值，其本质都是通过赋值操作在`栈帧`中创建一个副本。   
+> 总结：`java`中的一切参数传递都是`值传递`，所不同的是`基本类型`是传基本类型值，`对象`是传引用的值，不论是传值或是传引用值，其本质都是通过赋值操作在`栈帧`中创建一个副本   
 > 另外：`jvm`规定`pritive`、`reference`和`returnAddress`三种类型的值保存在`栈`中，而对象和数组保存在`堆`中
 
-java中是没有`传引用`的，关于`传引用`，参见[C语言传参中的传值和传引用]({{site.url}}/2015/09/10/c-method-param-pass)
+`java`中是没有`传引用`的，关于`传引用`，参见[C语言传参中的传值和传引用]({{site.url}}/2015/09/10/c-method-param-pass)

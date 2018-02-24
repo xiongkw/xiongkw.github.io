@@ -69,7 +69,7 @@ class LoadTimeWeaverBeanDefinitionParser extends AbstractSingleBeanDefinitionPar
 
 ```
 
-从上面代码看出: `<context:load-time-weaver/>`会定义两个bean(条件充分的情况下)
+从上面代码看出: `<context:load-time-weaver/>`会定义两个`bean`(条件充分的情况下)
 * `DefaultContextLoadTimeWeaver`
 * `AspectJWeavingEnabler`
 

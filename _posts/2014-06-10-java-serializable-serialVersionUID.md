@@ -12,7 +12,7 @@ local class incompatible: stream classdesc serialVersionUID = 403140313795503673
 
 ```
 
-原因：由于反序列化时class的`serialVersionUID`和序列化时不一致导致
+原因：由于反序列化时`class`的`serialVersionUID`和序列化时不一致导致
 
 查看源码，发现类里没有定义`serialVersionUID`
 
@@ -24,4 +24,4 @@ local class incompatible: stream classdesc serialVersionUID = 403140313795503673
 
 解决方法：在`Serializable`实现类中定义一个确定的`serialVersionUID`值
 
-> 这就是忽略IDE警告的后果，良好的编码习惯必须像强迫症一样追求完美
+> 这就是忽略`IDE`警告的后果，良好的编码习惯必须像强迫症一样追求完美

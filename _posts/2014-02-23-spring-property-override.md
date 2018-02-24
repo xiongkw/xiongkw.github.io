@@ -7,6 +7,7 @@ tags: [property, override]
 
 > `spring`编码中，我们常常使用`override`的方式改写第三方`jar`包中`bean`的属性值
 
+一个例子：
 ```xml
 <context:property-override location="classpath*:conf/dataSource.properties" />
 

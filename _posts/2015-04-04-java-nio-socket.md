@@ -7,7 +7,7 @@ tags: [nio]
 
 > `java nio (jdk1.4 io)` 的`socket`编程
 
-server
+#### 1. server
 ```java
 public static void main(String[] args) throws IOException {
     ServerSocketChannel ssc = ServerSocketChannel.open();
@@ -62,7 +62,7 @@ public static void main(String[] args) throws IOException {
 }
 ```
 
-client
+####  2. client
 ```java
 public static void main(String[] args) throws IOException {
     SocketChannel cs = SocketChannel.open();
@@ -111,8 +111,8 @@ public static void main(String[] args) throws IOException {
 }
 ```
 
-> 同步非阻塞的IO模式，因为不会阻塞其它请求，所以可以在一个线程中处理所有请求   
-> 但因为是同步模式，所以需要自己不断询问消息(事件)是否到达，不断循环调用会消耗过多的CPU资源   
+> 同步非阻塞的`IO`模式，因为不会阻塞其它请求，所以可以在一个线程中处理所有请求   
+> 但因为是同步模式，所以需要自己不断询问消息(事件)是否到达，不断循环调用会消耗过多的`CPU`资源   
 
 参考
 

@@ -5,6 +5,8 @@ categories: [编程, nginx, web]
 tags: [regex]
 ---
 
+#### nginx中正则表达式的写法
+
 `nginx` 配置中正则表达式的定义，必须以下面四种组合开头：
 
 * `~` 大小写不敏感匹配

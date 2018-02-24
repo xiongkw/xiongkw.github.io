@@ -7,7 +7,7 @@ tags: [aio]
 
 > `java aio (jdk1.7 io)` 的`socket`编程
 
-server
+####  1. server
 ```java
 public static void main(String[] args) throws IOException, InterruptedException {
     AsynchronousChannelGroup group = AsynchronousChannelGroup.withThreadPool(Executors.newFixedThreadPool(10));
@@ -61,7 +61,7 @@ public static void main(String[] args) throws IOException, InterruptedException 
 }
 ```
 
-client
+####  2. client
 ```java
 public static void main(String[] args) throws IOException, InterruptedException {
     CountDownLatch latch = new CountDownLatch(1);
@@ -140,7 +140,7 @@ public static void main(String[] args) throws IOException, InterruptedException 
 }
 ```
 
-> 异步和同步的区别在于消息通知的方式，异步是被通知，表现为回调函数
+> 异步和同步的区别在于消息通知的方式，异步是被通知，表现为`回调函数`
 
 参考
 * [java中的bio socket编程]({{ site.url}}/2015/04/03/java-bio-socket/)
