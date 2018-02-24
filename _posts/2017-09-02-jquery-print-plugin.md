@@ -42,7 +42,7 @@ $(function(){
 
 > `$('body div.content').print()`: 选择并打印指定的元素，默认会忽略`.no-print`元素
 
-#### 更多细节
+#### 3. 更多细节
 
 ```javascript
 $("#myElementId").print({
