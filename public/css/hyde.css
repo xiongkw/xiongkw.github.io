@@ -112,6 +112,13 @@ a.sidebar-nav-item:focus {
     bottom: 1rem;
     left:   1rem;
   }
+  .sidebar-image{
+    background-image: url(/private/background.png);
+    height: 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    border-radius: 1rem;
+  }
 }
 
 
