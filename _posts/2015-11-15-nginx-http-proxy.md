@@ -7,7 +7,7 @@ tags: [http, 负载均衡, 反向代理]
 
 > 使用`nginx`搭建`HTTP`反向代理
 
-#### 示例
+#### 一个例子
 
 ```nginx
 worker_processes 8;

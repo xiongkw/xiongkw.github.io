@@ -253,7 +253,7 @@ protected String parseStringValue(
 * 从`placeholder = parseStringValue`的递归看，占位符是支持嵌套的，如`${name${value}}`
 * `if (propVal == null && this.valueSeparator != null)`是对默认值的处理
 
-#### 7.PropertyPlaceholderConfigurer.resolvePlaceholder
+#### 7. PropertyPlaceholderConfigurer.resolvePlaceholder
 
 `resolvePlaceholder`发生在`PropertyPlaceholderConfigurer.resolvePlaceholder`
 ```java

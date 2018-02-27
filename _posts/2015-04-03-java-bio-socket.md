@@ -82,7 +82,7 @@ public static void main(String[] args) throws IOException {
 > 同步阻塞的`IO`模式，每个请求都会被阻塞，这里为每个请求启动一个线程，这样各请求之间相互不影响   
 > 大量连接会耗尽系统资源，一种优化手段是使用线程池来处理
 
-参考
+#### 3. 参考
 
 * [java中的nio socket编程]({{ site.url}}/2015/04/04/java-nio-socket/)
 * [java中的nio多路复用 socket编程]({{ site.url}}/2015/04/05/java-nio-socket-select/)
