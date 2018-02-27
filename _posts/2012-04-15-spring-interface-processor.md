@@ -7,7 +7,7 @@ tags: [bean]
 
 > `Spring`有很多`*Processor`接口，比如`BeanFactoryPostProcessor`，提供扩展`BeanFactory`的功能
 
-#### 1.BeanDefinitionRegistryPostProcessor
+#### 1. BeanDefinitionRegistryPostProcessor
 ```java
 /**
  * Modify the application context's internal bean definition registry after its
@@ -21,7 +21,7 @@ void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws B
 ```
 > 提供修改`BeanDefinitionRegistry`的入口，调用发生在`BeanDefinitionRegistry`初始化之后，`BeanFactory`初始化之前，一般用于在运行时添加或修改`bean`定义。
 
-#### 2.BeanFactoryPostProcessor
+#### 2. BeanFactoryPostProcessor
 ```java
 /**
  * Modify the application context's internal bean factory after its standard
@@ -36,7 +36,7 @@ void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws 
 ```
 > 提供修改`BeanFactory`的入口，调用发生在`BeanDefinition`加载之后，`bean`实例化之前，一般用于修改`bean`的属性。例如`property-placeholder和property-override`都是其实现类。
 
-#### 3.InstantiationAwareBeanPostProcessor
+#### 3. InstantiationAwareBeanPostProcessor
 ```java
 /**
  * Apply this BeanPostProcessor <i>before the target bean gets instantiated</i>.
@@ -101,7 +101,7 @@ PropertyValues postProcessPropertyValues(
 ```
 > 提供自定义`bean`实例化的功能
 
-#### 4.BeanPostProcessor
+#### 4. BeanPostProcessor
 ```java
 /**
  * Apply this BeanPostProcessor to the given new bean instance <i>before</i> any bean

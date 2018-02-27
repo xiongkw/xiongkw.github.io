@@ -7,7 +7,7 @@ tags: [bean]
 
 > `Spring`中的`InitializingBean DisposableBean BeanPostProcessor FactoryBean`四个接口
 
-#### 1.InitializingBean
+#### 1. InitializingBean
 源码：
 ```java
 /**
@@ -29,7 +29,7 @@ void afterPropertiesSet() throws Exception;
 * `xml init-method`
 * `@Bean(initMethod="init")`
 
-#### 2.DisposableBean
+#### 2. DisposableBean
 源码：
 ```java
 /**
@@ -48,7 +48,7 @@ void destroy() throws Exception;
 * `xml destroy-method`
 * `@Bean(destroyMethod="destroy")`
 
-#### 3.BeanPostProcessor
+#### 3. BeanPostProcessor
 源码：
 ```java
 /**
@@ -67,7 +67,7 @@ Object postProcessAfterInitialization(Object bean, String beanName) throws Beans
 ```
 > `bean`后处理器接口，用于自定义`bean`实例化操作，调用发生在`bean`初始化之前或之后
 
-#### 4.FactoryBean
+#### 4. FactoryBean
 源码：
 ```java
 T getObject() throws Exception;

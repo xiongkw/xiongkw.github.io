@@ -6,13 +6,16 @@ tags: [序列化]
 ---
 
 
+#### 1. 现象
 废话不多说，贴异常
 ```
 local class incompatible: stream classdesc serialVersionUID = 4031403137955036735, local class serialVersionUID = -6537460252478266442
 
 ```
 
-原因：由于反序列化时`class`的`serialVersionUID`和序列化时不一致导致
+#### 2. 原因
+
+由于反序列化时`class`的`serialVersionUID`和序列化时不一致导致
 
 查看源码，发现类里没有定义`serialVersionUID`
 
@@ -22,6 +25,8 @@ local class incompatible: stream classdesc serialVersionUID = 403140313795503673
 
 如果Serializable实现类中没有显示定义`serialVersionUID`，则编译时编译器会根据源码生成一个默认值，并且不同编译器生成的值也不同，生成算法对源码和编译环境细节非常敏感
 
-解决方法：在`Serializable`实现类中定义一个确定的`serialVersionUID`值
+#### 3. 解决方法
+
+在`Serializable`实现类中定义一个确定的`serialVersionUID`值
 
 > 这就是忽略`IDE`警告的后果，良好的编码习惯必须像强迫症一样追求完美

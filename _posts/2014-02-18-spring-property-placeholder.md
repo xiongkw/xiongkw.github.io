@@ -8,7 +8,10 @@ tags: [property, placeholder]
 
 > `spring`编码中，我们常常使用`占位符${}`的方式把配置从代码(`xml`)中抽离到配置文件
 
-一个例子：
+#### 1. 一个例子
+
+`datasource`的常见配置方法：
+
 ```xml
 <context:property-placeholder location="classpath*:conf/jdbc.properties" />
 
@@ -18,6 +21,8 @@ tags: [property, placeholder]
         <property name="password" value="${jdbc.password}" />
 </bean>
 ```
+
+#### 2. context命令空间
 
 `context`是`spring-context`中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应`handler`
 ```
@@ -50,6 +55,8 @@ return PropertyPlaceholderConfigurer.class;
 
 > `BeanFactoryPostProcessor`是`BeanFactory`后处理器，其处理器的调用发生在`BeanFactory`初始化完成之后，`bean`实例化之前.
 > `spring`中`*Processor`和`Ordered`总是成对出现，因为`Processor`可以定义多个，而谁先`process`谁后`process`就需要使用`order`来指明了.
+
+#### 3. PropertyResourceConfigurer.postProcessBeanFactory
 
 `PropertyResourceConfigurer.postProcessBeanFactory`
 ```java
@@ -119,6 +126,7 @@ if (this.locations != null) {
 > 如果两个属性文件中存在相同的key，则在`locations`中后定义的会覆盖先定义的
 > `ignoreResourceNotFound`的作用：是否忽略属性文件加载异常，通常我们不会忽略，因为属性文件加载异常表示程序的设计可能出了问题。
 
+#### 4. PropertiesLoaderSupport.convertProperties
 `PropertiesLoaderSupport.convertProperties`
 ```java
 /**
@@ -159,6 +167,8 @@ protected String convertPropertyValue(String originalValue) {
 > 1. 不对自已处理   
 > 2. 只对定义自己的`beanFactory`处理，即`placeholder`的作用范围是其所在的`beanFactory`
 
+#### 5. BeanDefinitionVisitor.visitBeanDefinition
+
 `BeanDefinitionVisitor.visitBeanDefinition`
 ```java
 public void visitBeanDefinition(BeanDefinition beanDefinition) {
@@ -174,7 +184,9 @@ public void visitBeanDefinition(BeanDefinition beanDefinition) {
 }
 ```
 
-> 可以看到，这里对除了`property'之外的``parent,class,scope`...都可以处理，原来我们用到的只是冰山一角
+> 可以看到，这里对除了`property`之外的`parent,class,scope`...都可以处理，原来我们用到的只是冰山一角
+
+#### 6. PropertyPlaceholderHelper.parseStringValue
 
 占位符处理逻辑在`PropertyPlaceholderHelper.parseStringValue`
 ```java
@@ -241,6 +253,8 @@ protected String parseStringValue(
 * 从`placeholder = parseStringValue`的递归看，占位符是支持嵌套的，如`${name${value}}`
 * `if (propVal == null && this.valueSeparator != null)`是对默认值的处理
 
+#### 7.PropertyPlaceholderConfigurer.resolvePlaceholder
+
 `resolvePlaceholder`发生在`PropertyPlaceholderConfigurer.resolvePlaceholder`
 ```java
 protected String resolvePlaceholder(String placeholder, Properties props, int systemPropertiesMode) {
@@ -303,6 +317,9 @@ public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) 
 * 这里用`Environment`替换了`PropertyPlaceholderConfigurer`中的`systemProperties`和`searchSystemEnvironment`，所以可以支持`Profile`
 * 使用`PropertySources`替换了`PropertyPlaceholderConfigurer`中的`java.util.Properties`
 
+
+#### 8. PropertySourcesPropertyResolver.processProperties
+
 这里的占位符处理逻辑在`PropertySourcesPropertyResolver`，和`PropertyPlaceholderConfigurer`不同
 
 `PropertySourcesPropertyResolver.processProperties`
@@ -329,6 +346,8 @@ protected void processProperties(ConfigurableListableBeanFactory beanFactoryToPr
 ```
 
 > 占位符解析逻辑同`PropertyPlaceholderConfigurer`，都是在`PropertyPlaceholderHelper.parseStringValue`
+
+#### 9. PropertySourcesPropertyResolver.getProperty
 
 占位符替换发生在`PropertySourcesPropertyResolver.getProperty`
 ```java
@@ -368,7 +387,8 @@ protected <T> T getProperty(String key, Class<T> targetValueType, boolean resolv
 }
 ```
 
-附：   
+#### 10. 附
+
 占位符默认值的处理会发生一个有趣的现象：在定义多个(虽然不推荐，但也不可避免)`PropertyPlaceholderConfigurer`bean的时候，如果第一个`PropertyPlaceholderConfigurer`中找不到占位符对应的属性值，那这个占位符就会使用默认值。 如何解决？
 * 使用`localProperties`定义默认值，设置`localOverride=true`，使其优先加载
 * 使用`property-override`，见[Spring property-override源码解读]({{site.url}}/2014/02/23/spring-property-override)
