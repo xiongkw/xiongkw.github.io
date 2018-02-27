@@ -7,7 +7,10 @@ tags: [jvm, heap, String]
 
 > 上一篇解释创建了几个`String`对象，那`String +` 又是怎么回事呢?
 
-WARN: 下面代码比较多，可能会看的人头晕
+#### 1. 一段代码
+
+`WARN`: 下面代码比较多，可能会看的人头晕
+
 ```java
     //1. "12"在编译期已经确定会放入常量池
     String s = new String("12");
@@ -50,13 +53,13 @@ WARN: 下面代码比较多，可能会看的人头晕
     System.out.println(s12 == i12);//false
 ```
 
-*附1:*
+#### 2. 关于string+
  
 > The string concatenation operator + implicitly creates a new String object when the result is not a constant expression .   
 > 引用[Java Language Specification](http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.3.3)
 
 
-*附2:*
+#### 3. 关于intern
 
 ```java
 /**
@@ -87,7 +90,8 @@ WARN: 下面代码比较多，可能会看的人头晕
 
 > When the intern method is invoked, if the pool already contains a string equal to this String object as determined by the equals(Object) method, then the string from the pool is returned. Otherwise, this String object is added to the pool and a reference to this String object is returned.
 
-解释一下:
+#### 4. 解释
+
 ```java
     // 根据附1. 变量加常量是非常量表态式，所以"34"不会放到常量池
     String s3 = new String("3") + "4";

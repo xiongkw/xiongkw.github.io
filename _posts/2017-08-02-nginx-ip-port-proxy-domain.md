@@ -8,6 +8,7 @@ tags: [ip, cookie, proxy]
 > 微服务架构下，采用`lvs+nginx`做负载均衡，对外提供域名访问，子应用通过二级域名划分，同时各子应用之间做了[基于cookie共享实现单点登录]({{ site.url }}/2016/04/01/single-sign-on-cookie/)   
 > 由于一些网络原因，有些营业厅需要通过`dcn、vpn`等方式访问，所以需要提供`ip+port`的访问方式
 
+#### 1. 问题
 现有环境：
 ```
 应用1: app1.xx.com
@@ -16,13 +17,14 @@ cookie domain: xx.com
 lvs vip: 192.168.1.230
 ```
 
-需要配置为ip端口：
+需要配置为`ip`端口访问：
 ```
 nginx ip: 192.168.1.220
 应用1: 192.168.1.220:801
 应用2: 192.168.1.220:802
 ```
-##### 1.配置nginx端口转发
+
+#### 2. 配置nginx端口转发
 ```
 server {
         listen       801;
@@ -45,7 +47,7 @@ server {
     }
 ```
 
-##### 2.配置cookie重写
+#### 3. 配置cookie重写
 ```
         location / {
             proxy_set_header Cookie $http_cookie;
@@ -53,7 +55,8 @@ server {
         }
 ```
 
-##### 3.配置请求响应文本中的域名替换为ip
+#### 4. 配置请求响应文本中的域名替换为ip
+
 由于菜单中配置的是域名，所以需要替换为ip端口
 ```
         location = /sys/menus {
@@ -68,7 +71,7 @@ server {
         }
 ```
 
-##### 4.完整配置
+#### 5. 完整配置
 ```
     server {
         listen       801;
@@ -118,6 +121,8 @@ server {
 
     }
 ```
+
+#### 6. 注意
 
 > 安装`nginx`时需要指定`sub_filter`模块`--with-http_sub_module`   
 > `nginx-1.9.4`以前的版本不支持多个`sub_filter`指令

@@ -8,6 +8,7 @@ tags: [spring-mvc, async]
 > `servlet 3.0`加入了异步支持
 
 #### 1. 同步servlet
+
 即普通`servlet`
 ```java
 @WebServlet(urlPatterns = "/sync")
@@ -47,6 +48,7 @@ public class AsyncServlet extends HttpServlet {
     }
 }
 ```
+
 > `asyncSupported = true`用于开启异步支持，另见`web.xml`配置`<async-supported>true</async-supported>`   
 > `AsyncContext`,异步`servlet`是基于它来完成   
 > `asyncContext.complete()`，完成异步操作

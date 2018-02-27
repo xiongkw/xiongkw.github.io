@@ -7,13 +7,14 @@ tags: [kernel]
 
 > 修改`/etc/sysctl.conf`来调整`linux`内核参数，以提高`web`服务器性能
 
+#### 1. 修改方法
 ```
 vi /etc/sysctl.conf
 
 sysctl -p
 ```
 
-参数说明：
+#### 2. 参数说明
 ```properties
 #每个网络接口接收数据包的速率比内核处理这些包的速率快时，允许送到队列的数据包的最大数目
 net.core.netdev_max_backlog = 32768

@@ -8,6 +8,7 @@ tags: [kafka]
 > `Kafka`是由`LinkedIn`开源的一个分布式的消息系统，使用`Scala`编写，它以可水平扩展和高吞吐率而被广泛使用，目前由`Apache`维护。
 
 #### 1. Kafka介绍
+
 ##### 1.1 角色介绍
 * `Broker`：`Kafka`集群包含一个或多个服务实例，每个服务实例就是一个`broker`
 * `Topic`：消息主题
@@ -112,6 +113,7 @@ kafka-consumer-offset-checker.sh --zookeeper 192.168.1.120:2181 --group test --t
 ```
 
 #### 4. java client
+以下是一个通过`java`客户端访问`kafka`的例子
 
 ##### 4.1 maven dependency
 ```xml
@@ -158,4 +160,5 @@ kafka-consumer-offset-checker.sh --zookeeper 192.168.1.120:2181 --group test --t
 ```
 
 #### 5. kafka参数说明
-> 详见[Kafka configuration](http://kafka.apache.org/documentation/#configuration)
+
+* 详见[Kafka configuration](http://kafka.apache.org/documentation/#configuration)

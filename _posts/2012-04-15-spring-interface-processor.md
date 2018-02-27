@@ -5,9 +5,9 @@ categories: [编程, java, spring]
 tags: [bean]
 ---
 
-> Spring有很多*Processor接口，比如`BeanFactoryPostProcessor`，提供扩展`BeanFactory`的功能
+> `Spring`有很多`*Processor`接口，比如`BeanFactoryPostProcessor`，提供扩展`BeanFactory`的功能
 
-1.BeanDefinitionRegistryPostProcessor
+#### 1. BeanDefinitionRegistryPostProcessor
 ```java
 /**
  * Modify the application context's internal bean definition registry after its
@@ -19,9 +19,9 @@ tags: [bean]
  */
 void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException;
 ```
-> 提供修改`BeanDefinitionRegistry`的入口，调用发生在`BeanDefinitionRegistry`初始化之后，`BeanFactory`初始化之前，一般用于在运行时添加或修改bean定义。
+> 提供修改`BeanDefinitionRegistry`的入口，调用发生在`BeanDefinitionRegistry`初始化之后，`BeanFactory`初始化之前，一般用于在运行时添加或修改`bean`定义。
 
-2.BeanFactoryPostProcessor
+#### 2. BeanFactoryPostProcessor
 ```java
 /**
  * Modify the application context's internal bean factory after its standard
@@ -34,9 +34,9 @@ void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws B
 void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
 
 ```
-> 提供修改`BeanFactory`的入口，调用发生在`BeanDefinition`加载之后，bean实例化之前，一般用于修改bean的属性。例如`property-placeholder和property-override`都是其实现类。
+> 提供修改`BeanFactory`的入口，调用发生在`BeanDefinition`加载之后，`bean`实例化之前，一般用于修改`bean`的属性。例如`property-placeholder和property-override`都是其实现类。
 
-3.InstantiationAwareBeanPostProcessor
+#### 3. InstantiationAwareBeanPostProcessor
 ```java
 /**
  * Apply this BeanPostProcessor <i>before the target bean gets instantiated</i>.
@@ -99,9 +99,9 @@ PropertyValues postProcessPropertyValues(
         PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName)
         throws BeansException;
 ```
-> 提供自定义bean实例化的功能
+> 提供自定义`bean`实例化的功能
 
-4.BeanPostProcessor
+#### 4. BeanPostProcessor
 ```java
 /**
  * Apply this BeanPostProcessor to the given new bean instance <i>before</i> any bean
@@ -117,4 +117,4 @@ Object postProcessBeforeInitialization(Object bean, String beanName) throws Bean
  */
 Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException;
 ```
-> bean后处理器接口，用于自定义bean初始化操作，调用发生在bean实例化之后，初始化前后。
+> `bean`后处理器接口，用于自定义`bean`初始化操作，调用发生在`bean`实例化之后，初始化前后。

@@ -6,7 +6,7 @@ tags: []
 ---
 
 
-#### 1. 安装包下载
+## 1. 安装包下载
 
 `jenkins`提供`linux、windows`等多种安装包，这里选择[war包下载](https://jenkins.io/download/)
 

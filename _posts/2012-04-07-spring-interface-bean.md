@@ -5,9 +5,10 @@ categories: [编程, java, spring]
 tags: [bean]
 ---
 
-> Spring中的`InitializingBean DisposableBean BeanPostProcessor FactoryBean`四个接口
+> `Spring`中的`InitializingBean DisposableBean BeanPostProcessor FactoryBean`四个接口
 
-1.InitializingBean
+#### 1. InitializingBean
+源码：
 ```java
 /**
  * Invoked by a BeanFactory after it has set all bean properties supplied
@@ -20,15 +21,16 @@ tags: [bean]
  */
 void afterPropertiesSet() throws Exception;
 ```
-> bean初始化接口，用于自定义初始化操作，调用发生在bean属性注入完成后    
+> `bean`初始化接口，用于自定义初始化操作，调用发生在`bean`属性注入完成后    
 
-bean初始化的几种方法:
-* InitializingBean
-* @PostConstruct
-* xml init-method
-* @Bean(initMethod="init")
+`bean`初始化的几种方法:
+* `InitializingBean`
+* `@PostConstruct`
+* `xml init-method`
+* `@Bean(initMethod="init")`
 
-2.DisposableBean
+#### 2. DisposableBean
+源码：
 ```java
 /**
  * Invoked by a BeanFactory on destruction of a singleton.
@@ -40,13 +42,14 @@ void destroy() throws Exception;
 ```
 > bean销毁接口，用于自定义销毁操作，调用发生在实例销毁之前
 
-bean销毁的几种方法:
-* DisposableBean
-* @PreDestroy
-* xml destroy-method
-* @Bean(destroyMethod="destroy")
+`bean`销毁的几种方法:
+* `DisposableBean`
+* `@PreDestroy`
+* `xml destroy-method`
+* `@Bean(destroyMethod="destroy")`
 
-3.BeanPostProcessor
+#### 3. BeanPostProcessor
+源码：
 ```java
 /**
  * Apply this BeanPostProcessor to the given new bean instance <i>before</i> any bean
@@ -62,9 +65,10 @@ Object postProcessBeforeInitialization(Object bean, String beanName) throws Bean
  */
 Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException;
 ```
-> bean后处理器接口，用于自定义bean实例化操作，调用发生在bean初始化之前或之后
+> `bean`后处理器接口，用于自定义`bean`实例化操作，调用发生在`bean`初始化之前或之后
 
-4.FactoryBean
+#### 4. FactoryBean
+源码：
 ```java
 T getObject() throws Exception;
 
@@ -72,4 +76,4 @@ Class<?> getObjectType();
 
 boolean isSingleton();
 ```
-> 工厂bean接口，可以完全定制bean的实例化过程
+> 工厂`bean`接口，可以完全定制`bean`的实例化过程

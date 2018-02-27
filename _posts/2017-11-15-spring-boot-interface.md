@@ -5,6 +5,9 @@ categories: [编程, java, spring]
 tags: [spring-boot]
 ---
 
+
+> `spring-boot`中的一些重要接口和注解
+
 @EnableAutoConfiguration
 
 @SpringBootApplication 

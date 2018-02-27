@@ -13,6 +13,7 @@ tags: [ab]
 ```
 ulimit -n 65535
 ```
+
 或者修改
 ```
 vi /etc/security/limits.conf
@@ -29,6 +30,7 @@ vi /etc/security/limits.conf
 ```
 sudo sysctl net.ipv4.tcp_syncookies=0
 ```
+
 或者
 ```
 vi /etc/sysctl.conf
@@ -43,7 +45,6 @@ sysctl -p
 原因：连接超时，一般是由于压力过大导致服务器处理不过来引起
 
 解决方法：减小并发压力或者启用`ab -r`参数
-
 
 ##### 4. 如何知道请求是否成功()查看响应信息)
 

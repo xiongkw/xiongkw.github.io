@@ -7,6 +7,8 @@ tags: [constant, oom, jvisualvm]
 
 > `jdk7`开始，常量池从永久代转移到了堆内存中
 
+#### 一个例子
+
 本例通过不断写入常量池让永久代溢出(`jdk7`之后是堆溢出)
 ```java
 public class ConstantOutOfMemory {

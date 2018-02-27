@@ -6,7 +6,7 @@ tags: [eureka, zookeeper]
 ---
 
 
-#### 1. CAP
+#### 1. 关于CAP
 
 `CAP`: `Consistency，Availability，Partition Tolerance`，是指在分布式系统中一致性、可用性、分区容错性最多只能同时满足两个
 

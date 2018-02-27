@@ -7,7 +7,9 @@ tags: [aop, ltw]
 
 > `spring load-time-weaver`的简单用法
 
-业务类 `MyService.java`
+#### 1. 业务类 
+
+`MyService.java`
 ```java
 public class MyService {
 
@@ -18,7 +20,9 @@ public class MyService {
 }
 ```
 
-日志类 `MyLogger.java`
+#### 2. 日志类
+
+`MyLogger.java`
 ```java
 @Aspect
 public class LoggerAspect {
@@ -29,6 +33,8 @@ public class LoggerAspect {
     }
 }
 ```
+
+#### 3. aop.xml
 
 `META-INF/aop.xml`
 ```xml
@@ -48,6 +54,7 @@ public class LoggerAspect {
 </aspectj>
 ```
 
+#### 4. weaver配置
 `aop-weaver.xml`
 ```xml
 <context:load-time-weaver/>
@@ -55,6 +62,7 @@ public class LoggerAspect {
 <bean id="myService" class="com.my.spring.aop.MyService"></bean>
 ```
 
+#### 5. 单元测试
 `UnitTest`
 ```java
 /**
@@ -76,7 +84,7 @@ public class AopAspectjweaverTest {
 }
 ```
 
-*注意*
+#### 6. 注意
 
 以下写法是不起作用的，原因请参考[Spring load-time-weaver原理]({{ site.url }}/2016/02/10/spring-ltw-source/)
 ```java

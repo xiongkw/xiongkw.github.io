@@ -6,8 +6,9 @@ tags: [switch]
 ---
 
 
-> java中switch语句按case顺序匹配，在碰到第一个匹配的case后，会按顺序执行以后的case代码，直到碰到`break`或`return`
+> `java`中`switch`语句按`case`顺序匹配，在碰到第一个匹配的`case`后，会按顺序执行以后的`case`代码，直到碰到`break`或`return`
 
+一段示例代码：
 ```java
     public static void main(String[] args) {
         switch (1) {
@@ -23,7 +24,9 @@ tags: [switch]
         }
     }
 ```
+
 结果
+
 ```
 1
 2

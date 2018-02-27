@@ -64,4 +64,4 @@ git config -e
 git commit --amend --author="fool <aaaaa@xx.com>"
 ```
 
-> 注意方法2只能修改上一次`commit`，并且每次`commit`后都需要修正，这里推荐第一种方法，一劳永逸
+> 注意：`方法2`只能修改上一次`commit`，并且每次`commit`后都需要修正，这里推荐第一种方法，一劳永逸

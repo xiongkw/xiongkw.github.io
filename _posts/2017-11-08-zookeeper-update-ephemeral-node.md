@@ -65,8 +65,10 @@ ephemeralOwner = 0x15f8f0496020037
         zookeeper.setData(path, data, -1);
     }
 ```
+
 问题出在这里：注册服务节点的时候有个判断逻辑，节点不存在则`create`，否则`setData`
 
+#### 4. 修正
 修改代码
 ```java
     Stat stat = zookeeper.exists(path, false);

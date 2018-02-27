@@ -7,6 +7,7 @@ tags: [jmeter, keepalive]
 
 > 使用`jmeter use_keepalive 2000`线程压测`jetty`，查看网络连接状况，发现网络连接不断重连
 
+#### 1. jmeter配置
 `test.jmx`
 ```xml
 <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
@@ -20,6 +21,8 @@ tags: [jmeter, keepalive]
 <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
 
 ```
+
+#### 2. 问题
 
 运行`jmeter`
 ```
@@ -40,6 +43,8 @@ ESTABLISHED 1766
 > `tcp`不断重连，说明`keepalive`没起作用
 
 
+#### 3. 使用ab测试
+
 同样用`ab`压`2000`并发
 
 ```
@@ -52,6 +57,8 @@ ESTABLISHED 2000
 ```
 
 > `tcp`连接保持稳定
+
+#### 4. 改正
 
 说明问题在`jmeter`，于是查看`jmeter.properties`
 

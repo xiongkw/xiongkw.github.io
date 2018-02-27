@@ -5,7 +5,12 @@ categories: [编程, linux]
 tags: [crontab]
 ---
 
-> linux中使用crontab实现定时任务
+> `linux`中使用`crontab`实现定时任务
+
+#### 1. 需求
+每天`23:30`重启应用，每隔`3分钟`检查一次应用进程状态
+
+#### 2. 配置crontab
 
 编辑 `vi /etc/crontab`
 ```
@@ -27,7 +32,10 @@ tags: [crontab]
 
 ```
 
-重启crontab服务
+#### 3. 重启crontab服务
+
+重启`crontab`服务使配置生效
+
 ```
 service crond restart
 ```

@@ -54,6 +54,7 @@ jekyll serve
 ```
     |-_data // 存放数据文件
             |-favorites.yaml // 比如这里存放的是yaml格式的favorites数据
+    |-_drafts // 草稿存放目录
     |-_includes // 存放公共html模板
             |-head.html
             |-sidebar.html

@@ -7,6 +7,7 @@ tags: [property, override]
 
 > `spring`编码中，我们常常使用`override`的方式改写第三方`jar`包中`bean`的属性值
 
+#### 1. 一个例子
 ```xml
 <context:property-override location="classpath*:conf/dataSource.properties" />
 
@@ -16,6 +17,8 @@ tags: [property, override]
         <property name="password" value="123" />
 </bean>
 ```
+
+#### 2. context命令空间
 
 `context`是`spring-context`中定义的一个命令空间，从`META-INF/spring.handlers`中找到其对应`handler`
 
@@ -36,6 +39,8 @@ protected Class<?> getBeanClass(Element element) {
     return PropertyOverrideConfigurer.class;
 }
 ```
+
+#### 3. PropertyOverrideConfigurer.processProperties
 
 `PropertyOverrideConfigurer`继承自`PropertyResourceConfigurer`，并重写了`processProperties`方法
 
@@ -61,7 +66,7 @@ protected void processProperties(ConfigurableListableBeanFactory beanFactory, Pr
 }
 ```
 
-`PropertyOverrideConfigurer.processKey`
+#### 4. PropertyOverrideConfigurer.processKey
 
 ```java
 protected void processKey(ConfigurableListableBeanFactory factory, String key, String value)
@@ -84,6 +89,8 @@ protected void processKey(ConfigurableListableBeanFactory factory, String key, S
 
 > 这里可以看出属性文件的`key`必须是`beanName.property`，并且不支持多级
 
+#### 5. PropertyOverrideConfigurer.applyPropertyValue
+
 `bean`属性替换的逻辑在`PropertyOverrideConfigurer.applyPropertyValue`
 
 ```java
@@ -99,6 +106,8 @@ protected void applyPropertyValue(
     bd.getPropertyValues().addPropertyValue(pv);
 }
 ```
+
+#### 6. 总结
 
 对比一下`placeholder`和`override`的区别，虽然两者没什么可比性(一个是占位、一个是重写)，但他们的应用却有重叠：
 

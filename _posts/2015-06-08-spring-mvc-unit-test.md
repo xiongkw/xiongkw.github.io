@@ -5,10 +5,12 @@ categories: [编程, java, spring, web]
 tags: [unit-test, spring-mvc]
 ---
 
-> 随着`Restful Web Service`的兴起，对`Web Service`做单元测试也变得非常必要，`Spring`从 3.2开始提供了`Spring Web`测试框架
+> 随着`Restful Web Service`的兴起，对`Web Service`做单元测试也变得非常必要，从`spring-3.2`开始提供了`Spring Web`测试框架
 
 #### 1. 依赖包
-加入maven依赖
+
+加入`maven`依赖
+
 ```xml
 <dependency>
     <groupId>junit</groupId>
@@ -25,7 +27,9 @@ tags: [unit-test, spring-mvc]
 ```
 
 #### 2. 编写controller
-controller
+
+`controller`
+
 ```java
 @RestController
 public class EchoController {
@@ -51,7 +55,9 @@ public class EchoController {
 ```
 
 #### 3. 编写单元测试
+
 单元测试代码
+
 ```java
 @WebAppConfiguration(value = "src/test/webapp")
 @ContextHierarchy({ @ContextConfiguration(locations = "classpath:conf/spring-mvc.xml"),

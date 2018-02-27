@@ -5,7 +5,7 @@ categories: [编程, java]
 tags: [thread, jstack]
 ---
 
-#### 1. 代码示例
+#### 1. 一个例子
 ```java
 public class JstackDemo {
     public static void main(String[] args) {

@@ -6,10 +6,10 @@ tags: [并发, 多线程]
 ---
 
 
-> J2EE中servlet以单例模式运行在多线程环境中，为了保证线程安全，它必须被设计成无状态的   
-> 如果需要在当前线程中保存线程的状态（通俗的说就是定义线程私有的变量，例如每个线程调用该方法的次数），就需要用到ThreadLocal了
+> `J2EE`中`servlet`以单例模式运行在多线程环境中，为了保证线程安全，它必须被设计成无状态的   
+> 如果需要在当前线程中保存线程的状态（通俗的说就是定义线程私有的变量，例如每个线程调用该方法的次数），就需要用到`ThreadLocal`了
 
-先看ThreadLocal的用法：
+先看`ThreadLocal`的用法：
 ```java
 public class THreadSafeService {
     //定义一个ThreadLocal变量，用于记录线程调用service的次数
@@ -30,7 +30,8 @@ public class THreadSafeService {
 }
 
 ```
-ThreadLocal怎么保证counter变量能被所有线程共享，并且互不干扰呢？看ThreadLocal的源码：
+
+`ThreadLocal`怎么保证`counter`变量能被所有线程共享，并且互不干扰呢？看`ThreadLocal`的源码：
 ```java
     public T get() {
         Thread t = Thread.currentThread();
@@ -63,7 +64,7 @@ ThreadLocal怎么保证counter变量能被所有线程共享，并且互不干�
 
 ```
 
-回头再看service的调用过程
+回头再看`service`的调用过程
 ```java
     public void service(){
         //每次调用后counter+1，并set给counter
@@ -78,4 +79,4 @@ ThreadLocal怎么保证counter变量能被所有线程共享，并且互不干�
     }
 ```
 
-> 注：spring中可以定义bean的scope为prototype来实现有状态的服务
+> 注：`spring`中可以定义`bean`的`scope`为`prototype`来实现有状态的服务

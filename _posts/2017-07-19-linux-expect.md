@@ -8,14 +8,17 @@ tags: [expect, rsyslog]
 > 分布式集群环境下，使用`rsyslog`采集应用日志，需要在每台宿主机上安装和配置`rsyslog`，一共需要维护30多台服务器，于是想到用`expect`批量操作
 
 #### 1. expect简介
+
 > `Expect`是一个用来处理交互的命令。借助`Expect`，我们可以将交互过程写在一个脚本上，自动完成`ssh, telnet, ftp`等交互操作
 
 #### 2. expect安装
+通过`yum`安装
 ```
 yum install expect -y
 ```
 
 #### 3. expect用法
+
 ```
 send：发送字符串，用于发送命令
 expect：期望字符串，用于等待交互命令的回显
@@ -24,6 +27,7 @@ interact：允许用户交互
 ```
 
 #### 4. 安装rsyslog的例子
+
 ```
 #!/bin/expect
 

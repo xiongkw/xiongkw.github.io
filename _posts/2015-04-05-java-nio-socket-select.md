@@ -7,7 +7,7 @@ tags: [nio, select]
 
 > `java nio (jdk1.4 io)` 的`socket`编程
 
-server
+#### 1. server
 ```java
 public static void main(String[] args) throws IOException {
     //多路复用选择器
@@ -82,7 +82,7 @@ protected static void handle(Selector sel, SelectionKey sk) throws IOException {
 }
 ```
 
-client
+#### 2. client
 ```java
 public static void main(String[] args) throws IOException {
     SocketChannel cs = SocketChannel.open();
@@ -131,10 +131,11 @@ public static void main(String[] args) throws IOException {
 }
 ```
 
-> IO多路复用技术，是使用一个调用`(select)`去获取多个IO调用的状态(读，写等)，而这个调用`(select)`由操作系统支持，常用的`linux`复用方式有`select、poll、epoll`  
+> `IO多路复用`，是使用一个调用`(select)`去获取多个IO调用的状态(读，写等)，而这个调用`(select)`由操作系统支持，常用的`linux`复用方式有`select、poll、epoll`  
 > 其原理同[java中的nio socket编程]({{ site.url}}/2015/04/04/java-nio-socket/)，不同的是`select`的轮询由操作系统完成 
 
-参考
+#### 3. 参考
+
 * [java中的bio socket编程]({{ site.url}}/2015/04/03/java-bio-socket/)
 * [java中的nio socket编程]({{ site.url}}/2015/04/04/java-nio-socket/)
 * [java中的aio socket编程]({{ site.url}}/2015/04/06/java-aio-socket/)
