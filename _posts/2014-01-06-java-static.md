@@ -8,7 +8,7 @@ tags: [static]
 
 > `java`中常用`static`表示静态变量，即类变量，可通过类直接访问，而不需要类实例化
 
-#### 先看一个例子
+#### 1. 先看一个例子
 ```java
 public class StaticTest {
 
@@ -34,7 +34,7 @@ class StaticTest$InnerClass
 
 > 为什么`static`块没有执行呢？通常我们认为`static`变量和代码块会在类加载后初始化，而实际上不是这样的
 
-#### 进一步测试
+#### 2. 进一步测试
 
 ```java
 public class StaticTest {
@@ -69,7 +69,7 @@ init
 > 可以看到`static`代码块执行了，可见对`static`属性的访问会引起`static`变量和代码块的初始化。实际上对`static`方法的调用也会起到同样作用
 
 
-#### 来一道经典面试题
+#### 3. 来一道经典面试题
 ```java
 public class StaticTest {
 
@@ -117,8 +117,8 @@ new InnerClass(); // 被赋值为1
 private static int a = 0; // 初始化时被赋值为0
 ```
 
-#### 总结
+#### 4. 总结
 
-* `static`变量在类加载时仅仅只会被声明，其值为其类型的默认值，例如`int`类型默认值为`0`，'boolean'类型默认值为'false`，`Object`类型默认值为`null`
+* `static`变量在类加载时仅仅只会被声明，其值为其类型的默认值，例如`int`类型默认值为`0`，`boolean`类型默认值为`false`，`Object`类型默认值为`null`
 * `static`变量和代码块在其任意`static`变量或方法第一次被访问时初始化
 * 根据以上两点：`static`变量会按照其定义的顺序依次声明且赋默认值，直到其某个`static`变量或方法被访问时，按顺序初始化各`static`变量和代码块
