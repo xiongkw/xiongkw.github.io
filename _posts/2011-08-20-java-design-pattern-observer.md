@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Java中的Observer
+title: Java中的观察者模式
 categories: [编程, java]
-tags: [observer]
+tags: [observer, 设计模式, 观察者]
 ---
 
 
-> `java`提供了观察者模式框架
+> 定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新
 
 #### 一个例子
 

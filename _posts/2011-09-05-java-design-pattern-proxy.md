@@ -2,11 +2,11 @@
 layout: post
 title: Java中的动态代理
 categories: [编程, java]
-tags: [proxy]
+tags: [proxy, 设计模式, 代理]
 ---
 
 
-> `java`中的动态代理
+> 为其他对象提供一种代理以控制对这个对象的访问
 
 #### 1. 场景 
 
@@ -19,7 +19,7 @@ public interface Signer{
 }
 ```
 
-#### 2. 领导
+#### 3. 领导
 ```java
 public class Leader implements Signer {
 
@@ -30,7 +30,7 @@ public class Leader implements Signer {
 }
 ```
 
-#### 3. InvocationHandler
+#### 4. InvocationHandler
 ```java
 public class SecretaryHandler implements InvocationHandler {
 	Signer signer;
@@ -51,7 +51,7 @@ public class SecretaryHandler implements InvocationHandler {
 
 ```
 
-#### 4. main
+#### 5. main
 ```java
 public static void main(String[] args){
     Signer leader = new Signer();
@@ -61,7 +61,7 @@ public static void main(String[] args){
 }
 ```
 
-#### 5. 总结
+#### 6. 总结
 
 * `jdk动态代理`实际是生成了一个代理类并实现同样的接口，在方法实现中调用代理对象的方法
 * `代理模式`和`装饰模式`实现上比较相似，其不同点是`代理`是原对象不方便处理而指定一个代理(比如我们办证时如果本从不方便去办证中心，可以通过公证指定某人代为办理)，而`装饰`则侧重于功能的增强

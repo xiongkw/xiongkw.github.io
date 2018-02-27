@@ -2,7 +2,7 @@
 layout: post
 title: 一个singleton引发的血案
 categories: [编程, java]
-tags: [singleton, 多线程, 内存屏障]
+tags: [singleton, 多线程, 内存屏障, 设计模式, 单例]
 ---
 
 
