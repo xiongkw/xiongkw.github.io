@@ -1,6 +1,6 @@
 ---
 layout: post
-title: jsonp和cors
+title: spring-boot中开启cors
 categories: [编程, java, spring]
 tags: [spring-boot, cors]
 ---
