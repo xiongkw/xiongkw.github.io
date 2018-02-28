@@ -20,51 +20,51 @@ tags: [3d, three.js]
 #### 3. 一个例子
 ```html
 <html>
-	<head>
-		<title>My first three.js app</title>
-		<style>
-			body { margin: 0; }
-			canvas { width: 100%; height: 100% }
-		</style>
-	</head>
-	<body>
-		<script src="three.min.js"></script>
-		<script>
-		    // 创建一个场景
-			var scene = new THREE.Scene();
-			
-			// 创建一个相机(视角)
-			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+<head>
+<title>My first three.js app</title>
+<style>
+body { margin: 0; }
+canvas { width: 100%; height: 100% }
+</style>
+</head>
+<body>
+<script src="three.min.js"></script>
+<script>
+// 创建一个场景
+var scene = new THREE.Scene();
 
-            // 渲染器
-			var renderer = new THREE.WebGLRenderer();
-			renderer.setSize( window.innerWidth, window.innerHeight );
-			document.body.appendChild( renderer.domElement );
+// 创建一个相机(视角)
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
-            // 创建一个立方体形状
-			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-			// 材质
-			var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			// 通过形状和材质创建一个物体
-			var cube = new THREE.Mesh( geometry, material );
-			// 把物体加入场景
-			scene.add( cube );
+// 渲染器
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
 
-			camera.position.z = 5;
+// 创建一个立方体形状
+var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+// 材质
+var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+// 通过形状和材质创建一个物体
+var cube = new THREE.Mesh( geometry, material );
+// 把物体加入场景
+scene.add( cube );
 
-            //  添加动画效果
-			var animate = function () {
-				requestAnimationFrame( animate );
+camera.position.z = 5;
 
-				cube.rotation.x += 0.1;
-				cube.rotation.y += 0.1;
+//  添加动画效果
+var animate = function () {
+    requestAnimationFrame( animate );
 
-				renderer.render(scene, camera);
-			};
+    cube.rotation.x += 0.1;
+    cube.rotation.y += 0.1;
 
-			animate();
-		</script>
-	</body>
+    renderer.render(scene, camera);
+};
+
+animate();
+</script>
+</body>
 </html>
 ```
 
