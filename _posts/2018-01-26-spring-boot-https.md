@@ -34,7 +34,8 @@ CN=www.myapp.com, OU=xx, O=xx, L=xx, ST=xx, C=xx是否正确?
 
 #### 2. spring-boot配置
 
-application.yml
+`application.yml`
+
 ```yaml
 server:
   port: 8443
@@ -48,7 +49,8 @@ server:
 
 #### 3. 访问
 
-运行spring-boot项目并访问
+运行`spring-boot`项目并访问
+
 ```
 https://www.myapp.com:8443
 ```

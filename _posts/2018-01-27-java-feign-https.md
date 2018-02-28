@@ -5,13 +5,14 @@ categories: [编程, java, spring]
 tags: [feign, https]
 ---
 
-> 使用自签名证书搭建`https`服务，通过浏览器访问时，浏览器会提示证书不可信任，但是仍可选择`继续浏览此网站(不推荐)`
+> 使用`自签名证书`搭建`https`服务，通过浏览器访问时，浏览器会提示证书不可信任，但是仍可选择`继续浏览此网站(不推荐)`
 
 #### 1. https服务
 
 部署并启动`https`服务，参见[Spring-boot搭建https服务]({{ site.url}}/2018/01/26/spring-boot-https/)
 
 #### 2. 客户端编写
+
 使用`feign`访问`https`服务
 
 ```java

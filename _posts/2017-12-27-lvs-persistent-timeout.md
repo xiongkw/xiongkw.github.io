@@ -152,13 +152,11 @@ tcpdump host 10.142.90.245 -w b.cap
 net.ipv4.tcp_keepalive_time=120 
 ```
 
-> `tcp_keepalive_time` // 距离上次传送数据多少时间未收到判断为开始检测
-
-> `tcp_keepalive_intvl` // 检测开始每多少时间发送心跳包
-
-> `tcp_keepalive_probes` // 发送几次心跳包对方未响应则`close`连接
-
-> `TCP`连接最大超时时间为`tcp_keepalive_time+tcp+keepalive_intvl*tcp_keepalive_probes`
+* `tcp_keepalive_time` // 距离上次传送数据多少时间未收到判断为开始检测
+* `tcp_keepalive_intvl` // 检测开始每多少时间发送心跳包
+* `tcp_keepalive_probes` // 发送几次心跳包对方未响应则`close`连接
+* `TCP`连接最大超时时间为`tcp_keepalive_time+tcp+keepalive_intvl*tcp_keepalive_probes`
 
 #### 5. 参考资料
+
 [LVS: Persistent Connection](http://www.austintek.com/LVS/LVS-HOWTO/HOWTO/LVS-HOWTO.persistent_connection.html)
