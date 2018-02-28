@@ -47,4 +47,4 @@ wait_timeout=300
 
 #### 4. 原因
 
-原因是`mysql`服务端主动关闭了连接，去掉`wait_timeout`参数(默认8h)，重启`mysql`和应用，连接关闭数正常了
+原因是`mysql`服务端主动关闭了连接，去掉`wait_timeout`参数(默认`8h`)，重启`mysql`和应用，连接关闭数正常了

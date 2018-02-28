@@ -36,3 +36,7 @@ server{
     server_name ~^(?<www>.+)\.xx\.com$;
 }
 ```
+
+#### 3. 关于正则表达式
+
+[nginx中正则表达式的写法]({{site.url}}/2015/11/14/nginx-regex/)
