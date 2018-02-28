@@ -6,14 +6,15 @@ tags: [singleton, 多线程, 内存屏障, 设计模式, 单例]
 ---
 
 
-> 十年前初入码行时学到的第一个设计模式就是`singleton`，当时以为这就是最简单的设计模式，现在才明白那时太天真了
+> 十年前初入码行时学到的第一个`设计模式`就是`singleton`，当时以为这就是最简单的设计模式，现在才明白那时太天真了
 
 #### 1. 关于可见性、有序性和原子性
 
 > 参考[java中的可见性、有序性和原子性]({{ site.url}}/2016/06/28/java-visibility-ordering-atomic/)
 
 #### 2. 关于singleton
-> 单例模式是为确保一个类只有一个实例，并提供一个全局访问点的一种设计模式
+
+> `单例模式`是为确保一个类只有一个实例，并提供一个全局访问点的一种设计模式
 
 其特点：
 * 只有一个实例
@@ -38,9 +39,10 @@ public class LazySingleton {
 }
 ```
 
-> 该方式在单线程下正常，但多线程环境就可能会创建多个实例，原因在于可能有多个线程同时进入`if (instance == null) {`代码块
+> 该方式在`单线程`下正常，但`多线程`环境就可能会创建多个实例，原因在于可能有多个线程同时进入`if (instance == null) {`代码块
 
 #### 4. 线程安全的singleton
+
 ```java
 public class ThreadSafeSingleton {
     private static ThreadSafeSingleton instance;
@@ -61,6 +63,7 @@ public class ThreadSafeSingleton {
 > 使用`synchronized`关键字同步`if`块，这样就能保证每次只有一个线程进入`if`块，但每次调用`getInstance`时的锁请求都会引起`线程上下文`切换，对系统资源消耗比较大
 
 #### 5. 双检查的线程安全singleton
+
 ```java
 public class DCLThreadSafeSingleton {
     private static DCLThreadSafeSingleton instance;
@@ -85,6 +88,7 @@ public class DCLThreadSafeSingleton {
 > 通过双检查(`DCL`)对`ThreadSafeSingleton`改进，这样当`instance`第一次初始化后，所有线程都不会进入`synchronized`代码块了   
 
 但这里又引出一个新的问题，由于`instance = new DCLThreadSafeSingleton()`不是一个原子操作，其操作可分解为：
+
 ```
 memory = allocate();   //1：分配对象的内存空间
 ctorInstance(memory);  //2：初始化对象
@@ -94,6 +98,7 @@ instance = memory;     //3：设置instance指向刚分配的内存地址
 > 由于`编译器`和`cpu`的`重排序`机制，无法保证`2`一定发生在`3`之前，所以有可能在线程`A`以`132`顺序运行到`3`时，线程`B`已经通过`if(instance != null)`获取了`instance`，而此时`2`尚未执行
 
 #### 6. volatile的singleton
+
 ```java
 public class VolatileThreadSafeSingleton {
     private static volatile VolatileThreadSafeSingleton instance;
@@ -118,6 +123,7 @@ public class VolatileThreadSafeSingleton {
 > `volatile`能够的作用是保障`可见性`和`有序性`，即使得`5. 双检查`中的三个操作按顺序执行
 
 #### 7. static的singleton
+
 ```java
 public class StaticSingleton {
     private static StaticSingleton instance = new StaticSingleton();
@@ -136,6 +142,7 @@ public class StaticSingleton {
 **注意：**`static`变量初始化发生在第一次访问类的某个静态属性变量时，参考[java中static变量和代码块的初始化]({{ site.url}}/2014/01/06/java-static/)
 
 #### 8. 内部类的singleton
+
 ```java
 public class InnerClassSingleton {
     private static class Holder{
@@ -154,6 +161,7 @@ public class InnerClassSingleton {
 > 延迟加载的`StaticSingleton`在内部类中通过`static`属性变量持有一个`singleton`，由于`java`中类本身就是延迟加载(在访问时才会装载)，这样就实现了`延迟加载`
 
 #### 9. 枚举的singleton
+
 ```java
 public enum  EnumSingleton {
     INSTANCE;
