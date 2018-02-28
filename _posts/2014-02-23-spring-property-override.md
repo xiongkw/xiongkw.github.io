@@ -111,7 +111,7 @@ protected void applyPropertyValue(
 
 对比一下`placeholder`和`override`的区别，虽然两者没什么可比性(一个是占位、一个是重写)，但他们的应用却有重叠：
 
-* `placeholder`是占位，即一个符号，需要用具体的属性值来替换。`override`是重写，只是提供一个在属性文件中必定`bean`默认属性值的方法。
+* `placeholder`是占位，即一个符号，需要用具体的属性值来替换。`override`是重写，只是提供一个在属性文件中重写`bean`默认属性值的方法。
 * `placeholder`需要用`<property name="username" value="${jdbc.username:root}"/>`定义，而`override`直接给定一个默认值`<property name="username" value="root"/>`
 * `placeholder`可以用于`beanName,class,property,scope,property`等，而`override`只能用于`property`
-* `placeholder`的属性key和占位符相同，而`override`的属性key是`bean.property`
+* `placeholder`的属性`key`和占位符相同，而`override`的属性`key`是`bean.property`
