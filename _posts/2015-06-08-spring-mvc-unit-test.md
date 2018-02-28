@@ -33,18 +33,18 @@ tags: [unit-test, spring-mvc]
 ```java
 @RestController
 public class EchoController {
-
-	@RequestMapping("/echo")
-	public Object set(@RequestParam String name) throws IOException {
-		return "Echo: "+name;
-	}
-	
-	@RequestMapping("/set")
+    
+    @RequestMapping("/echo")
+    public Object set(@RequestParam String name) throws IOException {
+        return "Echo: "+name;
+    }
+    
+    @RequestMapping("/set")
     public Object set(@RequestParam String name, HttpSession session) throws IOException {
         session.setAttribute("name", name);
         return session.getId();
     }
-
+    
     @RequestMapping("/get")
     public Object get(HttpSession session) throws IOException {
         return session.getAttribute("name");
