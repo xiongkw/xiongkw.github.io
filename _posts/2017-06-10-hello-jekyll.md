@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 在Github上使用Jekyll搭建自己的博客
-categories: [jekyll]
+categories: [编程, jekyll]
 tags: [jekyll, github]
 ---
 
