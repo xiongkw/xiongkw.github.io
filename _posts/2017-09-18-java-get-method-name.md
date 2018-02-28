@@ -9,7 +9,7 @@ tags: []
 
 #### 1.原版写法
 
-##### sql.xml
+##### 1.1 sql.xml
 ```xml
 <!-- xml中定义一个id为selectUserByUserName的sql -->
 <sql id="selectUserByUserName">
@@ -17,7 +17,7 @@ select * from t_user where username=?
 </sql>
 ```
 
-##### UserDao.java
+##### 1.2 UserDao.java
 ```java
 public User selectUserByUserName(String username){
     //这里需要传入xml定义的sqlId
@@ -28,7 +28,7 @@ public User selectUserByUserName(String username){
 #### 2.改良版
 约定使用`dao`的方法名作为`sqlId`，如何在`BaseDao.getBySqlId`中获取`UserDao`的方法名？
 
-##### BaseDao
+##### 2.1 BaseDao
 ```java
 //获取调用方法名称
 protected String getInvokerMethodName() {
@@ -41,7 +41,7 @@ public T getBySqlId(Object[] args){
 }
 ```
 
-##### UserDao.java
+##### 2.2 UserDao.java
 ```java
 public User selectUserByUserName(String username){
     //不需要传入sqlId，约定为调用者方法名，即selectUserByUserName

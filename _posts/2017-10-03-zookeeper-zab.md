@@ -841,8 +841,7 @@ while (true) {
 > `LEADING`状态节点启动监听服务，接收`Learner`的连接请求，并发送心跳
 
 #### 4. 参考文档
-[Apache ZooKeeper](https://zookeeper.apache.org)
 
-[ZooKeeper’s atomic broadcast protocol: Theory and practice](http://www.tcs.hut.fi/Studies/T-79.5001/reports/2012-deSouzaMedeiros.pdf)
-
-[Apache ZAB—Zookeeper Atomic Broadcast Protocol](https://www.ixiacom.com/company/blog/apache-zab—zookeeper-atomic-broadcast-protocol)
+* [Apache ZooKeeper](https://zookeeper.apache.org)
+* [ZooKeeper’s atomic broadcast protocol: Theory and practice](http://www.tcs.hut.fi/Studies/T-79.5001/reports/2012-deSouzaMedeiros.pdf)
+* [Apache ZAB—Zookeeper Atomic Broadcast Protocol](https://www.ixiacom.com/company/blog/apache-zab—zookeeper-atomic-broadcast-protocol)

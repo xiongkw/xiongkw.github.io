@@ -37,7 +37,7 @@ public class JstackDemo {
 
 #### 2. 获取线程dump
 
-1. 使用`jps`命令查找进程`id`
+使用`jps`命令查找进程`id`
 
 ```
 jps
@@ -45,7 +45,7 @@ jps
 39360 JstackDemo
 ```
 
-2. 使用`jstack`命令获取线程`dump`
+使用`jstack`命令获取线程`dump`
 
 ```
 jstack 39260

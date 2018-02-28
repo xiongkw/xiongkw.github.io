@@ -106,7 +106,7 @@ logging.level
 loging.config
 
 
-<springProfile>
+springProfile
 
 WebMvcConfigurerAdapter
 
