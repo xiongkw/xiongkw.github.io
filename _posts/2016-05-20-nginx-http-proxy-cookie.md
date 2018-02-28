@@ -8,7 +8,11 @@ tags: [http, 负载均衡, 反向代理, cookie, session]
 
 > 使用`nginx`反向代理`HTTP`，发现`session`获取不到   
 
-#### 配置cookie转发
+#### 1. 原因
+
+通过服务日志看到`http`请求中的`cookie`信息丢失了，原因是被`nginx`丢弃了
+
+#### 2. 配置cookie转发
 
 ```nginx
   location / {

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: java中的可见性、有序性和原子性
+title: java中的原子性、可见性和有序性
 categories: [编程, java]
 tags: [可见性, 有序性, 原子性, volatile, synchronized, 内存屏障, 多线程, cas]
 ---

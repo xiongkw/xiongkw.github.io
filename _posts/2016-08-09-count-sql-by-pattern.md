@@ -10,7 +10,7 @@ tags: [sql, count, regex]
 > `dao`底层实现中，通用`count`封装方式为`select count(1) from(selectSql)`,该方法的好处是简单，缺点是生成了临时表，对数据库性能有影响
 
 一种优化的方法是替换`sql`中`select`部分，而不使用临时表，例如
-```sql
+```
 #查询sql
 select id, name from t_user;
 
@@ -52,7 +52,7 @@ Pattern p = Pattern.compile("(select\\s+.*\\s+from)", Pattern.CASE_INSENSITIVE|P
 > `[\\S\\s]`匹配所有空格字符和非空格字符
 
 #### 5. 子查询的情况下，`from`语句后还有`select ... from`
-```sql
+```
 select t.id, t.name 
 from t_user t, 
   (select * from t_role) r
@@ -67,7 +67,7 @@ where t.id = r.user_id
 > 正则表达式默认是贪婪模式，使用`量词+?`即可切换到非贪婪模式，例如`.*?`
 
 #### 6. select语句中嵌套select的情况
-```sql
+```
 select t.id, t.name, 
   (select id from t_xx) as tid,
   (select name from t_xx) as tname
