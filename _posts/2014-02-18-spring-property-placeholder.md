@@ -389,6 +389,6 @@ protected <T> T getProperty(String key, Class<T> targetValueType, boolean resolv
 
 #### 10. 附
 
-占位符默认值的处理会发生一个有趣的现象：在定义多个(虽然不推荐，但也不可避免)`PropertyPlaceholderConfigurer`bean的时候，如果第一个`PropertyPlaceholderConfigurer`中找不到占位符对应的属性值，那这个占位符就会使用默认值。 如何解决？
+占位符默认值的处理会发生一个有趣的现象：在定义多个(虽然不推荐，但也不可避免)`<context:property-placeholder`的时候，如果第一个`PropertyPlaceholderConfigurer`中找不到占位符对应的属性值，那这个占位符就会使用默认值。 如何解决？
 * 使用`localProperties`定义默认值，设置`localOverride=true`，使其优先加载
 * 使用`property-override`，见[Spring property-override源码解读]({{site.url}}/2014/02/23/spring-property-override)
