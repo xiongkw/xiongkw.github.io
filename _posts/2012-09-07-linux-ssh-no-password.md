@@ -30,6 +30,7 @@ ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 * `ssh user@host`，表示登录远程主机
 * `'mkdir .ssh && cat >> .ssh/authorized_keys'`，表示登录后在远程`shell`上执行的命令
 * `mkdir -p .ssh`的作用是如果用户主目录中的`.ssh`目录不存在，就创建
+* `< ~/.ssh/id_rsa.pub`的作用是把`~/.ssh/id_rsa.pub`的内容重定向到前一个命令的输入，即`cat >>`
 * `cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub`的作用是，将本地的公钥文件`~/.ssh/id_rsa.pub`，重定向追加到远程文件`authorized_keys`的末尾
 
 #### 3. 客户机免密登录服务器
