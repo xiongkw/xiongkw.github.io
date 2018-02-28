@@ -64,9 +64,9 @@ String str = new String("abc");
 
 实际上`new String("abc")`并没有生成新的`char[]`，看源码：
 ```java
-    public String(String original) {
-    //这是仅仅是把原String的value(char[])赋值给了this.value，并没有创建新的char
-        this.value = original.value;
-        this.hash = original.hash;
-    }
+public String(String original) {
+    // 这是仅仅是把原String的value(char[])赋值给了this.value，并没有创建新的char
+    this.value = original.value;
+    this.hash = original.hash;
+}
 ```
