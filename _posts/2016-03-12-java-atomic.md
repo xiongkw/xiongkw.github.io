@@ -89,3 +89,5 @@ public final native boolean compareAndSwapInt(Object var1, long var2, int var4, 
 #### 5. 总结
 
 `AtomicXX`使用`Unsafe`类直接操作堆内存，通过轻量级比较交换算法(`CAS`)实现了无锁的线程安全，其并发性能优于同步锁
+
+> 参考[java中的可见性、有序性和原子性]({{site.url}}/2016/06/28/java-visibility-ordering-atomic/)
