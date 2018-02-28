@@ -52,7 +52,7 @@ scene.add( cube );
 
 camera.position.z = 5;
 
-//  添加动画效果
+// 添加动画效果
 var animate = function () {
     requestAnimationFrame( animate );
 
