@@ -51,7 +51,7 @@ public class InstrumentationSavingAgent {
 }
 ```
 
-#### 4.关于`Attach API`
+#### 4. 关于`Attach API`
 * 在`jdk1.5`时代只能使用`premain`方式，此方式的缺点是必须在启动时加入`javaagent`参数，并且在`main`函数启动前就加载代理类
 * `Attach API`提供动态(即程序在运行中)加载代理类的功能
 

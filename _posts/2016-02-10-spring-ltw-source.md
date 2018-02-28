@@ -7,14 +7,14 @@ tags: [ltw]
 
 > `spring load-time-weaver` 基于[Java Instrumentation]({{ site.url }}/2016/02/06/java-instrumentation/)实现
 
-> 关于`weaver`，中文翻译为`织入`，常见的有编译时织入和类加载时织入，`spring-ltw`为类加载时织入
+> 关于`weaver`，中文翻译为`织入`，常见的有`编译时织入`和`类加载时织入`，`spring-ltw`为`类加载时织入`
 
 #### 1. 从spring配置入手
 ```xml
 <!-- 一行配置开启 -->
 <context:load-time-weaver/>
 ```
-> `context`是spring-context中定义的一个标签，参考[spring自定义命名空间]({{site.url}}/2011/05/11/spring-custom-namespace/)
+> `context`是`spring-context`中定义的一个标签，参考[spring自定义命名空间]({{site.url}}/2011/05/11/spring-custom-namespace/)
 
 根据`spring`命名空间规范，找到`LoadTimeWeaverBeanDefinitionParser.java`
 ```java
@@ -76,65 +76,65 @@ class LoadTimeWeaverBeanDefinitionParser extends AbstractSingleBeanDefinitionPar
 #### 2. DefaultContextLoadTimeWeaver
 源码：`DefaultContextLoadTimeWeaver.java`
 ```java
-	public void setBeanClassLoader(ClassLoader classLoader) {
-        //1. 根据运行环境获取 LoadTimeWeaver
-		LoadTimeWeaver serverSpecificLoadTimeWeaver = createServerSpecificLoadTimeWeaver(classLoader);
-		if (serverSpecificLoadTimeWeaver != null) {
-			if (logger.isInfoEnabled()) {
-				logger.info("Determined server-specific load-time weaver: " +
-						serverSpecificLoadTimeWeaver.getClass().getName());
-			}
-			this.loadTimeWeaver = serverSpecificLoadTimeWeaver;
-		}
-		//2. 根据运行时容器获取不到，则使用java instrumentation
-		else if (InstrumentationLoadTimeWeaver.isInstrumentationAvailable()) {
-			logger.info("Found Spring's JVM agent for instrumentation");
-			this.loadTimeWeaver = new InstrumentationLoadTimeWeaver(classLoader);
-		}
-		else {
-			try {
-			    //3. 还是无法获取LoadTimeWeaver，则使用反射的实现
-				this.loadTimeWeaver = new ReflectiveLoadTimeWeaver(classLoader);
-				logger.info("Using a reflective load-time weaver for class loader: " +
-						this.loadTimeWeaver.getInstrumentableClassLoader().getClass().getName());
-			}
-			catch (IllegalStateException ex) {
-				throw new IllegalStateException(ex.getMessage() + " Specify a custom LoadTimeWeaver or start your " +
-						"Java virtual machine with Spring's agent: -javaagent:org.springframework.instrument.jar");
-			}
-		}
-	}
-	
-	//4. Spring为常用运行容器提供了LoadTimeWeaver实现
-    protected LoadTimeWeaver createServerSpecificLoadTimeWeaver(ClassLoader classLoader) {
-        String name = classLoader.getClass().getName();
+public void setBeanClassLoader(ClassLoader classLoader) {
+    //1. 根据运行环境获取 LoadTimeWeaver
+    LoadTimeWeaver serverSpecificLoadTimeWeaver = createServerSpecificLoadTimeWeaver(classLoader);
+    if (serverSpecificLoadTimeWeaver != null) {
+        if (logger.isInfoEnabled()) {
+            logger.info("Determined server-specific load-time weaver: " +
+                    serverSpecificLoadTimeWeaver.getClass().getName());
+        }
+        this.loadTimeWeaver = serverSpecificLoadTimeWeaver;
+    }
+    //2. 根据运行时容器获取不到，则使用java instrumentation
+    else if (InstrumentationLoadTimeWeaver.isInstrumentationAvailable()) {
+        logger.info("Found Spring's JVM agent for instrumentation");
+        this.loadTimeWeaver = new InstrumentationLoadTimeWeaver(classLoader);
+    }
+    else {
         try {
-            if (name.startsWith("weblogic")) {
-                return new WebLogicLoadTimeWeaver(classLoader);
-            }
-            else if (name.startsWith("org.glassfish")) {
-                return new GlassFishLoadTimeWeaver(classLoader);
-            }
-            else if (name.startsWith("org.apache.catalina")) {
-                return new TomcatLoadTimeWeaver(classLoader);
-            }
-            else if (name.startsWith("org.jboss")) {
-                return new JBossLoadTimeWeaver(classLoader);
-            }
-            else if (name.startsWith("com.ibm")) {
-                return new WebSphereLoadTimeWeaver(classLoader);
-            }
+            //3. 还是无法获取LoadTimeWeaver，则使用反射的实现
+            this.loadTimeWeaver = new ReflectiveLoadTimeWeaver(classLoader);
+            logger.info("Using a reflective load-time weaver for class loader: " +
+                    this.loadTimeWeaver.getInstrumentableClassLoader().getClass().getName());
         }
         catch (IllegalStateException ex) {
-            logger.info("Could not obtain server-specific LoadTimeWeaver: " + ex.getMessage());
+            throw new IllegalStateException(ex.getMessage() + " Specify a custom LoadTimeWeaver or start your " +
+                    "Java virtual machine with Spring's agent: -javaagent:org.springframework.instrument.jar");
         }
-        return null;
     }
-    
-    public void addTransformer(ClassFileTransformer transformer) {
-        //5. addTransformer方法实际是调用了loadTimeWeaver属性的addTransformer方法
-        this.loadTimeWeaver.addTransformer(transformer);
+}
+
+//4. Spring为常用运行容器提供了LoadTimeWeaver实现
+protected LoadTimeWeaver createServerSpecificLoadTimeWeaver(ClassLoader classLoader) {
+    String name = classLoader.getClass().getName();
+    try {
+        if (name.startsWith("weblogic")) {
+            return new WebLogicLoadTimeWeaver(classLoader);
+        }
+        else if (name.startsWith("org.glassfish")) {
+            return new GlassFishLoadTimeWeaver(classLoader);
+        }
+        else if (name.startsWith("org.apache.catalina")) {
+            return new TomcatLoadTimeWeaver(classLoader);
+        }
+        else if (name.startsWith("org.jboss")) {
+            return new JBossLoadTimeWeaver(classLoader);
+        }
+        else if (name.startsWith("com.ibm")) {
+            return new WebSphereLoadTimeWeaver(classLoader);
+        }
     }
+    catch (IllegalStateException ex) {
+        logger.info("Could not obtain server-specific LoadTimeWeaver: " + ex.getMessage());
+    }
+    return null;
+}
+
+public void addTransformer(ClassFileTransformer transformer) {
+    //5. addTransformer方法实际是调用了loadTimeWeaver属性的addTransformer方法
+    this.loadTimeWeaver.addTransformer(transformer);
+}
 ```
 `LoadTimeWeaver`反射实现，通过反射获取`ClassLoader`的`addTransformer`方法
 ```java
@@ -164,23 +164,23 @@ public ReflectiveLoadTimeWeaver(ClassLoader classLoader) {
 #### 3. AspectJWeavingEnabler
 `AspectJWeavingEnabler.java`
 ```java
-    //1. 实现了BeanFactoryPostProcessor接口，在bean初始化之前把字节码转换器加到loadTimeWeaver(实际根据LoadTimeWeaver不同可能加到了instrumentation或者ClassLoader)
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		enableAspectJWeaving(this.loadTimeWeaver, this.beanClassLoader);
-	}
+//1. 实现了BeanFactoryPostProcessor接口，在bean初始化之前把字节码转换器加到loadTimeWeaver(实际根据LoadTimeWeaver不同可能加到了instrumentation或者ClassLoader)
+public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    enableAspectJWeaving(this.loadTimeWeaver, this.beanClassLoader);
+}
 
-	public static void enableAspectJWeaving(LoadTimeWeaver weaverToUse, ClassLoader beanClassLoader) {
-		if (weaverToUse == null) {
-			if (InstrumentationLoadTimeWeaver.isInstrumentationAvailable()) {
-				weaverToUse = new InstrumentationLoadTimeWeaver(beanClassLoader);
-			}
-			else {
-				throw new IllegalStateException("No LoadTimeWeaver available");
-			}
-		}
-		weaverToUse.addTransformer(new AspectJClassBypassingClassFileTransformer(
-					new ClassPreProcessorAgentAdapter()));
-	}
+public static void enableAspectJWeaving(LoadTimeWeaver weaverToUse, ClassLoader beanClassLoader) {
+    if (weaverToUse == null) {
+        if (InstrumentationLoadTimeWeaver.isInstrumentationAvailable()) {
+            weaverToUse = new InstrumentationLoadTimeWeaver(beanClassLoader);
+        }
+        else {
+            throw new IllegalStateException("No LoadTimeWeaver available");
+        }
+    }
+    weaverToUse.addTransformer(new AspectJClassBypassingClassFileTransformer(
+                new ClassPreProcessorAgentAdapter()));
+}
 ```
 `AspectJClassBypassingClassFileTransformer.java`
 ```java
@@ -197,36 +197,36 @@ public byte[] transform(ClassLoader loader, String className, Class<?> classBein
 #### 4. LoadTimeWeaverAwareProcessor和LoadTimeWeaverAware
 `AbstractApplicationContext.java`
 ```java
-	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
-        ...
-		//1. Detect a LoadTimeWeaver and prepare for weaving, if found.
-		if (beanFactory.containsBean(LOAD_TIME_WEAVER_BEAN_NAME)) {
-            //2. LoadTimeWeaverAware即是在这里回调
-			beanFactory.addBeanPostProcessor(new LoadTimeWeaverAwareProcessor(beanFactory));
-			//3. Set a temporary ClassLoader for type matching.
-			beanFactory.setTempClassLoader(new ContextTypeMatchClassLoader(beanFactory.getBeanClassLoader()));
-		}
-        ...
-	}
-	
-	protected void finishBeanFactoryInitialization(ConfigurableListableBeanFactory beanFactory) {
-        ...
-        // Initialize LoadTimeWeaverAware beans early to allow for registering their transformers early.
-        //4. 在其它bean初始化之前就已经完成字节码转换器的初始化
-        String[] weaverAwareNames = beanFactory.getBeanNamesForType(LoadTimeWeaverAware.class, false, false);
-        for (String weaverAwareName : weaverAwareNames) {
-            getBean(weaverAwareName);
-        }
-
-        // Stop using the temporary ClassLoader for type matching.
-        beanFactory.setTempClassLoader(null);
-        ...
+protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
+    ...
+    //1. Detect a LoadTimeWeaver and prepare for weaving, if found.
+    if (beanFactory.containsBean(LOAD_TIME_WEAVER_BEAN_NAME)) {
+        //2. LoadTimeWeaverAware即是在这里回调
+        beanFactory.addBeanPostProcessor(new LoadTimeWeaverAwareProcessor(beanFactory));
+        //3. Set a temporary ClassLoader for type matching.
+        beanFactory.setTempClassLoader(new ContextTypeMatchClassLoader(beanFactory.getBeanClassLoader()));
     }
+    ...
+}
+
+protected void finishBeanFactoryInitialization(ConfigurableListableBeanFactory beanFactory) {
+    ...
+    // Initialize LoadTimeWeaverAware beans early to allow for registering their transformers early.
+    //4. 在其它bean初始化之前就已经完成字节码转换器的初始化
+    String[] weaverAwareNames = beanFactory.getBeanNamesForType(LoadTimeWeaverAware.class, false, false);
+    for (String weaverAwareName : weaverAwareNames) {
+        getBean(weaverAwareName);
+    }
+
+    // Stop using the temporary ClassLoader for type matching.
+    beanFactory.setTempClassLoader(null);
+    ...
+}
 ```
 这里有一个`temporary ClassLoader` 见`beanFactory.setTempClassLoader`文档：
 > Specify a temporary ClassLoader to use for type matching purposes. Default is none, simply using the standard bean ClassLoader.
 
-#### 5.总结：
+#### 5. 总结：
 整个流程串起来就是：
 
 - 通过`<context:load-time-weaver/>`开启`load-time-weaver`，注册了`DefaultContextLoadTimeWeaver`和`AspectJWeavingEnabler`两个`bean`
