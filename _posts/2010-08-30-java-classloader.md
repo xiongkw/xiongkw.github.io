@@ -41,4 +41,45 @@ sun.misc.Launcher$ExtClassLoader
 
 我们知道，同一个类被不同的`ClassLoader`加载所生成的`Class`是不相同的，为了保证同一个类只能被加载一次，`ClassLoader`采用双亲委派模式，即优先由其父`ClassLoader`加载，只有父`ClassLoader`加载不到时才由自己加载
 
-> 虽然如此，但是我们也可以通过继承`ClassLoader`实现自定义加载器，从而改写`双亲委派`的逻辑
+看`ClassLoader.loadClass`源码：
+```java
+protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException{
+    synchronized (getClassLoadingLock(name)) {
+        // First, check if the class has already been loaded
+        Class<?> c = findLoadedClass(name);
+        if (c == null) {
+            long t0 = System.nanoTime();
+            try {
+                if (parent != null) {
+                    c = parent.loadClass(name, false);
+                } else {
+                    c = findBootstrapClassOrNull(name);
+                }
+            } catch (ClassNotFoundException e) {
+                // ClassNotFoundException thrown if class not found
+                // from the non-null parent class loader
+            }
+
+            if (c == null) {
+                // If still not found, then invoke findClass in order
+                // to find the class.
+                long t1 = System.nanoTime();
+                c = findClass(name);
+
+                // this is the defining class loader; record the stats
+                sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);
+                sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+                sun.misc.PerfCounter.getFindClasses().increment();
+            }
+        }
+        if (resolve) {
+            resolveClass(c);
+        }
+        return c;
+    }
+}
+```
+
+`if (parent != null) {c = parent.loadClass(name, false);}` 即是实现了双亲委派的功能
+
+> 虽然如此，但是我们也可以通过重写`loadClass`方法实现自定义加载器，从而改写`双亲委派`的逻辑
