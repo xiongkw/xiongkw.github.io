@@ -7,7 +7,7 @@ tags: [metaspace, oom, jvisualvm]
 
 > `Metaspace`(元空间)，是`jdk8`的概念，用于存放类的元信息，`jdk7`之前是属于`Perm gen`(永久区)
 
-#### 一个例子
+#### 1. 一个例子
 
 本例通过不断生成并加载新的类让元空间溢出
 ```java
@@ -44,3 +44,8 @@ Exception in thread "main" java.lang.OutOfMemoryError: Metaspace
 	at javassist.CtClass.toClass(CtClass.java:1079)
 	at com.mywork.mem.MetaspaceOutOfMenory.main(MetaspaceOutOfMenory.java:18)
 ```
+
+#### 2. 参考
+
+* [java内存模型]({{site.url}}/2017/06/27/java-memory/)
+* [java中的GC]({{site.url}}/2017/07/01/java-gc/)

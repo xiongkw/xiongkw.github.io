@@ -52,6 +52,13 @@ tags: [jvm, 内存, GC]
 
 > `-XX:SurvivorRatio`: `Eden`与`Survivor`的比值，默认为`8`，表示`Eden`占`8/10`，两个`Survivor`各占`1/10`
 
+#### 5.3 TLAB
+
+`TLAB`: `Thread Local Allocation`，本地线程分配缓冲区，包含在`Eden`中，是一种快速分配的策略，能够提升内存分配的吞吐量，同时由于其是线程私有的，也可以避免一些非线程安全问题
+
+> `-XX:UseTLAB`，设置是否开启`TLAB`   
+> `-XX:TLABWasteTargetPercent`: 设置`TLAB`占用`Eden`空间百分比，默认为`1%`
+
 #### 6. 元空间
 
 `Metaspace`: 用于存放类信息等，`java7`之前称为`永久代`(`Permanant Generation`)
@@ -62,3 +69,7 @@ tags: [jvm, 内存, GC]
 #### 7. 永久代
 
 >`perm gen`(永久代)是`java7`以前的概念，用于存放`类信息`、`常量`、`静态变量`等，从`jdk7`开始，常量和静态变量已经转移到`heap`中了
+
+#### 附
+
+[java中的GC]({{site.url}}/2017/07/01/java-gc/)

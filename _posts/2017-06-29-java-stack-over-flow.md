@@ -45,3 +45,8 @@ public class StackOverFlow {
     }
 }
 ```
+
+#### 4. 参考
+
+* [java内存模型]({{site.url}}/2017/06/27/java-memory/)
+* [java中的GC]({{site.url}}/2017/07/01/java-gc/)

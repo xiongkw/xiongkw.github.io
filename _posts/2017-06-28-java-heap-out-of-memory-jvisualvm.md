@@ -16,12 +16,16 @@ tags: [heap, oom, jvisualvm]
 年老代（Tenured)：年轻代中经过垃圾回收没有回收掉的对象将被Copy到年老代
 ```
 
+> 参考[java内存模型]({{site.url}}/2017/06/27/java-memory/)
+
 #### 2. 堆内存中的垃圾回收
 ```
 当年轻代内存满时，会引发一次普通GC，该GC仅回收年轻代。需要强调的时，年轻代满是指Eden代满，Survivor满不会引发GC
 当年老代满时会引发Full GC，Full GC将会同时回收年轻代、年老代
 当永久代满时也会引发Full GC，会导致Class、Method元信息的卸载
 ```
+
+> 参考[java中的GC]({{site.url}}/2017/07/01/java-gc/)
 
 #### 3. 堆内存大小设置
 ```
@@ -128,3 +132,8 @@ Process finished with exit code 1
 ```
 
 > 发生了`6`次普通`GC`和n次`Full GC`
+
+#### 5. 参考
+
+* [java内存模型]({{site.url}}/2017/06/27/java-memory/)
+* [java中的GC]({{site.url}}/2017/07/01/java-gc/)
