@@ -12,13 +12,16 @@ tags: [jvm, 内存, GC]
 ![]({{site.url}}/public/images/2017-06-27-java-memory.png)
 
 #### 2. stack
-`java栈`用于存储线程范围的方法调用数据，其`方法调用栈`中的每个`方法调用`分别存储在不同的`栈桢`中
+
+* `java栈`: 用于存储线程范围的方法局部变量
+* `栈桢`: `方法调用栈`中的每个`方法调用`的数据分别存储在不同的`栈桢`中
+* `逃逸分析`: 简单的说方法内部的`局部变量`即是`非逃逸对象`，而当其被方之外的其它任何对象引用后，这个`局部变量`就逃逸了，`jvm`通过`逃逸分析`找出`非逃逸对象`并为之在`栈`上分配内存空间
 
 > `-Xss`: 指定线程的栈大小，默认`1M`
 
 #### 3. PC寄存器
 
-多线程技术基于`CPU`的分时调度，所以在线程上下文切换时，必须要保存线程当前状态(执行到哪条指令了)，以便下次接着运行，`PC寄存器`便是用于存储线程运行状态，`PC寄存器`是线程私有的
+`Program Counter Register`: 多线程技术基于`CPU`的分时调度，所以在线程上下文切换时，必须要保存线程当前状态(执行到哪条指令了)，以便下次接着运行，`PC寄存器`便是用于存储线程运行状态，`PC寄存器`是线程私有的
 
 #### 4. Native Method Stack
 
@@ -26,16 +29,16 @@ tags: [jvm, 内存, GC]
 
 #### 5. Heap
 
-`java堆`用于存放实例对象，是`jvm`中内存占用最大的部分，是垃圾回收器主要管理的地方，在`java8`中元空间也划到了`堆`中，所以`堆`包括`新生代`、`老年代`和元空间
+`java堆`: 用于存放实例对象，是`jvm`中内存占用最大的部分，是垃圾回收器主要管理的地方，在`java8`中元空间也划到了`堆`中，所以`堆`包括`新生代`、`老年代`和元空间
 
 > `-Xms`: 指定堆的初始内存大小，默认为物理内存的`1/64`   
 > `-Xmx`: 指定堆的最大内存，默认为物理内存的`1/4`
 
 #### 5.1 新生代和老年代
 
-`jvm`通过划分`新生代`和`老年代`以更精细的划分`GC`任务，通常情况下`new`创建的对象放于`新生代`，而当指定次数(默认`15`次)的`Young GC`发生后，如果对象依然存活，则会被转移到`老年代`
+`jvm`通过划分`新生代(Yong Gen)`和`老年代(Old Gen)`以更精细的划分`GC`任务，通常情况下`new`创建的对象放于`新生代`，而当指定次数(默认`15`次)的`Manor GC`发生后，如果对象依然存活，则会被转移到`老年代`
 
-关于`Young GC`参考[java中的GC]({{site.url}}/2017/07/01/java-gc/)
+关于`Manor GC`参考[java中的GC]({{site.url}}/2017/07/01/java-gc/)
 
 > `-Xmn`: 指定新生代内存大小   
 > `-XX:NewSize`: 新生代内存初始值，和`-Xmn`等价
@@ -46,11 +49,12 @@ tags: [jvm, 内存, GC]
 
 `新生代`又划分为`Eden`、`From Survivor`和`To Survivor`
 
-* `Eden`: 新创建的对象会存放在`Eden`,经过一次`Young GC`后`Eden`中仍存活的对象会转移到`To Survivor`
-* `From Survivor`: 经过一次`Young GC`后`From Survivor`中的对象会转移到`To Survivor`
-* `To Survivor`: `Young GC`执行之前`To Survivor`是空的，执行过后`From Survivor`和`To Survivor`会互换
+* `Eden`: 新创建的对象会存放在`Eden`,经过一次`Manor GC`后`Eden`中仍存活的对象会转移到`To Survivor`
+* `From Survivor`: 经过一次`Manor GC`后`From Survivor`中的对象会转移到`To Survivor`
+* `To Survivor`: `Manor GC`执行之前`To Survivor`是空的，执行过后`From Survivor`和`To Survivor`会互换
 
 > `-XX:SurvivorRatio`: `Eden`与`Survivor`的比值，默认为`8`，表示`Eden`占`8/10`，两个`Survivor`各占`1/10`
+> `-XX:MaxTenuringThreshold`: 设置`新生代`中对象可复制到`老年代`时的年龄
 
 #### 5.3 TLAB
 
