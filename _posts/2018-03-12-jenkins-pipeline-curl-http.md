@@ -6,15 +6,18 @@ tags: [curl, http, jenkins, pipeline]
 ---
 
 
-> 
+> `devops`项目中使用`jenkins pipeline`实现自动化的部署测试，本文使用`curl`调用`http`接口，仅作为演示用
 
 #### 1. 场景
+
 使用`jenkins`调用`http restful`接口，以下仅作演示
 
 #### 1. job创建
+
 在`jenkins`中创建一个`pipeline job`，详情略
 
 #### 2. 参数定义
+
 在`1`中创建`job`中配置参数
 
 |参数类型   |   参数名  |  说明 |
