@@ -94,9 +94,9 @@ pipeline {
 
 					if [[ $status = 200 ]];then
 							echo "Config file [$3] exists, updating..."
-							echo -e "Request\ncurl -X PUT -d @$3 -H \\"Content-Type: application/json\\" -is $1/api/files/$3"
+							echo -e "Request\ncurl -X PUT -d @$3 -H \\"token:$2\\" -H \\"Content-Type: application/json\\" -is $1/api/files/$3"
 
-							res=`curl -X PUT -d @$3 -H "token:$4" -H "Content-Type: application/json" -is $1/api/files/$3`
+							res=`curl -X PUT -d @$3 -H "token:$2" -H "Content-Type: application/json" -is $1/api/files/$3`
 							echo -e "Response:\n$res"
 
 							status=`echo $res | awk '/^HTTP/  {print $2}'`
@@ -110,9 +110,9 @@ pipeline {
 							fi
 					elif [[ $status = 404 ]];then
 							echo "Config file [$3] not exists, creating..."
-							echo -e "Request\ncurl -X POST -d @$3 -H \\"token:$4\\" -H \\"Content-Type: application/json\\" -is $1/api/files"
+							echo -e "Request\ncurl -X POST -d @$3 -H \\"token:$2\\" -H \\"Content-Type: application/json\\" -is $1/api/files"
 
-							res=`curl -X POST -d @$3 -H "token:$4" -H "Content-Type: application/json" -is $1/api/files`
+							res=`curl -X POST -d @$3 -H "token:$2" -H "Content-Type: application/json" -is $1/api/files`
 							echo -e "Response:\n$res"
 
 							status=`echo $res | awk '/^HTTP/  {print $2}'`
@@ -160,6 +160,8 @@ pipeline {
 * `curl -X PUT -d @$3`: `@`的作用是从文件`$3`中加载`PUT`调用的`data`
 
 #### 4. 参数化构建
+
+发送`jenkins`参数化构建请求：
 
 ```
 curl -X POST -d 'DCOS_URL=http://127.0.0.1:8088&TOKEN=xxxx&APP_NAME=myapp&APP_DESC=my app&CONFIG_FILES=a.txt aGVsbG8K b.txt aGkK' http://127.0.0.1:8080/job/myJob/buildWithParameters
