@@ -12,11 +12,11 @@ tags: [curl, http, jenkins, pipeline]
 
 使用`jenkins`调用`http restful`接口，以下仅作演示
 
-#### 1. job创建
+#### 2. job创建
 
 在`jenkins`中创建一个`pipeline job`，详情略
 
-#### 2. 参数定义
+#### 3. 参数定义
 
 在`1`中创建`job`中配置参数
 
@@ -28,7 +28,7 @@ tags: [curl, http, jenkins, pipeline]
 |String    |   APP_DESC         |     app description         |
 |Multi-line String| CONFIG_FILES   | 配置文件(多个,形如"file1 content1 file2 content2")       |
 
-#### 3. 定义Pipeline script
+#### 4. 定义Pipeline script
 
 ```
 pipeline {
@@ -159,7 +159,7 @@ pipeline {
 * `echo ${fileArray[$i+1]} | base64 -d > $fileName`: 使用`base64`解码文件内容，原因是文件可能是二进制格式，或者文件中包含空格等特殊字符
 * `curl -X PUT -d @$3`: `@`的作用是从文件`$3`中加载`PUT`调用的`data`
 
-#### 4. 参数化构建
+#### 5. 参数化构建
 
 发送`jenkins`参数化构建请求：
 
@@ -169,6 +169,7 @@ curl -X POST -d 'DCOS_URL=http://127.0.0.1:8088&TOKEN=xxxx&APP_NAME=myapp&APP_DE
 
 > `-d`参数默认会自动`url encode`
 
-#### 5. 参考
+#### 6. 参考
+
 * [Pipeline Syntax](https://jenkins.io/doc/book/pipeline/syntax/)
 * [使用curl命令实现复杂的http调用]({{site.url}}/2018/03/08/curl-http-request)

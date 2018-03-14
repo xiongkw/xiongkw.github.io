@@ -117,4 +117,5 @@ public Object onHystrixRuntimeException(HystrixRuntimeException e){
 
 #### 4. 参考文档
 
-[Spring Cloud](http://cloud.spring.io/spring-cloud-static/Edgware.RELEASE/single/spring-cloud.html)
+* [Spring Cloud](http://cloud.spring.io/spring-cloud-static/Edgware.RELEASE/single/spring-cloud.html)
+* [Spring-Cloud中使用Feign结合Hystrix实现微服务调用]({{site.url}}/2018/01/12/spring-cloud-feign)
