@@ -63,7 +63,7 @@ public Object getObject() throws Exception {
 }
 ```
 
-> 发现这里的`url`来自注解定义，无法做到动态化
+> 发现这里的`url`来自注解定义，无法做到参数化
 
 #### 3. 动态url改造
 
