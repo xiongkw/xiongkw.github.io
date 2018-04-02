@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Spring-cloud中的服务接口设计
+title: 关于微服务架构中服务调用rpc和restful
 categories: [编程, java, spring]
-tags: [spring-cloud, rpc, restful]
+tags: [spring cloud,dubbo, rpc, restful]
 ---
 
 
