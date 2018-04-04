@@ -42,13 +42,19 @@
       url: https://github.com/getlantern
     - title: SwitchHosts
       url: https://oldj.github.io/SwitchHosts/
+    - title: Oh My Zsh
+      url: https://github.com/robbyrussell/oh-my-zsh
 
 - name: IT
   pages:
     - title: GitHub
       url: https://www.github.com/
+    - title: Free Programming Book
+      url: https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md
     - title: Apache
       url: http://apache.org/
+    - title: FreeCodeCamp
+      url: https://www.freecodecamp.org
     - title: Spring
       url: https://spring.io/
     - title: Stack Overflow
