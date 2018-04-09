@@ -178,13 +178,13 @@ http://127.0.0.1:9411
 ```
 
 查看`Trace`
-![]({{site.url}}/public/2018-04-09-spring-sleuth-and-zipkin-1.png)
+![]({{site.url}}/public/images/2018-04-09-spring-sleuth-and-zipkin-1.png)
 
 `Consumer`详情
-![]({{site.url}}/public/2018-04-09-spring-sleuth-and-zipkin-2.png)
+![]({{site.url}}/public/images/2018-04-09-spring-sleuth-and-zipkin-2.png)
 
 `Producer`详情
-![]({{site.url}}/public/2018-04-09-spring-sleuth-and-zipkin-3.png)
+![]({{site.url}}/public/images/2018-04-09-spring-sleuth-and-zipkin-3.png)
 
 #### 2. 源码分析
 
