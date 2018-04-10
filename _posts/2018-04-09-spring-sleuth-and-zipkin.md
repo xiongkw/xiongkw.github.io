@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spring Cloud Sleuth和Zipkin
+title: Spring Cloud Sleuth和Zipkin源码分析
 categories: [编程, java, spring]
 tags: [spring cloud, sleuth, zipkin, trace]
 ---
