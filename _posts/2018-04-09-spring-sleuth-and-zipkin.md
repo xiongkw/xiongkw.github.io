@@ -166,7 +166,9 @@ server:
   port: 8002
 ```
 
-##### 1.4 运行
+#### 2. 运行
+
+##### 2.1 启动服务
 分别启动`服务提供者`和`消费者`并访问
 ```
 http://127.0.0.1:8002/hi?name=Tom
@@ -176,19 +178,21 @@ http://127.0.0.1:8002/hi?name=Tom
 ```
 http://127.0.0.1:9411
 ```
-
+##### 2.2 查看Trace
 查看`Trace`
 ![]({{site.url}}/public/images/2018-04-09-spring-sleuth-and-zipkin-1.png)
 
+##### 2.3 查看消费者调用信息
 `Consumer`详情
 ![]({{site.url}}/public/images/2018-04-09-spring-sleuth-and-zipkin-2.png)
 
+##### 2.4 查看提供者调用信息
 `Producer`详情
 ![]({{site.url}}/public/images/2018-04-09-spring-sleuth-and-zipkin-3.png)
 
-#### 2. 源码分析
+#### 3. 源码分析
 
-##### 2.1 spring-cloud-sleuth-core
+##### 3.1 spring-cloud-sleuth-core
 
 `TraceAutoConfiguration`
 
@@ -234,9 +238,18 @@ public SpanAdjuster defaultSpanAdjuster() {
 
 ```
 
+`Sleuth`的重要组件:
+
+* `Random`: 用于生成随机`span id`
+* `Sampler`: 采样器
+* `Tracer`: `trace`记录器
+* `SpanReporter`: `span`报告器
+* `SpanAdjuster`: `span`校验器
+* `ErrorParser`: 异常解析器
+
 > 可以看到`sleuth`中定义的是默认行为，例如`DefaultSpanNamer. NoOp*`
 
-##### 2.2 spring-cloud-sleuth-zipkin
+##### 3.2 spring-cloud-sleuth-zipkin
 
 `ZipkinAutoConfiguration`
 
@@ -277,7 +290,7 @@ public SpanReporter zipkinSpanListener(Reporter<Span> reporter, EndpointLocator 
 
 > 这里是`zipkin`实现，所以`sleuth`和`zipkin`之间是`接口`与`实现`的关系
 
-##### 2.3 Sleuth如何工作
+##### 3.3 Sleuth api
 
 `sleuth`提供了多种方式来记录调用链，如下
 ```
@@ -297,38 +310,10 @@ org.springframework.cloud.sleuth.instrument
 public class TraceFilter extends GenericFilterBean {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
     			FilterChain filterChain) throws IOException, ServletException {
-    		if (!(servletRequest instanceof HttpServletRequest) || !(servletResponse instanceof HttpServletResponse)) {
-    			throw new ServletException("Filter just supports HTTP requests");
-    		}
-    		HttpServletRequest request = (HttpServletRequest) servletRequest;
-    		HttpServletResponse response = (HttpServletResponse) servletResponse;
-    		String uri = this.urlPathHelper.getPathWithinApplication(request);
-    		boolean skip = this.skipPattern.matcher(uri).matches()
-    				|| Span.SPAN_NOT_SAMPLED.equals(ServletUtils.getHeader(request, response, Span.SAMPLED_NAME));
-    		Span spanFromRequest = getSpanFromAttribute(request);
-    		if (spanFromRequest != null) {
-    			continueSpan(request, spanFromRequest);
-    		}
-    		if (log.isDebugEnabled()) {
-    			log.debug("Received a request to uri [" + uri + "] that should not be sampled [" + skip + "]");
-    		}
-    		// in case of a response with exception status a exception controller will close the span
-    		if (!httpStatusSuccessful(response) && isSpanContinued(request)) {
-    			Span parentSpan = parentSpan(spanFromRequest);
-    			processErrorRequest(filterChain, request, new TraceHttpServletResponse(response, parentSpan), spanFromRequest);
-    			return;
-    		}
-    		String name = HTTP_COMPONENT + ":" + uri;
-    		Throwable exception = null;
     		try {
     			spanFromRequest = createSpan(request, skip, spanFromRequest, name);
     			filterChain.doFilter(request, new TraceHttpServletResponse(response, spanFromRequest));
     		} catch (Throwable e) {
-    			exception = e;
-    			errorParser().parseErrorTags(tracer().getCurrentSpan(), e);
-    			if (log.isErrorEnabled()) {
-    				log.error("Uncaught exception thrown", e);
-    			}
     			throw e;
     		} finally {
     			if (isAsyncStarted(request) || request.isAsyncStarted()) {
@@ -344,9 +329,79 @@ public class TraceFilter extends GenericFilterBean {
 }
 ```
 
+* `createSpan`中会尝试从`request`中获取`parent span`
+* `span`的`report`动作发生在`detachOrCloseSpans`
+* 从`TODO`看这里不支持异步请求
+
 > 使用`zipkin api`是需要编写代码的，`sleuth`使用`Filter`实现无侵入的调用链追踪
 
-#### 3. 参考
+##### 3.4 业务日志如何和调用链关联
+
+`TraceEnvironmentPostProcessor`
+```java
+public void postProcessEnvironment(ConfigurableEnvironment environment,
+        SpringApplication application) {
+    Map<String, Object> map = new HashMap<String, Object>();
+    // This doesn't work with all logging systems but it's a useful default so you see
+    // traces in logs without having to configure it.
+    if (Boolean.parseBoolean(environment.getProperty("spring.sleuth.enabled", "true"))) {
+        map.put("logging.pattern.level",
+                "%5p [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]");
+    }
+    // TODO: Remove this in 2.0.x. For compatibility we always set to true
+    if (!environment.containsProperty(SPRING_AOP_PROXY_TARGET_CLASS)) {
+        map.put(SPRING_AOP_PROXY_TARGET_CLASS, "true");
+    }
+    addOrReplace(environment.getPropertySources(), map);
+}
+```
+
+> 这里定义`logging.pattern.level`为`%5p [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]`   
+> `%X{xx}`是使用`MDC(Mapped Diagnostic Context)`线程变量
+ 
+那么`X-B3-TraceId`和`X-B3-SpanId`是从哪来的呢？
+
+`DefaultTracer.createSpan`
+```java
+public Span createSpan(String name, Sampler sampler) {
+    String shortenedName = SpanNameUtil.shorten(name);
+    Span span;
+    if (isTracing()) {
+        span = createChild(getCurrentSpan(), shortenedName);
+    }
+    else {
+        long id = createId();
+        span = Span.builder().name(shortenedName)
+                .traceIdHigh(this.traceId128 ? createTraceIdHigh() : 0L)
+                .traceId(id)
+                .spanId(id).build();
+        if (sampler == null) {
+            sampler = this.defaultSampler;
+        }
+        span = sampledSpan(span, sampler);
+        this.spanLogger.logStartedSpan(null, span);
+    }
+    return continueSpan(span);
+}
+```
+ 
+`Slf4jSpanLogger.logStartedSpan`
+```java
+public void logStartedSpan(Span parent, Span span) {
+    MDC.put(Span.SPAN_ID_NAME, Span.idToHex(span.getSpanId()));
+    MDC.put(Span.SPAN_EXPORT_NAME, String.valueOf(span.isExportable()));
+    MDC.put(Span.TRACE_ID_NAME, span.traceIdString());
+    log("Starting span: {}", span);
+    if (parent != null) {
+        log("With parent: {}", parent);
+        MDC.put(Span.PARENT_ID_NAME, Span.idToHex(parent.getSpanId()));
+    }
+}
+```
+
+> 这里把`X-B3-TraceId`和`X-B3-SpanId`写入到了`MDC`中
+
+#### 4. 参考
 
 * [Spring Cloud Sleuth](https://github.com/spring-cloud/spring-cloud-sleuth)
 
