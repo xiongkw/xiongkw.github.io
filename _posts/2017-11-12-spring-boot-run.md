@@ -208,6 +208,36 @@ protected void configureEnvironment(ConfigurableEnvironment environment,
 }
 ```
 
+> 处理`propertySource`和`Profile`
+
+```java
+protected void configurePropertySources(ConfigurableEnvironment environment,
+			String[] args) {
+    MutablePropertySources sources = environment.getPropertySources();
+    if (this.defaultProperties != null && !this.defaultProperties.isEmpty()) {
+        sources.addLast(
+                new MapPropertySource("defaultProperties", this.defaultProperties));
+    }
+    if (this.addCommandLineProperties && args.length > 0) {
+        String name = CommandLinePropertySource.COMMAND_LINE_PROPERTY_SOURCE_NAME;
+        if (sources.contains(name)) {
+            PropertySource<?> source = sources.get(name);
+            CompositePropertySource composite = new CompositePropertySource(name);
+            composite.addPropertySource(new SimpleCommandLinePropertySource(
+                    name + "-" + args.hashCode(), args));
+            composite.addPropertySource(source);
+            sources.replace(name, composite);
+        }
+        else {
+            sources.addFirst(new SimpleCommandLinePropertySource(args));
+        }
+    }
+}
+```
+
+> 命令行中的参数也会被解析到`PropertySource`
+
+
 ##### 3.3 createApplicationContext
 
 ```java
@@ -261,6 +291,42 @@ private void prepareContext(ConfigurableApplicationContext context,
 }
 ```
 
+```java
+protected void applyInitializers(ConfigurableApplicationContext context) {
+    for (ApplicationContextInitializer initializer : getInitializers()) {
+        Class<?> requiredType = GenericTypeResolver.resolveTypeArgument(
+                initializer.getClass(), ApplicationContextInitializer.class);
+        Assert.isInstanceOf(requiredType, context, "Unable to call initializer.");
+        initializer.initialize(context);
+    }
+}
+```
+
+> 调用`ApplicationContextInitializer.initialize`，这里可以自定义初始化
+
+```java
+protected void load(ApplicationContext context, Object[] sources) {
+    if (logger.isDebugEnabled()) {
+        logger.debug(
+                "Loading source " + StringUtils.arrayToCommaDelimitedString(sources));
+    }
+    BeanDefinitionLoader loader = createBeanDefinitionLoader(
+            getBeanDefinitionRegistry(context), sources);
+    if (this.beanNameGenerator != null) {
+        loader.setBeanNameGenerator(this.beanNameGenerator);
+    }
+    if (this.resourceLoader != null) {
+        loader.setResourceLoader(this.resourceLoader);
+    }
+    if (this.environment != null) {
+        loader.setEnvironment(this.environment);
+    }
+    loader.load();
+}
+```
+
+> 加载`source`配置中的`bean`到`ApplicationContext`
+
 ##### 3.5 refreshContext
 
 ```java
@@ -270,7 +336,7 @@ protected void refresh(ApplicationContext applicationContext) {
 }
 ```
 
-> `refresh`
+> 调用`applicationContext.refresh`
 
 ##### 3.6 afterRefresh
 
@@ -296,3 +362,4 @@ private void callRunners(ApplicationContext context, ApplicationArguments args) 
 }
 ```
 
+> 这里是提供一个后置处理的入口(见`*PostProcessor`)，`ApplicationRunner`和`CommandLineRunner`功能相同，唯一区别是参数形式不一样
