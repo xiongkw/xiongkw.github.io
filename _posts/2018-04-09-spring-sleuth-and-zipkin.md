@@ -356,7 +356,8 @@ public void postProcessEnvironment(ConfigurableEnvironment environment,
 }
 ```
 
-> 这里定义`logging.pattern.level`为`%5p [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]`   
+> 这里定义`logging.pattern.level`为`%5p [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]`
+> `LOG_LEVEL_PATTERN`变量的写入发生在`LoggingSystemProperties#apply`   
 > `%X{xx}`是使用`MDC(Mapped Diagnostic Context)`线程变量
  
 那么`X-B3-TraceId`和`X-B3-SpanId`是从哪来的呢？
