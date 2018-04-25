@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Apache-Storm安装
-categories: [编程, java]
+categories: [编程, java, linux]
 tags: [storm]
 ---
 

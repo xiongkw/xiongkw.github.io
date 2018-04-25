@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Linux下使用daemontools管理进程
-categories: [编程, java]
-tags: [storm]
+categories: [编程, linux]
+tags: [daemontools, storm]
 ---
 
 
