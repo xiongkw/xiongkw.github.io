@@ -81,7 +81,7 @@ zookeeper.connection.timeout.ms=6000
 #### 3. 基本命令
 ```
 # 启动
-nohup kafka-server-start.sh ../config/server.properties &
+kafka-server-start.sh -daemon ../config/server.properties &
  
 # 创建topic
 kafka-topics.sh --create --topic test --partitions 3 --replication-factor 2 --zookeeper 192.168.1.120:2181
