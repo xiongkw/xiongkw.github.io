@@ -55,3 +55,15 @@ ssh user@host 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
  |               |                                                   |                 |
  +---------------+                                                   +-----------------+
 ```
+
+#### 5. 注意
+
+服务端必需关闭`ssh`严格模式
+
+```
+vi /etc/ssh/sshd_config
+
+StrictModes no
+
+service sshd restart
+```
