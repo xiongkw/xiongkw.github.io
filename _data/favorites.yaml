@@ -91,6 +91,10 @@
       url: http://www.cnblogs.com/lori/p/3507359.html
     - title: web性能测试基本性能指标
       url: http://blog.csdn.net/qiguiting/article/details/11584397
+    - title: DevDocs
+      url: http://devdocs.io
+    - title: Mozilla 开发者网络
+      url: https://developer.mozilla.org/
 
 - name: Blog
   pages:
