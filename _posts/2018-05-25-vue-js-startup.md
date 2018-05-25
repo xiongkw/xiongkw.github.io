@@ -8,7 +8,7 @@ tags: [vue, javascript, node, npm]
 
 > 前端技术的发展真是日新月异，十年前我一次接触前端是在写`jsp`，写`freemarker velocity`，使用`jQuery`绑定事件操作`DOM`，到后来`前后端分离`和`单页面应用`，再到`angular react`，又到本文的`vuejs`
 
-##1. 简介
+#### 1. 简介
 
 > `Vue.js` 是用于构建交互式的 `Web` 界面的库，提供了 `MVVM` 数据绑定和一个可组合的组件系统，具有简单、灵活的 `API`
 
