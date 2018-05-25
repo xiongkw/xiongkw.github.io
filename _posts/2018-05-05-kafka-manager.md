@@ -65,20 +65,20 @@ cd kafka-manager/bin
 浏览器打开`http://192.168.1.100:8080`
 
 第一次打开什么都没有，需要添加集群
-[]({{site.url}}/public/images/2018-05-05-kafka-manager-01.png)
+![]({{site.url}}/public/images/2018-05-05-kafka-manager-01.png)
 
-[]({{site.url}}/public/images/2018-05-05-kafka-manager-02.png)
+![]({{site.url}}/public/images/2018-05-05-kafka-manager-02.png)
 
 > 这里的`zk`是`kafka`集群使用的`zk`
 
 查看刚才添加的`kafka`集群
-[]({{site.url}}/public/images/2018-05-05-kafka-manager-03.png)
+![]({{site.url}}/public/images/2018-05-05-kafka-manager-03.png)
 
 查看`topics`
-[]({{site.url}}/public/images/2018-05-05-kafka-manager-04.png)
+![]({{site.url}}/public/images/2018-05-05-kafka-manager-04.png)
 
 查看`topic`详情
-[]({{site.url}}/public/images/2018-05-05-kafka-manager-05.png)
+![]({{site.url}}/public/images/2018-05-05-kafka-manager-05.png)
 
 #### 5. 参考文档
 
