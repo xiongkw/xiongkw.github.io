@@ -92,51 +92,48 @@ supervisor.slots.ports:
 
 #### 3. 启动
 
-##### 3.1 编写启停脚本
+> This command should be run under supervision with a tool like daemontools or monit
 
-`startup.sh`
+`storm`建议使用`daemontools`或`monit`来管理其进程，这里使用`daemontools`
+
+> 参考[Linux下使用daemontools管理进程]({{site.url}}/2018/04/25/linux-daemontools/)
+
+##### 3.1 编写run脚本
+
+这里以`nimbus`为例:
 
 ```
+$ mkdir nimbus
+$ vi nimbus/run
+
 #!/bin/bash
 
-# 启动nimbus
-nohup ./storm nimbus >/dev/null 2>&1 &
-# 启动 supervisor
-nohup ./storm supervisor >/dev/null 2>&1 &
-# 启动 ui
-nohup ./storm ui >/dev/null 2>&1 &
+exec ../storm nimbus >/dev/null 2>&1
+
+$ ln -s nimbus /service/
 ```
 
-`shutdown.sh`
-
-    #!/bin/bash
-
-    # 停止 nimbus
-    kill -9 `ps aux|grep nimbus|grep -v grep|awk '{print $2}'`
-    # 停止 supervisor
-    kill -9 `ps aux|grep supervisor|grep -v grep|awk '{print $2}'`
-    # 停止 ui
-    kill -9 `ps aux|grep storm\.ui\.core|grep -v grep|awk '{print $2}'`
-
-> 上面的启停脚本包含了`nimbus,supervisor,ui`三个角色，实际情况按需提供
+> 分别编写`supervisor ui logviewer run`脚本，省略...
 
 #### 3.2 启动
 
-分别在各节点执行启动脚本
+启动`daemontools svscanboot`就可以了
 
 ```
-./startup.sh
+/command/svscanboot &
 ```
 
 #### 4. 查看界面
 
-浏览器打开
+浏览器访问
 
 ```
 http://192.168.1.101:8081/index.html
 ```
 
 ![]({{site.url}}/public/images/2018-04-24-apache-storm-install.png)
+
+> 注意：如果要在`ui`查看`worker`的日志，则需要启动`logviewer`
 
 #### 5. 参考文档
 
