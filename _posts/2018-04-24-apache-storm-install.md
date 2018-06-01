@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Apache-Storm安装
+title: Apache-Storm安装和运维
 categories: [编程, java, linux]
 tags: [storm]
 ---
@@ -116,7 +116,7 @@ exec storm nimbus >/dev/null 2>&1
 $ ln -s nimbus /service/
 ```
 
-> 分别编写`supervisor ui logviewer run`脚本，省略...   
+> 分别编写`supervisor ui run`脚本，省略...   
 
 #### 3.2 启动
 
@@ -128,7 +128,7 @@ $ ln -s nimbus /service/
 
 > 注意`svscanboot`会使用默认的`PATH`，所以会出现找不到命令的错误，解决方法参考[Linux下使用daemontools管理进程]({{site.url}}/2018/04/25/linux-daemontools/)
 
-#### 4. 查看界面
+#### 4. 访问ui
 
 浏览器访问
 
@@ -136,9 +136,49 @@ $ ln -s nimbus /service/
 http://192.168.1.101:8081/index.html
 ```
 
-![]({{site.url}}/public/images/2018-04-24-apache-storm-install.png)
+![]({{site.url}}/public/images/2018-04-24-apache-storm-install-01.png)
 
-> 注意：如果要在`ui`查看`worker`的日志，则需要启动`logviewer`
+#### 5. 监控管理
+
+##### 5.1 日志查询
+
+进入`Topology`详情页面，在`Worker Resources`中点击`Port`打开`worker`日志
+
+![]({{site.url}}/public/images/2018-04-24-apache-storm-install-02.png)
+
+> 注意：查看`worker`日志，需要启动`logviewer`
+
+##### 5.2 修改日志等级
+
+进入`Topology`详情页面，点击`Topology actions`中的`Change Log Level`按钮
+
+##### 5.3 debug
+
+需要设置`topology.eventlogger.executors`参数，并重新部署`topology`
+```java
+conf.setNumEventLoggers(workersNum);
+```
+
+进入`Topology`详情页面，点击`Topology actions`中的`Debug`按钮
+
+![]({{site.url}}/public/images/2018-04-24-apache-storm-install-03.png)
+
+在`Component summary`中点击`events`查看`debug`日志
+
+![]({{site.url}}/public/images/2018-04-24-apache-storm-install-04.png)
+
+##### 5.4 jvm性能分析
+
+需要设置`worker.profiler.enabled`参数为`true`，并重新部署`topology`
+```java
+conf.put(Config.WORKER_PROFILER_ENABLED, true);
+```
+
+进程`Bolt`详情页面，在`Executors (All time)`列表中勾选指定`Debug`，然后点击`Profiling and Debugging`中相应按钮
+
+![]({{site.url}}/public/images/2018-04-24-apache-storm-install-05.png)
+
+点击`files`查看和下载`dump`文件
 
 #### 5. 参考文档
 
