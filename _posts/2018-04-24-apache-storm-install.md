@@ -21,6 +21,9 @@ tags: [storm]
 
 `apache-storm-1.2.1`版本依赖`jdk7`和`zookeeper`，这里省略
 
+> 注意`storm ui`的`Profiling and Debugging`使用到[Java Flight Recorder](http://www.ateam-oracle.com/java-flight-recorder/)，需要安装支持`Java Flight Recorder`的`jdk`   
+> `openjdk`不支持
+
 ##### 2.2 解压
 
 分别解压到所有主机节点上:
@@ -108,12 +111,12 @@ $ vi nimbus/run
 
 #!/bin/bash
 
-exec ../storm nimbus >/dev/null 2>&1
+exec storm nimbus >/dev/null 2>&1
 
 $ ln -s nimbus /service/
 ```
 
-> 分别编写`supervisor ui logviewer run`脚本，省略...
+> 分别编写`supervisor ui logviewer run`脚本，省略...   
 
 #### 3.2 启动
 
@@ -122,6 +125,8 @@ $ ln -s nimbus /service/
 ```
 /command/svscanboot &
 ```
+
+> 注意`svscanboot`会使用默认的`PATH`，所以会出现找不到命令的错误，解决方法参考[Linux下使用daemontools管理进程]({{site.url}}/2018/04/25/linux-daemontools/)
 
 #### 4. 查看界面
 

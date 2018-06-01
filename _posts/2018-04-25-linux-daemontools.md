@@ -93,6 +93,32 @@ ps aux|grep storm
 
 > `kill`掉进程后，发现进程也会自动启动
 
+##### 4.4 kill进程
+
+使用`daemontools`管理进程后，发现`kill`掉的进程马上又会自动重启，如果不希望进程重启，可以暂时`kill`掉`daemontools`进程
+
+```
+svscanboot
+svscan
+supervise
+```
+
+##### 4.5 关于环境变量
+
+常见的问题是运行时找不到指定命令，原因是`svscanboot`会把`PATH`设置为一个默认值
+
+> [The svscanboot program](http://cr.yp.to/daemontools/svscanboot.html)
+
+`daemontools`提供`envdir`方式来解决，参考[Setting Environment Variables](http://troubleshooters.com/linux/djbdns/daemontools_intro.htm#setting_environment_variables)
+
+这里提供一个简单的解决办法：编辑`svscanboot`修改`PATH`
+
+```
+$ vi daemontools/command/svscanboot
+
+PATH=$PATH:/command:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin
+```
+
 #### 5. 参考文档
 
 * [daemontools](http://cr.yp.to/daemontools.html)
