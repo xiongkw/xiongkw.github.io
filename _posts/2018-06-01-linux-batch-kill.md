@@ -1,8 +1,8 @@
 ---
 layout: post
 title: linux中使用awk和xargs批量kill进程
-categories: [编程, web]
-tags: [vue, javascript, node, npm]
+categories: [编程, linux]
+tags: [awk, xargs]
 ---
 
 
