@@ -1,12 +1,12 @@
 ---
 layout: post
-title: 使用Linux Tree命令查看文件
+title: Linux下使用tree命令查看资源树结构
 categories: [编程, linux]
 tags: [tree]
 ---
 
 
-> `Linux`中常用`ls`查看目录下文件，但`ls`只能展示一级目录，如果需要同时展示多级目录，就需要用到`tree`命令了
+> `Linux`中常用`ls`查看资源，但`ls`只能展示一级目录，如果需要同时展示多级目录，就需要用到`tree`命令了
 
 #### 1. 下载安装
 
@@ -24,7 +24,7 @@ $ make install
 
 #### 2. 使用
 
-使用`tree`命令查看`tree-1.7.0`目录结构
+使用`tree`命令查看`tree-1.7.0`目录的资源树结构
 
 ```
 tree tree-1.7.0
