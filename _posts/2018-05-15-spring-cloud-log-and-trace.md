@@ -372,12 +372,15 @@ protected void process(Tuple tuple) {
   "aggs":{
     "traceIds":{
       "terms":{
-        "field":"traceId"
+        "field":"traceId",
+        "size": 1000
       }
     }
   }
 }
 ```
+
+> 由于ES聚合不支持分页，这里只取出1000条数据
 
 ###### 5.1.2 根据上一步的`traceId`查trace
 
@@ -411,104 +414,71 @@ protected void process(Tuple tuple) {
 
 ```json
 {
-  "query": {
-    "range": {
-      "timestamp": {
-        "gte": 1524563180063,
-        "lt": 1524566780063
-      }
+  "query":{
+    "bool": {
+      "filter": [{
+        "range":{
+          "timestamp":{
+            "gte":#{startTs},
+            "lt":#{endTs}
+          }
+        }
+      }]
     }
   },
   "size": 0,
   "aggs": {
-    "traces": {
-      "terms": {
-        "field": "traceName"
+    "stats": {
+      "composite": {
+        "size": #{size},
+        <#if after??>
+        "after": {
+          "tenantCode":"${after.tenantCode}",
+          "traceName":"${after.traceName}",
+          "name":"${after.name}",
+          "serverApp":"${after.serverApp}",
+          "server":"${after.server}",
+          "clientApp":"${after.clientApp}",
+          "client":"${after.client}"
+        },
+        </#if>
+        "sources": [
+          { "tenantCode":{ "terms": { "field": "tenantCode" } } },
+          { "traceName":{ "terms": { "field": "traceName" } } },
+          { "name":{ "terms": { "field": "name" } } },
+          { "serverApp":{ "terms": { "field": "serverApp" } } },
+          { "server": { "terms": { "field": "server" } } },
+          { "clientApp":{ "terms": { "field": "clientApp" } } },
+          { "client": { "terms": { "field": "client" } } }
+        ]
       },
       "aggs": {
-        "spans": {
-          "terms": {
-            "field": "name"
-          },
-          "aggs": {
-            "client": {
-              "terms": {
-                "field": "client",
-                "script": {
-                  "source": "_value",
-                  "lang": "painless"
-                }
-              }
-            },
-            "server": {
-              "terms": {
-                "field": "server",
-                "script": {
-                  "source": "_value",
-                  "lang": "painless"
-                }
-              }
-            },
-            "timeArea": {
-              "histogram": {
-                "field": "timestamp",
-                "interval": 60000000
-              },
-              "aggs": {
-                "duration": {
-                  "sum": {
-                    "field": "duration"
-                  }
-                },
-                "times": {
-                  "cardinality": {
-                    "field": "id"
-                  }
-                },
-                "errors": {
-                  "filter": {
-                    "match": {
-                      "status": "err"
-                    }
-                  },
-                  "aggs": {
-                    "errors": {
-                      "cardinality": {
-                        "field": "id"
-                      }
-                    }
-                  }
-                },
-                "qps": {
-                  "bucket_script": {
-                    "buckets_path": {
-                      "times": "times",
-                      "duration": "duration"
-                    },
-                    "script": "(int)(params.times / params.duration * 1000000)"
-                  }
-                }
-              }
-            },
-            "times": {
-              "sum_bucket": {
-                "buckets_path": "timeArea>times"
-              }
-            },
-            "duration": {
-              "sum_bucket": {
-                "buckets_path": "timeArea>duration"
-              }
-            },
-            "qps": {
-              "stats_bucket": {
-                "buckets_path": "timeArea>qps"
-              }
-            },
-            "errors": {
-              "sum_bucket": {
-                "buckets_path": "timeArea>errors>errors"
-              }
+        "duration":{
+          "avg": {
+            "field": "duration"
+          }
+        },
+        "qps":{
+          "bucket_script":{
+            "buckets_path": {"duration":"duration"},
+            "script": {"source":"1000/params.duration"}
+          }
+        },
+        "minDuration":{
+          "min":{
+            "field":"duration"
+          }
+        },
+        "peakQps":{
+          "bucket_script":{
+            "buckets_path": {"duration":"minDuration"},
+            "script": {"source":"1000/params.duration"}
+          }
+        },
+        "errors":{
+          "sum": {
+            "script":{
+              "source":"doc.status.value=='err'?1:0"
             }
           }
         }
@@ -518,12 +488,11 @@ protected void process(Tuple tuple) {
 }
 ```
 
-> `aggs.traces`: 根据`traceName`分桶,`traceName`相同的`span`属于入口相同的调用   
-> `aggs.spans`: 根据`name`分桶,`name`相同的`span`其调用服务(`client`)和被调用服务(`server`)相同   
-> `aggs.client, aggs.server`: 取出`client`和`server`属性   
-> `timeArea`: 根据时间(60s)分段统计，目的是计算出峰值`qps`   
-> `timeArea.qps`: `qps`的计算公式为`调用总次数/总耗时`   
-> `qps.stats_bucket`: 统计`qps`的最大最小平均等   
+说明：
+
+1. 通过租户、调用链名称、span名称、调用服务和被调用服务分组统计
+2. 通过`composite`聚合实现分页功能，以避免分桶数据过大导致内存溢出
+3. 通过`bucket_script`管道对耗时再次聚合，计算平均QPS和峰值QPS
 
 #### 6. 参考
 
