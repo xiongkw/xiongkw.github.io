@@ -492,7 +492,7 @@ protected void process(Tuple tuple) {
 
 1. 通过租户、调用链名称、span名称、调用服务和被调用服务分组统计
 2. 通过`composite`聚合实现分页功能，以避免分桶数据过大导致内存溢出
-3. 通过`bucket_script`管道对耗时再次聚合，计算平均QPS和峰值QPS
+3. 通过`bucket_script`管道对耗时再次聚合，计算QPS和峰值QPS
 
 #### 6. 参考
 
