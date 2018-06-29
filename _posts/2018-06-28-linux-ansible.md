@@ -329,7 +329,7 @@ ansible_become_pass=test
 ```
 
 ##### 4.4 任务定义
-
+{% raw %} 
 `roles/install_nginx/tasks.yml`
 
 ```yaml
@@ -337,7 +337,7 @@ ansible_become_pass=test
   - name: Install nginx
     become: true
     yum:
-     name: "\{\{ item \}\}"
+     name: "{{ item }}"
      state: present
     with_items:
     - openssl-devel
@@ -345,48 +345,48 @@ ansible_become_pass=test
   - name: Create nginx user
     become: true
     user:
-      name: "\{\{ nginx_user \}\}"
-      password: "\{\{ nginx_password \}\}"
+      name: "{{ nginx_user }}"
+      password: "{{ nginx_password }}"
       state: present
       group: root
   - name: Copy nginx source code
     become: true
-    become_user: "\{\{ nginx_user \}\}"
+    become_user: "{{ nginx_user }}"
     copy:
-       src: nginx-\{\{ nginx_version \}\}.tar.gz
+       src: nginx-{{ nginx_version }}.tar.gz
        dest: /home/nginx
        force: no
   - name: Unarchive nginx source code
     become: true
-    become_user: "\{\{ nginx_user \}\}"
-    shell: tar zxvf ~/nginx-\{\{ nginx_version \}\}.tar.gz -C ~/
+    become_user: "{{ nginx_user }}"
+    shell: tar zxvf ~/nginx-{{ nginx_version }}.tar.gz -C ~/
   - name: Create nginx dir
     become: true
     file:
-        path: "\{\{ nginx_dir \}\}"
+        path: "{{ nginx_dir }}"
         state: directory
-        owner: "\{\{ nginx_user \}\}"
+        owner: "{{ nginx_user }}"
   - name: Configure nginx
     become: true
-    become_user: "\{\{ nginx_user \}\}"
-    shell: cd ~/nginx-\{\{ nginx_version \}\} && ./configure --prefix=\{\{ nginx_dir \}\}
+    become_user: "{{ nginx_user }}"
+    shell: cd ~/nginx-{{ nginx_version }} && ./configure --prefix={{ nginx_dir }}
   - name: Install nginx
     become: true
-    become_user: "\{\{ nginx_user \}\}"
-    shell: cd /home/nginx/nginx-\{\{ nginx_version \}\} && make && make install
+    become_user: "{{ nginx_user }}"
+    shell: cd /home/nginx/nginx-{{ nginx_version }} && make && make install
   - name: Clean nginx source code
     become: true
-    shell: rm -rf /home/nginx/nginx-\{\{ nginx_version \}\}*
+    shell: rm -rf /home/nginx/nginx-{{ nginx_version }}*
   - name: Copy nginxd script
     become: true
     template:
         src: nginxd
         dest: /etc/init.d
         mode: "0755"
-        owner: "\{\{ nginx_user \}\}"
+        owner: "{{ nginx_user }}"
   - name: Start nginxd service
     become: true
-    become_user: "\{\{ nginx_user \}\}"
+    become_user: "{{ nginx_user }}"
     service:
         name: nginxd
         state: started
@@ -409,12 +409,12 @@ prog="nginx"
 
 start() {
     echo -n $"Starting $prog: "
-    \{\{ nginx_dir \}\}/sbin/nginx
+    {{ nginx_dir }}/sbin/nginx
 }
 
 stop() {
     echo -n $"Stopping $prog: "
-    PID=`cat \{\{ nginx_dir \}\}/logs/nginx.pid`
+    PID=`cat {{ nginx_dir }}/logs/nginx.pid`
     if [[ -n "$PID" ]]; then
         kill $PID
     fi
@@ -434,7 +434,7 @@ esac
 
 exit $RETVAL
 ```
-
+{% endraw %}
 ##### 4.6 变量定义
 
 `roles/install_nginx/vars/main.yml`
