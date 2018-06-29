@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Linux Ansible
+title: Ansible入门
 categories: [编程, linux]
 tags: [ansible]
 ---
 
 
->
+> Ansible 一种集成 IT 系统的配置管理、应用部署、执行特定任务的开源平台，是 AnsibleWorks 公司名下的项目，该公司由 Cobbler 及 Func 的作者于 2012 年创建成立
 
 #### 1. 安装
 
@@ -451,3 +451,5 @@ $ ansible-playbook install_nginx.yml
 #### 5. 参考
 
 * [ANSIBLE PROJECT](https://docs.ansible.com)
+
+* [Ansible 权威指南](http://www.ansible.com.cn/)
