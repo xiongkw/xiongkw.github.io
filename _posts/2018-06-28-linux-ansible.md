@@ -6,7 +6,7 @@ tags: [ansible]
 ---
 
 
-> Ansible 一种集成 IT 系统的配置管理、应用部署、执行特定任务的开源平台，是 AnsibleWorks 公司名下的项目，该公司由 Cobbler 及 Func 的作者于 2012 年创建成立
+> `Ansible`是一个简单的自动化运维管理工具，基于`Python`语言实现，由`Paramiko`和`PyYAML`两个关键模块构建，可用于自动化部署应用、配置、编排task(持续交付、无宕机更新等)
 
 #### 1. 安装
 
@@ -27,6 +27,8 @@ ansible 2.5.5
   python version = 2.7.5 (default, Apr 11 2018, 07:36:10) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
 
 ```
+
+> `Ansible` 依赖`ssh` 和 `python(2.6+ or 3.5+)`
 
 #### 2. 快速开始
 
@@ -66,7 +68,7 @@ $ ansible test -m ping
 
 ```
 
-> `ansible test -m ping`: 对`hosts`中定义的`test`组内的所有主机执行`ping`模块，`ping`模块是`ansible`的内置模块，用于检查主机是否可以正常ssh访问
+> `ansible test -m ping`: 对`hosts`中定义的`test`组内的所有主机执行`ping`模块，`ping`模块是`ansible`的内置模块，用于检查主机是否可以正常`ssh`访问
 
 使用sudo执行命令
 
@@ -76,8 +78,8 @@ $ echo "ansible_become_pass=test" >> hosts
 $ ansible test -b -m shell -a 'ls /'
 ```
 
-> `ansible_become_pass=test`: 配置sudo密码
-> `ansible -b`: 使用sudo执行
+> `ansible_become_pass=test`: 配置`sudo`密码
+> `ansible -b`: 使用`sudo`执行
 
 #### 3. 常用模块
 
@@ -96,7 +98,7 @@ Swap:       4194300         128     4194172
 
 ##### 3.2 script
 
-> 在远程主机上执行`本机`上的`shell`脚本，相当于`scp+shell`的组合
+> 在远程主机上执行`本机`上的`shell`脚本，相当于`scp + shell`的组合
 
 ```
 $ vi test.sh
@@ -151,6 +153,7 @@ $ ansible test -m copy -a 'src=test.sh dest=~/ mode=755'
 
 ```
 $ ansible test -m shell -a '~/test.sh'
+
 192.168.1.100 | SUCCESS | rc=0 >>
             total        used        free      shared  buff/cache   available
 Mem:      528273972    79518764    10155564     4319352   438599644   424729484
@@ -163,6 +166,7 @@ Swap:       4194300         128     4194172
 
 ```
 $ ansible test -m get_url -a 'url=http://192.168.1.101:8080/hello dest=~/test'
+
 192.168.1.101 | SUCCESS => {
     "changed": true,
     "checksum_dest": null,
@@ -278,7 +282,7 @@ $ ansible test -m user -a  'name=test password=test'
 
 #### 4. playbook(剧本)
 
-> playbook是一系列命令的集合，用于完成一组复杂的任务，以下是一个安装nginx的例子
+> `playbook`是一系列命令的集合，用于完成一组复杂的任务，以下是一个安装`nginx`的例子
 
 ##### 4.1 文件结构
 
@@ -315,7 +319,7 @@ ansible_become_pass=test
 
 ##### 4.3 入口
 
-install_nginx.yml
+`install_nginx.yml`
 
 ```yaml
 ---
@@ -326,7 +330,7 @@ install_nginx.yml
 
 ##### 4.4 任务定义
 
-roles/install_nginx/tasks.yml
+`roles/install_nginx/tasks.yml`
 
 ```yaml
 ---
@@ -393,7 +397,7 @@ roles/install_nginx/tasks.yml
 
 ##### 4.5 模板文件
 
-roles/install_nginx/templates/nginxd
+`roles/install_nginx/templates/nginxd`
 
 ```
 #!/bin/bash
@@ -433,7 +437,7 @@ exit $RETVAL
 
 ##### 4.6 变量定义
 
-roles/install_nginx/vars/main.yml
+`roles/install_nginx/vars/main.yml`
 
 ```yaml
 nginx_user: nginx
