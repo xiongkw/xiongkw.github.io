@@ -206,7 +206,9 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'my
 
 修改`mykey`值为`bbb`并发布，访问`mytest`服务，发现`mykey`的值变为了`bbb`
 
-#### 6. 踩坑集合
+#### 6. 踩坑合集
+
+> 这里没有任何贬低该产品的意思，所谓的`坑`不一定就是`坑`，很大可能是本人没能领会其精髓
 
 ##### 6.1 源码构建依赖运行时环境
 
