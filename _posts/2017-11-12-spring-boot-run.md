@@ -1,22 +1,32 @@
 ---
 layout: post
-title: spring-boot启动过程源码分析
+title: spring-boot(cloud)启动过程源码分析
 categories: [编程, java, spring]
-tags: [spring-boot]
+tags: [spring-boot, spring-cloud]
 ---
 
 
-> `spring-boot`中的一些重要接口和注解
+> `spring-boot`集成`spring-cloud`启动过程源码跟踪
 
 #### 1. 工程搭建
 `pom`
 
 ```xml
-<parent>
+<dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.9.RELEASE</version>
-</parent>
+    <version>1.5.14.RELEASE</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-dependencies</artifactId>
+    <version>Edgware.SR4</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
 
 <dependencies>
     <dependency>
@@ -39,9 +49,13 @@ public class Application {
 
 调试运行，进入SpringApplication.run
 
-#### 2. SpringApplication.initialize
+#### 2. SpringApplication.run
 
 ```java
+public static ConfigurableApplicationContext run(Object[] sources, String[] args) {
+    return new SpringApplication(sources).run(args);
+}
+
 private void initialize(Object[] sources) {
     if (sources != null && sources.length > 0) {
         this.sources.addAll(Arrays.asList(sources));
@@ -69,7 +83,7 @@ private boolean deduceWebEnvironment() {
 }
 ```
 
-> 通过判断类路径中是否存在`org.springframework.web.context.ConfigurableWebApplicationContext`和`javax.servlet.Servlet`来决定是否使用`web环境`
+> 通过判断`classpath`中是否存在`org.springframework.web.context.ConfigurableWebApplicationContext`和`javax.servlet.Servlet`来决定是否使用`web环境`
 
 ##### 2.2 ApplicationContextInitializer
 
@@ -102,38 +116,38 @@ private Class<?> deduceMainApplicationClass() {
 
 ```java
 public ConfigurableApplicationContext run(String... args) {
-		StopWatch stopWatch = new StopWatch();
-		stopWatch.start();
-		ConfigurableApplicationContext context = null;
-		FailureAnalyzers analyzers = null;
-		configureHeadlessProperty();
-		SpringApplicationRunListeners listeners = getRunListeners(args);
-		listeners.starting();
-		try {
-			ApplicationArguments applicationArguments = new DefaultApplicationArguments(
-					args);
-			ConfigurableEnvironment environment = prepareEnvironment(listeners,
-					applicationArguments);
-			Banner printedBanner = printBanner(environment);
-			context = createApplicationContext();
-			analyzers = new FailureAnalyzers(context);
-			prepareContext(context, environment, listeners, applicationArguments,
-					printedBanner);
-			refreshContext(context);
-			afterRefresh(context, applicationArguments);
-			listeners.finished(context, null);
-			stopWatch.stop();
-			if (this.logStartupInfo) {
-				new StartupInfoLogger(this.mainApplicationClass)
-						.logStarted(getApplicationLog(), stopWatch);
-			}
-			return context;
-		}
-		catch (Throwable ex) {
-			handleRunFailure(context, listeners, analyzers, ex);
-			throw new IllegalStateException(ex);
-		}
-	}
+    StopWatch stopWatch = new StopWatch();
+    stopWatch.start();
+    ConfigurableApplicationContext context = null;
+    FailureAnalyzers analyzers = null;
+    configureHeadlessProperty();
+    SpringApplicationRunListeners listeners = getRunListeners(args);
+    listeners.starting();
+    try {
+        ApplicationArguments applicationArguments = new DefaultApplicationArguments(
+                args);
+        ConfigurableEnvironment environment = prepareEnvironment(listeners,
+                applicationArguments);
+        Banner printedBanner = printBanner(environment);
+        context = createApplicationContext();
+        analyzers = new FailureAnalyzers(context);
+        prepareContext(context, environment, listeners, applicationArguments,
+                printedBanner);
+        refreshContext(context);
+        afterRefresh(context, applicationArguments);
+        listeners.finished(context, null);
+        stopWatch.stop();
+        if (this.logStartupInfo) {
+            new StartupInfoLogger(this.mainApplicationClass)
+                    .logStarted(getApplicationLog(), stopWatch);
+        }
+        return context;
+    }
+    catch (Throwable ex) {
+        handleRunFailure(context, listeners, analyzers, ex);
+        throw new IllegalStateException(ex);
+    }
+}
 ```
 
 > `StopWatch`: `spring`提供的计时器工具，下次不用写`System.currentTimeMillis`了
@@ -184,6 +198,8 @@ public interface SpringApplicationRunListener {
 
 > `SpringApplicationRunListener`的作用是监听`ApplicationContext`的生命周期   
 > 看其默认配置是`EventPublishingRunListener`，用于发出不同的`ApplicationEvent`，例如`ApplicationStartedEvent,ApplicationEnvironmentPreparedEvent,ApplicationPreparedEvent,ApplicationReadyEvent,ApplicationFailedEvent`，可以配合`ApplicationListener`来监听并处理这些事件
+
+`listeners.starting()`会触发`ApplicationStartedEvent`事件，这里会触发日志监听器`LoggingApplicationListener`的预初始化方法`beforeInitialize`
 
 ##### 3.2 prepareEnvironment
 
@@ -237,6 +253,22 @@ protected void configurePropertySources(ConfigurableEnvironment environment,
 
 > 命令行中的参数也会被解析到`PropertySource`
 
+触发`ApplicationEnvironmentPreparedEvent`事件
+```java
+public void environmentPrepared(ConfigurableEnvironment environment) {
+    for (SpringApplicationRunListener listener : this.listeners) {
+        listener.environmentPrepared(environment);
+    }
+}
+```
+
+触发`ApplicationListener`监听器
+
+* `BootstrapApplicationListener`: 创建了一个`SpringApplication`并执行其`run`方法，返回一个`ApplicationContext`，作为当前`SpringApplication`的父`context`
+* `LoggingSystemShutdownListener`: 清理日志配置，在`spring-cloud`中，日志配置加载分为两个阶段：`bootstrap`阶段和`application`阶段
+* `ConfigFileApplicationListener`: 会触发所有`EnvironmentPostProcessor`实例，其自身作为一个`EnvironmentPostProcessor`也会被触发，其实现即是读取`application.*(prpoerties、xml、yml、yaml)`配置
+* `LoggingApplicationListener`: 第二次触发了，这次是触发其`initialize`方法，初始化日志配置
+* `DelegatingApplicationListener`: 代理方式，可通过系统变量提供运行时添加自定义`DelegatingApplicationListener`
 
 ##### 3.3 createApplicationContext
 
@@ -301,6 +333,18 @@ protected void applyInitializers(ConfigurableApplicationContext context) {
     }
 }
 ```
+
+常用`ApplicationContextInitializer`实例：
+
+* `AncestorInitializer`: 为当前`spring-boot context`设置`parent`为`bootstrap context`
+* `PropertySourceBootstrapConfiguration`: 加载`bootstrap`配置，实际在`bootstrap context`创建过程中已经加载过了，这里只是作为一个保障
+* `DelegatingApplicationContextInitializer`: 代理方式，可通过环境变量提供运行时添加自定义`ApplicationContextInitializer`
+* `ContextIdApplicationContextInitializer`: 用于设置ApplicationContext的ID
+* `ServerPortInfoApplicationContextInitializer`: 用于获取EmbedTomcat的启动端口，并写入系统变量`local.server.port`
+* `ConfigurationWarningsApplicationContextInitializer`: 用于打印配置错误信息
+* `SharedMetadataReaderFactoryContextInitializer`: 用于创建一个`ConfigurationClassPostProcessor`和`spring boot`共享的`CachingMetadataReaderFactory`
+* `AutoConfigurationReportLoggingInitializer`: 用于打印自动配置日志
+
 
 > 调用`ApplicationContextInitializer.initialize`，这里可以自定义初始化
 

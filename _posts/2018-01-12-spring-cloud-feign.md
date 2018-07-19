@@ -203,10 +203,10 @@ public class HelloController{
 
 查看`@FeignClient`源码，发现有一个`primary`属性：
 ```java
-	/**
-	 * Whether to mark the feign proxy as a primary bean. Defaults to true.
-	 */
-	boolean primary() default true;
+/**
+ * Whether to mark the feign proxy as a primary bean. Defaults to true.
+ */
+boolean primary() default true;
 ```
 
 
