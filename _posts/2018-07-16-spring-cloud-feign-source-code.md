@@ -340,7 +340,7 @@ feign:
                 readTimeout: 30000 //默认2s
 ```
 
-> 见`FeignClientConfiguration`
+> 参见`FeignClientConfiguration`
 
 ##### 5.2 hystrix
 
@@ -355,3 +355,5 @@ hystrix:
                     thread:
                         timeoutInMilliseconds: 30000 //默认1s
 ```
+
+> 参见`HystrixCommandProperties`
