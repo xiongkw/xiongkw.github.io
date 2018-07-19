@@ -353,7 +353,7 @@ public Response execute(Request request, Request.Options options) throws IOExcep
 
 #### 5. 关于timeout
 
-通常调用中会出现超时的情况，一般有`feign`和`hystrix`两种超时情况
+通常调用中会出现超时的情况，一般有`feign`、`ribbon`和`hystrix`三种超时情况
 
 ##### 5.1 feign
 
@@ -406,8 +406,7 @@ public class RibbonClientConfiguration {
 
 > `ribbon`超时时间默认为1s
 
-
-
+`RetryableFeignLoadBalancer`
 ```java
 public RibbonResponse execute(final RibbonRequest request, IClientConfig configOverride)
         throws IOException {
@@ -426,3 +425,4 @@ public RibbonResponse execute(final RibbonRequest request, IClientConfig configO
 }
 ```
 
+> 这里会优先使用`feign`超时时间，所以一般配置`feign`和`hystrix`就可以了
