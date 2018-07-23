@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Spring-boot热部署调试
+title: Spring-boot调试中的热部署
 categories: [编程, java, spring]
 tags: [spring-boot, devtools, spring-loaded]
 ---
 
 
-> `spring-boot`开发中，修改代码后需要重启才能生效
+> `spring-boot`开发中，修改代码后需要重启才能生效，以下是热部署的方法
 
 #### 1. 基于spring-boot-devtools的伪热部署
 
@@ -19,7 +19,7 @@ tags: [spring-boot, devtools, spring-loaded]
 </dependency>
 ```
 
-> 从`console`日志可以发现每次修改代码并编译后，`spring-boot`重启了，这种通过重启程序的方式并不能算真正的热部署
+> 从`console`日志可以发现每次修改代码并编译后，`spring-boot`重启了，这种通过重启程序的方式并不是真正的热部署
 
 #### 2. 基于spring-loaded
 
@@ -52,7 +52,7 @@ tags: [spring-boot, devtools, spring-loaded]
 -Dspring.profiles.active=dev -javaagent:D:/springloaded-1.2.8.RELEASE.jar -noverify
 ```
 
-使用`maven`插件结合`spring-loaded`运行时，`-Dspring.profiles.active`不再起作用，但是不使用`spring-loaded`的情况下是正常的，查看`spring-boot-maven-plugin`源码：
+`maven`插件运行，在不使用`spring-loaded`时可通过`-Dspring.profiles.active`指定`profile`，但使用`spring-loaded`时，`-Dspring.profiles.active`就不起作用了，查看`spring-boot-maven-plugin`源码：
 
 ```java
 public abstract class AbstractRunMojo extends AbstractDependencyFilterMojo {
