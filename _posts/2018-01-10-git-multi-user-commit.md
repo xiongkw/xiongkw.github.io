@@ -65,3 +65,11 @@ git commit --amend --author="fool <aaaaa@xx.com>"
 ```
 
 > 注意：`方法2`只能修改上一次`commit`，并且每次`commit`后都需要修正，这里推荐第一种方法，一劳永逸
+
+#### 4. 附
+
+使用指定账号`clone`的方法
+
+```
+http://username:password@192.168.1.100:9000/mytest.git
+```

@@ -35,7 +35,28 @@ private byte[] content;
 
 > 貌似只能做到自定义`value`的序列化，`key`还是无法忽略
 
-#### 4. 参考
+
+#### 4. 反序列化时如何忽略多余的字段
+
+使用`jackson ObjectMapper`把`json`字符串反序列化为`java`对象时，如果`json`中有多余的字段，则会报错
+
+```
+Unrecognized field, not marked as ignorable
+```
+
+##### 4.1 使用JsonIgnoreProperties注解
+
+```java
+@JsonIgnoreProperties(ignoreUnknown = true)
+```
+
+##### 4.2 使用ObjectMapper配置
+
+```java
+objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+```
+
+#### 5. 参考
 
 * [Jackson Annotations](https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations)
 
