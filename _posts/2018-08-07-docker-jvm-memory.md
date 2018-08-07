@@ -27,7 +27,7 @@ Aug  7 15:52:13 A5-302-ZTE-R8500G3-080 kernel: CPU: 15 PID: 49420 Comm: promethe
 
 #### 2. 查看jvm堆内存
 
-进入`docker`容器，查看堆内存使用情况
+进入`docker`容器，查看`jvm heap`使用情况
 
 ```
 [root@mytest-5d76d6dcd-756g9 /]# jmap -heap 1
@@ -77,11 +77,11 @@ PS Old Generation
    4.78690855968734% used
 ```
 
-> `MaxHeapSize              = 32210157568 (30718.0MB)`可以看到`jvm`最大堆内存为`30G`，但是`docker`容器内存限制才`4G`，这里说明`jvm`的默认堆内存是以宿主机为准，而不是`docker`容器
+> `MaxHeapSize              = 32210157568 (30718.0MB)`可以看到`jvm`最大堆内存为`30G`，但是`docker`容器内存限制才`4G`，这里说明`jvm`的默认堆内存是以`宿主机`为准，而不是`docker容器`
 
 #### 3. 设置容器jvm内存
 
-设置jvm参数`"-Xms1g -Xmx2g -XX:PermSize=256m -XX:MaxPermSize=1g"`，再次查看jvm堆内存
+设置`jvm`参数`"-Xms1g -Xmx2g -XX:PermSize=256m -XX:MaxPermSize=1g"`，再次查看`jvm堆内存`
 
 ```
 [root@aep-template-mybatis001-6974bb464c-bpsv6 /]# jmap -heap 1
@@ -131,4 +131,4 @@ PS Old Generation
    7.2466882395709415% used
 ```
 
-> 这里`Eden Space: used`比2中要少很多，原因是发生了`GC`，而2中因为没有超出堆内存最大值，所以不会引起`GC`
+> 这里`Eden Space: used`比`2`中要少很多，原因是发生了`GC`，而`2`中因为没有超出`capacity`，所以不会引起`GC`
