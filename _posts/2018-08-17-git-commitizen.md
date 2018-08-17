@@ -16,7 +16,6 @@ tags: [git, commit, change log]
 
 ```
 $ npm install -g commitizen
-
 ```
 
 现在，可以用`git cz`来代替`git commit`命令了
@@ -60,16 +59,25 @@ rmatting, missing semi-colons, etc)
   perf:     A code change that improves performance
   test:     Adding missing tests or correcting existing tests
 (Move up and down to reveal more choices)
-
 ```
 
 #### 3. cz-conventional-changelog规范
+
+cz-conventional-changelog格式：
+
+```
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
 
 参考[AngularJS's commit message convention](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)
 
 ##### 3.1 Type
 
-提交类型，其支持的`type`如下：
+提交类型，支持如下几种：
 
 * `feat`: A new feature
 * `fix`: A bug fix
@@ -82,7 +90,7 @@ rmatting, missing semi-colons, etc)
 
 ##### 3.2 Scope
 
-commit的影响范围，例如表示层、控制层、数据层等，不同项目有不同的定义
+影响范围，例如表示层、控制层、数据层等，不同项目有不同的定义
 
 > The scope could be anything specifying place of the commit change. For example $location, $browser, $compile, $rootScope, ngHref, ngClick, ngView, etc...
 > You can use * when the change affects more than a single scope.
@@ -97,7 +105,7 @@ commit的影响范围，例如表示层、控制层、数据层等，不同项�
 
 ##### 3.4 Body
 
-主体说明，比较详细的说明，可分多行，例如：
+比较详细的说明，可分多行，例如：
 
 ```
 用户查询接口更新.
@@ -118,7 +126,7 @@ BREAKING CHANGE: 用户查询接口参数名变化.
 用户查询接口，参数名从'user_name'改为'username'.
 ```
 
-* 关闭 Issue
+* 关闭 Issue，例如：
 
 ```
 fix #20
@@ -132,13 +140,14 @@ fix #20
 $ npm install -g conventional-changelog-cli
 ```
 
-生成`change log`(增量)
+生成`change log`(增量)：
 
 ```
 $ conventional-changelog -p angular -i CHANGELOG.md -s
 ```
 
-生成`change log`(全量)
+生成`change log`(全量)：
+
 ```
 $ conventional-changelog -p angular -i CHANGELOG.md -w -r 0
 ```
@@ -147,17 +156,7 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w -r 0
 
 对于非`npm`工程，例如`java`工程，也不想增加一个`package.json`文件，如何使用本规范呢？
 
-答案是可以的，直接编写固定格式的`commit message`即可
-
-```
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
-```
-
-例如：
+直接编写`cz-conventional-changelog`格式的`commit message`即可，例如：
 
 ```
 feat(controller): update user query interface
