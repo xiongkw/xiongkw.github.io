@@ -44,6 +44,8 @@
       url: https://oldj.github.io/SwitchHosts/
     - title: Oh My Zsh
       url: https://github.com/robbyrussell/oh-my-zsh
+    - title: Vnote(Markdown Editor)
+      url: https://tamlok.github.io/vnote/
 
 - name: IT
   pages:
@@ -97,7 +99,39 @@
       url: http://devdocs.io
     - title: Mozilla 开发者网络
       url: https://developer.mozilla.org/
-
+    - title: Programming Blockchains Step-by-Step
+      url: https://github.com/yukimotopress/programming-blockchains-step-by-step
+    - title: Google Interview University 一套完整的学习手册帮助自己准备 Google 的面试
+      url: https://github.com/jwasham/coding-interview-university/blob/master/translations/README-cn.md
+    - title: Flutter框架研究和与RN对比
+      url: http://szuwest.github.io/flutterkuang-jia-yan-jiu-he-yu-rndui-bi.html
+    - title: Android开发工程师面试指南
+      url: https://github.com/guoxiaoxing/android-interview
+    - title: 信息安全从业者入门（入职）指南
+      url: https://zhuanlan.zhihu.com/p/35753603
+    - title: GoProxy
+      url: https://github.com/snail007/goproxy/blob/master/README_ZH.md
+    - title: CS-Notes
+      url: https://github.com/CyC2018/CS-Notes
+    - title: 互联网公司经典技术架构
+      url: https://github.com/davideuler/architecture.of.internet-product
+    - title: Love2开源技术文档分享
+      url: https://love2.io/
+    - title: 黑苹果安装学院
+      url: https://github.com/huangyz0918/Hackintosh-Installer-University/blob/master/README-CN.md
+    - title: Wired Elements
+      url: https://wiredjs.com/
+    - title: Java 面试合集
+      url: https://github.com/crossoverJie/JCSprout
+    - title: openzaly(私有聊天服务器)
+      url: https://github.com/akaxincom/openzaly
+    - title: faceai(一款入门级的人脸、视频、文字检测以及识别的项目)
+      url: https://github.com/vipstone/faceai
+    - title: openzaly(私有聊天服务器)
+      url: https://github.com/akaxincom/openzaly
+    - title: openzaly(私有聊天服务器)
+      url: https://github.com/akaxincom/openzaly
+	  
 - name: Blog
   pages:
     - title: 阮一峰的网络日志
@@ -223,7 +257,11 @@
       url: http://www.sohu.com/a/69413324_377264
     - title: 绝对吓人长见识的有趣冷知识，看完不后悔
       url: https://c.m.163.com/news/a/D27S66VF0514HILV.html
-
+    - title: The 17 equations that changed the course of history
+      url: https://www.businessinsider.com/17-equations-that-changed-the-world-2014-3
+    - title: 一图看懂什么是纳米制程
+      url: http://www.semiinsights.com/s/bdt/15/25658.shtml
+	  
 - name: 旅游
   pages:
     - title: 它是中国人口最小的城市 却美得像个意外
