@@ -46,6 +46,8 @@
       url: https://github.com/robbyrussell/oh-my-zsh
     - title: Vnote(Markdown Editor)
       url: https://tamlok.github.io/vnote/
+    - title: Microsoft Teams
+      url: https://products.office.com/en-us/microsoft-teams/group-chat-software
 
 - name: IT
   pages:
@@ -129,6 +131,26 @@
       url: https://github.com/vipstone/faceai
     - title: openzaly(私有聊天服务器)
       url: https://github.com/akaxincom/openzaly
+    - title: History of Web Programming (2014)
+      url: http://www.observationalhazard.com/2018/06/history-of-web-programming.html
+    - title: secure-socks5-proxy
+      url: https://enqueuezero.com/secure-socks5-proxy.html
+    - title: Awesome macOS open source applications
+      url: https://github.com/serhii-londar/open-source-mac-os-apps/blob/master/README.md
+    - title: Unix 即集成开发环境
+      url: https://conanblog.me/Unix-as-IDE--Chinese-/index.html
+    - title: Web Assembly and Go: A look to the future
+      url: https://brianketelsen.com/web-assembly-and-go-a-look-to-the-future/
+    - title: Anti-If: The missing patterns
+      url: https://code.joejag.com/2016/anti-if-the-missing-patterns.html
+    - title: pure bash bible
+      url: https://github.com/dylanaraps/pure-bash-bible
+    - title: HOW TO GET INSDE YOUR OWN ROUTER
+      url: https://blog.websecurify.com/2018/06/router-hacking.html
+    - title: 深入理解flutter的编译原理与优化
+      url: https://www.yuque.com/xytech/flutter/sh4fbm
+    - title: Learn command line
+      url: https://hellowebbooks.com/learn-command-line/
 
 - name: Blog
   pages:
