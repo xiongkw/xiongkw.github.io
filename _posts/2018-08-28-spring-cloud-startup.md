@@ -10,13 +10,13 @@ tags: [spring-cloud]
 
 #### 1. 查看docker容器cpu占用情况
 
-```
+```sh
 $ docker ps
 
 $ docker status ${container_id}
 ```
 
-> 发现`cpu`占用率达到`200%`，而当前容器规格限制`cpu`为`2核`
+> 发现在启动过程中`cpu`占用率一直保持在`200%`左右，而当前容器资源限制`cpu`为`2核`
 
 #### 2. 测试不同容器规格下的情况
 
@@ -33,19 +33,19 @@ $ docker status ${container_id}
 
 进入容器：
 
-```
+```sh
 $ docker exec -it ${container_id} bash
 ```
 
 找出jvm进程id：
 
-```
+```sh
 $ jps -v
-``
+```
 
 查看jvm线程占用cpu时间：
 
-```
+```sh
 $ ps -mp pid -o THREAD,tid,time
 
 USER     %CPU PRI SCNT WCHAN  USER SYSTEM   TID     TIME
@@ -67,7 +67,7 @@ root      0.8  19    - futex_    -      -    70 00:00:06
 
 查看线程stack：
 
-```
+```sh
 $ printf "%x\n" 59
 3b
 
