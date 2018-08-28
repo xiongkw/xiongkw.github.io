@@ -132,3 +132,9 @@ PS Old Generation
 ```
 
 > 这里`Eden Space: used`比`2`中要少很多，原因是发生了`GC`，而`2`中因为没有超出`capacity`，所以不会引起`GC`
+
+#### 4. jdk8支持
+
+设置jvm内存设置可以解决上面的问题，但是总感觉很别扭，幸好`jdk8`提供了更好的方法：
+
+> `jdk8u131+`以后可以通过设置参数`-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap`，让jvm能查看到`docker`容器的内存限制，当容器内存达到上限时，同样会引进`jvm GC`
