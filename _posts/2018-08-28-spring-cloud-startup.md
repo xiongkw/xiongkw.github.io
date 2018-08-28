@@ -107,7 +107,7 @@ $ jstack pid | grep -30 0x3b
    java.lang.Thread.State: RUNNABLE
 ```
 
-> 发现这些耗时最长的全是`C2 CompilerThread`
+> 发现这些耗时最长的全是`C2 CompilerThread`，参考[What is code cache and compiler threads C1 and C2](http://marjavamitjava.com/code-cache-compiler-threads-c1-c2/)
 
 #### 4. 关于C2线程
 
