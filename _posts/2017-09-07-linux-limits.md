@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux修改limits不生效的问题
+title: Linux中的limits
 categories: [编程, linux]
 tags: [limits, ssh]
 ---
