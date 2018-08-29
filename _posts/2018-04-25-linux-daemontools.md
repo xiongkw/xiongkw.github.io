@@ -25,11 +25,11 @@ tags: [daemontools, storm]
 
 解压安装
 ```
-tar zxvf daemontools-0.76.tar.gz
+$ tar zxvf daemontools-0.76.tar.gz
 
-cd admin/daemontools-0.76
+$ cd admin/daemontools-0.76
 
-package/install
+$ package/install
 ```
 
 > `CentOS7`下会出现错误: `/usr/bin/ld: errno: TLS defini  tion in /lib/libc.so.6 section .tbss mismatches non-TLS reference in envdir.o`   
@@ -63,7 +63,7 @@ package/install
 
 启动`svscanboot`
 ```
-/command/svscanboot &
+$ /command/svscanboot &
 ```
 > `svscanboot`负责启动`svscan`服务，`svscan`管理`supervise`进程。而具体的客户进程，是通过`supervise`进程来统一管理的
 
@@ -81,14 +81,16 @@ exec ../storm supervisor > /dev/null 2>&1
 
 ##### 4.2 创建软链接
 ```
-ln -s /apps/apache-storm-1.2.1/bin/supervisor/ /service/
+$ ln -s /apps/apache-storm-1.2.1/bin/supervisor/ /service/
 ```
 
 ##### 4.3 查看进程
 
 可以看到`storm supervisor`进程已经自动启动了
 ```
-ps aux|grep storm
+$ ps aux|grep storm
+
+$ svstat /service/supervisor
 ```
 
 > `kill`掉进程后，发现进程也会自动启动
@@ -119,7 +121,44 @@ $ vi daemontools/command/svscanboot
 PATH=$PATH:/command:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin
 ```
 
-#### 5. 参考文档
+#### 5. 几个小技巧
+
+#### 5.1 查看日志
+
+```
+$ ps aux|grep readproctitle
+```
+
+#### 5.2 使用当前环境变量启动服务
+
+修改`/command/svscanboot`
+
+```
+$ vi daemontools/command/svscanboot
+
+#env - PATH=$PATH svscan /service 2>&1 | \
+svscan /service 2>&1 | \
+```
+
+#### 5.3 自定义service目录
+
+修改`/command/svscanboot`
+
+```
+$ vi daemontools/command/svscanboot
+
+env - PATH=$PATH svscan /home/foo/service 2>&1 | \
+```
+
+#### 5.4 软链接中使用相对路径
+
+```
+$ cd /home/foo/service
+
+$ ln ../mytest/ .
+```
+
+#### 6. 参考文档
 
 * [daemontools](http://cr.yp.to/daemontools.html)
 

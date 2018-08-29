@@ -122,6 +122,51 @@ curl 192.168.1.101:9200/_cat/nodes
 192.168.1.103 31 32 9 3.99 5.32 5.40 mdi - node-103
 ```
 
+#### 5. 问题
+
+##### 5.1 max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]
+
+需要设置用户可打开文件数
+
+```
+$ vi /etc/security/limits.conf
+
+es soft nofile 65536
+es hard nofile 65536
+
+```
+
+重新登录生效，需要设置sshd参数
+
+```
+$ vi /etc/ssh/sshd_config
+
+UsePAM yes
+UseLogin yes
+```
+
+##### 5.2 max number of threads [3818] for user [es] is too low, increase to at least [4096]
+
+修改用户最大进程数
+
+```
+$ vi /etc/security/limits.conf
+
+es soft nproc 4096
+es hard nproc 4096
+
+```
+
+##### 5.3 max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+
+```
+$ vi /etc/sysctl.conf
+
+vm.max_map_count=262144
+
+$ sysctl -p
+```
+
 #### 5. 参考
 
 [Installing Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)
