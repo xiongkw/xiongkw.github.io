@@ -151,7 +151,19 @@
       url: https://www.yuque.com/xytech/flutter/sh4fbm
     - title: Learn command line
       url: https://hellowebbooks.com/learn-command-line/
-
+    - title: Tech Stacks(各大网站技术栈)
+      url: https://stackshare.io/stacks
+    - title: Delivering WordPress in 7KB
+      url: https://css-tricks.com/delivering-wordpress-in-7kb/
+    - title: SuperThread(chat)
+      url: https://superthread.net/t/superthread/
+    - title: 新华字典数据库
+      url: https://github.com/pwxcoo/chinese-xinhua
+    - title: WEB TYPOGRAPHY RESOURCES
+      url: https://betterwebtype.com/web-typography-resources
+    - title: 算法/NLP/深度学习/机器学习面试笔记
+      url: https://github.com/imhuay/Algorithm_Interview_Notes-Chinese
+	  
 - name: Blog
   pages:
     - title: 阮一峰的网络日志
