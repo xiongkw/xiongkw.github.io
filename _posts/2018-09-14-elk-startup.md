@@ -6,7 +6,7 @@ tags: [elk, elasticsearch, logstash, kibana, kafka, filebeat]
 ---
 
 
-> `elk`是指`elasticsearch、logstash、kibana`，本来也是一个成熟的日志收集方案，由于业务系统日志数据量比较大(TB/天级别)，所以使用Kafka做流量消峰
+> `elk`是指`elasticsearch、logstash、kibana`，本来也是一个成熟的日志收集方案，由于业务系统日志数据量比较大(`TB/天`)，所以使用`Kafka`做流量消峰
 
 #### 1. 总体架构
 
@@ -32,7 +32,7 @@ tags: [elk, elasticsearch, logstash, kibana, kafka, filebeat]
 
 `FileBeat`需要安装在每台宿主机上，这里通过`Ansible`批量安装，详情省略，参考[Ansible入门]({{site.url}}/2018/06/28/linux-ansible/)
 
-新建filebeat配置：test.yml
+新建`FileBeat`配置：test.yml
 
 ```yaml
 filebeat.modules:
@@ -81,7 +81,7 @@ filebeat -c test.yml
 
 #### 3. Logstash安装
 
-下载解压并安装x-pack插件
+下载`Logstash`解压，并安装`x-pack`插件
 
 ```
 $ tar zxvf logstash-6.2.4.tar.gz
@@ -163,7 +163,7 @@ $ bin/logstash -f mylog.conf
 
 > 参考[ElasticSearch安装]({{site.url}}/2018/06/21/elasticsearch-install/)
 
-安装x-pack插件：
+安装`x-pack`插件：
 
 ```
 $ tar zxvf elasticsearch-6.2.4.tar.gz
@@ -178,7 +178,7 @@ $ bin/elasticsearch-plugin install file:///home/fool/x-pack-6.2.4.zip
 
 #### 5. 安装Kibana
 
-下载解压并安装x-pack插件
+下载解压并安装`x-pack`插件
 
 ```
 $ tar zxvf kibana-6.2.4.tar.gz
@@ -186,7 +186,7 @@ $ cd kibana-6.2.4
 $ bin/kibana-plugin install file:///home/fool/x-pack-6.2.4.zip
 ```
 
-修改kibana.yml
+修改`kibana.yml`
 
 ```yaml
 server.port: 8080
@@ -201,7 +201,7 @@ elasticsearch.url: "http://192.168.1.100:8200"
 
 ![]({{site.url}}/public/2018-09-14-elk-startup_2.png)
 
-在Kafka-Manager中监控`Kafka`队列消费情况：
+在`Kafka-Manager`中监控`Kafka`队列消费情况：
 
 ![]({{site.url}}/public/2018-09-14-elk-startup_3.png)
 
