@@ -145,5 +145,6 @@ gateway.recover_after_nodes: 3
 
 ##### 4.2 ElasticSearch
 ```
-三台ES索引速率可达5w/s
+三台ES集群，有备份(1)的情况下索引速率可达3.8w/s
+无备份的情况下索引速率可达5.5w/s
 ```
