@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 一个项目为什么会失败
-categories: [随笔]
+categories: [其它]
 tags: [程序员, 人生]
 ---
 

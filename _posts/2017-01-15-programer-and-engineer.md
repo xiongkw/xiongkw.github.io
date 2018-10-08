@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 想做个程序员，却成了工程师
-categories: [随笔]
+categories: [其它]
 tags: [程序员, 工程师, 人生]
 ---
 

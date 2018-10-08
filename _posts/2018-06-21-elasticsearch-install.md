@@ -26,6 +26,9 @@ tar zxvf elasticsearch-6.2.4.tar.gz
 cluster.name: es-cluster              # 集群名称
 node.name: node-101                   # 节点名称，仅仅是描述名称，用于在日志中区分
 
+path.data: /data/elasticsearch/data   # 自定义data目录和logs目录
+path.logs: /data/elasticsearch/logs
+
 network.host: 192.168.1.101           # 当前节点的IP地址
 http.port: 9200                       # 对外提供服务的端口
 
@@ -167,6 +170,6 @@ vm.max_map_count=262144
 $ sysctl -p
 ```
 
-#### 5. 参考
+#### 7. 参考
 
 [Installing Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html)

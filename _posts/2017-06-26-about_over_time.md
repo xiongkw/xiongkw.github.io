@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 谈谈我对加班的看法
-categories: [随笔]
+categories: [其它]
 tags: [加班]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 记忆中家乡的江南烟雨
-categories: [随笔]
+categories: [其它]
 tags: [江南, 烟雨]
 ---
 
