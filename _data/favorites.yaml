@@ -48,6 +48,8 @@
       url: https://tamlok.github.io/vnote/
     - title: Microsoft Teams
       url: https://products.office.com/en-us/microsoft-teams/group-chat-software
+    - title: 盘点那些不足10M，却有着逆天实用功能的软件
+      url: https://www.toutiao.com/a6602444111226077710
 
 - name: IT
   pages:
@@ -163,6 +165,8 @@
       url: https://betterwebtype.com/web-typography-resources
     - title: 算法/NLP/深度学习/机器学习面试笔记
       url: https://github.com/imhuay/Algorithm_Interview_Notes-Chinese
+    - title: 供个人开发者赚钱免费使用的一些好的API接口
+      url: https://www.toutiao.com/a6603845997284033028
 
 - name: Blog
   pages:
@@ -277,7 +281,7 @@
     - title: 为什么只有许仕林才能救白素贞出塔
       url: http://www.u148.net/article/132639.html
 
-- name: 科学
+- name: 科普
   pages:
     - title: 沿地球直径打洞跳下去会怎样
       url: http://c.m.163.com/news/a/BLRERNEE00014TUH.html
@@ -292,7 +296,13 @@
     - title: The 17 equations that changed the course of history
       url: https://www.businessinsider.com/17-equations-that-changed-the-world-2014-3
     - title: 一图看懂什么是纳米制程
-      url:  http://www.semiinsights.com/s/bdt/15/25658.shtml
+      url: http://www.semiinsights.com/s/bdt/15/25658.shtml
+    - title: 一张图弄明白：从零维到十维空间
+      url: https://www.toutiao.com/a6604313000780235277
+    - title: 第一次有人把5G讲的这么简单明了
+      url: https://www.toutiao.com/a6604242710050112014
+    - title: 一口气读懂中国的银行体系
+      url: https://www.toutiao.com/a6593126493914661383
 
 - name: 旅游
   pages:
@@ -383,3 +393,5 @@
       url: https://c.m.163.com/news/a/D46IBG320511GDRJ.html
     - title: 中国式思维——三大混蛋逻辑
       url: http://www.sohu.com/a/116945199_463901
+    - title: 20个领域，20本经典入门书，按这个读就对了
+      url: https://www.toutiao.com/a6609151202171027975
