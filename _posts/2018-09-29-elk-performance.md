@@ -138,13 +138,13 @@ thread_pool.bulk.queue_size: 1000
 gateway.recover_after_nodes: 3
 ```
 
-#### 5. Logstash GC问题
+#### 4. Logstash GC问题
 
 在`Kibana`中监控到`Logstash`处理速率断断续续为0，而`Kafka`中仍有大量消息堆积，而且`GC`比较频繁，进一步分析，发现原因是`Full GC`时间过长导致线程卡死
 
 调整`pipeline.batch.size`和`jvm heap`
 
-ogstash.yml
+logstash.yml
 ```yaml
 pipeline.batch.size: 800
 ```
@@ -156,14 +156,14 @@ jvm.options
 -Xmx32g
 ```
 
-#### 4. 性能
+#### 5. 性能
 
-##### 4.1 Logstash
+##### 5.1 Logstash
 ```
 单台Logstash处理速率可达3.5w/s
 ```
 
-##### 4.2 ElasticSearch
+##### 5.2 ElasticSearch
 ```
 三台ES集群，有备份(1)的情况下索引速率可达4w/s
 无备份的情况下索引速率可达7w/s
