@@ -47,16 +47,16 @@ socket.receive.buffer.bytes=10485760
 ##### 1.4 Topic
 
 ```
-Topic分区数设置为192
+Topic分区数设置为128
 ```
 
-> 三台`Logstash`消费线程数一共为`192`
+> 两台`Logstash`消费线程数一共为`128`
 
 #### 2. Logstash
 
 ##### 2.1 硬件
 ```
-三台64核128G主机
+两台64核128G主机
 ```
 
 ##### 2.2 jvm heap
@@ -64,7 +64,7 @@ Topic分区数设置为192
 jvm.options
 ```
 -Xms32g
--Xmx64g
+-Xmx32g
 ```
 
 ##### 2.3 logstash.yml
@@ -114,7 +114,7 @@ input {
 ##### 3.1 硬件
 
 ```
-三台64核512G集群
+三台64核128G集群
 ```
 
 ##### 3.3 jvm heap
@@ -127,6 +127,8 @@ jvm.options
 
 ##### 3.3 elasticsearch.yml
 
+在`Kibana`中发现大量`Bulk Rejections`，解决办法是调整`bulk队列`大小
+
 ```yaml
 
 # bulk队列
@@ -136,15 +138,33 @@ thread_pool.bulk.queue_size: 1000
 gateway.recover_after_nodes: 3
 ```
 
+#### 5. Logstash GC问题
+
+在`Kibana`中监控到`Logstash`处理速率断断续续为0，而`Kafka`中仍有大量消息堆积，而且`GC`比较频繁，进一步分析，发现原因是`Full GC`时间过长导致线程卡死
+
+调整`pipeline.batch.size`和`jvm heap`
+
+ogstash.yml
+```yaml
+pipeline.batch.size: 800
+```
+
+jvm.options
+```
+-Xmn20g
+-Xms32g
+-Xmx32g
+```
+
 #### 4. 性能
 
 ##### 4.1 Logstash
 ```
-单台Logstash处理速率可达2w/s
+单台Logstash处理速率可达3.5w/s
 ```
 
 ##### 4.2 ElasticSearch
 ```
 三台ES集群，有备份(1)的情况下索引速率可达4w/s
-无备份的情况下索引速率可达6w/s
+无备份的情况下索引速率可达7w/s
 ```
