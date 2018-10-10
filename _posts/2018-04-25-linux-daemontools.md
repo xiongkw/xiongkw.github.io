@@ -97,12 +97,14 @@ $ svstat /service/supervisor
 
 ##### 4.4 kill进程
 
-使用`daemontools`管理进程后，发现`kill`掉的进程马上又会自动重启，如果不希望进程重启，可以暂时`kill`掉`daemontools`进程
+使用`daemontools`管理进程后，发现`kill`掉的进程马上又会自动重启，可使用`svc`命令来停止或启动进程
 
 ```
-svscanboot
-svscan
-supervise
+# 停止
+$ svc -d /service/supervisor
+
+# 启动
+$ svc -u /service/supervisor
 ```
 
 ##### 4.5 关于环境变量

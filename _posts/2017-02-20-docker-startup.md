@@ -32,20 +32,39 @@ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce
 
 ##### 1.2 安装
 ```
-yum install docker-ce
+$ yum install docker-ce
 ```
 
 ##### 1.3 启动docker
 ```
-systemctl start docker
+$ systemctl start docker
+
+$ docker --version
+
+$ docker info
 ```
 
 ##### 1.4 运行hello-world
+
 ```
-docker run hello-world
+$ docker run hello-world
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
+```
+
+##### 1.5 代理设置
+
+主机使用代理访问公网时，无法连接到公网需镜像仓库，解决办法是设置代理
+
+```
+$ vi /usr/lib/systemd/system/docker.service
+
+[Service]
+
+Environment="HTTP_PROXY=http://xxx" "HTTPS_PROXY=http://xxx"
+
+$ systemctl restart docker
 ```
 
 #### 2. 镜像管理
@@ -169,3 +188,4 @@ CMD ["/root/tomcat/bin/catalina.sh", "run"]
 #### 参考文档
 
 [Docker Documentation](https://docs.docker.com/)
+[Install from a package](https://docs.docker.com/install/linux/docker-ce/centos/#install-from-a-package)
