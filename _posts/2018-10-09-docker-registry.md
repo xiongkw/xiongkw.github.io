@@ -1,12 +1,12 @@
 ---
 layout: post
-title: docker私服搭建
+title: docker registry搭建
 categories: [编程, docker, linux]
 tags: [docker, 私服]
 ---
 
 
-> 由于种种原因，墙内用户总是需要搭建自己的各种私服，例如`nexus`、`npm`、'yum`等，当然`docker`也不例外
+> 由于种种原因，墙内用户总是需要搭建自己的各种私服，例如`nexus`、`npm`、`yum`等，当然`docker`也不例外
 
 #### 1. 安装运行
 
@@ -36,7 +36,7 @@ registry                       2                   2e2f252f3c88        4 weeks a
 hello-world                    latest              4ab4c602aa5e        4 weeks ago         1.84 kB
 ```
 
-##### 2.2 给镜像`registry`打`tag`
+##### 2.2 给镜像tag
 
 ```
 $ docker image tag hello-world 192.168.1.100:8500/hello-world
