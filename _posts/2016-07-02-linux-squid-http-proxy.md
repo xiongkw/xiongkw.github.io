@@ -64,6 +64,11 @@ https_proxy=http://192.168.1.100:8000
 ftp_proxy=http://192.168.1.100:8000
 ```
 
+#### 2.4 git代理
+```
+git config --global https.proxy http://192.168.1.100:8000
+```
+
 #### 3. 参考
 
 [Squid Documentation](http://www.squid-cache.org/Doc/)
