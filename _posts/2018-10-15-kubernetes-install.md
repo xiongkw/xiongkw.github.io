@@ -55,7 +55,7 @@ gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
 $ yum install kubeadm kubelet kubectl -y
 ```
 
-设置开机启动
+设置`kubelet`开机启动
 ```
 $ systemctl enable kubelet
 
@@ -67,7 +67,7 @@ $ systemctl start kubelet
 ##### 3.1 环境准备
 
 ```
-修改hostname
+# 修改hostname
 hostnamectl set-hostname master
 echo 127.0.0.1  master >> /etc/hosts
 
@@ -77,6 +77,8 @@ systemctl stop firewalld
 
 # 关闭selinux(vi /etc/sysconfig/selinux)
 SELINUX=disabled
+
+setenforce 0
 
 # 关闭swap
 swapoff -a
@@ -89,7 +91,7 @@ swapoff -a
 $ kubeadm config print-default > kubeadm.yml
 
 # 修改token ttl为0s，即永不过期
-# 因为是多网卡主机，这里修改了`apiserver`的地址
+# 因为是多网卡主机，这里修改了apiserver的地址
 $ vi kubeadm.yml
 ```
 
@@ -133,20 +135,21 @@ $ kubeadm init --config kubeadm.yml > kubeadm.out &
 
 ##### 3.5 安装网络插件
 
+这里用`weave-net`
 ```
 $ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=1.12.1"
 ```
 
 ##### 3.6 验证
 
-查看节点列表
+获取节点列表
 ```
 $ kubectl get nodes
 NAME         STATUS   ROLES    AGE    VERSION
 master      Ready    master   3m   v1.12.1
 ```
 
-查看`pod`列表
+获取`pod`列表
 ```
 $ kubectl get pods -n kube-system
 NAME                                 READY   STATUS    RESTARTS   AGE
@@ -166,7 +169,7 @@ weave-net-nf7dq                      2/2     Running   0          1m
 
 ##### 4.1 污点设置
 
-master默认是不能发布`pod`的，查看污点
+`master`节点默认是不能发布`pod`的，查看污点
 ```
 $ kubectl describe node master | grep Taints
 Taints:             node-role.kubernetes.io/master:NoSchedule
@@ -180,7 +183,7 @@ $ kubectl describe node master | grep Taints
 Taints:             <none>
 ```
 
-另一种方法是配置`pod`容忍该污点，例如：
+> 另一种方法是配置`pod`容忍该污点，例如：
 
 ```
 tolerations:
@@ -189,6 +192,10 @@ tolerations:
 ```
 
 ##### 4.2 编写Deployment
+
+```
+$ vi nginx.yml
+```
 
 ```yaml
 apiVersion: apps/v1
@@ -226,8 +233,6 @@ nginx-deployment-7d779b595-8jwqp   1/1     Running   0          6s
 ```
 kubectl delete -f nginx.yml
 ```
-
-#### 4.4
 
 #### 5. 参考
 
