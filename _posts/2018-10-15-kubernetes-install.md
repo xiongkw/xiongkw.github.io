@@ -2,11 +2,11 @@
 layout: post
 title: Kubernetes安装
 categories: [编程, docker, linux]
-tags: [docker, 私服]
+tags: [docker, k8s]
 ---
 
 
->
+> 早期的`kubernetes`的安装是非常复杂的，现在有了`kubeadm`这样的一键部署工具
 
 #### 1. 安装docker
 
