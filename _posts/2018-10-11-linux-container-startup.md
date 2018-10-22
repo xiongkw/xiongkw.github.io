@@ -123,7 +123,7 @@ image
 └── usr
 ```
 
-> 这里加入了`bash、ls、ps`三个命令，即可依赖库(`lib64/*.so.*`)
+> 这里加入了`bash、ls、ps`三个命令，及其依赖库(`lib64/*.so.*`)
 > 可通过命令`ldd [command]`查看命令依赖的库文件
 
 ##### 2.2 使用`chroot`命令测试镜像
@@ -221,7 +221,7 @@ UID        PID  PPID  C STIME TTY          TIME CMD
 
 #### 4. 资源限制
 
-运行3中的`container`，并执行一个死循环
+运行`container`，并执行一个死循环
 
 ```
 $ ./container
