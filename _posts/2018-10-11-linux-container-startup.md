@@ -2,7 +2,7 @@
 layout: post
 title: Linux下使用C语言编写一个容器
 categories: [编程, docker, linux]
-tags: [docker, namespace, cgroups, rootfs]
+tags: [container, namespace, cgroups, rootfs]
 ---
 
 
