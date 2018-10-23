@@ -178,8 +178,7 @@ bash-4.2# exit
 
 进程的隔离简单讲就是只能看见容器内的进程，继续修改源码
 
-```
-
+```c++
 int container_main(void* arg)
 {
     printf("Container [%5d]- inside the container!\n", getpid());
@@ -216,7 +215,7 @@ UID        PID  PPID  C STIME TTY          TIME CMD
 0            6     1  0 08:12 ?        00:00:00 /bin/ps -ef
 ```
 
-> 只能看到两个进程，一个是`/bin/bash`，一个是`ps`   
+> 只能看到两个进程，一个是`/bin/bash`，一个是`ps`
 > 可通过`mount -t proc`和`umount proc`查看和卸载挂载目录
 
 #### 4. 资源限制
