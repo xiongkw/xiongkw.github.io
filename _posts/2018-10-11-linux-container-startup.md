@@ -69,7 +69,7 @@ Container [    4492]- inside the container!
 在另一个终端通过`pstree`命令查看
 ```
 ├─sshd─┬─sshd───bash───pstree
-          └─sshd───bash───containerd───bash
+       └─sshd───bash───containerd───bash
 ```
 
 退出
@@ -123,7 +123,7 @@ image
 └── usr
 ```
 
-> 这里加入了`bash、ls、ps`三个命令，及其依赖库(`lib64/*.so.*`)
+> 这里加入了`bash、ls、ps`三个命令，及其依赖库(`lib64/*.so.*`)，
 > 可通过命令`ldd [command]`查看命令依赖的库文件
 
 ##### 2.2 使用`chroot`命令测试镜像
@@ -215,7 +215,7 @@ UID        PID  PPID  C STIME TTY          TIME CMD
 0            6     1  0 08:12 ?        00:00:00 /bin/ps -ef
 ```
 
-> 只能看到两个进程，一个是`/bin/bash`，一个是`ps`
+> 只能看到两个进程，一个是`/bin/bash`，一个是`ps`,
 > 可通过`mount -t proc`和`umount proc`查看和卸载挂载目录
 
 #### 4. 资源限制
@@ -259,6 +259,9 @@ $ top
 
 #### 参考
 
+* [理解 chroot](https://www.ibm.com/developerworks/cn/linux/l-cn-chroot/)
+* [Docker背后的内核知识——Namespace资源隔离](http://www.infoq.com/cn/articles/docker-kernel-knowledge-namespace-resource-isolation)
+* [CGroup 介绍、应用实例及原理描述](https://www.ibm.com/developerworks/cn/linux/1506_cgroup/)
 * [DOCKER基础技术：LINUX NAMESPACE（上）](https://coolshell.cn/articles/17010.html)
 * [DOCKER基础技术：LINUX NAMESPACE（下）](https://coolshell.cn/articles/17029.html)
 * [Linux Programmer's Manual                 CLONE(2)](http://man7.org/linux/man-pages/man2/clone.2.html)
