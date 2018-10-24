@@ -6,11 +6,12 @@ tags: [iptables, ssh]
 ---
 
 
-> 有一台`Linux`主机，想把`sshd`端口从`22`改到`2200`，但又不能重启`sshd`服务，可以通过`iptables`做端口转发
+> 有一台`Linux`主机，想把`sshd`端口从`22`改到`2200`，但又不想修改`sshd`配置，可以通过`iptables`做端口转发
 
 #### 1.添加转发规则
 
-添加路由规则，把所有从端口`2200`进来的`tcp`连接都转发到`22`端口
+添加路由规则，把所有源端口为`2200`的`tcp`数据包都转发到`22`端口
+
 ```
 $ iptables -A PREROUTING -t nat -p tcp --dport 2200 -j REDIRECT --to 22
 ```
@@ -26,24 +27,28 @@ $ iptables -S PREROUTING 1 -t nat
 -A PREROUTING -p tcp -m tcp --dport 2200 -j REDIRECT --to-ports 22
 ```
 
+> 发现可以通过`2200`端口`ssh`到该主机了
+
 #### 2. 屏蔽原22端口
 
 ```
 $ iptables -A PREROUTING -t mangle -p tcp --dport 22 -j DROP
 ```
 
+> 发现原`22`端口已经无法访问
+
 #### 3. 关于iptables
 
 ##### 3.1 概念
 
-`netfilter`: 一个`Linux`防火墙框架，用于处理网络数据包
-`iptables`: 用于操作`netfilter`的用户接口(客户端)
+* `netfilter`: 一个`Linux`防火墙框架，用于处理网络数据包
+* `iptables`: 用于操作`netfilter`的用户接口(客户端)
 
 ##### 3.2 rule
 
 > `rule`是一个具体的规则，用于指明为某一类(条件)报文做何种处理
 
-如下：表示所有来源于ip:`192.168.56.100`并且端口为`22`的`TCP`协议的`IP`报文都会被丢弃(`DROP`)
+如下：表示所有来源于`ip: 192.168.56.100`并且端口为`22`的`TCP`协议的数据包都会被丢弃(`DROP`)
 ```
 -s 192.168.56.100/24 -p tcp --dport 22 -j DROP
 ```
@@ -54,20 +59,20 @@ $ iptables -A PREROUTING -t mangle -p tcp --dport 22 -j DROP
 
 `iptables`中`chain`一般分为如下几种：
 
-`PERROUTING`: 前置处理链，用于执行路由规则之前
-`INPUT`: 输入链，用来处理发给本机的数据包
-`OUTPUT`: 输出链，用来处理本机发出的数据包
-`FORWARD`: 转发链，用来处理通过本机转发的数据包
-`POSTROUTING`: 后置处理链，用于执行路由规则之后
+* `PERROUTING`: 前置处理链，用于执行路由规则之前
+* `INPUT`: 输入链，用来处理发给本机的数据包
+* `OUTPUT`: 输出链，用来处理本机发出的数据包
+* `FORWARD`: 转发链，用来处理通过本机转发的数据包
+* `POSTROUTING`: 后置处理链，用于执行路由规则之后
 
 ##### 3.4 table
 
-`table`是规则的分组，一般分为以下四种：
+`table`是规则的分组，分为以下四种：
 
-`raw`: 决定数据包是否被状态跟踪机制处理，可用链有`PREROUTING, OUTPUT`
-`mangle`: 修改数据包内容，可用链有`PREROUTING, INPUT, FORWARD, OUTPUT, POSTROUTING`
-`nat`: 用于网络地址转换（IP、端口），可用链有`PREROUTING, INPUT, OUTPUT, POSTROUTING`
-`filter`: 过滤数据包，可用链有`INPUT, FORWARD, OUTPUT`
+* `raw`: 决定数据包是否被状态跟踪机制处理，可用链有`PREROUTING, OUTPUT`
+* `mangle`: 修改数据包内容，可用链有`PREROUTING, INPUT, FORWARD, OUTPUT, POSTROUTING`
+* `nat`: 用于网络地址转换（IP、端口），可用链有`PREROUTING, INPUT, OUTPUT, POSTROUTING`
+* `filter`: 过滤数据包，可用链有`INPUT, FORWARD, OUTPUT`
 
 `netfilter`工作原理图：
 
@@ -75,7 +80,7 @@ $ iptables -A PREROUTING -t mangle -p tcp --dport 22 -j DROP
 
 #### 4. 常用命令
 
-##### 4.1 查看指定table和chain中的规则列表
+##### 4.1 查看规则列表
 
 ```
 $ iptables -L PREROUTING -n -t nat --line-numbers
@@ -87,7 +92,7 @@ $ iptables -L PREROUTING -n -t nat --line-numbers
 $ iptables -S PREROUTING 1 -t nat
 ```
 
-> 这里的`1`为4.1中规则在列表中的编号
+> 这里的`1`为`4.1`中规则在列表中的编号
 
 ##### 4.3 添加规则
 
@@ -95,7 +100,7 @@ $ iptables -S PREROUTING 1 -t nat
 $ iptables -[A|I] PREROUTING -t nat -p tcp --dport 2200 -j REDIRECT --to 22
 ```
 
-> `-A`的添加到`chain`的最后，`I`是插入到`chain`的开始，区别是优先级不同
+> `-A`是添加到`chain`的最后，`I`是添加到`chain`的最开始，区别是优先级不同
 
 ##### 4.4 删除规则
 
