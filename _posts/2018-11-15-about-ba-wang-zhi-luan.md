@@ -14,4 +14,5 @@ tags: [八王之乱, d3js]
 
 #### 参考
 
+* [D3 API Reference](https://github.com/d3/d3/blob/master/API.md)
 * [D3.js 入门教程](http://wiki.jikexueyuan.com/project/d3wiki/)
