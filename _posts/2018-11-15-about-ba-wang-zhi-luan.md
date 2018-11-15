@@ -10,7 +10,7 @@ tags: [八王之乱, d3js]
 
 #### 八王之乱关系图
 
-<iframe src="https://xiongkw.github.io/d3test/index.html" width="1000" height="1000" frameborder="0"></iframe>
+<iframe src="https://xiongkw.github.io/d3test/index.html" width="1000" height="1050" frameborder="0"></iframe>
 
 #### 参考
 
