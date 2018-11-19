@@ -30,6 +30,8 @@ tar zxvf zookeeper-3.x.x.tar.gz
 tickTime=2000
 dataDir=/var/lib/zookeeper
 clientPort=2181
+autopurge.snapRetainCount=3
+autopurge.purgeInterval=24
 ```
 > 可直接复制`conf/zoo_sample.cfg`为`zoo.cfg`
 
@@ -38,6 +40,8 @@ clientPort=2181
 > `tickTime` 心跳间隔时间   
 > `dataDir` 数据存储目录   
 > `clientPort` 服务监听端口
+> `autopurge.snapRetainCount` 保留快照文件数
+> `autopurge.purgeInterval` 清除快照文件时间间隔(h)
 
 ##### 3.3 启动
 命令行启动
