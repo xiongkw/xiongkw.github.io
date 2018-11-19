@@ -37,11 +37,11 @@ autopurge.purgeInterval=24
 
 参数说明：
 
-> `tickTime` 心跳间隔时间   
-> `dataDir` 数据存储目录   
-> `clientPort` 服务监听端口
-> `autopurge.snapRetainCount` 保留快照文件数
-> `autopurge.purgeInterval` 清除快照文件时间间隔(h)
+* `tickTime` 心跳间隔时间
+* `dataDir` 数据存储目录   
+* `clientPort` 服务监听端口   
+* `autopurge.snapRetainCount` 保留快照文件数   
+* `autopurge.purgeInterval` 清除快照文件时间间隔(h)
 
 ##### 3.3 启动
 命令行启动
