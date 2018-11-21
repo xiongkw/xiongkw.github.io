@@ -117,7 +117,7 @@ bin/zkServer.sh start
 #description:zookeeper
 #processname:zookeeper
 ZOO_HOME=/app/zookeeper-3.4.10
-ZOO_LOG_DIR=$ZOO_HOME/logs
+export ZOO_LOG_DIR=$ZOO_HOME/logs
 case $1 in
         start) su zookeeper $ZOO_HOME/bin/zkServer.sh start;;
         stop) su zookeeper $ZOO_HOME/bin/zkServer.sh stop;;
