@@ -106,3 +106,30 @@ echo 2 > /var/lib/zookeeper/myid
 ```
 bin/zkServer.sh start
 ```
+
+#### 5. 服务和自动启动
+
+编写服务脚本`/etc/init.d/zookeeper`
+
+```sh
+#!/bin/bash
+#chkconfig:2345 20 90
+#description:zookeeper
+#processname:zookeeper
+ZOO_HOME=/app/zookeeper-3.4.10
+ZOO_LOG_DIR=$ZOO_HOME/logs
+case $1 in
+        start) su zookeeper $ZOO_HOME/bin/zkServer.sh start;;
+        stop) su zookeeper $ZOO_HOME/bin/zkServer.sh stop;;
+        status) su zookeeper $ZOO_HOME/bin/zkServer.sh status;;
+        restart) su zookeeper $ZOO_HOME/bin/zkServer.sh restart;;
+        *) echo "require start|stop|status|restart" ;;
+esac
+```
+
+设置开机启动
+```sh
+$ chmod 755 zookeeper
+$ chkconfig zookeeper on
+$ service zookeeper start
+```
