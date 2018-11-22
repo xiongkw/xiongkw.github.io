@@ -81,6 +81,8 @@ pipeline.batch.size: 2500
 
 ##### 2.4 pipeline
 
+设置`kafka`消费线程数为`cpu核心数`
+
 ```
 input {
     kafka {
@@ -90,7 +92,15 @@ input {
 }
 ```
 
-> 设置`kafka`消费线程数为`cpu核心数`
+使用`dissect`代替`grok`
+
+```
+filter {
+    dissect {
+        mapping => ""
+    }
+}
+```
 
 ##### 2.5 索引模板
 

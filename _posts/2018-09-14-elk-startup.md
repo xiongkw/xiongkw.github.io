@@ -115,14 +115,18 @@ input {
 
 filter {
    if [type] == "mylog" {
-      grok {
-           match => { "message" => "%{TIMESTAMP_ISO8601:logDateStr}\s+\[%{DATA:thread}\]\s+%{DATA:level}\s+"}
+      dissect {
+           mapping => { 
+                "message" => "%{logDateTimeStr} `%{traceId}` [%{thread}] %{level} %{}"
+                "source" => "%{}/_%{deployEnv}_/%{tenantCode}-%{appCode}-%{serviceCode}/%{instanceIp}_%{instancePort}.%{}"
+                "logDateTimeStr" => "%{logDateStr} %{}"
+           }
       }
 
       date {
-              match => ["logDateStr", "yyyy-MM-dd HH:mm:ss,SSS", "ISO8601"]
+              match => ["logDateTimeStr", "yyyy-MM-dd HH:mm:ss,SSS", "ISO8601"]
               target => "logDate"
-              locale => "cn"
+              locale => "zh_CN"
       }
    }
 
@@ -130,7 +134,7 @@ filter {
        remove_field => ["offset", "@version", "prospector", "beat"]
    }
 
-   if (![logDateStr]) {
+   if (![logDateTimeStr]) {
      mutate {
        add_field => {
          "logDate" => "%{@timestamp}"
@@ -143,7 +147,7 @@ filter {
 output {
    elasticsearch {
        hosts => [ "192.168.1.100:8200" ]
-       index => "mylog-%{+YYYY-MM-dd}"
+       index => "mylog-%{logDateStr}"
        template => "./mylog.tpl"
        template_name => "mylog"
        template_overwrite => true
