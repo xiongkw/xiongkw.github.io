@@ -1,7 +1,7 @@
 ---
 layout: post
 title: git commit和change log
-categories: [编程]
+categories: [编程, git]
 tags: [git, commit, change log]
 ---
 
