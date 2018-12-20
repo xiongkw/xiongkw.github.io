@@ -48,4 +48,13 @@ location /myapp {
 
 例如：`http://nginx/myapp/a.html`会被代理到`http://192.168.1.100:8080/myapp/a.html`
 
-> 原因是不带`/`地址不是一个`URI`，参考[proxy_pass](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
+查看`nginx`文档发现`nginx`对这两种的处理逻辑不同：
+
+* 如果`proxy_pass`指定的是一个`URI`，则会使用这个`URI`替换`location`
+* 如果`proxy_pass`指定的不是`URI`，则会把`locatin`匹配到的路径直接接在其后
+
+而不带`/`结尾的不是标准`RUI`
+
+#### 5. 参考
+
+* [proxy_pass](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
