@@ -1,0 +1,106 @@
+---
+layout: post
+title: Spring-boot集成JWT
+categories: [编程, java, spring]
+tags: [spring-boot, jwt]
+---
+
+
+> 分布式架构下通常使用缓存来实现会话共享，由此会引入一个`重量级`的缓存组件，除此以外我们还可以使用轻量级的`JWT`来实现无会话的服务
+
+#### 1. 关于JWT 
+
+* `JWT`: JSON Web Token (JWT)，服务端给用户签发的一个记录了用户信息的`token`，用户下次请求时带上这个`token`，服务端会根据`token`解码用户身份，带来的好处是服务端不需要保存会话了，坏处是需要额外的解码计算
+
+`JWT`解决了分布式架构下会话共享这一痛点，使得服务端无状态更容易扩展，但也存在一些缺陷：
+
+* 服务端需要一些额外的逻辑来废止一个没过期的`token`
+* `token`容易被截取和盗用，所以需要使用`HTTPS`协议传输
+* 记录更多的用户信息（例如权限）会带来更多的流量开销
+
+> 参考[JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
+
+#### 2. spring-boot集成JWT
+
+添加`java-jwt`依赖
+```xml
+<dependency>
+    <groupId>com.auth0</groupId>
+    <artifactId>java-jwt</artifactId>
+    <version>3.4.1</version>
+</dependency>
+```
+
+> `java-jwt`是一个`JWT`的`Java`实现(废话，看名字就知道了)，参考[Java-JWT](https://github.com/auth0/java-jwt)
+
+##### 2.1 编写一个私有资源
+
+```java
+@GetMapping("/secret")
+public String data(){
+    return "My secret...";
+}
+```
+
+> 不做权限控制的情况下是可以直接访问的
+
+##### 2.2 编写一个认证接口
+
+```java
+@PostMapping(value = "/login")
+public String login(@RequestParam String username, @RequestParam String password, HttpServletResponse response) throws IOException {
+    if ("fool".equals(username) && "1234".equals(password)) {
+        return getJwtToken(username);
+    }
+    response.sendError(400, "用户认证失败");
+    return null;
+}
+
+private String getJwtToken(String username) {
+    return JWT.create().withIssuer("fool").withAudience(username).sign(Algorithm.HMAC256("secret"));
+}
+```
+
+> 用户认证通过后返回一个`token`
+
+##### 2.3 编写token认证拦截器
+
+```java
+@Configuration
+public class WebConfig extends WebMvcConfigurerAdapter {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new JwtInterceptor()).addPathPatterns("/secret");
+    }
+
+    class JwtInterceptor extends HandlerInterceptorAdapter {
+        JWTVerifier verifier = JWT.require(Algorithm.HMAC256("secret")).withIssuer("fool").build();
+
+        @Override
+        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+            String token = request.getHeader("X-AUTH-TOKEN");
+            try {
+                verifier.verify(token);
+                return true;
+            } catch (JWTVerificationException e) {
+                throw new RuntimeException("Unauthorized!");
+            }
+        }
+    }
+}
+```
+
+> 拦截`/secret`访问，并做`token`校验
+
+##### 2.4 访问secret
+
+* 1.直接访问`/secret`，响应`Unauthorized!`
+* 2.请求`/login`获取`token`
+* 3.设置请求头`X-AUTH-TOKEN: $token`访问`/secret`能正常访问
+* 4.修改`token`再次访问，响应`Unauthorized!`
+
+#### 3. 参考
+
+* [JWT](https://jwt.io/)
+
+* [Java-JWT](https://github.com/auth0/java-jwt)
