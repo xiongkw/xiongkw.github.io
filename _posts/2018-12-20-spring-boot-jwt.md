@@ -12,11 +12,13 @@ tags: [spring-boot, jwt]
 
 * `JWT`: JSON Web Token (JWT)，服务端给用户签发的一个记录了用户信息的`token`，用户下次请求时带上这个`token`，服务端会根据`token`解码用户身份，带来的好处是服务端不需要保存会话了，坏处是需要额外的解码计算
 
-`JWT`解决了分布式架构下会话共享这一痛点，使得服务端无状态更容易扩展，但也存在一些缺陷：
+`JWT`解决了分布式架构下会话共享这一痛点，使得服务端无状态更容易扩展，但也存在一些问题：
 
-* 服务端需要一些额外的逻辑来废止一个没过期的`token`
-* `token`容易被截取和盗用，所以需要使用`HTTPS`协议传输
-* 记录更多的用户信息（例如权限）会带来更多的流量开销
+* 服务端无法废止一个正常使用的`token`（虽然也可以通过一些额外逻辑实现，但肯定不如`HttpSession.invalidate()`来得痛快）
+* `token`容易被截取和盗用，所以需要使用`HTTPS`协议传输（好像`sessionId`一样也有同样问题，不过`sessionId`一般是在`cookie`中，而`cookie`不可跨域）
+* 在`token`中记录更多的用户信息（例如权限）会带来更大的流量和计算开销，不记录的话则服务器处理每次请求都要从数据库或缓存获取（又绕回`session`了）
+
+所以又一次印证了一个真理（废话）：这世上没有绝对的好与坏，适合你的，就是最好的
 
 > 参考[JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
 
@@ -97,7 +99,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 * 1.直接访问`/secret`，响应`Unauthorized!`
 * 2.请求`/login`获取`token`
 * 3.设置请求头`X-AUTH-TOKEN: $token`访问`/secret`能正常访问
-* 4.修改`token`再次访问，响应`Unauthorized!`
+* 4.设置请求头`X-AUTH-TOKEN:`为一个无效的`token`后再次访问，响应`Unauthorized!`
 
 #### 3. 参考
 
