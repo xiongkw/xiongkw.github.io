@@ -60,4 +60,5 @@ keytool -importcert -file myapp.cer -keystore $JAVA_HOME\jre\lib\security\cacert
 
 #### 5. 附
 
-> 如果网站使用的证书是权威机构颁发的，则不需要手动导入证书到`jdk`的，原因在于自签名证书无法通过`jdk`固化的证书链检查
+> 如果证书是权威机构颁发的，则不需要手动导入到`jdk`，原因在于自签名证书无法通过`jdk`的证书链检查   
+> 另外也可以通过改写客户端逻辑来忽略证书验证 // TODO
