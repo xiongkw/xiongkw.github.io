@@ -18,7 +18,7 @@ tags: [spring-boot, jwt]
 * `token`容易被截取和盗用，所以需要使用`HTTPS`协议传输（好像`sessionId`一样也有同样问题，不过`sessionId`一般是在`cookie`中，而`cookie`不可跨域）
 * 在`token`中记录更多的用户信息（例如权限）会带来更大的流量和计算开销，不记录的话则服务器处理每次请求都要从数据库或缓存获取（又绕回`session`了）
 
-所以又一次印证了一个真理（废话）：这世上没有绝对的好与坏，适合你的，就是最好的
+所以又一次印证了一个真理（废话）：没有好与不好，只有合不合适
 
 > 参考[JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
 
