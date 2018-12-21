@@ -106,3 +106,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 * [JWT](https://jwt.io/)
 
 * [Java-JWT](https://github.com/auth0/java-jwt)
+
+* [你在用 JWT 代替 Session?](https://blog.csdn.net/weixin_41153791/article/details/82291144)
