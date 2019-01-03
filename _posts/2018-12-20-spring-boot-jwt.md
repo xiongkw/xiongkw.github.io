@@ -59,7 +59,11 @@ public String login(@RequestParam String username, @RequestParam String password
 }
 
 private String getJwtToken(String username) {
-    return JWT.create().withIssuer("fool").withAudience(username).sign(Algorithm.HMAC256("secret"));
+    return JWT.create().withIssuer("fool").withAudience(username)
+            // 在token中写入用户信息
+            .withClaim("username", username)
+            .withClaim("role", "admin")
+            .sign(Algorithm.HMAC256("secret"));
 }
 ```
 
@@ -82,7 +86,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
             String token = request.getHeader("X-AUTH-TOKEN");
             try {
-                verifier.verify(token);
+                DecodedJWT verify = verifier.verify(token);
+                // 获取token中的用户信息
+                String username = verify.getClaim("username").asString();
+                String role = verify.getClaim("role").asString();
+                // ...
                 return true;
             } catch (JWTVerificationException e) {
                 throw new RuntimeException("Unauthorized!");
