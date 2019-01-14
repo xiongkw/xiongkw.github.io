@@ -25,4 +25,4 @@ github:
 # paginate
 gems: [jekyll-paginate]
 paginate: 5
-theme: jekyll-theme-time-machine
+theme: jekyll-theme-minimal
