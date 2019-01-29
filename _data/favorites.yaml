@@ -60,6 +60,10 @@
       url: https://wbo.openode.io/
     - title: p2pchat
       url: http://p2pchat.net/chat
+    - title: 免费高清图片
+      url: https://www.yuque.com/ruanyf/share/free-photos
+    - title: 照片背景移除在线工具
+      url: https://www.remove.bg/
 
 - name: IT
   pages:
@@ -328,7 +332,11 @@
     - title: 一口气读懂中国的银行体系
       url: https://www.toutiao.com/a6593126493914661383
     - title: 世界上最伟大的10个公式
-    - url: https://www.toutiao.com/a6641506043354415620
+      url: https://www.toutiao.com/a6641506043354415620
+    - title: 几何原本
+      url: https://www.c82.net/euclid/
+    - title: 地球时间线网页版
+      url: http://timelineofearth.com/
 
 - name: 旅游
   pages:
