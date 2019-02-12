@@ -166,7 +166,30 @@ func main() {
 
 * 编译并运行 `CTRL+R`
 
-#### 5. 参考
+#### 5. 包管理工具
+
+类似`js之npm`，`go`也有包管理工具，本文以`glide`为例
+
+##### 5.1 下载安装
+
+下载[glide](https://github.com/Masterminds/glide/releases)，解压并加入环境变量
+
+```
+$ glide -v
+glide version v0.13.2
+```
+
+##### 5.2 常用命令
+
+```
+$ glide init
+
+$ glide install
+
+$ glide get gopkg.in/yaml.v2
+```
+
+#### 6. 参考
 
 * [Go 语言教程](http://www.runoob.com/go/go-tutorial.html)
 
