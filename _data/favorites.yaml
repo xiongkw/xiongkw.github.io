@@ -185,6 +185,8 @@
       url: https://www.toutiao.com/a6603845997284033028
     - title: You don't (may not) need Moment.js
       url: https://github.com/you-dont-need/You-Dont-Need-Momentjs
+    - title: 程序员容易发音错误的单词
+      url: https://github.com/shimohq/chinese-programmer-wrong-pronunciation
 
 - name: Blog
   pages:
