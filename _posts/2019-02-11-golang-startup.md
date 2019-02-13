@@ -207,7 +207,18 @@ $ glide install
 $ glide get gopkg.in/yaml.v2
 ```
 
-#### 6. 参考
+#### 6. 跨平台编译
+
+`Windows`下编译`Linux`可执行程序
+
+```
+SET CGO_ENABLED=0
+SET GOOS=linux 
+SET GOARCH=amd64
+go build main.go
+```
+
+#### 7. 参考
 
 * [Go 语言教程](http://www.runoob.com/go/go-tutorial.html)
 
