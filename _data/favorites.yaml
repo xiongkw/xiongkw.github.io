@@ -70,6 +70,10 @@
       url: https://tox.chat/index.html
     - title: Vimium - The Hacker's Browser
       url: https://github.com/philc/vimium
+    - title: explain-shell
+      url: https://www.explainshell.com/
+    - title: png-pdf
+      url: https://png2pdf.com/
 
 - name: IT
   pages:
@@ -193,6 +197,10 @@
       url: https://github.com/you-dont-need/You-Dont-Need-Momentjs
     - title: 程序员容易发音错误的单词
       url: https://github.com/shimohq/chinese-programmer-wrong-pronunciation
+    - title: A curated repository of Tools for FrontEnd devs and Designers
+      url: http://frontendtools.com/
+    - title: Public APIs
+      url: https://github.com/toddmotto/public-apis
 
 - name: Blog
   pages:
@@ -317,7 +325,7 @@
     - title: 为什么只有许仕林才能救白素贞出塔
       url: http://www.u148.net/article/132639.html
 
-- name: 科普
+- name: 科普教育
   pages:
     - title: 沿地球直径打洞跳下去会怎样
       url: http://c.m.163.com/news/a/BLRERNEE00014TUH.html
@@ -345,6 +353,12 @@
       url: https://www.c82.net/euclid/
     - title: 地球时间线网页版
       url: http://timelineofearth.com/
+    - title: 中国科学技术大学课程资源
+      url: https://github.com/mbinary/USTC-CS-Courses-Resource
+    - title: 记录片-宇宙时空之旅
+      url: http://open.163.com/special/opencourse/aspacetimeodyssey.html
+    - title: 记录片-最远的地方
+      url: https://open.163.com/movie/2017/12/L/P/MD4HU779A_MD6SGP2LP.html
 
 - name: 旅游
   pages:

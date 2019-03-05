@@ -223,3 +223,5 @@ go build main.go
 * [Go 语言教程](http://www.runoob.com/go/go-tutorial.html)
 
 * [Go 语言入门教程](http://c.biancheng.net/golang/)
+
+* [50 Shades of Go: Traps, Gotchas, and Common Mistakes for New Golang Devs](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/)
