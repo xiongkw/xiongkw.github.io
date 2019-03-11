@@ -12,7 +12,7 @@ tags: [wireshark, tcpdump, tcp]
 #### 1.TCP协议
 ![]({{site.url}}/public/images/2017-08-30-wireshark-tcpdump-tcp-protocol.png)
 
-* `Source Port` `2字节16位` `TCP`连接是双向的，如果我要连接s，那我必须先准备一个端口给你连接 
+* `Source Port` `2字节16位` `TCP`连接是双向的，如果我要连接，那我必须先准备一个端口给你连接 
 * `Destination Port` `2字节16位` 目标的端口(`TCP`层只有端口, 因为`ip`在`IP`层)
 * `Sequence number` `4字节` 每个`TCP`报文都有一个序列号，表示数据段第一个字节的序号
 * `Acknowledgment number` 收到数据段的字节序号`+1`，返回给发送端，意思是：我已经收到序号`x`的数据了，你下一次要从`x+1`序号开始发送
@@ -69,11 +69,11 @@ Transmission Control Protocol, Src Port: 45982, Dst Port: 8011, Seq: 0, Len: 0
     Options: (20 bytes), Maximum segment size, SACK permitted, Timestamps, No-Operation (NOP), Window scale
 
 ```
-> c: hi s, 我要连接你(当然s事先已经公布了自己的地址`ip+port`).   
+> `c: hi s`, 我要连接你(当然`s`事先已经公布了自己的地址`ip+port`).   
 > 准备我的 `Source Port: 45982`，其实是创建了一个`socket`   
 > 准备`Sequence number: 0` ，这里是一个相对数值   
 > `Flags: 0x002 (SYN)`，表示这是一个请求建立连接的报文   
-> `Acknowledgment number: 0 `, 只有在`Flags-ACK`为1时才有效，这里无效   
+> `Acknowledgment number: 0 `, 只有在`Flags-ACK`为`1`时才有效，这里无效   
 > 此时 `socket c` 进入 `SYN_SEND`状态
 
 握手二
