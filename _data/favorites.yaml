@@ -74,6 +74,8 @@
       url: https://www.explainshell.com/
     - title: png-pdf
       url: https://png2pdf.com/
+    - title: Firefox Send
+      url: https://send.firefox.com/
 
 - name: IT
   pages:

@@ -237,4 +237,5 @@ kubectl delete -f nginx.yml
 #### 5. 参考
 
 * [Docker Hub](https://hub.docker.com/)
-*[Installing kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
+
+* [Installing kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
