@@ -53,7 +53,7 @@ zk_port=2181
 inventory/group_vars/all.yml
 
 ```yaml
-kafka_zk_server: "{{groups['zookeeper'][0]}}:{{zk_port}}"
+kafka_zk_server: "\{\{groups\['zookeeper'\]\[0\]\}\}:\{\{zk_port\}\}"
 service_zk_server: "{{kafka_zk_server}}"
 ```
 
