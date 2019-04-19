@@ -99,6 +99,22 @@ tags: [jekyll, github]
 * categories: 分类，可有多个
 * tags: 标签，可有多个
 
+#### 6. 关于特殊字符
+
+作为一个码农，免不了要写各种编码笔记，特殊字符也是在所难免，例如`{`，如何正确的输出`{`呢？
+
+可以用
+
+{% raw %}
+```
+{% raw %}
+ 
+{{ xxx }}
+
+{% endraw %} 
+```
+{% endraw %} 
+
 #### 参考
 
 [https://jekyllrb.com/](https://jekyllrb.com/)
