@@ -53,8 +53,8 @@ zk_port=2181
 inventory/group_vars/all.yml
 
 ```yaml
-kafka_zk_server: "\{\{groups\['zookeeper'\]\[0\]\}\}:\{\{zk_port\}\}"
-service_zk_server: "{{kafka_zk_server}}"
+kafka_zk_server: "\{\{groups['zookeeper'][0]\}\}:\{\{zk_port\}\}"
+service_zk_server: "\{\{kafka_zk_server\}\}"
 ```
 
 #### 3. 改进：使用for循环增加集群支持
@@ -62,8 +62,8 @@ service_zk_server: "{{kafka_zk_server}}"
 inventory/group_vars/all.yml
 
 ```yaml
-kafka_zk_server: "{% for host in groups['zookeeper'] %}{{host}}:{{zk_port}}{% if not loop.last %},{% endif %}{% endfor %}"
-service_zk_server: "{{kafka_zk_server}}"
+kafka_zk_server: "\{% for host in groups['zookeeper'] %\}\{\{host\}\}:\{\{zk_port\}\}\{% if not loop.last %\},\{% endif %\}\{% endfor %\}"
+service_zk_server: "\{\{kafka_zk_server\}\}"
 ```
 
 #### 参考
