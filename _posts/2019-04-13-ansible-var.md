@@ -62,7 +62,7 @@ service_zk_server: "\{\{kafka_zk_server\}\}"
 inventory/group_vars/all.yml
 
 ```yaml
-kafka_zk_server: "\{% for host in groups['zookeeper'] %\}\{\{host\}\}:\{\{zk_port\}\}\{% if not loop.last %\},\{% endif %\}\{% endfor %\}"
+kafka_zk_server: "\{\% for host in groups['zookeeper'] \%\}\{\{host\}\}:\{\{zk_port\}\}\{\% if not loop.last \%\},\{\% endif \%\}\{\% endfor \%\}"
 service_zk_server: "\{\{kafka_zk_server\}\}"
 ```
 
