@@ -51,12 +51,13 @@ zk_port=2181
 ```
 
 inventory/group_vars/all.yml
+{% raw %} 
 
 ```yaml
-kafka_zk_server: "\{\{groups['zookeeper'][0]\}\}:\{\{zk_port\}\}"
-service_zk_server: "\{\{kafka_zk_server\}\}"
+kafka_zk_server: "{{ groups['zookeeper'][0] }}:{{ zk_port }}"
+service_zk_server: "{{ kafka_zk_server }}"
 ```
-
+{% endraw %}
 #### 3. 改进：使用for循环增加集群支持
 
 inventory/group_vars/all.yml
