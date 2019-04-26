@@ -50,6 +50,20 @@ WantedBy=multi-user.target
 
 ```
 
+#### 4. 几个小问题
+
+##### 4.1 关于Service type
+
+`type`最常用的有`simple、notify、forking`
+
+* `simple`: 默认的`type`，直接执行`ExecStart`
+* `notify`: 与`simple`的区别是会等待`ExecStart`命令执行完成
+* `forking`: 适用于启动后台进程，例如通过`nohup`启动的后台进程，或者其它`daemon`进程
+
+##### 4.2 关于ExecStop和ExecReload
+
+`ExecStop`和`ExecReload`都不是必需的，但是可以通过它们自定义`stop`和`restart`的逻辑
+
 #### 参考
 
 * [Systemd 入门教程：实战篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html)
