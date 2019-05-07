@@ -136,12 +136,12 @@ public class Application {
 }
 ```
 
-ProducerController
+ProducerController.java
 ```java
 @RestController
 @RequestMapping("/users")
 @RefreshScope
-public class DataController {
+public class ProducerController {
 
     @Value("${user.name}")
     private String name;
@@ -216,7 +216,7 @@ public class Application {
 IProducerClient.java
 ```java
 @FeignClient("producer")
-public interface IDataClient {
+public interface IProducerClient {
 
     @GetMapping("/users/{id}")
     User getById(@PathVariable(name = "id") int id);
@@ -229,14 +229,14 @@ ConsumerController.java
 ```java
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class ConsumerController {
 
     @Autowired
-    private IDataClient dataClient;
+    private IProducerClient client;
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable int id){
-        return dataClient.getById(id);
+        return client.getById(id);
     }
 
 }
