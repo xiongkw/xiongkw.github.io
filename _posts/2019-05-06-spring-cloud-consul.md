@@ -6,11 +6,11 @@ tags: [consul]
 ---
 
 
-> 新版`spring-cloud`逐步从`Netflix`迁移出来，例如`spring-cloud-consul`
+> 新版`spring-cloud`逐步脱离`Netflix`生态，转而推崇其它产品，例如`gateway、consul`
 
 #### 1. consul简介
 
-> `Consul` 是一套开源的分布式服务发现和配置管理系统，由 `HashiCorp` 公司用 `Go` 语言开发
+> `Consul` 是一套开源的分布式服务发现和配置管理系统，`HashiCorp`公司出品，基于`Go`语言开发
 
 ##### 1.1 功能
 
