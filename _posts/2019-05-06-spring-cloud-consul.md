@@ -50,17 +50,22 @@ Protocol 2 spoken by default, understands 2 to 3 (agent will automatically use p
 #### 3. 运行
 
 ```
-$ nohup ./consul agent -dev -bind 192.168.1.100 -client 192.168.1.100 >std.log 2>&1 &
+$ nohup ./consul agent -server -bootstrap-expect 1 -ui -data-dir /data/consul -bind 192.168.1.100 -client 192.168.1.100 >std.log 2>&1 &
 ```
 
-> `-bind`参数指定节点绑定的ip，`-client`参数指定节点提供服务的地址，默认都是`127.0.0.1`
+* `-server`: 以`server`方式启动
+* `-bootstrap-expect`: 指定最少节点数`1`
+* `-ui`：启动`ui`
+* `-data`：指定数据持久化目录，否则数据只会保存在内存中，重启后会丢失
+* `-bind`：指定节点绑定的`ip`
+* `-client`：指定节点提供服务的地址，默认都是`127.0.0.1`
 
 #### 4. 集群成员查看
 
 ```
 $ ./consul members
 Node  Address         Status  Type    Build  Protocol  DC   Segment
-bss3  127.0.0.1:8301  alive   server  1.4.4  2         dc1  <all>
+bss3  192.168.1.100:8301  alive   server  1.4.4  2         dc1  <all>
 ```
 
 #### 5. spring-cloud开发
@@ -135,16 +140,47 @@ ProducerController
 ```java
 @RestController
 @RequestMapping("/users")
-public class ProducerController {
+@RefreshScope
+public class DataController {
 
+    @Value("${user.name}")
+    private String name;
+    
     @GetMapping("/{id}")
     public User getUserById(@PathVariable int id){
-        return new User(id, "Tom");
+        return new User(id, this.name);
     }
 }
 ```
 
 ##### 5.2 consumer
+pom.xml
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-config</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
 
 bootstrap.yml
 
@@ -159,12 +195,6 @@ spring:
       discovery:
         health-check-path: /actuator/health
         prefer-ip-address: true
-      config:
-        format: yaml
-        prefix: config
-        default-context: consumer
-        data-key: data
-        profile-separator: ','
 server:
   port: 8080
 ```
@@ -211,6 +241,54 @@ public class UserController {
 
 }
 ```
+
+##### 5.3 测试配置管理
+
+登录`consul-ui`，创建`Key/Value`
+```
+Key: config/producer,dev/data
+Value: 
+user.name: Tom
+```
+
+运行`producer`，访问`http://127.0.0.1:8088/users/1`
+```
+{"id":1,"name":"Tom"}
+```
+
+##### 5.4 测试配置刷新
+
+修改配置
+```
+user.name: Tomcat
+```
+
+刷新页面`http://127.0.0.1:8088/users/1`
+
+```
+{"id":1,"name":"Tomcat"}
+```
+
+> 动态刷新配置属性需要使用注解`@RefreshScope`
+
+##### 5.5 测试服务注册与发现
+
+运行`producer`和`consumer`，打开`consul-ui Services`
+
+| Service | Health Checks | Tags |
+| ------- | ------------- | ---- |
+| consul | 1 | |
+| consumer | 2 | secure=false |
+| producer | 2 | secure=false |
+
+说明服务`producer`和`consumer`都注册成功，并且健康检查通过
+
+访问`http://127.0.0.1:8080/users/1`
+```
+{"id":1,"name":"Tomcat"}
+```
+
+> 使用`Feign`实现服务调用
 
 #### 6. 参考
 
