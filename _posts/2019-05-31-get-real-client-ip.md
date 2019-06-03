@@ -66,7 +66,7 @@ location / {
 
 #### 3. 经过了TCP代理
 
-##### 3.1 nginx TCP代理
+`nginx TCP`代理原理
 
 ```
 +--------+           +--------+   TCP     +--------+
@@ -75,6 +75,14 @@ location / {
 ```
 
 现在，代码获取到的客户端IP为`nginx`代理机的IP，原因是`nginx TCP`代理时修改了IP包的`src`为`nginx`主机的IP，最终程序通过`request.getRemoteAddr()`获取到的正是`nginx`主机的地址
+
+##### 3.1 IP transparent
+
+`nginx`提供一种方法[proxy_bind](http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_bind)，能够不修改`src ip`，但是需要修改被代理服务主机的默认网关为`nginx`主机
+
+问题是被代理服务和`nginx`在同一主机上，更改默认网关为自己会有问题
+
+> 参考[IP Transparency and Direct Server Return with NGINX and NGINX Plus as Transparent Proxy](https://www.nginx.com/blog/ip-transparency-direct-server-return-nginx-plus-transparent-proxy/)
 
 ##### 3.2 proxy protocl
 
@@ -120,13 +128,15 @@ access_log /home/docker/dwf/nginx152/logs/access.log basic;
 
 其实最优的解法是改`nginx`反向代理为`HTTP`方式，但是由于种种原因，这个方法无法实行
 
-#### 4.1 在客户端获取
+其次是`IP transparent`，但是不适合`nginx`与被代理服务在相同主机的情况
+
+#### 4.1 客户端上报
 
 好在客户端也能够编程，所以可以在客户端获取到再上报到服务端，例如使用请求头`X-Client-IP`
 
 缺点是只能获取到内网地址，而内网地址对于服务端来说没有任何意义，所以只适用于客户端和服务端在同一局域网内的情况
 
-#### 4.2 优化一下
+#### 4.2 结合X-Forwarded-For
 
 综合客户端与服务端获取两种方式，通过以下优先级获取客户端IP
 
@@ -142,3 +152,5 @@ access_log /home/docker/dwf/nginx152/logs/access.log basic;
 
 * [Module ngx_stream_realip_module](http://nginx.org/en/docs/stream/ngx_stream_realip_module.html#set_real_ip_from)
 * [Accepting the PROXY Protocol](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#)
+* [proxy_bind](http://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_bind)
+* [IP Transparency and Direct Server Return with NGINX and NGINX Plus as Transparent Proxy](https://www.nginx.com/blog/ip-transparency-direct-server-return-nginx-plus-transparent-proxy/)
