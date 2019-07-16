@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 通过JNLP部署jenkins-slave节点
-categories: [编程, linux, jenkins]
-tags: []
+categories: [编程, linux]
+tags: [jenkins, jnlp]
 ---
 
 > 通过`JNLP`部署`jenkins-slave`节点
@@ -47,7 +47,7 @@ $ docker-compose up -d
 
 ![]({{site.url}}/public/images/2019-07-15-jenkins-ha-1.png)
 
-> 记住上面的`secret`
+> 通过`JNLP`方式安装`slave`时，需要填写以上的`name`和`secret`
 
 #### 3. 部署slave
 
@@ -79,7 +79,7 @@ $ docker-compose up -d
 
 #### 4. 查看slave状态
 
-在jenkins中查看slave状态，略
+在`jenkins`控制台查看`slave`状态，略
 
 #### 5. 参考
 
