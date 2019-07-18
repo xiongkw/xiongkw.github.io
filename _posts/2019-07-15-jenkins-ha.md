@@ -45,7 +45,7 @@ $ docker-compose up -d
 
 ![]({{site.url}}/public/images/2019-07-15-jenkins-ha-1.png)
 
-![]({{site.url}}/public/images/2019-07-15-jenkins-ha-1.png)
+![]({{site.url}}/public/images/2019-07-15-jenkins-ha-2.png)
 
 > 通过`JNLP`方式安装`slave`时，需要填写以上的`name`和`secret`
 
