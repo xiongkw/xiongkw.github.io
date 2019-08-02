@@ -106,19 +106,19 @@ private static synchronized TimeZone setDefaultZone() {
 
 #### 3. 解决办法
 
-1. 增加加`jvm`启动参数
+* 增加加`jvm`启动参数
 
 ```
 java -Duser.timezone=GMT+08
 ```
 
-2. 代码中设置时区
+* 代码中设置时区
 
 ```java
 String dateStr=DateFormatUtils.format(timeInMills, "yyyy.MM.dd", TimeZone.getTimeZone("GMT+08"));
 ```
 
-3. 也可以设置默认时区
+* 也可以设置默认时区
 
 ```java
 TimeZone.setDefault(TimeZone.getTimeZone("GMT+08"));
