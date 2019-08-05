@@ -104,10 +104,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 ##### 2.4 访问secret
 
-* 1.直接访问`/secret`，响应`Unauthorized!`
-* 2.请求`/login`获取`token`
-* 3.设置请求头`X-AUTH-TOKEN: $token`访问`/secret`能正常访问
-* 4.设置请求头`X-AUTH-TOKEN:`为一个无效的`token`后再次访问，响应`Unauthorized!`
+1. 直接访问`/secret`，响应`Unauthorized!`
+2. 请求`/login`获取`token`
+3. 设置请求头`X-AUTH-TOKEN: $token`访问`/secret`能正常访问
+4. 设置请求头`X-AUTH-TOKEN:`为一个无效的`token`后再次访问，响应`Unauthorized!`
 
 #### 3. 参考
 
