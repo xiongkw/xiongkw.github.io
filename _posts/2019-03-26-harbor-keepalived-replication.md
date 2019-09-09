@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Harbor高可用和镜复制
+title: Harbor高可用和镜像复制
 categories: [编程, linux, docker]
 tags: [harbor, keepalived]
 ---

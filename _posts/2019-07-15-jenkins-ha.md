@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 通过JNLP部署jenkins-slave节点
-categories: [编程, linux]
+categories: [编程, linux, docker]
 tags: [jenkins, jnlp]
 ---
 
