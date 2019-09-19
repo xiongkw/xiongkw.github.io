@@ -45,10 +45,18 @@ $ yum install createrepo -y
 3. 创建源
 
 ```
-$ createrepo -d ~/extras
+$ createrepo ~/extras
 $ ll 
 drwxr-xr-x. 2 root root  212 Sep 18 04:27 Packages
 drwxr-xr-x. 2 root root 4096 Sep 18 04:31 repodata
+```
+
+4. 更新源
+
+下载了其它`rpm`包，只需要更新源即可
+
+```
+$ createrepo --update ~/extras
 ```
 
 #### 2. 服务搭建
