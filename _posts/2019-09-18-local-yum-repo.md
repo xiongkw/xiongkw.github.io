@@ -74,10 +74,10 @@ $ yum install httpd -y
 直接`copy`到`httpd`默认根目录
 
 ```
-$ mkdir -p /var/www/html/centos/7/base
-$ cp /mnt/cdrom/Packages /var/www/html/centos/7/base -r
-$ cp /mnt/cdrom/repodata /var/www/html/centos/7/base -r
-$ cp ~/extras /var/www/html/centos/7/ -r
+$ mkdir -p /var/www/html/centos/7.6.1810/base
+$ cp /mnt/cdrom/Packages /var/www/html/centos/7.6.1810/base -r
+$ cp /mnt/cdrom/repodata /var/www/html/centos/7.6.1810/base -r
+$ cp ~/extras /var/www/html/centos/7.6.1810/ -r
 ```
 
 ##### 2.3 启动httpd
@@ -110,12 +110,12 @@ $ vi /etc/yum.repos.d/local.repo
 ```
 [local-base]
 name=local-base
-baseurl=http://192.168.1.101/centos/7/base/
+baseurl=http://192.168.1.101/centos/7.6.1810/base/
 gpgcheck=0
 
 [local-extras]
 name=local-extras
-baseurl=http://192.168.1.101/centos/7/extras
+baseurl=http://192.168.1.101/centos/7.6.1810/extras
 gpgcheck=0
 ```
 
