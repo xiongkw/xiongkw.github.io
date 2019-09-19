@@ -24,7 +24,7 @@ drwxr-xr-x. 2 root root  4096 Sep  5  2017 repodata
 
 例如`epel`中的包，需要自己下载并制作成`yum`源
 
-1. 下载`rpm`包及其依赖
+* 下载`rpm`包及其依赖
 
 ```
 $ yum install httpd --downloadonly --downloaddir=~/extras/Packages
@@ -36,13 +36,13 @@ $ ll Packages
 -rw-r--r--. 1 root root   31264 Jul  3  2014 mailcap-2.1.41-2.el7.noarch.rpm
 ```
 
-2. 安装`createrepo`
+* 安装`createrepo`
 
 ```
 $ yum install createrepo -y
 ```
 
-3. 创建源
+* 创建源
 
 ```
 $ createrepo ~/extras
@@ -51,7 +51,7 @@ drwxr-xr-x. 2 root root  212 Sep 18 04:27 Packages
 drwxr-xr-x. 2 root root 4096 Sep 18 04:31 repodata
 ```
 
-4. 更新源
+* 更新源
 
 下载了其它`rpm`包，只需要更新源即可
 
@@ -71,7 +71,7 @@ $ yum install httpd -y
 
 ##### 2.2 部署yum源
 
-直接`copy`到`httpd`默认目录
+直接`copy`到`httpd`默认根目录
 
 ```
 $ mkdir -p /var/www/html/centos/7/base
@@ -92,14 +92,14 @@ $ systemctl start httpd
 
 #### 3. 本地源的使用
 
-1. 备份本机的`yum`源配置
+##### 3.1 备份本机的yum配置
 
 ```
 $ mkdir /etc/yum.repos.d/bak
 $ mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/bak
 ```
 
-2. 增加本地源配置
+##### 3.2 编写本地源配置
 
 ```
 $ vi /etc/yum.repos.d/local.repo
@@ -119,7 +119,7 @@ baseurl=http://192.168.1.101/centos/7/extras
 gpgcheck=0
 ```
 
-3. 测试
+##### 3.3 测试
 
 ```
 $ yum clean all
@@ -133,15 +133,13 @@ httpd.x86_64                 2.4.6-90.el7.centos            local-extras
 
 #### 4. 附. 离线安装httpd
 
-既然无法连接外网，那么如何安装`httpd`呢?
-
-先在可以连外网的主机上下载`httpd`及其依赖包
+既然无法连接外网，那么如何安装`httpd`呢?可以先在能够连接外网的主机上下载`httpd`及其依赖包
 
 ```
 $ yum install httpd --downloadonly --downloaddir=~/httpd
 ```
 
-`copy`下载到的安装包到目标主机上再安装
+再`copy`到目标主机上安装
 
 ```
 $ yum install httpd/*
