@@ -131,7 +131,9 @@ Available Packages
 httpd.x86_64                 2.4.6-90.el7.centos            local-extras
 ```
 
-#### 4. 附. 离线安装httpd
+#### 4. 附
+
+##### 4.1 离线安装httpd
 
 既然无法连接外网，那么如何安装`httpd`呢?可以先在能够连接外网的主机上下载`httpd`及其依赖包
 
@@ -143,4 +145,26 @@ $ yum install httpd --downloadonly --downloaddir=~/httpd
 
 ```
 $ yum install httpd/*
+```
+
+##### 4.2 无法访问
+
+关闭防火墙
+
+```
+$ systemctl stop firewalld
+```
+
+##### 4.3 You don't have permission问题
+
+关闭`selinux`
+
+```
+$ setenforce 0
+```
+
+给`DocumentRoot`目录加上权限
+
+```
+$ chmod 777 /app/html -R
 ```
