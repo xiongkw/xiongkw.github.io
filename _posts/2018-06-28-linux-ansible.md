@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ansible入门
-categories: [编程, linux]
+categories: [编程, linux, ansible]
 tags: [ansible]
 ---
 

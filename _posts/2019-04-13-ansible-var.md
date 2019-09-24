@@ -72,3 +72,5 @@ service_zk_server: "{{ kafka_zk_server }}"
 * [Ansible中文权威指南](http://www.ansible.com.cn/index.html)
 
 * [Jinja2](http://jinja.pocoo.org/docs/2.10/)
+
+* [Jinja2](http://docs.jinkan.org/docs/jinja2/)

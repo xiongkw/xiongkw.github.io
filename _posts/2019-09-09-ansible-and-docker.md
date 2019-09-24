@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 自动化部署之ansible和docker
-categories: [编程, linux, docker]
+categories: [编程, linux, docker, ansible]
 tags: [ansible]
 ---
 
