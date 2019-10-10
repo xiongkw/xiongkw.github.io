@@ -80,6 +80,8 @@
       url: https://datash.co/
     - title: 在线工具合集
       url: https://oktools.net/
+    - title: Free Stock Photos
+      url: https://taken.photos/
 
 - name: IT
   pages:
@@ -207,7 +209,8 @@
       url: http://frontendtools.com/
     - title: Public APIs
       url: https://github.com/toddmotto/public-apis
-
+    - title: Mkyong.com
+      url: https://www.mkyong.com/
 - name: Blog
   pages:
     - title: 阮一峰的网络日志

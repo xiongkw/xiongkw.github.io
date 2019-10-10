@@ -1,103 +1,76 @@
 ---
 layout: post
-title: String的+和intern
+title: String的+
 categories: [编程, java]
-tags: [jvm, heap, String]
+tags: [StringBuilder, String]
 ---
 
 > 上一篇解释创建了几个`String`对象，那`String +` 又是怎么回事呢?
 
-#### 1. 一段代码
-
-`WARN`: 下面代码比较多，可能会看的人头晕
+#### 1. 关于StringBuilder的警告
 
 ```java
-    //1. "12"在编译期已经确定会放入常量池
-    String s = new String("12");
-    // 所以这里返回的是常量池中"12"的引用(3. intern规则)
-    String i1 = s.intern();
-    System.out.println(s == i1);//false
-    // = "12"会从常量池中检索，如果常量池不存在，则放入常量池，返回引用
-    String s2 = "12";
-    System.out.println(s2 == i1);//true
-    
-    //2. String常量+对象的结果并不会放入常量池(2. string+规则)
-    String s3 = new String("3") + "4";
-    // 因为"34"不在常量池中，所以intern操作会把s3放入常量池，并返回其引用，这个引用和s3是相同的(3. intern规则)
-    String i3 = s3.intern();
-    System.out.println(s3 == i3);//true
-    
-    //3. 这里会产生三个String常量:"5"、"6"和"56"，并且s5直接引用常量"56"(2. string+规则)
-    String s5 = "5" + "6";
-    // s5本身即在常量池中，所以这里返回的和s5相同(3. intern规则)
-    String i5 = s5.intern();
-    System.out.println(s5 == i5);//true
-    
-    //4.
-    String s7 = "7";
-    // s7是变量，所以"8"+s7不是常量表达式，其结果不会放入常量池(2. string+规则)
-    String s8 = "8" + s7;
-    // 同2.
-    String i8 = s8.intern();
-    System.out.println(s8 == i8);//true
-    
-    //5. "10"会放入常量池
-    String s10 = "10";
-    String s11 = "0";
-    // s12不会放入常量池(2. string+规则)
-    String s12 = "1" + s11;
-    System.out.println(s10 == s12);//false
-    //"10"已经存在于常量池中，所以这里直接返回了s10的引用(3. intern规则)
-    String i12 = s12.intern();
-    System.out.println(s10 == i12);//true
-    System.out.println(s12 == i12);//false
+String s = new StringBuilder().append(a).append("b").append("c").toString();
 ```
+
+> 以上代码在`idea`中会提示警告信息：`'StringBuilder' can be replaced with 'String'`
 
 #### 2. string+规则
- 
-> The string concatenation operator + implicitly creates a new String object when the result is not a constant expression .   
-> 引用[Java Language Specification](http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.3.3)
 
+通过`idea`提示信息`Replace 'StringBuilder' with 'String'`，重构代码
 
-#### 3. intern规则
-
-```java
-/**
-     * Returns a canonical representation for the string object.
-     * <p>
-     * A pool of strings, initially empty, is maintained privately by the
-     * class {@code String}.
-     * <p>
-     * When the intern method is invoked, if the pool already contains a
-     * string equal to this {@code String} object as determined by
-     * the {@link #equals(Object)} method, then the string from the pool is
-     * returned. Otherwise, this {@code String} object is added to the
-     * pool and a reference to this {@code String} object is returned.
-     * <p>
-     * It follows that for any two strings {@code s} and {@code t},
-     * {@code s.intern() == t.intern()} is {@code true}
-     * if and only if {@code s.equals(t)} is {@code true}.
-     * <p>
-     * All literal strings and string-valued constant expressions are
-     * interned. String literals are defined in section 3.10.5 of the
-     * <cite>The Java&trade; Language Specification</cite>.
-     *
-     * @return  a string that has the same contents as this string, but is
-     *          guaranteed to be from a pool of unique strings.
-     */
-    public native String intern();
+```
+String s = a + "b" + "c";
 ```
 
-> When the intern method is invoked, if the pool already contains a string equal to this String object as determined by the equals(Object) method, then the string from the pool is returned. Otherwise, this String object is added to the pool and a reference to this String object is returned.
+> 结果有点意外，根据以往经验，`String+`应该写成`StringBuilder`，为何`idea`要反其道而行?
 
-#### 4. 解释
+#### 3. 查看编译出的class文件
+
+写一段测试代码
 
 ```java
-    // 根据(2. string+规则). 变量加常量是非常量表态式，所以"34"不会放到常量池
-    String s3 = new String("3") + "4";
-    // 根据(3. intern规则). 不在常量池中的string，调用intern方法会把值放入常量池，并返回该对象的引用
-    String i3 = s3.intern();
-    // 所以s3.intern()返回的引用就是s3
-    System.out.println(s3 == i3);//true
+        String s1 = a + "b" + "c";
+        String s2 = new StringBuilder().append(a).append("b").append("c").toString();
 ```
 
+```
+$ javac Test.java
+$ javap -c Test.class
+```
+
+查看`class`文件
+
+```
+     Code:
+       0: new           #2                  // class java/lang/StringBuilder
+       3: dup
+       4: invokespecial #3                  // Method java/lang/StringBuilder."<init>":()V
+       7: aload_0
+       8: invokevirtual #4                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      11: ldc           #5                  // String b
+      13: invokevirtual #4                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      16: ldc           #6                  // String c
+      18: invokevirtual #4                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      21: invokevirtual #7                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      24: astore_1
+      25: new           #2                  // class java/lang/StringBuilder
+      28: dup
+      29: invokespecial #3                  // Method java/lang/StringBuilder."<init>":()V
+      32: aload_0
+      33: invokevirtual #4                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      36: ldc           #5                  // String b
+      38: invokevirtual #4                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      41: ldc           #6                  // String c
+      43: invokevirtual #4                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      46: invokevirtual #7                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      49: astore_2
+      50: return
+```
+
+> 发现两段代码的编译结果完全相同
+
+#### 4. 结论
+
+* `javac`会把`String+`编译成`StringBuilder.append`，所以`String+`不存在执行效率的问题
+* 在执行效率相同的情况下，`String+`的代码更简洁
