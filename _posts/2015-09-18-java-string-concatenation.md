@@ -30,9 +30,11 @@ String s = a + "b" + "c";
 写一段测试代码
 
 ```java
-        String s1 = a + "b" + "c";
-        String s2 = new StringBuilder().append(a).append("b").append("c").toString();
+String s1 = a + "b" + "c";
+String s2 = new StringBuilder().append(a).append("b").append("c").toString();
 ```
+
+编译
 
 ```
 $ javac Test.java
@@ -70,7 +72,42 @@ $ javap -c Test.class
 
 > 发现两段代码的编译结果完全相同
 
-#### 4. 结论
+#### 4. 进一步测试
+
+```
+String s1 = a + "b";
+s1 += "c";
+```
+
+编译后查看`class`文件
+
+```
+    Code:
+       0: new           #2                  // class java/lang/StringBuilder
+       3: dup
+       4: invokespecial #3                  // Method java/lang/StringBuilder."<init>":()V
+       7: aload_0
+       8: invokevirtual #4                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      11: ldc           #5                  // String b
+      13: invokevirtual #4                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      16: invokevirtual #6                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      19: astore_1
+      20: new           #2                  // class java/lang/StringBuilder
+      23: dup
+      24: invokespecial #3                  // Method java/lang/StringBuilder."<init>":()V
+      27: aload_1
+      28: invokevirtual #4                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      31: ldc           #7                  // String c
+      33: invokevirtual #4                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      36: invokevirtual #6                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      39: astore_1
+      40: return
+```
+
+> 发现生成了两个`StringBuilder`对象，即每个语句生成一个
+
+#### 5. 结论
 
 * `javac`会把`String+`编译成`StringBuilder.append`，所以`String+`不存在执行效率的问题
 * 在执行效率相同的情况下，`String+`的代码更简洁
+* `String+`适用一行语句连加的情况，而`StringBuilder`适用多行语句(例如`for`循环中的`+`)的情况
