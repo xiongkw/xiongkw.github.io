@@ -5,7 +5,7 @@ categories: [编程, linux, java]
 tags: [shell]
 ---
 
-> `Java`中执行耗时的`shell`脚本，因为`jvm`自身不保证高可用，所以不能以异步方式执行，于是想到通过后台进程执行
+> `Java`中执行耗时的`shell`脚本，因为某些原因不能保证`java`进程可靠，所以不能以异步方式执行，于是想到通过后台进程执行
 
 #### 1. 运行后台进程 
 
@@ -16,8 +16,8 @@ Runtime.getRuntime().exec(new String[]{"/bin/bash", "-c", cmd});
 
 说明：
 
-* 使用`nohup`运行后台进程
-* `java`中使用`bash -c`执行`shell`命令
+* 使用`nohup`和`&`运行后台进程
+* `java`代码中使用`bash -c`执行`shell`命令
 
 #### 2. 记录后台进程PID以及exit code
 
@@ -35,7 +35,7 @@ Runtime.getRuntime().exec(new String[]{"/bin/bash", "-c", cmd});
 * `L2`: 把`PID`写入文件
 * `L3`: 使用`wait`等待进程运行完成
 * `L4`: 获取进程退出码(`$?`)并写入文件
-* `& PID=$!`: `&`有和`;`同样分隔语句的功能
+* `& PID=$!`: `&`除了表示后台运行之外，还有和`;`同样分隔语句的功能
 
 #### 3. 参考
 
