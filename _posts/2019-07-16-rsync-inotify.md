@@ -90,7 +90,7 @@ $ systemctl start rsyncd
 1. 同步服务端文件到客户端
 
 ```
-$ rsync avz rsync@192.168.1.101::share /data/share --password-file=/app/dsync/rsyncd.passwd
+$ rsync -avz rsync@192.168.1.101::share /data/share --password-file=/app/dsync/rsyncd.passwd
 ```
 
 `/app/dsync/rsyncd.passwd`用于指定`rsync`用户的密码，内容
@@ -103,7 +103,7 @@ rsync
 2. 同步客户端文件到服务端
 
 ```
-$ rsync avz /data/share rsync@192.168.1.101::share --password-file=/app/dsync/rsyncd.passwd
+$ rsync -avz /data/share rsync@192.168.1.101::share --password-file=/app/dsync/rsyncd.passwd
 ```
 
 ##### 2.6 部署另一台主机
