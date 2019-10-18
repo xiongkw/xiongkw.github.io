@@ -5,11 +5,11 @@ categories: [编程, linux, java]
 tags: [爬虫, htmlunit]
 ---
 
-> 我在某网站上有一些数据需要整理到本地，其实就是大量复制粘贴的事，为了不减少键鼠的寿命，只好偷懒写个爬虫来帮忙
+> 我在某网站上有一些数据需要整理到本地，其实就是大量复制粘贴的事，为了不消耗键鼠的寿命，只好偷懒写个爬虫来帮忙
 
 #### 1. 分析用户登录协议 
 
-先通过`Chrome-DevTools`查看网站登录的`HTTP`协议，发现登录成功后直接重定向了，并且`DevTools-Network`并没有记录到登录协议，原来`Chrome-DevTools`默认是不保存重定向前的监听日志的，于是勾选`Network-Preserve log`，再次登录才记录到了登录协议
+通过`Chrome-DevTools`查看网站登录的`HTTP`协议，发现登录成功后重定向了，并且`DevTools-Network`没有记录到登录协议，原来`Chrome-DevTools`中设置的是不保存重定向前的监听日志，于是勾选`Network-Preserve log`，再次登录才记录到了协议
 
 ```
 POST https://xxx.com/login
@@ -23,13 +23,13 @@ signature: 4ca83e486e5780a9f1f03d871f578d51
 说明：
 
 * `username`: 账号
-* `password`: 发现密码变了，查看`js`源码(混淆过的，很难看懂)，发现是用了`md5`编码
+* `password`: 密码应该是被编码了，查看`js`源码(混淆过的，很难看懂)，发现是用了`md5`编码
 * `token`: 不知怎么来的
 * `signature`: 应该是对请求参数做了签名
 
 #### 2. 使用Postman测试
 
-通过`Postman`直接发送以上请求数据，响应`非法的请求`，看来使用常规方法破解会比较花时间，果断知难而退
+通过`Postman`发送以上请求数据，响应`非法的请求`，看来使用常规手段会比较费时，果断知难而退
 
 #### 3. 使用htmlunit模拟登录
 
@@ -55,11 +55,11 @@ HtmlPage p = form.getInputByName("submit").click();
 System.out.println(p.getTitleText());
 ```
 
-> 结果发现并没有跳转到重定向页面
+> 发现并没有跳转到重定向页面
 
 #### 4. 处理重定向
 
-添加监听器处理重定向，并调用接口获取需要的数据
+添加监听器处理重定向，再调用接口获取需要的数据
 
 ```java
 
@@ -82,7 +82,7 @@ webClient.addWebWindowListener(new WebWindowAdapter() {
 });
 ```
 
-> `http`接口调用成功，得到正确数据
+> 接口调用成功，得到正确数据
 
 #### 5. 参考
 
