@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Java中的Fork/Join
+title: JDK7中的Fork/Join
 categories: [编程, java]
 tags: [fork, join]
 ---
