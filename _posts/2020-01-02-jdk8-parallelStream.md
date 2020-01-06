@@ -1,6 +1,6 @@
 ---
 layout: post
-title: JDK8中的流
+title: JDK8中的Stream
 categories: [编程, linux, java]
 tags: [jdk8, parallelStream]
 ---
