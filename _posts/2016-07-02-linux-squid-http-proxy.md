@@ -29,7 +29,7 @@ acl client src 192.168.1.100
 # allow
 http_access allow client
 
-# deny
+# deny 可以直接改为 allow all
 http_access deny all
 
 ```
@@ -69,6 +69,25 @@ ftp_proxy=http://192.168.1.100:8000
 git config --global https.proxy http://192.168.1.100:8000
 ```
 
-#### 3. 参考
+#### 4. 隐藏真实IP
+
+```
+$ vi /etc/squid/squid.conf
+
+# Hide client ip #
+forwarded_for delete
+ 
+# Turn off via header #
+via off
+ 
+# Deny request for original source of a request
+follow_x_forwarded_for deny all
+ 
+# See below 
+request_header_access X-Forwarded-For deny all
+
+```
+
+#### 4. 参考
 
 [Squid Documentation](http://www.squid-cache.org/Doc/)
