@@ -64,3 +64,22 @@ server {
     }
 }
 ```
+
+#### 4. 代理的http处理
+
+反向代理`http`服务的情况，可通过`filter`把页面响应的`http`协议转换为`https`
+
+```
+location ~ \.do$ {
+    proxy_pass http://127.0.0.1:8080;
+    sub_filter_types html/text;
+    sub_filter_once off;
+    sub_filter 'http://192.168.1.100:80' 'https://192.168.1.100:443';
+    proxy_set_header    REMOTE-HOST $remote_addr;
+    proxy_set_header   Host $host;
+    proxy_set_header   X-Real-IP $remote_addr;
+    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+```
+
+> `sub_filter`指令需要安装相应模块`--with-http_sub_module`
