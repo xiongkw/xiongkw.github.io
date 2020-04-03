@@ -15,6 +15,7 @@ tags: [nfs-server]
 ```
 $ docker pull gists/nfs-server:2.4.1
 $ docker images
+gists/nfs-server        2.4.1      df121c7d1c02        5 weeks ago         11.8MB
 ```
 
 #### 2. 启动容器
