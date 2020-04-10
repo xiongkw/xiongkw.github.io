@@ -33,7 +33,7 @@ tags: [elk, elasticsearch, logstash, kibana, kafka, filebeat]
 `FileBeat`需要安装在每台宿主机上，这里通过`Ansible`批量安装，详情省略，参考[Ansible入门]({{site.url}}/2018/06/28/linux-ansible/)
 
 新建`FileBeat`配置：test.yml
-
+{% raw %}
 ```yaml
 filebeat.modules:
 - module: kafka
@@ -70,7 +70,7 @@ xpack.monitoring:
     hosts: ["http://192.168.1.100:8200"]
 ~
 ```
-
+{% endraw %}
 > 这里扫描`/logs/*.log`，并发送到`Kafka`
 
 启动命令

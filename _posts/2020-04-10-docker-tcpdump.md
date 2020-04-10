@@ -9,14 +9,14 @@ tags: [nsenter, tcpdump]
 > 容器内已有`tcpdump`命令的情况不在本文讨论的范围
 
 #### 1. 查看容器进程
-
+{% raw %}
 ```
 $ docker ps|grep nginx
 02565392211b        nginx:1.16.1
 $ docker inspect --format "{{.State.pid}}" 02565392211b
 19584
 ```
-
+{% endraw %}
 #### 2. 进入进程的网络命名空间
 
 ```
