@@ -185,6 +185,20 @@ VOLUME ["/root"]
 CMD ["/root/tomcat/bin/catalina.sh", "run"]
 ```
 
+#### 6. 用户权限问题
+
+非`root`用户执行`docker`命令时权限问题
+```
+Got permission denied while trying to connect to the Docker daemon socket at......dial unix /var/run/docker.sock: permission denied
+```
+
+把用户加入docker用户组即可
+
+```
+$ sudo usermod -G docker -a foo
+$ newgrp docker
+```
+
 #### 参考文档
 
 [Docker Documentation](https://docs.docker.com/)
