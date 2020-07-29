@@ -77,10 +77,10 @@ Disk identifier: 0x38ba6c38
 分区要格式化后才能使用
 
 ```
-$ mkfs.ext4 /dev/sdb1
+$ mkfs.xfs /dev/sdb1
 ```
 
-> 这里使用`ext4`文件系统
+> 这里使用`xfs`文件系统
 
 #### 5. 挂载
 
@@ -99,5 +99,35 @@ Filesystem      Size  Used Avail Use% Mounted on
 #### 6. 设置开机自动挂载
 
 ```
-$ echo "/dev/sdb1    /app    ext4    defaults    1    1" >> /etc/fstab
+$ echo "/dev/sdb1    /app    xfs    defaults    1    1" >> /etc/fstab
+```
+
+#### 7. 附.也可不分区直接格式化
+
+##### 7.1 lsblk查看可用块设备
+
+```
+$ lsblk
+NAME    MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda       8:192  0 446.1G  0 disk 
+├─sda1    8:193  0     1G  0 part /boot
+└─sda2    8:194  0 445.1G  0 part /
+sdb       8:80   0   5.5T  0 disk 
+sdc       8:48   0   5.5T  0 disk
+```
+
+> 可以看到`sdb/sdc`都没有挂载
+
+##### 7.2 不分区直接格式化整个硬盘
+
+```
+$ mkfs.xfs -f -i attr=2 -l lazy-count=1,sectsize=4096 -b size=4096 -d sectsize=4096 -n ftype=1 /dev/sdb
+```
+
+##### 7.3 挂载
+
+```
+$ mkdir /data
+$ mount /dev/sdb /data
+$ echo "/dev/sdb    /data    xfs    defaults    0    0" >> /etc/fstab
 ```
