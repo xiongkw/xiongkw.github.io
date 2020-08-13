@@ -99,7 +99,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 #### 6. 设置开机自动挂载
 
 ```
-$ echo "/dev/sdb1    /app    xfs    defaults    1    1" >> /etc/fstab
+$ echo "/dev/sdb1    /app    xfs    defaults    0    0" >> /etc/fstab
 ```
 
 #### 7. 附.也可不分区直接格式化
