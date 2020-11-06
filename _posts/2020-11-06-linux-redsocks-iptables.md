@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Linux下使用redsocks和iptables实现全局socks代理
-categories: [编程, java]
-tags: [jenkins]
+categories: [编程, linux]
+tags: [redsocks, iptables]
 ---
 
 > linux下配置指定ip的访问走socks代理，以ubuntu为例
