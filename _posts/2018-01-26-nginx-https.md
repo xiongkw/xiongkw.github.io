@@ -82,4 +82,4 @@ location ~ \.do$ {
 }
 ```
 
-> `sub_filter`指令需要安装相应模块`--with-http_sub_module`
+> `sub_filter`指令需要安装相应模块`--with-http_ssl_module`

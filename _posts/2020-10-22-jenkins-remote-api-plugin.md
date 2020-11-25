@@ -74,46 +74,61 @@ public class RemoteApi extends Api {
 
     @WebMethod(name = "ssh")
     @RequirePOST
-    public HttpResponse ssh(@QueryParameter(value = "node", fixEmpty = true) String nodeName,
+    public HttpResponse ssh(@QueryParameter(value = "label", fixEmpty = true) String label,
                             @QueryParameter(fixEmpty = true) String host,
                             @QueryParameter(fixEmpty = true) String username,
                             @QueryParameter(fixEmpty = true) String password,
                             @QueryParameter(fixEmpty = true) Integer port,
                             @QueryParameter(fixEmpty = true) String command) {
-        String check = checkParameters(nodeName, host, username, command);
+        String check = checkParameters(label, host, username, command);
         if (check != null) {
             return HttpResponses.errorWithoutStack(400, check);
         }
         if (port == null) {
             port = 22;
         }
-        Node node = Jenkins.getInstanceOrNull().getNode(nodeName);//getNode方法获取不到master，需要创建其它node
+        Node node = getNodeByLabel(label);
         if (node == null) {
-            String msg = "Can't find node [" + nodeName + "]";
+            String msg = "Can't find node by label [" + label + "]";
             LOGGER.warning(msg);
             return HttpResponses.errorJSON(msg);
         }
         VirtualChannel channel = node.getChannel();
         if (channel == null) {
-            String msg = "Can't open channel for node [" + nodeName + "]";
+            String msg = "Can't open channel for node [" + label + "]";
             LOGGER.warning(msg);
             return HttpResponses.errorJSON(msg);
         }
 
-        Map<String, Object> result = null;
         try {
-            result = channel.call(new SshCommand(host, port, username, password, command));
+            Map<String, Object> result = channel.call(new SshCommand(host, port, username, password, command));
             LOGGER.info("Execute ssh command: [" + command + "] with params: [host: " + host + ", port: " + port + ", username: " + username + ", password: " + password + "] succeed, result: \n" + result);
+            return HttpResponses.okJSON(result);
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Execute ssh command: [" + command + "] with params: [host: " + host + ", port: " + port + ", username: " + username + ", password: " + password + "] failed", e);
             return HttpResponses.errorJSON(e.getMessage());
         }
-        return HttpResponses.okJSON(result);
+    }
+
+    private Node getNodeByLabel(String label) {
+        List<Node> nodes = Jenkins.getInstanceOrNull().getNodes();
+        if (nodes == null || nodes.size() == 0) {
+            return null;
+        }
+        for (Node n : nodes) {
+            Set<LabelAtom> assignedLabels = n.getAssignedLabels();
+            for (LabelAtom labelAtom : assignedLabels) {
+                if (label.equals(labelAtom.getName())) {
+                    return n;
+                }
+            }
+        }
+        return null;
     }
 
     private String checkParameters(String node, String host, String username, String command) {
         if (node == null) {
-            return "Required Query parameter node is missing";
+            return "Required Query parameter label is missing";
         }
         if (host == null) {
             return "Required Query parameter host is missing";
