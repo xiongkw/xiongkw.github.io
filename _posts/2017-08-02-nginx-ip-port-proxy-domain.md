@@ -126,3 +126,15 @@ server {
 
 > 安装`nginx`时需要指定`sub_filter`模块`--with-http_sub_module`   
 > `nginx-1.9.4`以前的版本不支持多个`sub_filter`指令
+
+#### 7. 附 gzip问题
+
+如果真实服务开了gzip，则需要先解压才能替换文本(安装nginx时需要指定`gunzip`模块`--with-http_gunzip_module`)
+
+```
+gunzip on;
+gzip_disable ".";
+
+sub_filter_...
+proxy_pass ...
+```
