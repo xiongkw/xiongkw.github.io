@@ -5,7 +5,7 @@ categories: [编程, linux]
 tags: [jenkins]
 ---
 
-> 已有跨网络的分布式`jenkins`环境，要求实现
+> 已有跨网络的分布式`jenkins`环境，要求实现从`master`端到`agent`端内网的端口访问
 
 #### 1. 编写插件api
 
