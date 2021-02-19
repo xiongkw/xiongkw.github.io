@@ -9,7 +9,7 @@ tags: [jenkins]
 {% raw %}
 #### 1. 菜单入口
 
-`Jenkins`提供了`ManageLink、Action`等扩展点用于添加一个菜单项，这里直接继承`RootAction`
+`Jenkins`提供了`ManageLink、Action`等扩展点用于添加菜单项，这里直接继承`RootAction`
 
 ```java
 @Extension
@@ -34,13 +34,13 @@ public class MyUserAction implements RootAction{
 
 #### 2. 准备数据源
 
-这里使用`xml`文件作为数据源
+使用`xml`文件作为数据源
 
 ```
 public class MyUserAction implements RootAction{
     private List<MyUser> _all = new ArrayList<>();
 
-    public List<Proxy> get_all() {
+    public List<MyUser> get_all() {
         return _all;
     }
 
@@ -76,7 +76,8 @@ public class MyUser{
 ```
 
 #### 3. 编写列表页面
-在`src/main/resources`目录下创建一个同名目录`MyUserAction`，并新建一个`index.jelly`文件
+
+在`src/main/resources`目录下创建一个同名目录`MyUserAction`，并新建`index.jelly`文件
 
 ```
 <?jelly escape-by-default='true'?>
@@ -112,6 +113,7 @@ public class MyUser{
           <td align="center">${c.phone}</td>
 
           <td align="center">
+               <!-- deleteUser会映射到doDeleteUser方法 -->
               <l:confirmationLink href="${rootURL}/myusers/deleteUser?username=${c.username}" message="确定要删除吗?" post="true">
                 <l:icon class="icon-error icon-lg" tooltip="${%Delete}"/>
               </l:confirmationLink>
@@ -140,6 +142,7 @@ public class MyUserAction implements RootAction{
         store();
     }
 
+    @RequirePOST
     public synchronized void doDeleteUser(StaplerRequest req, StaplerResponse rsp, @QueryParameter String username) throws IOException {
         _all.removeIf(u->username.equals(u.getUsername()));
         store();
@@ -150,7 +153,8 @@ public class MyUserAction implements RootAction{
 
 #### 5. 编写新增页面
 
-new.jelly
+在`MyUserAction`下创建`new.jelly`文件
+
 ```
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
@@ -158,6 +162,7 @@ new.jelly
   <l:layout norefresh="true">
     <j:set var="descriptor" value="${it.descriptor}" />
     <l:main-panel>
+        <!-- createUser会映射到doCreateUser方法 -->
       <f:form method="post" action="createUser" name="config">
         <f:entry title="${%Username}" field="username">
           <f:textbox name="username" clazz="required" checkMessage="用户名"/>
@@ -197,7 +202,7 @@ public class MyUserAction implements RootAction, Describable<MyUserAction> {
     }
 
     @Extension
-    public static class DescriptorImpl extends Descriptor<EadpAction> {
+    public static class DescriptorImpl extends Descriptor<MyUserAction> {
 
         public int defaultAge() {
             return 18;
