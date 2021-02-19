@@ -39,6 +39,8 @@ public class MyUserAction implements RootAction{
 ```
 public class MyUserAction implements RootAction{
     private List<MyUser> _all = new ArrayList<>();
+    
+    private final XStream xStream = new XStream2();
 
     public List<MyUser> get_all() {
         return _all;
@@ -46,20 +48,19 @@ public class MyUserAction implements RootAction{
 
     @Initializer(after = PLUGINS_PREPARED)
     public void load() throws IOException {
-        String xml = getConfigFile().asString();
-        _all = (List<MyUser>) Jenkins.XSTREAM.fromXML(xml);
+        _all = (List<MyUser>) getConfigFile().read();
     }
 
     private void store() {
         getConfigFile().write(_all);
     }
 
-    private static XmlFile getConfigFile() throws IOException {
+    private XmlFile getConfigFile() throws IOException {
         File file = new File(Objects.requireNonNull(Jenkins.getInstanceOrNull()).getRootDir(), "myusers.xml");
         if (!file.exists()) {
             file.createNewFile();
         }
-        return new XmlFile(file);
+        return new XmlFile(xstream, file);
     }
 }
 ```
