@@ -6,7 +6,7 @@ tags: [jenkins]
 ---
 
 > 一个`Jenkins`表单插件
-
+{% raw %}
 #### 1. 菜单入口
 
 `Jenkins`提供了`ManageLink、Action`等扩展点用于添加一个菜单项，这里直接继承`RootAction`
@@ -218,7 +218,7 @@ public class MyUserAction implements RootAction, Describable<MyUserAction> {
     }
 }
 ```
-
+{% endraw %}
 #### 7. 参考
 
 * [Extend Jenkins](https://wiki.jenkins.io/display/JENKINS/Extend+Jenkins)
