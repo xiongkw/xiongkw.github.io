@@ -100,4 +100,9 @@ $ lsof -c java
 $ lsof –p PID
 ```
 
+#### 5. 常见用法
 
+```
+# 查看指定进程打开的监听端口
+$ lsof -p ${PID} -nP -a -i -s TCP:LISTEN
+```

@@ -243,6 +243,7 @@ http://localhost:8080/jenkins/plugin/jdrp-plugin/api/ssh?node=node1&host=192.168
 
 #### 5. 参考
 
+* [Extend Jenkins](https://wiki.jenkins.io/display/JENKINS/Extend+Jenkins)
 * [Plugin tutorial](https://wiki.jenkins.io/display/JENKINS/Plugin+tutorial)
 * [Handling Requests](https://www.jenkins.io/doc/developer/handling-requests/)
 * [Web Method](https://wiki.jenkins.io/display/JENKINS/Web+Method)

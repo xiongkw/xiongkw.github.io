@@ -63,6 +63,7 @@ public HttpResponse portForward(@QueryParameter(value = "label", fixEmpty = true
 
 #### 3. 参考
 
+* [Extend Jenkins](https://wiki.jenkins.io/display/JENKINS/Extend+Jenkins)
 * [Jenkins分布式跨网络发布]({{site.url}}/2020/09/17/jenkins-remote-cd/)
 * [Jenkins Remote Api插件开发]({{site.url}}/2020/10/22/enkins-remote-api-plugin/)
 * [Plugin tutorial](https://wiki.jenkins.io/display/JENKINS/Plugin+tutorial)
