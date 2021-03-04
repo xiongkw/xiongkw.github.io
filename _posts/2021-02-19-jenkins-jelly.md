@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Jenkins Jelly
+title: Jenkins插件页面开发
 categories: [编程, java]
 tags: [jenkins]
 ---
