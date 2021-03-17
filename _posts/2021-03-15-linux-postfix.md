@@ -41,3 +41,24 @@ $ echo "Hello world!" | mail -r abc@xxx.com -s "hello" xxxx@qq.com
 ```
 
 登录xxxx@qq.com邮箱，查看刚刚发送的邮件
+
+#### 4. 常用命令
+
+```
+# 查看当前配置信息
+$ postconf -n
+# 重新加载配置文件
+$ postfix reload
+# 查看队列（或 postqueue -p）
+$ mailq
+# 查看邮件内容
+$ postcat -q Queue_ID
+# 删除队列中指定邮件
+$ postsuper -d Queue_ID
+# 清空队列
+$ postsuper -d ALL
+# 删除队列中的异常邮件
+$ postsuper -d ALL deferred
+# 查看邮件详细日志
+$ tail -f /var/log/maillog
+```
