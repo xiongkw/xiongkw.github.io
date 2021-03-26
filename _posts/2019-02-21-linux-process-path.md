@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux下查看进程路径
+title: Linux下查看进程信息
 categories: [编程, linux]
 tags: [进程]
 ---
@@ -35,10 +35,16 @@ $ pwdx 60062
 #### 3. 查看/proc
 
 ```
-$ ls -al /proc/pid
+$ ls -al /proc/${pid}
 
 lrwxrwxrwx  1 fool fool 0 Feb 21 10:32 cwd -> /home/fool/monitor/apps/kibana-6.2.4-linux-x86_64
 lrwxrwxrwx  1 fool fool 0 Feb 21 10:32 exe -> /home/fool/monitor/apps/kibana-6.2.4-linux-x86_64/node/bin/node
 ```
 
 > `cwd`即进程工作目录，`exe`即进程启动脚本路径，都是软链接，指向`kibana`安装目录
+
+#### 4. 查看进程cpu内存
+
+```
+$ ps -o %cpu,%mem,rss ${pid}
+```

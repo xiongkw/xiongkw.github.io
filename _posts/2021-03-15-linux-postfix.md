@@ -62,3 +62,7 @@ $ postsuper -d ALL deferred
 # 查看邮件详细日志
 $ tail -f /var/log/maillog
 ```
+
+#### 5. 参考
+
+* [How To Install and Configure Postfix as a Send-Only SMTP Server](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-postfix-as-a-send-only-smtp-server-on-ubuntu-20-04)
