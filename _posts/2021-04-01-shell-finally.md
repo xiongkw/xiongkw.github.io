@@ -52,5 +52,4 @@ ls bbb
 
 #### 3. 参考
 
-* [java中的nio socket编程]({{ site.url}}/2021/03/30/shell-finally/)
-* [“Exit Trap” 让你的 Bash 脚本更稳固可靠](https://linux.cn/article-9639-1.html)
+* [Writing try catch finally in shell](https://stackoverflow.com/questions/15656492/writing-try-catch-finally-in-shell)
