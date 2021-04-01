@@ -46,5 +46,5 @@ lrwxrwxrwx  1 fool fool 0 Feb 21 10:32 exe -> /home/fool/monitor/apps/kibana-6.2
 #### 4. 查看进程cpu内存
 
 ```
-$ ps -o %cpu,%mem,rss ${pid}
+$ ps -p ${pid} -o %cpu,%mem,rss
 ```
