@@ -113,7 +113,15 @@ ERROR: script returned exit code 2
 Finished: FAILURE
 ```
 
-#### 5. 参考
+#### 5. 关于windows批处理
 
-* [java中的nio socket编程]({{ site.url}}/2021/03/30/shell-finally/)
+批处理即使出错也会继续执行后续所有命令，所以只需要在最后等待几秒再退出即可，批处理没有`sleep`，可以用`ping`命令模拟
+
+```
+ping -n 3 127.0.0.1>nul
+```
+
+#### 6. 参考
+
+* [shell中的try-finally实现]({{ site.url}}/2021/03/30/shell-finally/)
 * [“Exit Trap” 让你的 Bash 脚本更稳固可靠](https://linux.cn/article-9639-1.html)
