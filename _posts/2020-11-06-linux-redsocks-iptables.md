@@ -13,7 +13,14 @@ tags: [redsocks, iptables]
 $ sudo apt-get install redsocks
 ```
 
-> 也可通过源码安装[redsocks](https://github.com/darkk/redsocks)
+也可通过源码安装[redsocks](https://github.com/darkk/redsocks)
+
+```
+$ git clone https://github.com/darkk/redsocks.git
+$ cd redsocks
+$ yum install libevent-devel
+$ make
+```
 
 #### 2. 配置redsocks
 
