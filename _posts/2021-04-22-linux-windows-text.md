@@ -23,3 +23,9 @@ tags: []
 :%s/^M$//g
 ```
 > 其中`^M`通过按键`CTRL+V`再`CTRL+M`输入
+
+#### 4. 使用find和sed批量转换
+
+```
+$ find . -name '*.sh' -exec sed -i 's/^M$//g' {} \;
+```
