@@ -28,4 +28,4 @@ tags: []
 
 ```
 $ find . -name '*.sh' -exec sed -i 's/^M$//g' {} \;
-```
+```  
