@@ -11,14 +11,14 @@ tags: []
 #### 1. iframe之间使用postMessage通信
 
 A页面监听`message`事件
-```
+```javascript
 windowA.addEventListener("message", function(e) {
     console.log(e.data);
 });
 ```
 
 B页面发送消息
-```
+```javascript
 windowA.postMessage({"msg":"hello"});
 ```
 
@@ -27,7 +27,7 @@ windowA.postMessage({"msg":"hello"});
 #### 2. 不同tab之间借助localStorage通信
 
 A页面监听`storage`事件
-```
+```javascript
 windowA.addEventListener("storage", function(e) {
     if(e.key == "msg"){
         console.log(e.newValue);
@@ -36,7 +36,7 @@ windowA.addEventListener("storage", function(e) {
 ```
 
 B页面发起`storage`事件
-```
+```javascript
 localStorage.setItem("msg", "hello");
 ```
 
