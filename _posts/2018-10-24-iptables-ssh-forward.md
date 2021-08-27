@@ -126,7 +126,16 @@ $ iptables-save > iptables.bak
 $ iptables-restore < iptables.bak
 ```
 
-#### 5. 参考
+#### 5. 常用示例
+
+##### 5.1 转发OUTPUT到本机指定端口
+
+```
+iptables -t nat -A OUTPUT -d 172.200.100.10 -p tcp --dport 8021 -j DNAT --to-destination 127.0.0.1:12943
+```
+
+
+#### 6. 参考
 
 * [netfilter/iptables简介](https://segmentfault.com/a/1190000009043962)
 * [iptables详解](http://www.zsythink.net/archives/tag/iptables/)
