@@ -5,18 +5,21 @@ categories: [编程, linux]
 tags: [frp]
 ---
 
-> 公网映射到内网
+> 有一个内网服务，需要提供公网访问
 
 #### 1.名词解释
 
-* 转发：把A主机的端口PA转发到B主机的端口PB
-* 映射：把内网主机B的端口PB映射到一个公网主机的端口PA，使得内网服务可以提供公网访问。映射其实也是一种转发，只是映射强调的是公网转内网
-* 反向代理：同样也是把A主机的端口PA代理到B主机端口PB。反向代理也是一种转发，只是反向代理的重点是隐藏被代理服务。
+* 端口转发：把A主机的端口PA转发到B主机的端口PB，使得访问PA就能访问PB
+* 端口映射：把内网主机B的端口PB映射到公网主机的端口PA，使得内网服务可以提供公网访问。映射其实也是一种转发，只不过映射强调的是公网转发到内网
+* 反向代理：把A主机的端口PA代理到B主机端口PB，本质也是一种转发，只不过反向代理的重点是隐藏被代理服务
 
 #### 2. 安装frp
 下载[安装包](https://github.com/fatedier/frp)
 
 ##### 2.1 服务端(公网主机)
+
+服务端的安装文件是frps*
+
 ```
 $ tar zxvf frp_0.37.1_linux_amd64.tar.gz
 $ cp frp_0.37.1_linux_amd64/frps /usr/bin
@@ -25,6 +28,9 @@ $ cp frp_0.37.1_linux_amd64/systemd/frps.service /usr/lib/systemd/system
 ```
 
 ##### 2.2 客户端(内网主机)
+
+客户端的安装文件是frpc*
+
 ```
 $ tar zxvf frp_0.37.1_linux_amd64.tar.gz
 $ cp frp_0.37.1_linux_amd64/frpc /usr/bin
