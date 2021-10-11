@@ -98,3 +98,27 @@ git commit --amend -m 'amendatory message'
 ```
 
 > `git commit -- amend`命令可以修改上一次`commit`的内容，包括`author, message`等
+
+#### 5. 撤销merge
+
+误将master分支合并到了dev，幸好没有push
+
+```
+$ git checkout dev
+$ git merge dev
+```
+
+使用`git reflog`命令查看操作记录
+
+```
+$ git reflog
+66f5655 HEAD@{0}: merge master: Merge made by the 'recursive' strategy.
+7d45b22 HEAD@{1}: checkout: moving from master to dev
+f75fd61 HEAD@{2}: pull: Fast-forward
+```
+
+这里我们要恢复到上一次操作的状态，即`7d45b22`，使用`git reset`命令
+
+```
+$ git reset --hard 7d45b22
+```
