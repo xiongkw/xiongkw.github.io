@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 通过Launchd实例mac下的开机自启动
+title: 通过Launchd实现mac下的开机自启动
 categories: [编程, unix]
 tags: [mac, launchd]
 ---

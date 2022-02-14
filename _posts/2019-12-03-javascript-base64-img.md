@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Javascript中的线程和事件
+title: 使用javascript把图片转为base64格式
 categories: [编程, javascript]
 tags: [base64, img]
 ---
