@@ -54,7 +54,7 @@ public class ConsumerApmFilter implements Filter {
             span.injectTraceHeaders((key, value) -> RpcContext.getContext().setAttachment(key, value)); // 通过RpcContext传递trace header信息
             return invoker.invoke(invocation);
         } catch (Exception e) {
-            transaction.setLabel("arguments", JSON.toJSONString(invocation.getArguments())); // 调用异常时记录参数信息
+            span.setLabel("arguments", JSON.toJSONString(invocation.getArguments())); // 调用异常时记录参数信息
             span.captureException(e);
             throw e;
         } finally {
