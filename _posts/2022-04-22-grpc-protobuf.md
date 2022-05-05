@@ -44,7 +44,7 @@ public class PollingUtils {
 }
 ```
 
-#### 1. 使用方法
+#### 2. 使用方法
 
 ```java
 public static void main(String[] args) {
