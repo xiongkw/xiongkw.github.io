@@ -143,7 +143,8 @@ $ iptables -A PREROUTING -t nat -p tcp --dport 2200 -j REDIRECT --to 22
 ##### 5.3 转发本机端口到其它主机端口
 
 ```
-$ iptables -t nat -A PREROUTING -p tcp --dport 8093 -j DNAT --to 192.168.1.3:8090
+$ iptables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to 192.168.1.3:8080
+$ iptables -t nat -A POSTROUTING -p tcp -d 192.168.1.3 --dport 8080 -j SNAT --to-source 192.168.1.2
 ```
 
 
