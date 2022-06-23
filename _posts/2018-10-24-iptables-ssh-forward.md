@@ -128,10 +128,29 @@ $ iptables-restore < iptables.bak
 
 #### 5. 常用示例
 
-##### 5.1 转发OUTPUT到本机指定端口
+##### 5.1 开放本机指定端口
 
 ```
-iptables -t nat -A OUTPUT -d 172.200.100.10 -p tcp --dport 8021 -j DNAT --to-destination 127.0.0.1:12943
+$ iptables -I INPUT -p tcp --dport 9000 -j ACCEPT
+```
+
+##### 5.2 转发本机端口到本机其它端口
+
+```
+$ iptables -A PREROUTING -t nat -p tcp --dport 2200 -j REDIRECT --to 22
+```
+
+##### 5.3 转发本机端口到其它主机端口
+
+```
+$ iptables -t nat -A PREROUTING -p tcp --dport 8093 -j DNAT --to 192.168.1.3:8090
+```
+
+
+##### 5.4 转发本机OUTPUT到本机指定端口
+
+```
+$ iptables -t nat -A OUTPUT -d 172.200.100.10 -p tcp --dport 8021 -j DNAT --to-destination 127.0.0.1:12943
 ```
 
 
