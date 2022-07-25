@@ -53,7 +53,7 @@ public class LittleBrother{
 public class LittleCoder{
     
     public void coding(){
-        //写代码啊写代码，写出一行好代码
+        //写啊写啊写代码，写出一行好代码
         //...
     }
     
@@ -71,7 +71,7 @@ public class LittleCoder{
 public static void main(String[] args){
     brother.order("鸡蛋炒饭");
     //1.同步：主动等待午餐送到，当前线程主动等待方法调用结束即为同步
-    //2.阻塞：等待午餐，没力气写代码了，我被阻塞了
+    //2.阻塞：等待午餐，没力气写代码，我被阻塞了
     
     //午餐送到，开吃
     I.eat();
@@ -94,7 +94,7 @@ public static void main(String[] args){
     
     //1.同步：我主动询问小哥送到没有，当前线程主动等待方法调用结束即为同步
     String message = brother.getStatus();
-    //什么？ 你在楼下等了半小时电梯？
+    //什么？ 半个小时还没等到电梯？
         
     //午餐终于送到了，饿晕...
     I.eat();
@@ -106,7 +106,7 @@ public static void main(String[] args){
 public static void main(String[] args){
     brother.order("鸡蛋炒饭", 14710241024);
     //1.异步：到了打我电话，当前线程被动等待方法调用结束即为异步
-    //2.阻塞：啥也不干，就等电话，饿的没力气写代码了，即被阻塞了
+    //2.阻塞：啥也不干，就等电话，饿的没力气写代码，即被阻塞了
     //这里和同步的区别是：同步是主动打电话问小哥到了没有，异步是被动等待小哥打电话
     while(noCall){
         Thread.sleep(1000);
