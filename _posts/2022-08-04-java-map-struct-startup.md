@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MapStruct试用
-categories: [Java]
+categories: [java]
 tags: []
 ---
 
