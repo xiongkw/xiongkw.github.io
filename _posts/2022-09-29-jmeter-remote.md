@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Apache Jmeter的远程模式
-categories: [java, linux, 压力测试]
+categories: [java, linux, 性能测试]
 tags: []
 ---
 
