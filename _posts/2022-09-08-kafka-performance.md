@@ -98,8 +98,8 @@ max.poll.interval.ms=30000
 # 手动commit offset
 enable.auto.commit=false
 
-# 一次拉取消息的最大字节数
-fetch.max.bytes
+# 单个分区一次拉取消息的最大字节数
+max.partition.fetch.bytes
 
 # 一次拉取消息的最大条数
 max.poll.records
