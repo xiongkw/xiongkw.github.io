@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Kafka异步消息
-categories: [java, kafka]
-tags: []
+categories: [java]
+tags: [kafka]
 ---
 
 > kafka同步消费受制于分区数和消费线程数，在对数据一致性要求不高的场合，可以用异步消费方式提高消费性能

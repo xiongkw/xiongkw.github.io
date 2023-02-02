@@ -2,7 +2,7 @@
 layout: post
 title: Kafka性能调优
 categories: [java]
-tags: []
+tags: [kafka]
 ---
 
 >  

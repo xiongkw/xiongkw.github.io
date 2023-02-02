@@ -2,7 +2,7 @@
 layout: post
 title: Kafka Manager试用
 categories: [编程, java]
-tags: [kafka, manager]
+tags: [kafka]
 ---
 
 
