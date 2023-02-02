@@ -67,7 +67,7 @@ $ curl http://127.0.0.1:8080/actuator/sampler
 $ curl -X POST http://127.0.0.1:8080/actuator/sampler \
 -H 'Content-Type: application/json' \
 -d '{
-    "rate":60
+    "rate":30
 }'
 # 查询采样率
 $ curl http://127.0.0.1:8080/actuator/sampler
