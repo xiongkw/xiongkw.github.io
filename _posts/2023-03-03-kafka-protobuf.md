@@ -1,19 +1,19 @@
 ---
 layout: post
-title: Kafka消费protobuf消息
+title: Kafka调试protobuf格式的消息
 categories: [java]
 tags: [kafka]
 ---
 
-> kafka如何调试protobuf格式的消息
+> 
 
 #### 1. 工具
 
 使用[Kafka Protobuf Console](https://github.com/khorshuheng/kafka-protobuf-console)
 
-#### 2. fds文件制作
+#### 2. 生成FileDescriptorSets
 
-使用protoc生成descriptor set文件，以opentelemetry-proto为例
+使用protoc生成FileDescriptorSets文件，以opentelemetry-proto为例
 
 ```
 $ protoc --descriptor_set_out otlp.fds --proto_path /proto --include_imports /proto/opentelemetry/proto/collector/metrics/v1/metrics_service.proto /proto/opentelemetry/proto/collector/trace/v1/trace_service.proto /proto/opentelemetry/proto/collector/logs/v1/logs_service.proto
