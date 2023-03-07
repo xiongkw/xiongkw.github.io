@@ -14,7 +14,7 @@ tags: [kafka]
 metric.reporters=org.apache.kafka.common.metrics.JmxReporter
 ```
 
-使用JDK自带工具jconsole查看，略
+使用JDK自带工具jconsole查看，略...
 
 #### 2. 导出prometheus格式
 
@@ -141,4 +141,4 @@ management:
 
 ##### 2.5 查看指标
 
-访问 /actuator/prometheus
+浏览器访问 http:127.0.0.1:8080/actuator/prometheus

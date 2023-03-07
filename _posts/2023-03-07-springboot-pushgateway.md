@@ -9,9 +9,9 @@ tags: [prometheus]
 
 #### 1. 安装Pushgateway
 
-在Pushgateway[github仓库](https://github.com/prometheus/pushgateway/tags)下载
+在[Pushgateway仓库](https://github.com/prometheus/pushgateway/tags)下载
 
-运行
+解压运行
 
 ```
 $ ./pushgateway --web.listen-address=:9091
@@ -68,13 +68,13 @@ management:
 
 只需要配置`management.metrics.export.prometheus.push-gateway`即可，actuator已经帮我们自动配好了，参考`org.springframework.boot.actuate.autoconfigure.metrics.export.prometheus.PrometheusMetricsExportAutoConfiguration`
 
-#### 4. 其它
+#### 4. 其它问题
 
 ##### 4.1 应用挂了
 
 > Pushgateway有个问题就是应用挂了以后，exporter接口还是能查到之前上报的指标
 
-可设置参数`management.metrics.export.prometheus.push-gateway.shutdown-operation=DELETE`结合优雅kill解决，只是不适用暴力kill（-9）
+可设置参数`management.metrics.export.prometheus.push-gateway.shutdown-operation=DELETE`结合优雅kill解决，但不适用暴力kill(-9)
 
 ##### 4.2 用户认证
 
