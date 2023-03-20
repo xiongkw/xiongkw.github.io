@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Springboot推送指标到Prometheus Pushgateway
-categories: [java]
+categories: [java, spring]
 tags: [prometheus]
 ---
 
