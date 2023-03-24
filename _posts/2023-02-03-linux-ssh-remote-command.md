@@ -76,10 +76,10 @@ $ ssh -t user@host1 'top'
 hosts="192.168.1.100,192.168.1.101,192.168.1.102"
 for host in $hosts;
 do
-	sshpass -p "123456" ssh -o StrictHostKeyChecking=no root@$host '\
-		useradd -d /home/fool -m fool; \
-		echo "654321" | passwd --stdin fool; \
-		echo "fool ALL=(ALL)       NOPASSWD:ALL" >> /etc/sudoers;'
+	sshpass -p "123456" ssh -o StrictHostKeyChecking=no xxxx@$host '\
+		sudo /usr/sbin/useradd -d /home/fool -m fool; \
+		echo "654321" | sudo passwd --stdin fool; \
+		echo "fool ALL=(ALL)       NOPASSWD:ALL" | sudo tee -a /etc/sudoers;'
 done
 ```
 
