@@ -52,3 +52,17 @@ $ set +a
 # 替换模板文件中的变量，生成配置文件
 $ envsubst < application.yml.tpl > application.yml
 ```
+
+#### 3. 如何忽略指定占位变量
+
+如下例子
+```
+java -server ${JAVA_OPTS} -jar /app/${package_name}
+```
+如果JAVA_OPTS变量不存在，则结果为：java -server  -jar /app/xx.jar，而实际我们希望保留${JAVA_OPTS}，可用以下方法
+
+```
+java -server ${${envsubst_empty}JAVA_OPTS} -jar /app/${package_name}
+```
+
+envsubst_empty是一个不存在的变量，结果为：java -server ${JAVA_OPTS} -jar /app/xx.jar
