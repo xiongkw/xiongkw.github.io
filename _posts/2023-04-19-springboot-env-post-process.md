@@ -2,7 +2,7 @@
 layout: post
 title: Springboot自动解密配置中的变量值
 categories: [java, spring]
-tags: [prometheus]
+tags: []
 ---
 
 > spring的EnvironmentPostProcessor接口提供变量处理的能力
