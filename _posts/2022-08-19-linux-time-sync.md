@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Linux时间同步
-categories: [linux]
+categories: [编程, linux]
 tags: []
 ---
 

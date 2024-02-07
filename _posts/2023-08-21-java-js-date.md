@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Javascript中的一些日期计算方法
-categories: [javascript]
+categories: [编程, javascript]
 tags: []
 ---
 

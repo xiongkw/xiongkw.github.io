@@ -1,7 +1,7 @@
 ---
 layout: post
 title: nginx文件下载自动索引
-categories: [linux]
+categories: [编程, linux]
 tags: [nginx]
 ---
 

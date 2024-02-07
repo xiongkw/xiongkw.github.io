@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Springboot-datasource自动初始化
-categories: [java, spring]
+categories: [编程, java, spring]
 tags: []
 ---
 

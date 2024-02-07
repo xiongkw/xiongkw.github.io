@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kafka性能调优
-categories: [java]
+categories: [编程, java]
 tags: [kafka]
 ---
 

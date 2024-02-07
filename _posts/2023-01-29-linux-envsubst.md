@@ -1,7 +1,7 @@
 ---
 layout: post
 title: shell中使用envsubst处理模板文件
-categories: [linux]
+categories: [编程, linux]
 tags: [shell, envsubst]
 ---
 
