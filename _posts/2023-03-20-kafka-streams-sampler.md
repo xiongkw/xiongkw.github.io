@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SpEL实现线上动态采样
-categories: [java, spring]
+categories: [编程, java, spring]
 tags: []
 ---
 

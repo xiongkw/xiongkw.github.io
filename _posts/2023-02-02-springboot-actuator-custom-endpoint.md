@@ -1,7 +1,7 @@
 ---
 layout: post
 title: spring-boot-actuator自定义Endpoint
-categories: [java, spring]
+categories: [编程, java, spring]
 tags: []
 ---
 

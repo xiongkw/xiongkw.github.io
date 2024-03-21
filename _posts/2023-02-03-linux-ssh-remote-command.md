@@ -1,7 +1,7 @@
 ---
 layout: post
 title: linux中通过ssh执行远程命令
-categories: [linux]
+categories: [编程, linux]
 tags: [shell, ssh]
 ---
 

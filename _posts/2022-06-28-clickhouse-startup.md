@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ClickHouse试用
-categories: [linux]
+categories: [编程, linux]
 tags: []
 ---
 

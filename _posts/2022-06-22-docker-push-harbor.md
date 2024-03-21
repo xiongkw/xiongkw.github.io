@@ -1,7 +1,7 @@
 ---
 layout: post
 title: docker推送镜像到harbor外网地址的问题
-categories: [linux]
+categories: [编程, linux]
 tags: []
 ---
 

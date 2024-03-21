@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 通过iptables实现端口转发
-categories: [linux]
+categories: [编程, linux]
 tags: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Springboot自动解密配置中的变量值
-categories: [java, spring]
+categories: [编程, java, spring]
 tags: []
 ---
 

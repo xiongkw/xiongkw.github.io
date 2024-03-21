@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SpringBoot的Basic Auth实现
-categories: [java, springboot]
+categories: [编程, java, springboot]
 tags: []
 ---
 

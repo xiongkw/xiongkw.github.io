@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kafka异步消息
-categories: [java]
+categories: [编程, java]
 tags: [kafka]
 ---
 

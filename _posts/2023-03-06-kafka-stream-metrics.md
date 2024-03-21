@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kafka-Stream导出promtheus指标
-categories: [java]
+categories: [编程, java]
 tags: [kafka]
 ---
 
