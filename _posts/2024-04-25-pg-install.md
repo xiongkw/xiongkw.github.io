@@ -53,10 +53,19 @@ psql (16.2 (Debian 16.2-1.pgdg120+2))
 Type "help" for help.
 
 postgres=#
+# 创建用户
+postgres=# create user test password '123456';
+CREATE ROLE
+# 创建db
+postgres=# create database mydb owner test;
+CREATE DATABASE
+# 分配权限
+postgres=# grant all privileges on database mydb to test;
+GRANT
 ```
 #### 5. pgadmin使用
 
-浏览器访问`http://127.0.0.1:15433`
+浏览器访问`http://127.0.0.1:15433`，创建server，注意连接的ip应该用宿主机ip
 
 #### 6. 参考
 

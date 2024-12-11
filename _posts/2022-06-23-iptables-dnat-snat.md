@@ -122,3 +122,14 @@ $ iptables -I FORWARD -s 10.150.90.200 -p tcp -j ACCEPT
 再次curl，发现能成功返回了
 
 
+#### 4. 总结
+
+```
+vi /etc/sysctl.conf
+net.ipv4.ip_forward =1
+sysctl -p
+
+iptables -t nat -A PREROUTING -p tcp --dport $local_port -j DNAT --to $target_ip:$target_port
+iptables -t nat -A POSTROUTING -d $target_ip -p tcp --dport $target_port -j SNAT --to-source $local_ip
+
+```
